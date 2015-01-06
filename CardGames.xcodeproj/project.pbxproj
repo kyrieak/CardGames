@@ -13,6 +13,10 @@
 		34005ED71A4FACDB00BDFD0F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34005ED61A4FACDB00BDFD0F /* Images.xcassets */; };
 		34005EDA1A4FACDB00BDFD0F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34005ED81A4FACDB00BDFD0F /* LaunchScreen.xib */; };
 		34005EE61A4FACDB00BDFD0F /* CardGamesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34005EE51A4FACDB00BDFD0F /* CardGamesTests.swift */; };
+		34005EF01A4FC5BC00BDFD0F /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34005EEF1A4FC5BC00BDFD0F /* CardViewController.swift */; };
+		34005EF31A4FC8F500BDFD0F /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34005EF21A4FC8F500BDFD0F /* Deck.swift */; };
+		34005EF51A4FC91500BDFD0F /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34005EF41A4FC91500BDFD0F /* Card.swift */; };
+		34005EF71A4FC94A00BDFD0F /* TrumpCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34005EF61A4FC94A00BDFD0F /* TrumpCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +40,10 @@
 		34005EDF1A4FACDB00BDFD0F /* CardGamesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CardGamesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		34005EE41A4FACDB00BDFD0F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		34005EE51A4FACDB00BDFD0F /* CardGamesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGamesTests.swift; sourceTree = "<group>"; };
+		34005EEF1A4FC5BC00BDFD0F /* CardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
+		34005EF21A4FC8F500BDFD0F /* Deck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
+		34005EF41A4FC91500BDFD0F /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		34005EF61A4FC94A00BDFD0F /* TrumpCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrumpCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,9 +87,11 @@
 			children = (
 				34005ECF1A4FACDA00BDFD0F /* AppDelegate.swift */,
 				34005ED11A4FACDA00BDFD0F /* ViewController.swift */,
+				34005EEF1A4FC5BC00BDFD0F /* CardViewController.swift */,
 				34005ED31A4FACDB00BDFD0F /* Main.storyboard */,
 				34005ED61A4FACDB00BDFD0F /* Images.xcassets */,
 				34005ED81A4FACDB00BDFD0F /* LaunchScreen.xib */,
+				34005EF11A4FC8DD00BDFD0F /* Models */,
 				34005ECD1A4FACDA00BDFD0F /* Supporting Files */,
 			);
 			path = CardGames;
@@ -110,6 +120,16 @@
 				34005EE41A4FACDB00BDFD0F /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		34005EF11A4FC8DD00BDFD0F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				34005EF21A4FC8F500BDFD0F /* Deck.swift */,
+				34005EF41A4FC91500BDFD0F /* Card.swift */,
+				34005EF61A4FC94A00BDFD0F /* TrumpCard.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -212,8 +232,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34005EF31A4FC8F500BDFD0F /* Deck.swift in Sources */,
 				34005ED21A4FACDA00BDFD0F /* ViewController.swift in Sources */,
+				34005EF71A4FC94A00BDFD0F /* TrumpCard.swift in Sources */,
+				34005EF51A4FC91500BDFD0F /* Card.swift in Sources */,
 				34005ED01A4FACDA00BDFD0F /* AppDelegate.swift in Sources */,
+				34005EF01A4FC5BC00BDFD0F /* CardViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
