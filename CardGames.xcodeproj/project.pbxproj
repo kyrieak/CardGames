@@ -17,6 +17,8 @@
 		34005EF31A4FC8F500BDFD0F /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34005EF21A4FC8F500BDFD0F /* Deck.swift */; };
 		34005EF51A4FC91500BDFD0F /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34005EF41A4FC91500BDFD0F /* Card.swift */; };
 		34005EF71A4FC94A00BDFD0F /* TrumpCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34005EF61A4FC94A00BDFD0F /* TrumpCard.swift */; };
+		343587111A6A246C00DD7F1A /* TrumpCardCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343587101A6A246C00DD7F1A /* TrumpCardCollectionDataSource.swift */; };
+		349A2C6F1A6DAD5900580219 /* MatchingGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349A2C6E1A6DAD5900580219 /* MatchingGameController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,8 @@
 		34005EF21A4FC8F500BDFD0F /* Deck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 		34005EF41A4FC91500BDFD0F /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		34005EF61A4FC94A00BDFD0F /* TrumpCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrumpCard.swift; sourceTree = "<group>"; };
+		343587101A6A246C00DD7F1A /* TrumpCardCollectionDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrumpCardCollectionDataSource.swift; sourceTree = "<group>"; };
+		349A2C6E1A6DAD5900580219 /* MatchingGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchingGameController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,10 +89,12 @@
 		34005ECC1A4FACDA00BDFD0F /* CardGames */ = {
 			isa = PBXGroup;
 			children = (
+				349A2C6E1A6DAD5900580219 /* MatchingGameController.swift */,
 				34005ECF1A4FACDA00BDFD0F /* AppDelegate.swift */,
 				34005ED11A4FACDA00BDFD0F /* ViewController.swift */,
 				34005EEF1A4FC5BC00BDFD0F /* CardViewController.swift */,
 				34005ED31A4FACDB00BDFD0F /* Main.storyboard */,
+				343587101A6A246C00DD7F1A /* TrumpCardCollectionDataSource.swift */,
 				34005ED61A4FACDB00BDFD0F /* Images.xcassets */,
 				34005ED81A4FACDB00BDFD0F /* LaunchScreen.xib */,
 				34005EF11A4FC8DD00BDFD0F /* Models */,
@@ -232,6 +238,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				349A2C6F1A6DAD5900580219 /* MatchingGameController.swift in Sources */,
+				343587111A6A246C00DD7F1A /* TrumpCardCollectionDataSource.swift in Sources */,
 				34005EF31A4FC8F500BDFD0F /* Deck.swift in Sources */,
 				34005ED21A4FACDA00BDFD0F /* ViewController.swift in Sources */,
 				34005EF71A4FC94A00BDFD0F /* TrumpCard.swift in Sources */,
@@ -431,6 +439,7 @@
 				34005EEB1A4FACDB00BDFD0F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		34005EEC1A4FACDB00BDFD0F /* Build configuration list for PBXNativeTarget "CardGamesTests" */ = {
 			isa = XCConfigurationList;
@@ -439,6 +448,7 @@
 				34005EEE1A4FACDB00BDFD0F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

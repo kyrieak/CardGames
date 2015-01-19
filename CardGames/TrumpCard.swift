@@ -40,6 +40,65 @@ class TrumpCard:Card, Comparable {
   func label() -> String {
     return "\(self.rank)" + self.suit.symbol
   }
+  
+  class func hearts() -> Suit {
+    return Suit(title: "Hearts", symbol: "♥︎", tier: 1, color: UIColor.redColor())
+  }
+  
+  class func diamonds() -> Suit {
+    return Suit(title: "Diamonds", symbol: "♦︎", tier: 1, color: UIColor.redColor())
+  }
+  
+  class func spades() -> Suit {
+    return Suit(title: "Spades", symbol: "♠︎", tier: 1, color: UIColor.blackColor())
+  }
+  
+  class func clubs() -> Suit {
+    return Suit(title: "Clubs", symbol: "♣︎", tier: 1, color: UIColor.blackColor())
+  }
+  
+//  var cardSets: NSDictionary
+//  
+//  init(keys: [AnyObject]) {
+//
+//  func addCard(card: T, key: AnyObject) {
+//    if var cardSet = cardSets.objectForKey(key) as? NSMutableSet {
+//      cardSet.addObject(card)
+//    }
+//  }
+
+  
+  class func standardSet() -> NSDictionary {
+    var obj = [NSMutableSet]()
+    var keys = [Int]()
+    
+    for i in 1...13 {
+      var set = NSMutableSet()
+      
+      set.addObject(TrumpCard(suit: diamonds(), rank: i))
+      set.addObject(TrumpCard(suit: spades(), rank: i))
+      set.addObject(TrumpCard(suit: hearts(), rank: i))
+      set.addObject(TrumpCard(suit: clubs(), rank: i))
+      
+      obj.append(set)
+      keys.append(i)
+    }
+
+    return NSDictionary(objects: obj, forKeys: keys)
+  }
+
+  class func standardDeck() -> Deck<TrumpCard> {
+    var deck = Deck<TrumpCard>()
+
+    for i in 1...13 {
+      deck.addCard(TrumpCard(suit: diamonds(), rank: i))
+      deck.addCard(TrumpCard(suit: spades(), rank: i))
+      deck.addCard(TrumpCard(suit: hearts(), rank: i))
+      deck.addCard(TrumpCard(suit: clubs(), rank: i))
+    }
+    
+    return deck
+  }
 }
 
 func ==(lhs:TrumpCard, rhs:TrumpCard) -> Bool {
