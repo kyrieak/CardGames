@@ -92,27 +92,8 @@
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="72" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OHi-Nd-bbA">
-                                            <rect key="frame" x="0.0" y="0.0" width="72" height="100"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="72" id="EXl-fC-pKx"/>
-                                                <constraint firstAttribute="width" secondItem="OHi-Nd-bbA" secondAttribute="height" multiplier="18:25" id="tON-7R-MJh"/>
-                                            </constraints>
-                                            <state key="normal" backgroundImage="card_back">
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="selectCard:" destination="I9X-cb-r4T" eventType="touchUpInside" id="G0J-gO-xYN"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <constraints>
-                                    <constraint firstAttribute="centerX" secondItem="OHi-Nd-bbA" secondAttribute="centerX" id="KQL-2S-N55"/>
-                                    <constraint firstAttribute="centerY" secondItem="OHi-Nd-bbA" secondAttribute="centerY" id="bQf-uI-8RS"/>
-                                </constraints>
                                 <size key="customSize" width="72" height="100"/>
                             </collectionViewCell>
                         </cells>
@@ -162,9 +143,6 @@
                     </collectionView>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="568"/>
-                    <connections>
-                        <outlet property="collectionView" destination="ORX-ms-dHc" id="nhl-c7-hqw"/>
-                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3V9-MV-IpW" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <customObject id="76O-L0-CGy" customClass="TrumpCardCollectionDataSource" customModule="CardGames" customModuleProvider="target"/>

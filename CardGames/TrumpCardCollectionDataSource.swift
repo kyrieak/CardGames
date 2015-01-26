@@ -10,22 +10,25 @@ import Foundation
 import UIKit
 
 class TrumpCardCollectionDataSource: NSObject, UICollectionViewDataSource {
-  var cardsInPlay: [TrumpCard]
   let cardBackImage = UIImage(named: "card_back")
   let stdCardSet = TrumpCard.standardSet()
-  var cardPairs: NSMutableArray = []
+  var cardsInPlay: [TrumpCard?] = []
+  var cardPairs: Array<[TrumpCard]> = Array<[TrumpCard]>()
   
   override init() {
-    cardsInPlay = []
-    
     for (key, cardSet) in stdCardSet {
-      var cards = cardSet.allObjects as [TrumpCard]
+      var cards: [TrumpCard] = []
+      
+      for card in cardSet.allObjects {
+        cards.append(card as TrumpCard)
+      }
+      
       TrumpCardCollectionDataSource.shuffleCards(&cards)
       
+      cardPairs.append([cards[0], cards[1]])
+      cardPairs.append([cards[2], cards[3]])
+
       cardSet.removeAllObjects()
-      
-      cardPairs.addObject([cards[0], cards[1]])
-      cardPairs.addObject([cards[2], cards[3]])
     }
     
     super.init()
@@ -34,24 +37,32 @@ class TrumpCardCollectionDataSource: NSObject, UICollectionViewDataSource {
     changeCards()
   }
   
-//  init(cards: [TrumpCard]) {
-//    cardsInPlay = cards
-//  }
-  
   func changeCards() {
     cardsInPlay = []
+    
+    var cards = getNextCards()
+    
+    for c in cards {
+      cardsInPlay.append(c)
+    }
+  }
+  
+  func getNextCards() -> [TrumpCard] {
+    var cards: [TrumpCard] = []
     var rIdx = min(7, (cardPairs.count - 1))
     
     for i in 0...rIdx {
-      var p = cardPairs[i] as [TrumpCard]
-      cardsInPlay.append(p[0])
-      cardsInPlay.append(p[1])
-      cardPairs.removeObjectAtIndex(0)
+      var p: [TrumpCard] = cardPairs[i]
+      
+      cards.append(p[0])
+      cards.append(p[1])
+      
+      cardPairs.removeAtIndex(0)
     }
     
-    TrumpCardCollectionDataSource.shuffleCards(&cardsInPlay)
+    TrumpCardCollectionDataSource.shuffleCards(&cards)
     
-    NSLog("here shuff cards")
+    return cards
   }
   
   func shufflePairs() {
@@ -59,7 +70,7 @@ class TrumpCardCollectionDataSource: NSObject, UICollectionViewDataSource {
     
     for i in 0...rIdx {
       var j = Int(arc4random_uniform(UInt32(rIdx)))
-      var temp = cardPairs[i] as [TrumpCard]
+      var temp: [TrumpCard] = cardPairs[i]
       
       cardPairs[i] = cardPairs[j] as [TrumpCard]
       cardPairs[j] = temp
@@ -97,26 +108,32 @@ class TrumpCardCollectionDataSource: NSObject, UICollectionViewDataSource {
   
   func collectionView(collectionView: UICollectionView,
     cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-      var cell: UICollectionViewCell
-      var label: UILabel
-      var card = cardsInPlay[indexPath.item]
+      NSLog("-----------getting cell for idxpath")
       
-      cell = (collectionView.dequeueReusableCellWithReuseIdentifier("card_cell", forIndexPath: indexPath) as? UICollectionViewCell)!
+      var cell = (collectionView.dequeueReusableCellWithReuseIdentifier("card_cell", forIndexPath: indexPath) as? UICollectionViewCell)!
       
-      if var button = cell.contentView.subviews[0] as? UIButton {
-        button.setBackgroundImage(nil, forState: UIControlState.Normal)
+      if (cardsInPlay[indexPath.item] != nil) {
+        cell.backgroundView = UIImageView(image: cardBackImage)
+        cell.selectedBackgroundView = labelFor(cardsInPlay[indexPath.item]!, withFrame: cell.frame)
+      } else {
+        cell.backgroundView = nil
+        cell.selectedBackgroundView = nil
       }
       
-      label = UILabel(frame: cell.frame)
-      label.text = card.label()
-      label.textColor = card.suit.color
-      label.textAlignment = NSTextAlignment.Center
-      label.backgroundColor = UIColor.whiteColor()
-      
-      cell.backgroundView = UIImageView(image: cardBackImage)
-      cell.selectedBackgroundView = label
       cell.selected = false
       
       return cell
+  }
+  
+  
+  func labelFor(card: TrumpCard, withFrame: CGRect) -> UILabel {
+    var label = UILabel(frame: withFrame)
+
+    label.text = card.label()
+    label.textColor = card.suit.color
+    label.textAlignment = NSTextAlignment.Center
+    label.backgroundColor = UIColor.whiteColor()
+    
+    return label
   }
 }

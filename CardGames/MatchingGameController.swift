@@ -10,84 +10,108 @@ import Foundation
 import UIKit
 
 class MatchingGameController: UICollectionViewController, UICollectionViewDelegate {
-//  let stdCardSet = TrumpCard.standardSet()
-//  var dataSource: TrumpCardCollectionDataSource?
-//  var cardPairs: NSMutableArray = []
+  var score: Int = 0
+  var cardPathA: NSIndexPath?
+  var cardPathB: NSIndexPath?
+  var dataSource: TrumpCardCollectionDataSource?
+  var viewedCards: [Bool]?
+  var waitingForNextPlayer = false
   
-//  override init() {
-//    for (key, cardSet) in stdCardSet {
-//      var cards = cardSet.allObjects as [TrumpCard]
-//
-//      for i in 0...3 {
-//        var j = Int(arc4random_uniform(UInt32(3)))
-//        var temp = cards[i]
-//        
-//        cards[i] = cards[j]
-//        cards[j] = temp
-//      }
-//
-//      cardSet.removeAllObjects()
-//
-//      cardPairs.addObject([cards[0], cards[1]])
-//      cardPairs.addObject([cards[2], cards[3]])
-//    }
-//    
-//    for i in 0...25 {
-//      var j = Int(arc4random_uniform(UInt32(25)))
-//      var temp = cardPairs[i] as [TrumpCard]
-//      
-//      cardPairs[i] = cardPairs[j] as [TrumpCard]
-//      cardPairs[j] = temp
-//    }
-//    
-//    super.init()
+  override func viewDidLoad() {
+    self.collectionView!.allowsMultipleSelection = true
+    self.dataSource = self.collectionView!.dataSource as? TrumpCardCollectionDataSource
+    
+    self.viewedCards = [Bool](count: dataSource!.cardsInPlay.count, repeatedValue: false)
+  }
+  
+  override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+
+      viewedCards![indexPath.item] = true
+      
+      if (cardPathA == nil) {
+        cardPathA = indexPath
+      } else if (cardPathB == nil) {
+        cardPathB = indexPath
+
+        checkStatus()
+        
+        var matchVal = getMatchValue(cardPathA!.item, idxB: cardPathB!.item)
+        
+        if (matchVal > 0) {
+          removeCardsAt(cardPathA!, idxPathB: cardPathB!)
+        }
+        
+        score += matchVal
+        waitingForNextPlayer = true
+      }
+    }
+  
+  func checkStatus() {
+    NSLog("=== Score: \(score) ========")
+    
+    if (cardPathA != nil) {
+      NSLog("cardA \(dataSource!.cardsInPlay[cardPathA!.item]!.label())")
+    }
+    
+    if (cardPathB != nil) {
+      NSLog("cardB \(dataSource!.cardsInPlay[cardPathB!.item]!.label())")
+    }
+    
+    NSLog("indexA \(cardPathA?.item)")
+    NSLog("indexB \(cardPathB?.item)")
+  }
 //  }
 
-//  required init(coder aDecoder: NSCoder) {
-//    for (key, cardSet) in stdCardSet {
-//      var cards = cardSet.allObjects as [TrumpCard]
-//      
-//      for i in 0...3 {
-//        var j = Int(arc4random_uniform(UInt32(3)))
-//        var temp = cards[i]
-//        
-//        cards[i] = cards[j]
-//        cards[j] = temp
-//      }
-//      
-//      cardSet.removeAllObjects()
-//
-//      cardPairs.addObject([cards[0], cards[1]])
-//      cardPairs.addObject([cards[2], cards[3]])
-//    }
-//    
-//    for i in 0...25 {
-//      var j = Int(arc4random_uniform(UInt32(25)))
-//      var temp = cardPairs[i] as [TrumpCard]
-//      
-//      cardPairs[i] = cardPairs[j]
-//      cardPairs[j] = temp
-//    }
-//    
-//    super.init(coder: aDecoder)
-//  }
+  override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+
+    if (waitingForNextPlayer) {
+      collectionView.deselectItemAtIndexPath(cardPathA!, animated: false)
+      collectionView.deselectItemAtIndexPath(cardPathB!, animated: false)
+
+      (cardPathA, cardPathB) = (nil, nil)
+
+      waitingForNextPlayer = false
+
+      return false
+    } else {
+      return dataSource!.cardsInPlay[indexPath.item] != nil
+    }
+  }
   
-//  override func viewDidLoad() {
-//    dataSource = self.collectionView!.dataSource as? TrumpCardCollectionDataSource
-//    var cardsInPlay: [TrumpCard] = []
-//    
-//    for pair in cardPairs {
-//      cardsInPlay.append(pair[0] as TrumpCard)
-//      cardsInPlay.append(pair[1] as TrumpCard)
-//    }
-//    
-//    dataSource!.changeCards(cardsInPlay)
-//  }
-//  
+  override func collectionView(collectionView: UICollectionView, shouldDeselectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+    
+    return !((indexPath == cardPathA) || (indexPath == cardPathB))
+  }
   
-  @IBAction func selectCard(sender: UIButton) {
-    if var s = sender.superview!.superview as? UICollectionViewCell {
-      s.selected = !s.selected
+  func removeCardsAt(idxPathA: NSIndexPath, idxPathB: NSIndexPath) {
+    dataSource!.cardsInPlay[idxPathA.item] = nil
+    dataSource!.cardsInPlay[idxPathB.item] = nil
+    
+    collectionView!.reloadItemsAtIndexPaths([idxPathA, idxPathB])
+  }
+  
+
+  func getMatchValue(idxA: Int, idxB: Int) -> Int {
+    var cardA: TrumpCard = dataSource!.cardsInPlay[idxA]!
+    var cardB: TrumpCard = dataSource!.cardsInPlay[idxB]!
+    
+    if (cardA.rank != cardB.rank) {
+      if (self.viewedCards![idxB]) {
+        NSLog("=== -1 ==============================")
+        return -1
+      } else {
+        NSLog("=== 0 ==============================")
+
+        return 0
+      }
+    } else if (cardA.suit.color == cardB.suit.color) {
+      NSLog("=== 4 ==============================")
+
+      return 4
+    } else {
+      NSLog("=== 2 ==============================")
+      
+      return 2
     }
   }
 }

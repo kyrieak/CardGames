@@ -34,13 +34,6 @@ class CardViewController: UIViewController {
     
     drawPile.shuffle()
   }
-  
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//    println("sender")
-//    println("\(sender)")
-//    println("segue destined")
-//    println("\(segue.destinationViewController)")
-  }
 
   func updateCardView(card: TrumpCard?) {
     if (card != nil) {
