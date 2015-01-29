@@ -41,6 +41,10 @@ class TrumpCard:Card, Comparable {
     return "\(self.rank)" + self.suit.symbol
   }
   
+  func color() -> UIColor {
+    return suit.color
+  }
+  
   class func hearts() -> Suit {
     return Suit(title: "Hearts", symbol: "♥︎", tier: 1, color: UIColor.redColor())
   }

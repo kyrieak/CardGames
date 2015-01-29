@@ -111,6 +111,9 @@
                                     <state key="normal" backgroundImage="card_back">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="clickedDeckButton:" destination="I9X-cb-r4T" eventType="touchUpInside" id="YCn-VO-dw4"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nGH-VC-Eyx">
                                     <rect key="frame" x="266" y="8" width="46" height="30"/>

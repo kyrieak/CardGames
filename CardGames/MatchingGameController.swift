@@ -17,6 +17,18 @@ class MatchingGameController: UICollectionViewController, UICollectionViewDelega
   var viewedCards: [Bool]?
   var waitingForNextPlayer = false
   
+  @IBAction func clickedDeckButton(sender: UIButton) {
+    if dataSource!.hasSelectableCards() {
+      NSLog("has cards remaining")
+    } else {
+      dataSource!.changeCards()
+      
+      viewedCards = [Bool](count: dataSource!.cardsInPlay.count, repeatedValue: false)
+
+      collectionView!.reloadData()
+    }
+  }
+  
   override func viewDidLoad() {
     self.collectionView!.allowsMultipleSelection = true
     self.dataSource = self.collectionView!.dataSource as? TrumpCardCollectionDataSource
@@ -25,9 +37,7 @@ class MatchingGameController: UICollectionViewController, UICollectionViewDelega
   }
   
   override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-
-      viewedCards![indexPath.item] = true
-      
+    
       if (cardPathA == nil) {
         cardPathA = indexPath
       } else if (cardPathB == nil) {
@@ -35,33 +45,20 @@ class MatchingGameController: UICollectionViewController, UICollectionViewDelega
 
         checkStatus()
         
-        var matchVal = getMatchValue(cardPathA!.item, idxB: cardPathB!.item)
+        var matchVal = getMatchValue(cardPathA!, idxPathB: cardPathB!)
+        
+        score += matchVal
         
         if (matchVal > 0) {
           removeCardsAt(cardPathA!, idxPathB: cardPathB!)
+        } else {
+          waitingForNextPlayer = true
         }
-        
-        score += matchVal
-        waitingForNextPlayer = true
       }
+    
+      viewedCards![indexPath.item] = true
     }
   
-  func checkStatus() {
-    NSLog("=== Score: \(score) ========")
-    
-    if (cardPathA != nil) {
-      NSLog("cardA \(dataSource!.cardsInPlay[cardPathA!.item]!.label())")
-    }
-    
-    if (cardPathB != nil) {
-      NSLog("cardB \(dataSource!.cardsInPlay[cardPathB!.item]!.label())")
-    }
-    
-    NSLog("indexA \(cardPathA?.item)")
-    NSLog("indexB \(cardPathB?.item)")
-  }
-//  }
-
   override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
 
     if (waitingForNextPlayer) {
@@ -74,7 +71,7 @@ class MatchingGameController: UICollectionViewController, UICollectionViewDelega
 
       return false
     } else {
-      return dataSource!.cardsInPlay[indexPath.item] != nil
+      return dataSource!.hasCardAt(indexPath)
     }
   }
   
@@ -84,34 +81,42 @@ class MatchingGameController: UICollectionViewController, UICollectionViewDelega
   }
   
   func removeCardsAt(idxPathA: NSIndexPath, idxPathB: NSIndexPath) {
-    dataSource!.cardsInPlay[idxPathA.item] = nil
-    dataSource!.cardsInPlay[idxPathB.item] = nil
-    
+    dataSource!.removeCardsAt([idxPathA, idxPathB])
     collectionView!.reloadItemsAtIndexPaths([idxPathA, idxPathB])
+
+    (cardPathA, cardPathB) = (nil, nil)
   }
   
 
-  func getMatchValue(idxA: Int, idxB: Int) -> Int {
-    var cardA: TrumpCard = dataSource!.cardsInPlay[idxA]!
-    var cardB: TrumpCard = dataSource!.cardsInPlay[idxB]!
+  func getMatchValue(idxPathA: NSIndexPath, idxPathB: NSIndexPath) -> Int {
+    var cardA: TrumpCard = dataSource!.getCardAt(idxPathA)!
+    var cardB: TrumpCard = dataSource!.getCardAt(idxPathB)!
     
     if (cardA.rank != cardB.rank) {
-      if (self.viewedCards![idxB]) {
-        NSLog("=== -1 ==============================")
+      if (viewedCards![idxPathB.item]) {
+        NSLog("Did See Card")
         return -1
       } else {
-        NSLog("=== 0 ==============================")
-
         return 0
       }
-    } else if (cardA.suit.color == cardB.suit.color) {
-      NSLog("=== 4 ==============================")
-
+    } else if (cardA.color() == cardB.color()) {
       return 4
     } else {
-      NSLog("=== 2 ==============================")
-      
       return 2
+    }
+  }
+  
+  func checkStatus() {
+    NSLog("=== Score: \(score) ========")
+    
+    if (cardPathA != nil) {
+      NSLog("indexA \(cardPathA!.item)")
+      NSLog("cardA \(dataSource!.getCardAt(cardPathA!)!.label())")
+    }
+    
+    if (cardPathB != nil) {
+      NSLog("indexB \(cardPathB!.item)")
+      NSLog("cardB \(dataSource!.getCardAt(cardPathB!)!.label())")
     }
   }
 }

@@ -52,7 +52,7 @@ class TrumpCardCollectionDataSource: NSObject, UICollectionViewDataSource {
     var rIdx = min(7, (cardPairs.count - 1))
     
     for i in 0...rIdx {
-      var p: [TrumpCard] = cardPairs[i]
+      var p: [TrumpCard] = cardPairs[0]
       
       cards.append(p[0])
       cards.append(p[1])
@@ -75,7 +75,6 @@ class TrumpCardCollectionDataSource: NSObject, UICollectionViewDataSource {
       cardPairs[i] = cardPairs[j] as [TrumpCard]
       cardPairs[j] = temp
     }
-    NSLog("here shuffpair")
   }
   
   class func shuffleCards(inout cards: [TrumpCard]) {
@@ -108,7 +107,6 @@ class TrumpCardCollectionDataSource: NSObject, UICollectionViewDataSource {
   
   func collectionView(collectionView: UICollectionView,
     cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-      NSLog("-----------getting cell for idxpath")
       
       var cell = (collectionView.dequeueReusableCellWithReuseIdentifier("card_cell", forIndexPath: indexPath) as? UICollectionViewCell)!
       
@@ -130,10 +128,34 @@ class TrumpCardCollectionDataSource: NSObject, UICollectionViewDataSource {
     var label = UILabel(frame: withFrame)
 
     label.text = card.label()
-    label.textColor = card.suit.color
+    label.textColor = card.color()
     label.textAlignment = NSTextAlignment.Center
     label.backgroundColor = UIColor.whiteColor()
     
     return label
+  }
+
+  func hasCardAt(idxPath: NSIndexPath) -> Bool {
+    return (cardsInPlay[idxPath.item] != nil)
+  }
+  
+  func getCardAt(idxPath: NSIndexPath) -> TrumpCard? {
+    return cardsInPlay[idxPath.item]
+  }
+
+  func removeCardsAt(idxPaths: [NSIndexPath]) {
+    for path in idxPaths {
+      cardsInPlay[path.item] = nil
+    }
+  }
+  
+  func hasSelectableCards() -> Bool {
+    for card in cardsInPlay {
+      if card != nil {
+        return true
+      }
+    }
+    
+    return false
   }
 }
