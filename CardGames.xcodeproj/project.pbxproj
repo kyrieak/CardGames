@@ -18,6 +18,7 @@
 		34005EF51A4FC91500BDFD0F /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34005EF41A4FC91500BDFD0F /* Card.swift */; };
 		34005EF71A4FC94A00BDFD0F /* TrumpCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34005EF61A4FC94A00BDFD0F /* TrumpCard.swift */; };
 		343587111A6A246C00DD7F1A /* TrumpCardCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343587101A6A246C00DD7F1A /* TrumpCardCollectionDataSource.swift */; };
+		3460E1121A7B4DF0000FD1EB /* MatchingGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3460E1111A7B4DF0000FD1EB /* MatchingGame.swift */; };
 		349A2C6F1A6DAD5900580219 /* MatchingGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349A2C6E1A6DAD5900580219 /* MatchingGameController.swift */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +48,7 @@
 		34005EF41A4FC91500BDFD0F /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		34005EF61A4FC94A00BDFD0F /* TrumpCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrumpCard.swift; sourceTree = "<group>"; };
 		343587101A6A246C00DD7F1A /* TrumpCardCollectionDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrumpCardCollectionDataSource.swift; sourceTree = "<group>"; };
+		3460E1111A7B4DF0000FD1EB /* MatchingGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchingGame.swift; sourceTree = "<group>"; };
 		349A2C6E1A6DAD5900580219 /* MatchingGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchingGameController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -131,6 +133,7 @@
 		34005EF11A4FC8DD00BDFD0F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				3460E1111A7B4DF0000FD1EB /* MatchingGame.swift */,
 				34005EF21A4FC8F500BDFD0F /* Deck.swift */,
 				34005EF41A4FC91500BDFD0F /* Card.swift */,
 				34005EF61A4FC94A00BDFD0F /* TrumpCard.swift */,
@@ -246,6 +249,7 @@
 				34005EF51A4FC91500BDFD0F /* Card.swift in Sources */,
 				34005ED01A4FACDA00BDFD0F /* AppDelegate.swift in Sources */,
 				34005EF01A4FC5BC00BDFD0F /* CardViewController.swift in Sources */,
+				3460E1121A7B4DF0000FD1EB /* MatchingGame.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

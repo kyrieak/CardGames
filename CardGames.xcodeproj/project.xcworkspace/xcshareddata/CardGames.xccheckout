@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>DE3B18B7-7FCA-4470-8F1E-BA4AE8067E65</string>
+	<key>IDESourceControlProjectName</key>
+	<string>CardGames</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>CB9159BE8D6B7515A56D9208FA765D494C287531</key>
+		<string>github.com:kyrieak/CardGames.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>CardGames.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>CB9159BE8D6B7515A56D9208FA765D494C287531</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:kyrieak/CardGames.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>CB9159BE8D6B7515A56D9208FA765D494C287531</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>CB9159BE8D6B7515A56D9208FA765D494C287531</string>
+			<key>IDESourceControlWCCName</key>
+			<string>CardGames</string>
+		</dict>
+	</array>
+</dict>
+</plist>
