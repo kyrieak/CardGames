@@ -12,6 +12,7 @@ import UIKit
 class TrumpCardCollectionDataSource: NSObject, UICollectionViewDataSource {
   let cardBackImage = UIImage(named: "card_back")
   let stdCardSet = TrumpCard.standardSet()
+  let viewHeight: Int?
   var cardsInPlay: [TrumpCard?] = []
   var cardPairs: Array<[TrumpCard]> = Array<[TrumpCard]>()
   
@@ -37,6 +38,12 @@ class TrumpCardCollectionDataSource: NSObject, UICollectionViewDataSource {
     changeCards()
   }
   
+  init(totalViewHeight: Int) {
+    super.init()
+
+    viewHeight = totalViewHeight
+  }
+  
   func changeCards() {
     cardsInPlay = []
     
@@ -48,21 +55,26 @@ class TrumpCardCollectionDataSource: NSObject, UICollectionViewDataSource {
   }
   
   func getNextCards() -> [TrumpCard] {
-    var cards: [TrumpCard] = []
     var rIdx = min(7, (cardPairs.count - 1))
-    
-    for i in 0...rIdx {
-      var p: [TrumpCard] = cardPairs[0]
+
+    if (rIdx > -1) {
+      var cards: [TrumpCard] = []
       
-      cards.append(p[0])
-      cards.append(p[1])
+      for i in 0...rIdx {
+        var p: [TrumpCard] = cardPairs[0]
+        
+        cards.append(p[0])
+        cards.append(p[1])
+        
+        cardPairs.removeAtIndex(0)
+      }
       
-      cardPairs.removeAtIndex(0)
+      TrumpCardCollectionDataSource.shuffleCards(&cards)
+      
+      return cards
+    } else {
+      return []
     }
-    
-    TrumpCardCollectionDataSource.shuffleCards(&cards)
-    
-    return cards
   }
   
   func shufflePairs() {
@@ -98,8 +110,17 @@ class TrumpCardCollectionDataSource: NSObject, UICollectionViewDataSource {
     viewForSupplementaryElementOfKind kind: String,
     atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
       var suppView: UICollectionReusableView
+      var reuseId = ""
       
-      suppView = (collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "game_header", forIndexPath: indexPath) as? UICollectionReusableView)!
+      if (kind == UICollectionElementKindSectionHeader) {
+        reuseId = "game_header"
+      } else if (kind == UICollectionElementKindSectionFooter) {
+        reuseId = "game_footer"
+      }
+      
+      suppView = (collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: reuseId, forIndexPath: indexPath) as? UICollectionReusableView)!
+      
+      NSLog("\(suppView.frame)")
       
       return suppView
   }

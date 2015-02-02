@@ -24,7 +24,7 @@ class MatchingGameScorer {
     currentTurn.reset()
   }
   
-  func updateTurn(cardIdx: Int, card: TrumpCard) -> String {
+  func updateTurn(cardIdx: Int, card: TrumpCard) -> (Bool, String) {
     if (currentTurn.done()) {
       currentTurn.reset()
     }
@@ -39,7 +39,7 @@ class MatchingGameScorer {
     
     if (currentTurn.done()) { score += turnScore }
     
-    return status
+    return ((turnScore > 0), status)
   }
   
   func getScore() -> Int {
@@ -58,6 +58,7 @@ class MatchingGameScorer {
         return (mv, MatchingGameScorer.matchMsg(cards, matchValue: mv))
       } else {
         if (turn.done()) {
+          if (lastIsRepeat) { mv = MatchingGameScorer.defaultPenalty() }
           return (mv, MatchingGameScorer.mismatchMsg(cards, penaltyValue: mv))
         } else {
           return (0, "\(cards[0].label()), \(cards[1].label())")

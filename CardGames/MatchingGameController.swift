@@ -34,13 +34,20 @@ class MatchingGameController: UICollectionViewController, UICollectionViewDelega
   }
   
   override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+      selectIdxPaths.append(indexPath)
+      var (didMatch, msg) = scorer!.updateTurn(indexPath.item, card: dataSource!.getCardAt(indexPath)!)
     
-      scorer!.updateTurn(indexPath.item, card: dataSource!.getCardAt(indexPath)!)
-      
+      NSLog(msg)
+    
       if (scorer!.currentTurn.done()) {
         score = scorer!.getScore()
+        NSLog("Score: \(score)=================================================")
         // updateTurn resets currentTurn so this code wont work
-        waitingForNextPlayer = true
+        if (didMatch) {
+          removeCardsAt(selectIdxPaths)
+        } else {
+          waitingForNextPlayer = true
+        }
       }
     }
   
@@ -70,9 +77,9 @@ class MatchingGameController: UICollectionViewController, UICollectionViewDelega
     return true
   }
   
-  func removeCardsAt(idxPathA: NSIndexPath, idxPathB: NSIndexPath) {
-    dataSource!.removeCardsAt([idxPathA, idxPathB])
-    collectionView!.reloadItemsAtIndexPaths([idxPathA, idxPathB])
+  func removeCardsAt(idxPaths: [NSIndexPath]) {
+    dataSource!.removeCardsAt(idxPaths)
+    collectionView!.reloadItemsAtIndexPaths(idxPaths)
 
     selectIdxPaths = []
   }
