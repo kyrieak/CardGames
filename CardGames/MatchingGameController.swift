@@ -14,14 +14,14 @@ class MatchingGameController: UICollectionViewController, UICollectionViewDelega
   var selectIdxPaths: [NSIndexPath] = []
   var dataSource: TrumpCardCollectionDataSource?
   var waitingForNextPlayer = false
-  var scorer: MatchingGameScorer?
+  var game: MatchingGame?
   
   @IBAction func clickedDeckButton(sender: UIButton) {
-    if dataSource!.hasSelectableCards() {
-      NSLog("has cards remaining")
+    if (game!.hasUnviewedCards()) {
+      NSLog("has unviewed cards")
     } else {
       dataSource!.changeCards()
-      scorer!.nextRound(dataSource!.cardsInPlay.count)
+      game!.nextRound(dataSource!.cardsInPlay.count)
       collectionView!.reloadData()
     }
   }
@@ -30,18 +30,17 @@ class MatchingGameController: UICollectionViewController, UICollectionViewDelega
     self.collectionView!.allowsMultipleSelection = true
     self.dataSource = self.collectionView!.dataSource as? TrumpCardCollectionDataSource
 
-    scorer = MatchingGameScorer(cardCount: dataSource!.cardsInPlay.count, cardsPerTurn: 2)
+    game = MatchingGame(cardCount: dataSource!.cardsInPlay.count, cardsPerTurn: 3)
   }
   
   override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
       selectIdxPaths.append(indexPath)
-      var (didMatch, msg) = scorer!.updateTurn(indexPath.item, card: dataSource!.getCardAt(indexPath)!)
+      var (didMatch, msg) = game!.updateTurn(indexPath.item, card: dataSource!.getCardAt(indexPath)!)
     
       NSLog(msg)
-    
-      if (scorer!.currentTurn.done()) {
-        score = scorer!.getScore()
-        NSLog("Score: \(score)=================================================")
+      if (game!.currentTurn.done()) {
+        score = game!.getScore()
+        NSLog("Score: \(score) =====================================")
         // updateTurn resets currentTurn so this code wont work
         if (didMatch) {
           removeCardsAt(selectIdxPaths)

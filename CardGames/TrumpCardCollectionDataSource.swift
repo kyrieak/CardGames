@@ -180,3 +180,22 @@ class TrumpCardCollectionDataSource: NSObject, UICollectionViewDataSource {
     return false
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

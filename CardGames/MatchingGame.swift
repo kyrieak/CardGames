@@ -8,11 +8,11 @@
 
 import Foundation
 
-class MatchingGameScorer {
+class MatchingGame {
+  let scorer = MatchingGameScorer()
   var score: Int = 0
   var currentTurn: Turn
   var viewedCards: [TrumpCard?]
-  var lastIsRepeat: Bool = false
   
   init(cardCount: Int, cardsPerTurn: Int) {
     viewedCards = [TrumpCard?](count: cardCount, repeatedValue: nil)
@@ -29,9 +29,9 @@ class MatchingGameScorer {
       currentTurn.reset()
     }
     
-    lastIsRepeat = (viewedCards[cardIdx] != nil)
+    currentTurn.lastIsRepeat = (viewedCards[cardIdx] != nil)
     
-    if (!lastIsRepeat) { viewedCards[cardIdx] = card }
+    if (!currentTurn.lastIsRepeat) { viewedCards[cardIdx] = card }
     
     currentTurn.addCard(cardIdx)
     
@@ -55,11 +55,13 @@ class MatchingGameScorer {
       var mv = matchValueForCards(cards)
       
       if (mv > 0) {
-        return (mv, MatchingGameScorer.matchMsg(cards, matchValue: mv))
+        return (mv, MatchingGame.matchMsg(cards, matchValue: mv))
       } else {
         if (turn.done()) {
-          if (lastIsRepeat) { mv = MatchingGameScorer.defaultPenalty() }
-          return (mv, MatchingGameScorer.mismatchMsg(cards, penaltyValue: mv))
+          if (turn.lastIsRepeat) {
+            mv = scorer.PenaltyPoints
+          }
+          return (mv, MatchingGame.mismatchMsg(cards, penaltyValue: mv))
         } else {
           return (0, "\(cards[0].label()), \(cards[1].label())")
         }
@@ -67,6 +69,14 @@ class MatchingGameScorer {
     } else {
       return (0, "")
     }
+  }
+  
+  func hasUnviewedCards() -> Bool {
+    for card in viewedCards {
+      if (card == nil) { return true }
+    }
+    
+    return false
   }
   
   private func cardsFromTurn(turn: Turn) -> [TrumpCard] {
@@ -78,48 +88,48 @@ class MatchingGameScorer {
     return cards
   }
   
-  func matchValue(cardA: TrumpCard, cardB: TrumpCard) -> Int {
-    if (cardA.rank != cardB.rank) {
+  private func matchValue(cardA: TrumpCard, cardB: TrumpCard) -> Int {
+    if (!MatchingGame.isMatch(cardA, b: cardB)) {
       return 0
-    } else if (cardA.color() == cardB.color()) {
-      return MatchingGameScorer.baseMatchValue() * 2
+    } else if (MatchingGame.isBonusMatch(cardA, b: cardB)) {
+      return (scorer.MatchPoints + scorer.BonusPoints)
     } else {
-      return MatchingGameScorer.baseMatchValue()
+      return scorer.MatchPoints
     }
   }
   
-  func matchValueForCards(var cards: [TrumpCard]) -> Int {
+  private func matchValueForCards(var cards: [TrumpCard]) -> Int {
     var matchVal = 0
     
     if (cards.count == 2) {
       matchVal = matchValue(cards[0], cardB: cards[1])
     } else if (cards.count == 3) {
-      cards.sort({ $0.rank < $1.rank })
+      var tripleMatch = true
       
       for (idxA, idxB) in [(0, 1), (0, 2), (1, 2)] {
-        var mv = {(a: TrumpCard, b: TrumpCard) -> Int in
-          return self.matchValue(a, cardB: b)
-          }(cards[idxA], cards[idxB])
+        var mv = self.matchValue(cards[idxA], cardB: cards[idxB])
         
-        if (mv > matchVal) { matchVal = mv }
+        if (mv > matchVal) {
+          matchVal = mv
+        } else if (mv < 1) {
+          tripleMatch = false
+        }
       }
       
-      if (cards[0].rank == cards[2].rank) { matchVal *= 2 }
+      if (tripleMatch) { matchVal *= scorer.BonusMultiplier }
     }
     
     return matchVal
   }
-
   
   // == Class Methods ===================================================
   
-  
-  class func defaultPenalty() -> Int {
-    return -1
+  class func isMatch(a: TrumpCard, b: TrumpCard) -> Bool {
+    return a.rank == b.rank
   }
   
-  class func baseMatchValue() -> Int {
-    return 2
+  class func isBonusMatch(a: TrumpCard, b: TrumpCard) -> Bool {
+    return a.color() == b.color()
   }
   
   class func matchMsg(cards: [TrumpCard], matchValue: Int) -> String {
@@ -153,10 +163,13 @@ class MatchingGameScorer {
   }
 }
 
+// == Struct Definitions ===================================================
+
 struct Turn {
+  var lastIsRepeat: Bool = false
   let maxCards: Int
   var cardIndexes: [Int]
-  
+ 
   init(cardsPerTurn: Int) {
     maxCards = cardsPerTurn
     cardIndexes = []
@@ -173,4 +186,11 @@ struct Turn {
   func done() -> Bool {
     return !(cardIndexes.count < maxCards)
   }
+}
+
+struct MatchingGameScorer {
+  let PenaltyPoints = -1
+  let MatchPoints = 2
+  let BonusPoints = 2
+  let BonusMultiplier = 2
 }
