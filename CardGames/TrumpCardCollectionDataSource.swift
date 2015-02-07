@@ -15,6 +15,7 @@ class TrumpCardCollectionDataSource: NSObject, UICollectionViewDataSource {
   let viewHeight: Int?
   var cardsInPlay: [TrumpCard?] = []
   var cardPairs: Array<[TrumpCard]> = Array<[TrumpCard]>()
+  var headerView, footerView: UICollectionReusableView?
   
   override init() {
     for (key, cardSet) in stdCardSet {
@@ -109,20 +110,21 @@ class TrumpCardCollectionDataSource: NSObject, UICollectionViewDataSource {
   func collectionView(collectionView: UICollectionView,
     viewForSupplementaryElementOfKind kind: String,
     atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-      var suppView: UICollectionReusableView
-      var reuseId = ""
       
-      if (kind == UICollectionElementKindSectionHeader) {
-        reuseId = "game_header"
-      } else if (kind == UICollectionElementKindSectionFooter) {
-        reuseId = "game_footer"
+      switch (kind) {
+        case UICollectionElementKindSectionHeader:
+          headerView = (collectionView.dequeueReusableSupplementaryViewOfKind(kind,
+                                       withReuseIdentifier: TrumpCardCollectionDataSource.headerReuseId(),
+                                       forIndexPath: indexPath) as? UICollectionReusableView)!
+          return headerView!
+        case UICollectionElementKindSectionFooter:
+          footerView = (collectionView.dequeueReusableSupplementaryViewOfKind(kind,
+                                       withReuseIdentifier: TrumpCardCollectionDataSource.footerReuseId(),
+                                       forIndexPath: indexPath) as? UICollectionReusableView)!
+          return footerView!
+        default:
+          return UICollectionReusableView()
       }
-      
-      suppView = (collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: reuseId, forIndexPath: indexPath) as? UICollectionReusableView)!
-      
-      NSLog("\(suppView.frame)")
-      
-      return suppView
   }
   
   
@@ -170,6 +172,10 @@ class TrumpCardCollectionDataSource: NSObject, UICollectionViewDataSource {
     }
   }
   
+  func statusLabel() -> UILabel {
+    return footerView!.subviews[0] as UILabel
+  }
+  
   func hasSelectableCards() -> Bool {
     for card in cardsInPlay {
       if card != nil {
@@ -179,7 +185,81 @@ class TrumpCardCollectionDataSource: NSObject, UICollectionViewDataSource {
     
     return false
   }
+  
+  class func headerReuseId() -> String {
+    return "game_header"
+  }
+  
+  class func footerReuseId() -> String {
+    return "game_footer"
+  }
+  
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

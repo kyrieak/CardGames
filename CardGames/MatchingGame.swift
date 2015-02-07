@@ -28,7 +28,7 @@ class MatchingGame {
     if (currentTurn.done()) {
       currentTurn.reset()
     }
-    
+
     currentTurn.lastIsRepeat = (viewedCards[cardIdx] != nil)
     
     if (!currentTurn.lastIsRepeat) { viewedCards[cardIdx] = card }
@@ -73,7 +73,9 @@ class MatchingGame {
   
   func hasUnviewedCards() -> Bool {
     for card in viewedCards {
-      if (card == nil) { return true }
+      if (card == nil) {
+        NSLog("\(viewedCards)")
+        return true }
     }
     
     return false
