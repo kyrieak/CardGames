@@ -93,7 +93,6 @@
 			children = (
 				34005ECF1A4FACDA00BDFD0F /* AppDelegate.swift */,
 				34A6D3981A85AD96002CFD7B /* Controllers */,
-				34A6D3971A85AD80002CFD7B /* Views */,
 				34005EF11A4FC8DD00BDFD0F /* Models */,
 				34005ED31A4FACDB00BDFD0F /* Main.storyboard */,
 				343587101A6A246C00DD7F1A /* TrumpCardCollectionDataSource.swift */,
@@ -138,13 +137,6 @@
 				34005EF61A4FC94A00BDFD0F /* TrumpCard.swift */,
 			);
 			name = Models;
-			sourceTree = "<group>";
-		};
-		34A6D3971A85AD80002CFD7B /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Views;
 			sourceTree = "<group>";
 		};
 		34A6D3981A85AD96002CFD7B /* Controllers */ = {

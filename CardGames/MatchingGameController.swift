@@ -15,43 +15,64 @@ class MatchingGameController: UICollectionViewController, UICollectionViewDelega
   var dataSource: TrumpCardCollectionDataSource?
   var waitingForNextPlayer = false
   var game: MatchingGame?
+  var statusLabel: UILabel?
   
   @IBAction func clickedDeckButton(sender: UIButton) {
     if (game!.hasUnviewedCards()) {
       NSLog("has unviewed cards")
     } else {
-      dataSource!.changeCards()
-      game!.nextRound(dataSource!.cardsInPlay.count)
-      collectionView!.reloadData()
-      selectIdxPaths = []
-      dataSource!.statusLabel().text = "New Round!"
+      startNewRound()
     }
   }
   
+  /* Sets remaining view and controller properties and inits game model
+  */
   override func viewDidLoad() {
-    self.collectionView!.allowsMultipleSelection = true
-    self.dataSource = self.collectionView!.dataSource as? TrumpCardCollectionDataSource
+    super.viewDidLoad()
+    
+    collectionView!.allowsMultipleSelection = true
 
-    game = MatchingGame(cardCount: dataSource!.cardsInPlay.count, cardsPerTurn: 3)
+    dataSource  = collectionView!.dataSource as? TrumpCardCollectionDataSource
+
+    startNewGame()
   }
   
+  override func collectionView(collectionView: UICollectionView, willDisplaySupplementaryView view: UICollectionReusableView, forElementKind elementKind: String, atIndexPath indexPath: NSIndexPath) {
+    if (elementKind == UICollectionElementKindSectionFooter) {
+      statusLabel = view.subviews[0] as? UILabel
+    }
+  }
+  
+  /* Updates mvc properties on UI card selection and checks turn state
+  */
   override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-      selectIdxPaths.append(indexPath)
-      var (didMatch, msg) = game!.updateTurn(indexPath.item, card: dataSource!.getCardAt(indexPath)!)
-      dataSource!.statusLabel().text = msg
-      NSLog(msg)
-      if (game!.currentTurn.done()) {
-        score = game!.getScore()
-        NSLog("Score: \(score) =====================================")
-        // updateTurn resets currentTurn so this code wont work
-        if (didMatch) {
-          removeCardsAt(selectIdxPaths)
-        } else {
-          waitingForNextPlayer = true
-        }
+    // Update: Controller
+    selectIdxPaths.append(indexPath)
+
+    // Update: Model
+    var (didMatch, msg) = game!.updateTurn(indexPath.item, card: dataSource!.getCardAt(indexPath)!)
+  
+    // Update: View
+    statusLabel!.text = msg
+  
+    NSLog(msg)
+
+    // Update State: Controller
+    if (game!.currentTurn.done()) {
+      score = game!.getScore()
+      NSLog("Score: \(score) =====================================")
+      
+      if (didMatch) {
+        removeCardsAt(selectIdxPaths)
+      } else {
+        waitingForNextPlayer = true
       }
     }
+  }
   
+  /* Handles card flip behavior so that cards are not accidentally
+   * flipped back in the middle of a turn and such.
+  */
   override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
 
     if (waitingForNextPlayer) {
@@ -67,6 +88,8 @@ class MatchingGameController: UICollectionViewController, UICollectionViewDelega
     }
   }
   
+  /* Sets remaining view and controller properties and inits game model
+  */
   override func collectionView(collectionView: UICollectionView, shouldDeselectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
     
     for path in selectIdxPaths {
@@ -93,6 +116,36 @@ class MatchingGameController: UICollectionViewController, UICollectionViewDelega
       NSLog("index: \(path.item)")
       NSLog("card: \(dataSource!.getCardAt(path)!.label())")
     }
+  }
+
+  private func prepareNewGame() {
+    dataSource!.loadNewCardSet()
+    
+    prepareNewRound()
+  }
+
+  private func startNewGame() {
+    prepareNewGame()
+    game = MatchingGame(cardCount: dataSource!.cardsInPlay.count, cardsPerTurn: 3)
+    
+    if (statusLabel != nil) {
+      statusLabel!.text = "Game Start!"
+    }
+  }
+  
+  private func prepareNewRound() {
+    waitingForNextPlayer = false
+    selectIdxPaths = []
+    dataSource!.loadNextCards()
+  }
+  
+  private func startNewRound() {
+    prepareNewRound()
+    
+    game!.nextRound(dataSource!.cardsInPlay.count)
+    collectionView!.reloadData()
+    
+    statusLabel!.text = "New Round!"
   }
 }
 

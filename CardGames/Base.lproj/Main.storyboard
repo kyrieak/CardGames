@@ -75,7 +75,7 @@
         <scene sceneID="jsd-L8-jqu">
             <objects>
                 <collectionViewController id="I9X-cb-r4T" customClass="MatchingGameController" customModule="CardGames" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="568" indicatorStyle="white" dataMode="prototypes" id="ORX-ms-dHc" customClass="MatchingGameView" customModule="CardGames" customModuleProvider="target">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="568" indicatorStyle="white" dataMode="prototypes" id="ORX-ms-dHc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="0.81960784310000001" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>

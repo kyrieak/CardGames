@@ -11,14 +11,33 @@ import UIKit
 
 class TrumpCardCollectionDataSource: NSObject, UICollectionViewDataSource {
   let cardBackImage = UIImage(named: "card_back")
-  let stdCardSet = TrumpCard.standardSet()
   let viewHeight: Int?
-  var cardsInPlay: [TrumpCard?] = []
-  var cardPairs: Array<[TrumpCard]> = Array<[TrumpCard]>()
-  var headerView, footerView: UICollectionReusableView?
+  var cardsInPlay: [TrumpCard?]
+  var cardPairs: Array<[TrumpCard]>
   
   override init() {
-    for (key, cardSet) in stdCardSet {
+    cardsInPlay = []
+    cardPairs = Array<[TrumpCard]>()
+    
+    super.init()
+
+    loadNewCardSet()
+  }
+  
+  init(totalViewHeight: Int) {
+    cardsInPlay = []
+    cardPairs = Array<[TrumpCard]>()
+    viewHeight = totalViewHeight
+
+    super.init()
+
+    loadNewCardSet()
+  }
+  
+  func loadNewCardSet() {
+    if (cardPairs.count > 0) { cardPairs = Array<[TrumpCard]>() }
+    
+    for (key, cardSet) in TrumpCard.standardSet() {
       var cards: [TrumpCard] = []
       
       for card in cardSet.allObjects {
@@ -29,23 +48,14 @@ class TrumpCardCollectionDataSource: NSObject, UICollectionViewDataSource {
       
       cardPairs.append([cards[0], cards[1]])
       cardPairs.append([cards[2], cards[3]])
-
+      
       cardSet.removeAllObjects()
     }
     
-    super.init()
-    
-    shufflePairs()
-    changeCards()
+    TrumpCardCollectionDataSource.shufflePairs(&cardPairs)
   }
   
-  init(totalViewHeight: Int) {
-    super.init()
-
-    viewHeight = totalViewHeight
-  }
-  
-  func changeCards() {
+  func loadNextCards() {
     cardsInPlay = []
     
     var cards = getNextCards()
@@ -53,6 +63,24 @@ class TrumpCardCollectionDataSource: NSObject, UICollectionViewDataSource {
     for c in cards {
       cardsInPlay.append(c)
     }
+    
+    /* Replace above section with this to test triple match game
+
+    var cards: [TrumpCard] = []
+
+    for i in 0...3 {
+      cards.append(TrumpCard(suit: TrumpCard.hearts(), rank: 3))
+      cards.append(TrumpCard(suit: TrumpCard.spades(), rank: 3))
+      cards.append(TrumpCard(suit: TrumpCard.diamonds(), rank: 3))
+      cards.append(TrumpCard(suit: TrumpCard.clubs(), rank: 3))
+    }
+    
+    TrumpCardCollectionDataSource.shuffleCards(&cards)
+    
+    for c in cards {
+      cardsInPlay.append(c)
+    }
+    */
   }
   
   func getNextCards() -> [TrumpCard] {
@@ -78,7 +106,7 @@ class TrumpCardCollectionDataSource: NSObject, UICollectionViewDataSource {
     }
   }
   
-  func shufflePairs() {
+  class func shufflePairs(inout cardPairs: Array<[TrumpCard]>) {
     let rIdx = cardPairs.count - 1
     
     for i in 0...rIdx {
@@ -110,28 +138,30 @@ class TrumpCardCollectionDataSource: NSObject, UICollectionViewDataSource {
   func collectionView(collectionView: UICollectionView,
     viewForSupplementaryElementOfKind kind: String,
     atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+      var reuseId: String
       
       switch (kind) {
         case UICollectionElementKindSectionHeader:
-          headerView = (collectionView.dequeueReusableSupplementaryViewOfKind(kind,
-                                       withReuseIdentifier: TrumpCardCollectionDataSource.headerReuseId(),
-                                       forIndexPath: indexPath) as? UICollectionReusableView)!
-          return headerView!
+          reuseId = TrumpCardCollectionDataSource.headerReuseId()
+          break
         case UICollectionElementKindSectionFooter:
-          footerView = (collectionView.dequeueReusableSupplementaryViewOfKind(kind,
-                                       withReuseIdentifier: TrumpCardCollectionDataSource.footerReuseId(),
-                                       forIndexPath: indexPath) as? UICollectionReusableView)!
-          return footerView!
+          reuseId = TrumpCardCollectionDataSource.footerReuseId()
+          break
         default:
           return UICollectionReusableView()
       }
+      
+      return (collectionView.dequeueReusableSupplementaryViewOfKind(kind,
+                              withReuseIdentifier: reuseId,
+                              forIndexPath: indexPath) as? UICollectionReusableView)!
   }
   
   
   func collectionView(collectionView: UICollectionView,
     cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
       
-      var cell = (collectionView.dequeueReusableCellWithReuseIdentifier("card_cell", forIndexPath: indexPath) as? UICollectionViewCell)!
+      var cell = (collectionView.dequeueReusableCellWithReuseIdentifier(TrumpCardCollectionDataSource.cellReuseId(),
+                                   forIndexPath: indexPath) as? UICollectionViewCell)!
       
       if (cardsInPlay[indexPath.item] != nil) {
         cell.backgroundView = UIImageView(image: cardBackImage)
@@ -172,10 +202,6 @@ class TrumpCardCollectionDataSource: NSObject, UICollectionViewDataSource {
     }
   }
   
-  func statusLabel() -> UILabel {
-    return footerView!.subviews[0] as UILabel
-  }
-  
   func hasSelectableCards() -> Bool {
     for card in cardsInPlay {
       if card != nil {
@@ -192,6 +218,10 @@ class TrumpCardCollectionDataSource: NSObject, UICollectionViewDataSource {
   
   class func footerReuseId() -> String {
     return "game_footer"
+  }
+  
+  class func cellReuseId() -> String {
+    return "card_cell"
   }
   
 }
