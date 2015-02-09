@@ -13,6 +13,8 @@ class CardViewController: UIViewController {
   @IBOutlet var cardLabelTop: UILabel!
   @IBOutlet var cardLabelBottom: UILabel!
   @IBOutlet var cardLabelCenter: UILabel!
+
+  let cardBackImage = UIImage(named: "card_back")
   
   let hearts   = Suit(title: "Hearts", symbol: "♥︎", tier: 1, color: UIColor.redColor())
   let diamonds = Suit(title: "Diamonds", symbol: "♦︎", tier: 1, color: UIColor.redColor())
@@ -25,6 +27,8 @@ class CardViewController: UIViewController {
   var topCard: TrumpCard?
   
   override func viewDidLoad() {
+    self.view.backgroundColor = UIColor(patternImage: cardBackImage!)
+
     for rankVal in 1...13 {
       drawPile.addCard(TrumpCard(suit: hearts, rank: rankVal))
       drawPile.addCard(TrumpCard(suit: diamonds, rank: rankVal))
@@ -33,6 +37,10 @@ class CardViewController: UIViewController {
     }
     
     drawPile.shuffle()
+    
+    topCard = drawPile.removeTopCard()
+
+    updateCardView(topCard)
   }
 
   func updateCardView(card: TrumpCard?) {
@@ -52,7 +60,7 @@ class CardViewController: UIViewController {
         self.view.backgroundColor = UIColor.whiteColor()
       } else {
         label = ""
-        self.view.backgroundColor = UIColor.grayColor()
+        self.view.backgroundColor = UIColor(patternImage: cardBackImage!)
       }
       
       cardLabelTop.text = label
@@ -84,15 +92,7 @@ class CardViewController: UIViewController {
       } else {
         topCard!.flip()
       }
-    }
-    
-    updateCardView(topCard)
-
-    if var vc = parentVC as? ViewController {
-      vc.updateDiscardLabel(discardPile)
-    }
-    
-    if (topCard == nil) {
+    } else {
       discardPile.shuffle()
       
       var temp = drawPile
@@ -103,5 +103,23 @@ class CardViewController: UIViewController {
         card.faceUp = false
       }
     }
+    
+    updateCardView(topCard)
+
+    if var vc = parentVC as? ViewController {
+      vc.updateDiscardLabel(discardPile)
+    }
+    
+//    if (topCard == nil) {
+//      discardPile.shuffle()
+//      
+//      var temp = drawPile
+//      drawPile = discardPile
+//      discardPile = temp
+//      
+//      for card in drawPile.cards {
+//        card.faceUp = false
+//      }
+//    }
   }
 }
