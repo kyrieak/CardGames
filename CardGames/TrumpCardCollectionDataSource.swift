@@ -34,10 +34,15 @@ class TrumpCardCollectionDataSource: NSObject, UICollectionViewDataSource {
     loadNewCardSet()
   }
   
+  
+  // --- Game Interfacing Functions ------------------------------------
+  
   func loadNewCardSet() {
+    let standardSet = TrumpCard.standardSet()
+    
     if (cardPairs.count > 0) { cardPairs = Array<[TrumpCard]>() }
     
-    for (key, cardSet) in TrumpCard.standardSet() {
+    for (key, cardSet) in standardSet {
       var cards: [TrumpCard] = []
       
       for card in cardSet.allObjects {
@@ -55,85 +60,60 @@ class TrumpCardCollectionDataSource: NSObject, UICollectionViewDataSource {
     TrumpCardCollectionDataSource.shufflePairs(&cardPairs)
   }
   
+  
   func loadNextCards() {
     cardsInPlay = []
     
-    var cards = getNextCards()
-    
-    for c in cards {
-      cardsInPlay.append(c)
-    }
-    
-    /* Replace above section with this to test triple match game
-
-    var cards: [TrumpCard] = []
-
-    for i in 0...3 {
-      cards.append(TrumpCard(suit: TrumpCard.hearts(), rank: 3))
-      cards.append(TrumpCard(suit: TrumpCard.spades(), rank: 3))
-      cards.append(TrumpCard(suit: TrumpCard.diamonds(), rank: 3))
-      cards.append(TrumpCard(suit: TrumpCard.clubs(), rank: 3))
-    }
-    
-    TrumpCardCollectionDataSource.shuffleCards(&cards)
-    
-    for c in cards {
-      cardsInPlay.append(c)
-    }
-    */
-  }
-  
-  func getNextCards() -> [TrumpCard] {
-    var rIdx = min(7, (cardPairs.count - 1))
-
-    if (rIdx > -1) {
-      var cards: [TrumpCard] = []
+    for i in 0...7 {
+      var pair = getNextPair()
       
-      for i in 0...rIdx {
-        var p: [TrumpCard] = cardPairs[0]
-        
-        cards.append(p[0])
-        cards.append(p[1])
-        
-        cardPairs.removeAtIndex(0)
+      if (pair != nil) {
+        cardsInPlay.append(pair![0])
+        cardsInPlay.append(pair![1])
+      } else {
+        break
       }
-      
-      TrumpCardCollectionDataSource.shuffleCards(&cards)
-      
-      return cards
-    } else {
-      return []
+    }
+    
+    TrumpCardCollectionDataSource.shuffleCards(&cardsInPlay)
+  }
+
+  
+  func hasCardAt(idxPath: NSIndexPath) -> Bool {
+    return (cardsInPlay[idxPath.item] != nil)
+  }
+  
+  
+  func getCardAt(idxPath: NSIndexPath) -> TrumpCard? {
+    return cardsInPlay[idxPath.item]
+  }
+
+  
+  func removeCardsAt(idxPaths: [NSIndexPath]) {
+    for path in idxPaths {
+      cardsInPlay[path.item] = nil
     }
   }
   
-  class func shufflePairs(inout cardPairs: Array<[TrumpCard]>) {
-    let rIdx = cardPairs.count - 1
-    
-    for i in 0...rIdx {
-      var j = Int(arc4random_uniform(UInt32(rIdx)))
-      var temp: [TrumpCard] = cardPairs[i]
-      
-      cardPairs[i] = cardPairs[j] as [TrumpCard]
-      cardPairs[j] = temp
-    }
-  }
   
-  class func shuffleCards(inout cards: [TrumpCard]) {
-    let rIdx = cards.count - 1
+  func hasSelectableCards() -> Bool {
+    for card in cardsInPlay {
+      if card != nil {
+        return true
+      }
+    }
     
-    for i in 0...rIdx {
-      var j = Int(arc4random_uniform(UInt32(rIdx)))
-      var temp = cards[i]
-      
-      cards[i] = cards[j]
-      cards[j] = temp
-    }    
+    return false
   }
+
+  
+  // --- DataSource Functions ------------------------------------
   
   func collectionView(collectionView: UICollectionView,
     numberOfItemsInSection section: Int) -> Int {
       return cardsInPlay.count
   }
+  
   
   func collectionView(collectionView: UICollectionView,
     viewForSupplementaryElementOfKind kind: String,
@@ -141,19 +121,19 @@ class TrumpCardCollectionDataSource: NSObject, UICollectionViewDataSource {
       var reuseId: String
       
       switch (kind) {
-        case UICollectionElementKindSectionHeader:
-          reuseId = TrumpCardCollectionDataSource.headerReuseId()
-          break
-        case UICollectionElementKindSectionFooter:
-          reuseId = TrumpCardCollectionDataSource.footerReuseId()
-          break
-        default:
-          return UICollectionReusableView()
+      case UICollectionElementKindSectionHeader:
+        reuseId = TrumpCardCollectionDataSource.headerReuseId()
+        break
+      case UICollectionElementKindSectionFooter:
+        reuseId = TrumpCardCollectionDataSource.footerReuseId()
+        break
+      default:
+        return UICollectionReusableView()
       }
       
       return (collectionView.dequeueReusableSupplementaryViewOfKind(kind,
-                              withReuseIdentifier: reuseId,
-                              forIndexPath: indexPath) as? UICollectionReusableView)!
+        withReuseIdentifier: reuseId,
+        forIndexPath: indexPath) as? UICollectionReusableView)!
   }
   
   
@@ -161,7 +141,7 @@ class TrumpCardCollectionDataSource: NSObject, UICollectionViewDataSource {
     cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
       
       var cell = (collectionView.dequeueReusableCellWithReuseIdentifier(TrumpCardCollectionDataSource.cellReuseId(),
-                                   forIndexPath: indexPath) as? UICollectionViewCell)!
+        forIndexPath: indexPath) as? UICollectionViewCell)!
       
       if (cardsInPlay[indexPath.item] != nil) {
         cell.backgroundView = UIImageView(image: cardBackImage)
@@ -177,9 +157,20 @@ class TrumpCardCollectionDataSource: NSObject, UICollectionViewDataSource {
   }
   
   
-  func labelFor(card: TrumpCard, withFrame: CGRect) -> UILabel {
+  // --- Private Functions ------------------------------------
+  
+  private func getNextPair() -> [TrumpCard]? {
+    if (cardPairs.count > 0) {
+      return cardPairs.removeAtIndex(0)
+    } else {
+      return nil
+    }
+  }
+  
+  
+  private func labelFor(card: TrumpCard, withFrame: CGRect) -> UILabel {
     var label = UILabel(frame: withFrame)
-
+    
     label.text = card.label()
     label.textColor = card.color()
     label.textAlignment = NSTextAlignment.Center
@@ -187,38 +178,64 @@ class TrumpCardCollectionDataSource: NSObject, UICollectionViewDataSource {
     
     return label
   }
-
-  func hasCardAt(idxPath: NSIndexPath) -> Bool {
-    return (cardsInPlay[idxPath.item] != nil)
-  }
   
-  func getCardAt(idxPath: NSIndexPath) -> TrumpCard? {
-    return cardsInPlay[idxPath.item]
-  }
-
-  func removeCardsAt(idxPaths: [NSIndexPath]) {
-    for path in idxPaths {
-      cardsInPlay[path.item] = nil
-    }
-  }
   
-  func hasSelectableCards() -> Bool {
-    for card in cardsInPlay {
-      if card != nil {
-        return true
+  // --- Class Functions ------------------------------------
+  
+  class func shufflePairs(inout cardPairs: Array<[TrumpCard]>) {
+    let rIdx = cardPairs.count - 1
+    
+    if (rIdx > -1) {
+      for i in 0...rIdx {
+        var j = Int(arc4random_uniform(UInt32(rIdx)))
+        var temp: [TrumpCard] = cardPairs[i]
+        
+        cardPairs[i] = cardPairs[j] as [TrumpCard]
+        cardPairs[j] = temp
       }
     }
-    
-    return false
   }
+  
+  
+  class func shuffleCards(inout cards: [TrumpCard]) {
+    let rIdx = cards.count - 1
+    
+    if (rIdx > -1) {
+      for i in 0...rIdx {
+        var j = Int(arc4random_uniform(UInt32(rIdx)))
+        var temp = cards[i]
+        
+        cards[i] = cards[j]
+        cards[j] = temp
+      }
+    }
+  }
+  
+  
+  class func shuffleCards(inout cards: [TrumpCard?]) {
+    let rIdx = cards.count - 1
+
+    if (rIdx > -1) {
+      for i in 0...rIdx {
+        var j = Int(arc4random_uniform(UInt32(rIdx)))
+        var temp = cards[i]
+        
+        cards[i] = cards[j]
+        cards[j] = temp
+      }
+    }
+  }
+  
   
   class func headerReuseId() -> String {
     return "game_header"
   }
   
+  
   class func footerReuseId() -> String {
     return "game_footer"
   }
+  
   
   class func cellReuseId() -> String {
     return "card_cell"
@@ -227,85 +244,13 @@ class TrumpCardCollectionDataSource: NSObject, UICollectionViewDataSource {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* Replace above section with this to test triple match game
+//
+for i in 0...3 {
+cardsInPlay.append(TrumpCard(suit: TrumpCard.hearts(), rank: 3))
+cardsInPlay.append(TrumpCard(suit: TrumpCard.spades(), rank: 3))
+cardsInPlay.append(TrumpCard(suit: TrumpCard.diamonds(), rank: 3))
+cardsInPlay.append(TrumpCard(suit: TrumpCard.clubs(), rank: 3))
+}
+*/
 

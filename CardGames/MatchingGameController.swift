@@ -17,6 +17,21 @@ class MatchingGameController: UICollectionViewController, UICollectionViewDelega
   var game: MatchingGame?
   var statusLabel: UILabel?
   
+  
+  // --- Controller Overrides ---
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    collectionView!.allowsMultipleSelection = true
+    dataSource = collectionView!.dataSource as? TrumpCardCollectionDataSource
+    
+    startNewGame()
+  }
+  
+  
+  // --- UI Responders ---
+  
   @IBAction func clickedDeckButton(sender: UIButton) {
     if (game!.hasUnviewedCards()) {
       NSLog("has unviewed cards")
@@ -25,39 +40,30 @@ class MatchingGameController: UICollectionViewController, UICollectionViewDelega
     }
   }
   
-  /* Sets remaining view and controller properties and inits game model
-  */
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    
-    collectionView!.allowsMultipleSelection = true
-
-    dataSource  = collectionView!.dataSource as? TrumpCardCollectionDataSource
-
-    startNewGame()
-  }
   
-  override func collectionView(collectionView: UICollectionView, willDisplaySupplementaryView view: UICollectionReusableView, forElementKind elementKind: String, atIndexPath indexPath: NSIndexPath) {
+  // --- Delegate Functions ---
+  
+  override func collectionView(collectionView: UICollectionView,
+                               willDisplaySupplementaryView view: UICollectionReusableView,
+                                 forElementKind elementKind: String,
+                                   atIndexPath indexPath: NSIndexPath) {
+                                    
     if (elementKind == UICollectionElementKindSectionFooter) {
       statusLabel = view.subviews[0] as? UILabel
     }
   }
   
-  /* Updates mvc properties on UI card selection and checks turn state
-  */
-  override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-    // Update: Controller
+  
+  override func collectionView(collectionView: UICollectionView,
+                                 didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    // Updates mvc properties on UI card selection and checks turn state
+
     selectIdxPaths.append(indexPath)
 
-    // Update: Model
     var (didMatch, msg) = game!.updateTurn(indexPath.item, card: dataSource!.getCardAt(indexPath)!)
-  
-    // Update: View
+    
     statusLabel!.text = msg
-  
-    NSLog(msg)
 
-    // Update State: Controller
     if (game!.currentTurn.done()) {
       score = game!.getScore()
       NSLog("Score: \(score) =====================================")
@@ -70,10 +76,11 @@ class MatchingGameController: UICollectionViewController, UICollectionViewDelega
     }
   }
   
-  /* Handles card flip behavior so that cards are not accidentally
-   * flipped back in the middle of a turn and such.
-  */
-  override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+  
+  override func collectionView(collectionView: UICollectionView,
+                                 shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+    // Handles card flip behavior so that cards are not accidentally
+    // flipped back in the middle of a turn and such.
 
     if (waitingForNextPlayer) {
       for path in selectIdxPaths {
@@ -88,9 +95,10 @@ class MatchingGameController: UICollectionViewController, UICollectionViewDelega
     }
   }
   
-  /* Sets remaining view and controller properties and inits game model
-  */
-  override func collectionView(collectionView: UICollectionView, shouldDeselectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+  
+  override func collectionView(collectionView: UICollectionView,
+                                 shouldDeselectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+    // Sets remaining view and controller properties and inits game model
     
     for path in selectIdxPaths {
       if (indexPath == path) {
@@ -101,7 +109,10 @@ class MatchingGameController: UICollectionViewController, UICollectionViewDelega
     return true
   }
   
-  func removeCardsAt(idxPaths: [NSIndexPath]) {
+  
+  // --- Private Functions ---
+  
+  private func removeCardsAt(idxPaths: [NSIndexPath]) {
     dataSource!.removeCardsAt(idxPaths)
     collectionView!.reloadItemsAtIndexPaths(idxPaths)
 
@@ -109,7 +120,7 @@ class MatchingGameController: UICollectionViewController, UICollectionViewDelega
   }
   
   
-  func checkStatus() {
+  private func checkStatus() {
     NSLog("=== Score: \(score) ========")
     
     for path in selectIdxPaths {
@@ -148,107 +159,3 @@ class MatchingGameController: UICollectionViewController, UICollectionViewDelega
     statusLabel!.text = "New Round!"
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
