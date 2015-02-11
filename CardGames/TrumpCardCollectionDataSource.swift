@@ -131,9 +131,23 @@ class TrumpCardCollectionDataSource: NSObject, UICollectionViewDataSource {
         return UICollectionReusableView()
       }
       
-      return (collectionView.dequeueReusableSupplementaryViewOfKind(kind,
+      var suppView = (collectionView.dequeueReusableSupplementaryViewOfKind(kind,
         withReuseIdentifier: reuseId,
         forIndexPath: indexPath) as? UICollectionReusableView)!
+
+      if (kind == UICollectionElementKindSectionFooter) {
+        suppView.layer.borderColor = UIColor(white: 0.4, alpha: 0.1).CGColor
+        suppView.layer.borderWidth = 2
+      } else {
+        suppView.layer.borderColor = UIColor(white: 0.4, alpha: 0.1).CGColor
+        suppView.layer.borderWidth = 2
+
+        var button = suppView.subviews[0] as UIView
+        button.layer.borderColor = UIColor(white: 0.1, alpha: 0.1).CGColor
+        button.layer.borderWidth = 2
+      }
+      
+      return suppView
   }
   
   
@@ -145,7 +159,11 @@ class TrumpCardCollectionDataSource: NSObject, UICollectionViewDataSource {
       
       if (cardsInPlay[indexPath.item] != nil) {
         cell.backgroundView = UIImageView(image: cardBackImage)
+        cell.backgroundView!.layer.borderColor = UIColor(white: 0.4, alpha: 0.1).CGColor
+        cell.backgroundView!.layer.borderWidth = 2
         cell.selectedBackgroundView = labelFor(cardsInPlay[indexPath.item]!, withFrame: cell.frame)
+        cell.selectedBackgroundView!.layer.borderColor = UIColor(white: 0.4, alpha: 0.2).CGColor
+        cell.selectedBackgroundView!.layer.borderWidth = 1
       } else {
         cell.backgroundView = nil
         cell.selectedBackgroundView = nil
