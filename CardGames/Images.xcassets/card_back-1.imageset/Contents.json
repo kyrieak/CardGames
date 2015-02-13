@@ -3,16 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "card_back_alt.png"
+      "filename" : "card_back.jpg"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "card_back_md.png"
+      "filename" : "card_back-1.jpg"
     },
     {
       "idiom" : "universal",
-      "scale" : "3x"
+      "scale" : "3x",
+      "filename" : "card_back.png"
     }
   ],
   "info" : {

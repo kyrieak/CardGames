@@ -10,13 +10,14 @@
 		34005ED01A4FACDA00BDFD0F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34005ECF1A4FACDA00BDFD0F /* AppDelegate.swift */; };
 		34005ED21A4FACDA00BDFD0F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34005ED11A4FACDA00BDFD0F /* ViewController.swift */; };
 		34005ED51A4FACDB00BDFD0F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34005ED31A4FACDB00BDFD0F /* Main.storyboard */; };
-		34005ED71A4FACDB00BDFD0F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34005ED61A4FACDB00BDFD0F /* Images.xcassets */; };
 		34005EDA1A4FACDB00BDFD0F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34005ED81A4FACDB00BDFD0F /* LaunchScreen.xib */; };
 		34005EE61A4FACDB00BDFD0F /* CardGamesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34005EE51A4FACDB00BDFD0F /* CardGamesTests.swift */; };
 		34005EF01A4FC5BC00BDFD0F /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34005EEF1A4FC5BC00BDFD0F /* CardViewController.swift */; };
 		34005EF31A4FC8F500BDFD0F /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34005EF21A4FC8F500BDFD0F /* Deck.swift */; };
 		34005EF51A4FC91500BDFD0F /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34005EF41A4FC91500BDFD0F /* Card.swift */; };
 		34005EF71A4FC94A00BDFD0F /* TrumpCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34005EF61A4FC94A00BDFD0F /* TrumpCard.swift */; };
+		341A2E431A8C92AE0091664E /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341A2E421A8C92AE0091664E /* Style.swift */; };
+		34323DED1A8D8BC20004BE03 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34323DEC1A8D8BC20004BE03 /* Images.xcassets */; };
 		343587111A6A246C00DD7F1A /* TrumpCardCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343587101A6A246C00DD7F1A /* TrumpCardCollectionDataSource.swift */; };
 		3460E1121A7B4DF0000FD1EB /* MatchingGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3460E1111A7B4DF0000FD1EB /* MatchingGame.swift */; };
 		349A2C6F1A6DAD5900580219 /* MatchingGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349A2C6E1A6DAD5900580219 /* MatchingGameController.swift */; };
@@ -38,7 +39,6 @@
 		34005ECF1A4FACDA00BDFD0F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		34005ED11A4FACDA00BDFD0F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		34005ED41A4FACDB00BDFD0F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		34005ED61A4FACDB00BDFD0F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		34005ED91A4FACDB00BDFD0F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		34005EDF1A4FACDB00BDFD0F /* CardGamesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CardGamesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		34005EE41A4FACDB00BDFD0F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -47,6 +47,8 @@
 		34005EF21A4FC8F500BDFD0F /* Deck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 		34005EF41A4FC91500BDFD0F /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		34005EF61A4FC94A00BDFD0F /* TrumpCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrumpCard.swift; sourceTree = "<group>"; };
+		341A2E421A8C92AE0091664E /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
+		34323DEC1A8D8BC20004BE03 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = CardGames/Images.xcassets; sourceTree = "<group>"; };
 		343587101A6A246C00DD7F1A /* TrumpCardCollectionDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrumpCardCollectionDataSource.swift; sourceTree = "<group>"; };
 		3460E1111A7B4DF0000FD1EB /* MatchingGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchingGame.swift; sourceTree = "<group>"; };
 		349A2C6E1A6DAD5900580219 /* MatchingGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchingGameController.swift; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 		34005EC11A4FACDA00BDFD0F = {
 			isa = PBXGroup;
 			children = (
+				34323DEC1A8D8BC20004BE03 /* Images.xcassets */,
 				34005ECC1A4FACDA00BDFD0F /* CardGames */,
 				34005EE21A4FACDB00BDFD0F /* CardGamesTests */,
 				34005ECB1A4FACDA00BDFD0F /* Products */,
@@ -96,7 +99,7 @@
 				34005EF11A4FC8DD00BDFD0F /* Models */,
 				34005ED31A4FACDB00BDFD0F /* Main.storyboard */,
 				343587101A6A246C00DD7F1A /* TrumpCardCollectionDataSource.swift */,
-				34005ED61A4FACDB00BDFD0F /* Images.xcassets */,
+				341A2E421A8C92AE0091664E /* Style.swift */,
 				34005ED81A4FACDB00BDFD0F /* LaunchScreen.xib */,
 				34005ECD1A4FACDA00BDFD0F /* Supporting Files */,
 			);
@@ -229,9 +232,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34323DED1A8D8BC20004BE03 /* Images.xcassets in Resources */,
 				34005ED51A4FACDB00BDFD0F /* Main.storyboard in Resources */,
 				34005EDA1A4FACDB00BDFD0F /* LaunchScreen.xib in Resources */,
-				34005ED71A4FACDB00BDFD0F /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,6 +261,7 @@
 				34005ED01A4FACDA00BDFD0F /* AppDelegate.swift in Sources */,
 				34005EF01A4FC5BC00BDFD0F /* CardViewController.swift in Sources */,
 				3460E1121A7B4DF0000FD1EB /* MatchingGame.swift in Sources */,
+				341A2E431A8C92AE0091664E /* Style.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

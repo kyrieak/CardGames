@@ -17,7 +17,6 @@ class MatchingGameController: UICollectionViewController, UICollectionViewDelega
   var game: MatchingGame?
   var statusLabel: UILabel?
   
-  
   // --- Controller Overrides ---
   
   override func viewDidLoad() {
@@ -49,7 +48,7 @@ class MatchingGameController: UICollectionViewController, UICollectionViewDelega
                                    atIndexPath indexPath: NSIndexPath) {
                                     
     if (elementKind == UICollectionElementKindSectionFooter) {
-      statusLabel = view.subviews[0] as? UILabel
+      statusLabel = view.viewWithTag(1) as? UILabel
     }
   }
   

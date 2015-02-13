@@ -10,10 +10,14 @@ import Foundation
 import UIKit
 
 class TrumpCardCollectionDataSource: NSObject, UICollectionViewDataSource {
-  let cardBackImage = UIImage(named: "card_back")
   let viewHeight: Int?
   var cardsInPlay: [TrumpCard?]
   var cardPairs: Array<[TrumpCard]>
+  
+  let deckButtonTag = 1
+  let pageButtonTag = 2
+
+  let style = Style()
   
   override init() {
     cardsInPlay = []
@@ -135,16 +139,15 @@ class TrumpCardCollectionDataSource: NSObject, UICollectionViewDataSource {
         withReuseIdentifier: reuseId,
         forIndexPath: indexPath) as? UICollectionReusableView)!
 
-      if (kind == UICollectionElementKindSectionFooter) {
-        suppView.layer.borderColor = UIColor(white: 0.4, alpha: 0.1).CGColor
-        suppView.layer.borderWidth = 2
-      } else {
-        suppView.layer.borderColor = UIColor(white: 0.4, alpha: 0.1).CGColor
-        suppView.layer.borderWidth = 2
+      style.applyShade(suppView.layer)
+      
+      if (kind == UICollectionElementKindSectionHeader) {
+        var buttonLeft = suppView.viewWithTag(deckButtonTag)!
+        var buttonRight = suppView.viewWithTag(pageButtonTag)!
 
-        var button = suppView.subviews[0] as UIView
-        button.layer.borderColor = UIColor(white: 0.1, alpha: 0.1).CGColor
-        button.layer.borderWidth = 2
+        style.applyCardBg(buttonLeft, withScale: 2.0)
+        style.applyShade(buttonLeft.layer, color: style.liteShadeColor, thickness: 2)
+        style.applyShade(buttonRight.layer, color: style.liteShadeColor, thickness: 1)
       }
       
       return suppView
@@ -158,12 +161,12 @@ class TrumpCardCollectionDataSource: NSObject, UICollectionViewDataSource {
         forIndexPath: indexPath) as? UICollectionViewCell)!
       
       if (cardsInPlay[indexPath.item] != nil) {
-        cell.backgroundView = UIImageView(image: cardBackImage)
-        cell.backgroundView!.layer.borderColor = UIColor(white: 0.4, alpha: 0.1).CGColor
-        cell.backgroundView!.layer.borderWidth = 2
+        cell.backgroundView = UIView(frame: cell.frame)
+        style.applyCardBg(cell.backgroundView!, withScale: 2.0)
         cell.selectedBackgroundView = labelFor(cardsInPlay[indexPath.item]!, withFrame: cell.frame)
-        cell.selectedBackgroundView!.layer.borderColor = UIColor(white: 0.4, alpha: 0.2).CGColor
-        cell.selectedBackgroundView!.layer.borderWidth = 1
+
+        style.applyShade(cell.backgroundView!.layer)
+        style.applyShade(cell.selectedBackgroundView!.layer, color: style.darkShadeColor, thickness: 1)
       } else {
         cell.backgroundView = nil
         cell.selectedBackgroundView = nil
@@ -176,6 +179,21 @@ class TrumpCardCollectionDataSource: NSObject, UICollectionViewDataSource {
   
   
   // --- Private Functions ------------------------------------
+  
+//  private func applyShade(view: UIView, color: CGColorRef, thickness: CGFloat) {
+//    var layer = view.layer
+//    
+//    layer.borderColor = color
+//    layer.borderWidth = thickness
+//  }
+//
+//  private func applyShade(view: UIView) {
+//    var layer = view.layer
+//    
+//    layer.borderColor = medShadeColor
+//    layer.borderWidth = 2
+//  }
+
   
   private func getNextPair() -> [TrumpCard]? {
     if (cardPairs.count > 0) {

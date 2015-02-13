@@ -13,8 +13,8 @@ class CardViewController: UIViewController {
   @IBOutlet var cardLabelTop: UILabel!
   @IBOutlet var cardLabelBottom: UILabel!
   @IBOutlet var cardLabelCenter: UILabel!
-
-  let cardBackImage = UIImage(named: "card_back")
+//
+//  let cardBackImage = UIImage(named: "card_back")
   
   let hearts   = Suit(title: "Hearts", symbol: "♥︎", tier: 1, color: UIColor.redColor())
   let diamonds = Suit(title: "Diamonds", symbol: "♦︎", tier: 1, color: UIColor.redColor())
@@ -26,8 +26,11 @@ class CardViewController: UIViewController {
   var parentVC: UIViewController?
   var topCard: TrumpCard?
   
+  let style = Style()
+  
   override func viewDidLoad() {
-    self.view.backgroundColor = UIColor(patternImage: cardBackImage!)
+    style.applyCardBg(self.view, withScale: 2.0)
+    style.applyShade(self.view.layer, color: style.darkShadeColor, thickness: 2)
 
     for rankVal in 1...13 {
       drawPile.addCard(TrumpCard(suit: hearts, rank: rankVal))
@@ -49,7 +52,7 @@ class CardViewController: UIViewController {
       
       if (card!.isFaceUp()) {
         label = card!.label()
-        var color = card!.suit.color
+        var color = card!.color()
         
         if (cardLabelTop.textColor != color) {
           cardLabelTop.textColor = color
@@ -60,7 +63,7 @@ class CardViewController: UIViewController {
         self.view.backgroundColor = UIColor.whiteColor()
       } else {
         label = ""
-        self.view.backgroundColor = UIColor(patternImage: cardBackImage!)
+        style.applyCardBg(self.view, withScale: 2.0)
       }
       
       cardLabelTop.text = label
