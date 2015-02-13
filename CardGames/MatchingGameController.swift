@@ -15,6 +15,7 @@ class MatchingGameController: UICollectionViewController, UICollectionViewDelega
   var dataSource: TrumpCardCollectionDataSource?
   var waitingForNextPlayer = false
   var game: MatchingGame?
+  var scoreLabel: UILabel?
   var statusLabel: UILabel?
   
   // --- Controller Overrides ---
@@ -49,6 +50,8 @@ class MatchingGameController: UICollectionViewController, UICollectionViewDelega
                                     
     if (elementKind == UICollectionElementKindSectionFooter) {
       statusLabel = view.viewWithTag(1) as? UILabel
+    } else {
+      scoreLabel = view.viewWithTag(3) as? UILabel
     }
   }
   
@@ -65,6 +68,7 @@ class MatchingGameController: UICollectionViewController, UICollectionViewDelega
 
     if (game!.currentTurn.done()) {
       score = game!.getScore()
+      scoreLabel!.text = score.description
       NSLog("Score: \(score) =====================================")
       
       if (didMatch) {

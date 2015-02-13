@@ -138,16 +138,25 @@ class TrumpCardCollectionDataSource: NSObject, UICollectionViewDataSource {
       var suppView = (collectionView.dequeueReusableSupplementaryViewOfKind(kind,
         withReuseIdentifier: reuseId,
         forIndexPath: indexPath) as? UICollectionReusableView)!
-
-      style.applyShade(suppView.layer)
       
       if (kind == UICollectionElementKindSectionHeader) {
         var buttonLeft = suppView.viewWithTag(deckButtonTag)!
         var buttonRight = suppView.viewWithTag(pageButtonTag)!
 
-        style.applyCardBg(buttonLeft, withScale: 2.0)
+        style.applyShade(suppView.layer)
+        style.applyCardBg(buttonLeft, withScale: 3.0)
         style.applyShade(buttonLeft.layer, color: style.liteShadeColor, thickness: 2)
         style.applyShade(buttonRight.layer, color: style.liteShadeColor, thickness: 1)
+      } else {
+        suppView.frame.origin.y = collectionView.layer.frame.height - 87
+
+        var ca = CALayer()
+
+        ca.bounds = CGRect(origin: suppView.bounds.origin, size: CGSize(width: suppView.bounds.width, height: 50))
+        ca.frame = ca.bounds
+        ca.backgroundColor = style.medBrownColor
+        style.applyShade(ca)
+        suppView.layer.insertSublayer(ca, above: suppView.viewWithTag(1)!.layer)
       }
       
       return suppView
@@ -162,7 +171,7 @@ class TrumpCardCollectionDataSource: NSObject, UICollectionViewDataSource {
       
       if (cardsInPlay[indexPath.item] != nil) {
         cell.backgroundView = UIView(frame: cell.frame)
-        style.applyCardBg(cell.backgroundView!, withScale: 2.0)
+        style.applyCardBg(cell.backgroundView!, withScale: 3.0)
         cell.selectedBackgroundView = labelFor(cardsInPlay[indexPath.item]!, withFrame: cell.frame)
 
         style.applyShade(cell.backgroundView!.layer)
@@ -179,21 +188,6 @@ class TrumpCardCollectionDataSource: NSObject, UICollectionViewDataSource {
   
   
   // --- Private Functions ------------------------------------
-  
-//  private func applyShade(view: UIView, color: CGColorRef, thickness: CGFloat) {
-//    var layer = view.layer
-//    
-//    layer.borderColor = color
-//    layer.borderWidth = thickness
-//  }
-//
-//  private func applyShade(view: UIView) {
-//    var layer = view.layer
-//    
-//    layer.borderColor = medShadeColor
-//    layer.borderWidth = 2
-//  }
-
   
   private func getNextPair() -> [TrumpCard]? {
     if (cardPairs.count > 0) {

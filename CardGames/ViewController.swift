@@ -51,7 +51,7 @@ class ViewController: UIViewController {
   private func makeHeaderLayer() -> CALayer {
     var headerLayer = CALayer()
     
-    headerLayer.bounds = CGRect(origin: self.view.bounds.origin, size: CGSize(width: self.view.bounds.width, height: 115))
+    headerLayer.bounds = CGRect(origin: self.view.bounds.origin, size: CGSize(width: self.view.bounds.width, height: 130))
     headerLayer.frame.origin = self.view.frame.origin
     headerLayer.backgroundColor = style.medGreenColor
     style.applyShade(headerLayer)
