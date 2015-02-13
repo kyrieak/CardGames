@@ -17,6 +17,7 @@ class MatchingGameController: UICollectionViewController, UICollectionViewDelega
   var game: MatchingGame?
   var scoreLabel: UILabel?
   var statusLabel: UILabel?
+  let style = Style()
   
   // --- Controller Overrides ---
   

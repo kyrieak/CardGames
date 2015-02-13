@@ -28,12 +28,6 @@
                                     <segue destination="nXa-fC-ccS" kind="embed" id="Y39-2R-iMj"/>
                                 </connections>
                             </containerView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="discardsLabel" text="Discards: 0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Htl-jd-ATm">
-                                <rect key="frame" x="16" y="482" width="288" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.067340061069999999" green="0.25241810079999999" blue="0.1519812495" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="2" translatesAutoresizingMaskIntoConstraints="NO" id="BKW-Yi-622">
                                 <rect key="frame" x="149" y="531" width="23" height="37"/>
                                 <color key="pageIndicatorTintColor" red="0.70980392160000005" green="0.81176470590000005" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -57,17 +51,27 @@
                                     <segue destination="I9X-cb-r4T" kind="show" id="WN8-jF-ZMO"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="50" restorationIdentifier="discardsLabel" text="   Discards: 0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Htl-jd-ATm">
+                                <rect key="frame" x="0.0" y="468" width="320" height="50"/>
+                                <color key="backgroundColor" red="0.59999999999999998" green="0.41176470590000003" blue="0.37254901959999998" alpha="0.35999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="thV-WK-p4k"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.067340061069999999" green="0.25241810079999999" blue="0.1519812495" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.92941176469999998" green="0.96947297489999995" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="M5g-Li-4MM" secondAttribute="centerX" id="0t7-zD-hfk"/>
                             <constraint firstAttribute="centerY" secondItem="M5g-Li-4MM" secondAttribute="centerY" id="4sG-eB-p78"/>
                             <constraint firstAttribute="centerX" secondItem="Htl-jd-ATm" secondAttribute="centerX" id="VwX-gP-Ndl"/>
+                            <constraint firstItem="Htl-jd-ATm" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="aVj-je-Y4z"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="BKW-Yi-622" secondAttribute="bottom" id="ay5-n5-MOj"/>
                             <constraint firstAttribute="centerX" secondItem="BKW-Yi-622" secondAttribute="centerX" constant="-0.5" id="dH8-yW-NJd"/>
                             <constraint firstItem="25L-Jc-LZW" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="iTn-jr-tNE"/>
-                            <constraint firstAttribute="bottom" secondItem="Htl-jd-ATm" secondAttribute="bottom" constant="65.5" id="jH4-2c-RXp"/>
-                            <constraint firstItem="Htl-jd-ATm" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="pTU-NF-O1w"/>
+                            <constraint firstItem="BKW-Yi-622" firstAttribute="top" secondItem="Htl-jd-ATm" secondAttribute="bottom" constant="13" id="pEc-Yc-Hqf"/>
                             <constraint firstItem="25L-Jc-LZW" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" constant="8" id="zks-Mq-XdY"/>
                         </constraints>
                     </view>
@@ -92,7 +96,7 @@
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="6" minimumInteritemSpacing="0.0" id="rMa-m8-GXs">
                             <size key="itemSize" width="72" height="100"/>
                             <size key="headerReferenceSize" width="320" height="130"/>
-                            <size key="footerReferenceSize" width="320" height="87"/>
+                            <size key="footerReferenceSize" width="320" height="100"/>
                             <inset key="sectionInset" minX="8" minY="10" maxX="8" maxY="10"/>
                         </collectionViewFlowLayout>
                         <cells>
@@ -107,8 +111,8 @@
                                 <size key="customSize" width="72" height="100"/>
                             </collectionViewCell>
                         </cells>
-                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="115" reuseIdentifier="game_header" id="VBp-Zo-hM2">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="115"/>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="-6" contentMode="scaleAspectFit" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="115" reuseIdentifier="game_header" id="VBp-Zo-hM2">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="130"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dC3-Ba-7CU">
@@ -164,19 +168,23 @@
                                 <constraint firstItem="LxL-Lb-lYj" firstAttribute="bottom" secondItem="VBp-Zo-hM2" secondAttribute="bottomMargin" id="wi0-9O-oCr"/>
                             </constraints>
                         </collectionReusableView>
-                        <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="game_footer" id="eZL-9H-GzA">
-                            <rect key="frame" x="0.0" y="235" width="320" height="50"/>
+                        <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="6" contentMode="center" reuseIdentifier="game_footer" id="eZL-9H-GzA">
+                            <rect key="frame" x="0.0" y="250" width="320" height="87"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Start!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j6F-7G-2mq">
-                                    <rect key="frame" x="114" y="14" width="92.5" height="20.5"/>
+                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="50" text="Game Start!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j6F-7G-2mq">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                    <color key="backgroundColor" red="0.59999999999999998" green="0.41176470590000003" blue="0.37254901959999998" alpha="0.35999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="50" id="cfI-cG-CaA"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" red="0.067340061068534851" green="0.25241810083389282" blue="0.15198124945163727" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                     <size key="shadowOffset" width="0.0" height="0.0"/>
                                 </label>
                                 <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="2" currentPage="1" translatesAutoresizingMaskIntoConstraints="NO" id="oGU-Db-VAv">
-                                    <rect key="frame" x="149" y="50" width="23" height="37"/>
+                                    <rect key="frame" x="149" y="63" width="23" height="37"/>
                                     <color key="pageIndicatorTintColor" red="0.59999999999999998" green="0.41176470590000003" blue="0.37254901959999998" alpha="0.35999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="currentPageIndicatorTintColor" red="0.067340061069999999" green="0.25241810079999999" blue="0.1519812495" alpha="1" colorSpace="calibratedRGB"/>
                                 </pageControl>
@@ -184,9 +192,11 @@
                             <color key="backgroundColor" red="0.92941176469999998" green="0.96947297489999995" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="centerX" secondItem="j6F-7G-2mq" secondAttribute="centerX" id="694-Ka-t7E"/>
-                                <constraint firstAttribute="centerX" secondItem="oGU-Db-VAv" secondAttribute="centerX" constant="-0.5" id="C2r-W2-Mis"/>
+                                <constraint firstAttribute="centerX" secondItem="oGU-Db-VAv" secondAttribute="centerX" id="C2r-W2-Mis"/>
                                 <constraint firstAttribute="bottomMargin" secondItem="oGU-Db-VAv" secondAttribute="bottom" constant="-8" id="DGJ-MC-Cah"/>
-                                <constraint firstAttribute="centerY" secondItem="j6F-7G-2mq" secondAttribute="centerY" constant="19" id="RMg-8V-Q5a"/>
+                                <constraint firstItem="oGU-Db-VAv" firstAttribute="top" secondItem="j6F-7G-2mq" secondAttribute="bottom" constant="13" id="FA2-Nf-G9O"/>
+                                <constraint firstAttribute="trailingMargin" secondItem="j6F-7G-2mq" secondAttribute="trailing" constant="-8" id="fAD-3y-AfW"/>
+                                <constraint firstItem="j6F-7G-2mq" firstAttribute="leading" secondItem="eZL-9H-GzA" secondAttribute="leadingMargin" constant="-8" id="xpq-ZE-cLd"/>
                             </constraints>
                         </collectionReusableView>
                         <connections>

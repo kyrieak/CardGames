@@ -19,8 +19,7 @@ class ViewController: UIViewController {
     var pageButton = self.view.viewWithTag(1)!
     
     self.view.layer.insertSublayer(makeHeaderLayer(), below: pageButton.layer)
-    self.view.layer.insertSublayer(makeFooterLayer(), below: discardsLabel.layer)
-    
+    style.applyShade(discardsLabel.layer)
     style.applyShade(pageButton.layer, color: style.liteShadeColor, thickness: 1)
     // Do any additional setup after loading the view, typically from a nib.
   }
@@ -45,6 +44,7 @@ class ViewController: UIViewController {
   }
 
   func updateDiscardLabel<T: Card>(discard: Deck<T>) {
+    discardsLabel.drawTextInRect(UIEdgeInsetsInsetRect(discardsLabel.frame, UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)))
     self.discardsLabel.text = "Discards: \(discard.cards.count)"
   }
   
