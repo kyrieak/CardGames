@@ -148,15 +148,12 @@ class TrumpCardCollectionDataSource: NSObject, UICollectionViewDataSource {
         style.applyShade(buttonLeft.layer, color: style.liteShadeColor, thickness: 2)
         style.applyShade(buttonRight.layer, color: style.liteShadeColor, thickness: 1)
       } else {
-        suppView.frame.origin.y = collectionView.layer.frame.height - 87
-
-        var ca = CALayer()
-
-        ca.bounds = CGRect(origin: suppView.bounds.origin, size: CGSize(width: suppView.bounds.width, height: 50))
-        ca.frame = ca.bounds
-        ca.backgroundColor = style.medBrownColor
-        style.applyShade(ca)
-        suppView.layer.insertSublayer(ca, above: suppView.viewWithTag(1)!.layer)
+        suppView.frame.origin.y = collectionView.layer.frame.height - 100
+        var label = suppView.viewWithTag(1)!
+        
+        if (label.layer.borderWidth == 0) {
+          style.applyShade(label.layer)
+        }
       }
       
       return suppView
