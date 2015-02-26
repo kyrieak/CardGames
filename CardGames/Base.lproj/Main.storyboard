@@ -37,7 +37,7 @@
                                 </connections>
                             </pageControl>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="25L-Jc-LZW">
-                                <rect key="frame" x="266" y="20" width="46" height="30"/>
+                                <rect key="frame" x="266" y="22" width="46" height="30"/>
                                 <color key="backgroundColor" red="1" green="0.81960785390000002" blue="0.89019608500000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="25L-Jc-LZW" secondAttribute="height" multiplier="23:15" id="0yC-Ua-nup"/>
@@ -70,7 +70,7 @@
                             <constraint firstItem="Htl-jd-ATm" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="aVj-je-Y4z"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="BKW-Yi-622" secondAttribute="bottom" id="ay5-n5-MOj"/>
                             <constraint firstAttribute="centerX" secondItem="BKW-Yi-622" secondAttribute="centerX" constant="-0.5" id="dH8-yW-NJd"/>
-                            <constraint firstItem="25L-Jc-LZW" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="iTn-jr-tNE"/>
+                            <constraint firstItem="25L-Jc-LZW" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="2" id="iTn-jr-tNE"/>
                             <constraint firstItem="BKW-Yi-622" firstAttribute="top" secondItem="Htl-jd-ATm" secondAttribute="bottom" constant="13" id="pEc-Yc-Hqf"/>
                             <constraint firstItem="25L-Jc-LZW" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" constant="8" id="zks-Mq-XdY"/>
                         </constraints>
@@ -169,7 +169,7 @@
                             </constraints>
                         </collectionReusableView>
                         <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="6" contentMode="center" reuseIdentifier="game_footer" id="eZL-9H-GzA">
-                            <rect key="frame" x="0.0" y="250" width="320" height="87"/>
+                            <rect key="frame" x="0.0" y="250" width="320" height="100"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="50" text="Game Start!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j6F-7G-2mq">
