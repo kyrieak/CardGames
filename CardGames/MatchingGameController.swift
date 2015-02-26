@@ -50,6 +50,8 @@ class MatchingGameController: UICollectionViewController, UICollectionViewDelega
                                    atIndexPath indexPath: NSIndexPath) {
                                     
     if (elementKind == UICollectionElementKindSectionFooter) {
+      view.layer.position.y = self.view.frame.height - (view.frame.height / 2) - 49
+      NSLog("\(self.view.frame.height)")
       statusLabel = view.viewWithTag(1) as? UILabel
     } else {
       scoreLabel = view.viewWithTag(3) as? UILabel

@@ -16,11 +16,11 @@ class ViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    var pageButton = self.view.viewWithTag(1)!
-    
-    self.view.layer.insertSublayer(makeHeaderLayer(), below: pageButton.layer)
+//    var pageButton = self.view.viewWithTag(1)!
+//    
+    self.view.layer.insertSublayer(makeHeaderLayer(), atIndex: 0)
     style.applyShade(discardsLabel.layer)
-    style.applyShade(pageButton.layer, color: style.liteShadeColor, thickness: 1)
+//    style.applyShade(pageButton.layer, color: style.liteShadeColor, thickness: 1)
     // Do any additional setup after loading the view, typically from a nib.
   }
 

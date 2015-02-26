@@ -38,7 +38,20 @@ class TrumpCard:Card, Comparable {
   }
   
   func label() -> String {
-    return "\(self.rank)" + self.suit.symbol
+    return { (rank: Int) -> String in
+      switch (rank) {
+      case 1:
+        return "🔵"
+      case 11:
+        return "🐸"
+      case 12:
+        return "🐴👀🐴"
+      case 13:
+        return "🐰"
+      default:
+        return "\(self.rank)"
+      }
+    }(self.rank) + self.suit.symbol
   }
   
   func color() -> UIColor {

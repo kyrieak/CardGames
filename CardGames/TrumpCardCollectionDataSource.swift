@@ -141,12 +141,12 @@ class TrumpCardCollectionDataSource: NSObject, UICollectionViewDataSource {
       
       if (kind == UICollectionElementKindSectionHeader) {
         var buttonLeft = suppView.viewWithTag(deckButtonTag)!
-        var buttonRight = suppView.viewWithTag(pageButtonTag)!
+//        var buttonRight = suppView.viewWithTag(pageButtonTag)!
 
         style.applyShade(suppView.layer)
         style.applyCardBg(buttonLeft, withScale: 3.0)
         style.applyShade(buttonLeft.layer, color: style.liteShadeColor, thickness: 2)
-        style.applyShade(buttonRight.layer, color: style.liteShadeColor, thickness: 1)
+//        style.applyShade(buttonRight.layer, color: style.liteShadeColor, thickness: 1)
       } else {
         suppView.frame.origin.y = collectionView.layer.frame.height - 100
         var label = suppView.viewWithTag(1)!
