@@ -13,30 +13,49 @@ class SetGame: CardGame {
   typealias turnType = SetTurn
   
   private var turnKeeper: SetTurnKeeper
-  
   private var cardsInPlay: [SetCard?] = []
-  private var cardsInDeck: [SetCard]  = SetGame.standardDeck()
-  private var scores: [String: Int]   = [String: Int]()
+  private var deck: Deck<SetCard>     = SetGame.standardDeck()
+  private var scores: [Player: Int]   = [Player: Int]()
   
   required init(players: [String]) {
-    for (idx, name) in enumerate(players) {
-      var key = name + " \(idx + 1)"
-      
-      scores[key] = 0
+    turnKeeper = SetTurnKeeper(playerNames: players)
+    
+    for player in turnKeeper.players {
+      scores[player] = 0
     }
     
-    turnKeeper = SetTurnKeeper(playerKeys: scores.keys.array)
     startNewRound(15)
   }
   
   convenience init(numPlayers: Int) {
     var playerNames = (1...numPlayers).map({(num: Int) -> String in
-      return "Player"
+      return "Player \(num)"
     })
     
     self.init(players: playerNames)
   }
+
   
+  func startNewRound(numCards: Int) {
+    cardsInPlay = []
+    
+    if (numCards > deck.cards.count) {
+      
+      while (deck.cards.count > 0) {
+        cardsInPlay.append(deck.removeTopCard())
+      }
+    } else {
+      for i in 1...numCards {
+        cardsInPlay.append(deck.removeTopCard())
+      }
+    }
+  }
+  
+  
+  func startNewTurn() {
+    turnKeeper.startNewTurn()
+  }
+
   
   func updateTurn(cardIdx: Int) {
     if (!currentTurn().done()) {
@@ -63,24 +82,6 @@ class SetGame: CardGame {
     turnKeeper.endTurn()
   }
   
-  func startNewRound(numCards: Int) {
-    if (numCards > cardsInDeck.count) {
-      cardsInPlay = cardsInDeck
-      cardsInDeck = []
-    } else {
-      cardsInPlay = []
-      
-      for i in 1...numCards {
-        cardsInPlay.append(cardsInDeck.removeLast())
-      }
-    }
-  }
-
-  
-  func startNewTurn() {
-    turnKeeper.startNewTurn()
-  }
-  
   
   func currentTurn() -> SetTurn {
     return turnKeeper.currentTurn
@@ -92,12 +93,12 @@ class SetGame: CardGame {
   }
 
   
-  func currentPlayer() -> String {
+  func currentPlayer() -> Player {
     return turnKeeper.currentPlayer
   }
   
   
-  func nextPlayer() -> String {
+  func nextPlayer() -> Player {
     return turnKeeper.nextPlayer()
   }
 
@@ -112,8 +113,13 @@ class SetGame: CardGame {
   }
   
   
-  func getCurrentPlayerScore() -> Int {
-    return scores[currentPlayer()]!
+  func getScoreForPlayer(p: Player) -> Int {
+    return scores[p]!
+  }
+  
+  
+  func getScoreForCurrentPlayer() -> Int {
+    return getScoreForPlayer(currentPlayer())
   }
 
   
@@ -172,22 +178,6 @@ class SetGame: CardGame {
       }      
     }
   }
-  
-//  private func isSameOrUnique(values: [String]) -> Bool {
-//    if (values.count != 3) {
-//      return false
-//    } else {
-//      let (v1, v2, v3) = (values[0], values[1], values[2])
-//
-//      if ((v1 == v2) && (v1 == v3)) {
-//        return true
-//      } else if ((v1 != v2) && (v1 != v3) && (v2 != v3)) {
-//        return true
-//      } else {
-//        return false
-//      }
-//    }
-//  }
 
   
   private func isSameOrUnique(values: [UIColor]) -> Bool {
@@ -224,28 +214,32 @@ class SetGame: CardGame {
   }
 
   
-  class func standardDeck() -> [SetCard] {
-    var deck: [SetCard] = []
+  class func standardDeck() -> Deck<SetCard> {
+    var deck = Deck<SetCard>()
+    
     for i in 0...9 {
       for shape in ["▲", "●", "■"] {
-        deck.append(SetCard(shape: shape, color: UIColor.redColor()))
-        deck.append(SetCard(shape: shape, color: UIColor.blueColor()))
-        deck.append(SetCard(shape: shape, color: UIColor.greenColor()))
+        deck.addCard(SetCard(shape: shape, color: UIColor.redColor()))
+        deck.addCard(SetCard(shape: shape, color: UIColor.blueColor()))
+        deck.addCard(SetCard(shape: shape, color: UIColor.greenColor()))
       }
     }
     
+    deck.shuffle()
+    
     return deck
   }
+
 }
 
 
 class SetTurnKeeper: TurnKeeper {
   var currentTurn: SetTurn
   
-  override init(playerKeys: [String]) {
+  override init(playerNames: [String]) {
     currentTurn = SetTurn()
     
-    super.init(playerKeys: playerKeys)
+    super.init(playerNames: playerNames)
   }
   
   

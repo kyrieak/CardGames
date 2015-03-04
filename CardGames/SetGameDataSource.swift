@@ -20,7 +20,7 @@ class SetGameDataSource: NSObject, UICollectionViewDataSource {
   let game: SetGame
   
   override init() {
-    game = SetGame(numPlayers: 1)
+    game = SetGame(numPlayers: 2)
     
     super.init()
   }

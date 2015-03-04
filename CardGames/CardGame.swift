@@ -13,7 +13,7 @@ protocol CardGame {
   
   init(players: [String])
   
-  func currentPlayer() -> String
+  func currentPlayer() -> Player
   
   func currentTurn() -> turnType
   
@@ -23,7 +23,7 @@ protocol CardGame {
 //  
 //  func endTurn(inout turn: turnType)
   
-  func getCurrentPlayerScore() -> Int
+  func getScoreForCurrentPlayer() -> Int
 }
 
 
@@ -42,33 +42,31 @@ protocol Turn {
 
 class TurnKeeper {
   let singlePlayer: Bool
-  let players: [String]
-  var currentPlayer: String
+  let players: [Player]
+  var currentPlayer: Player
   
   private var currentPlayerIdx: Int
   private var lastPlayerIdx: Int
   
-  init(playerKeys: [String]) {
-    players = playerKeys
+  init(playerNames: [String]) {
+    var tmp:[Player] = []
     
-    if (players.count < 2) {
-      singlePlayer = true
-    } else {
-      singlePlayer = false
+    for (idx, name) in enumerate(playerNames) {
+      tmp.append(Player(key: idx, name: name))
     }
     
-    currentPlayer = players[0]
-    
+    players          = tmp
+    singlePlayer     = (players.count < 2)
+    currentPlayer    = players[0]
     currentPlayerIdx = 0
-    lastPlayerIdx = players.count - 1
+    lastPlayerIdx    = players.count - 1
   }
+
   
   init() {
     singlePlayer = true
-    players = ["Player"]
-    
+    players = [Player(key: 0, name: "Player")]
     currentPlayer = players[0]
-    
     currentPlayerIdx = 0
     lastPlayerIdx = players.count - 1
   }
@@ -78,7 +76,7 @@ class TurnKeeper {
       return "Player \(num)"
     })
     
-    self.init(playerKeys: defaultNames)
+    self.init(playerNames: defaultNames)
   }
     
   func startNewTurn() {
@@ -93,7 +91,7 @@ class TurnKeeper {
     }
   }
 
-  func nextPlayer() -> String {
+  func nextPlayer() -> Player {
     if (singlePlayer) {
       return currentPlayer
     } else {
@@ -104,4 +102,34 @@ class TurnKeeper {
       }
     }
   }
+  
+  func playerWithKey(key: Int) -> String? {
+    if (!((key > (players.count - 1)) || (key < 0))) {
+      return players[key].name
+    } else {
+      return nil
+    }
+  }
+  
+  func playerKeys() -> [Int] {
+    return players.map({(p: Player) -> Int in
+             return p.key
+           })
+  }
+}
+
+struct Player: Hashable {
+  let key: Int
+  let name: String
+  let hashValue: Int
+  
+  init(key: Int, name: String) {
+    self.key = key
+    self.name = name
+    self.hashValue = key
+  }
+}
+
+func ==(lhs: Player, rhs: Player) -> Bool {
+  return lhs.key == rhs.key
 }

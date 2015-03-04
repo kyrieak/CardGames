@@ -139,13 +139,16 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uEa-ms-hzm">
-                                    <rect key="frame" x="302" y="101" width="10" height="21"/>
+                                    <rect key="frame" x="146" y="101" width="166" height="21"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="166" id="iEN-iR-BO8"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pEd-SX-2IW">
-                                    <rect key="frame" x="249" y="101" width="50" height="21"/>
+                                    <rect key="frame" x="88" y="101" width="50" height="21"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="21" id="79s-um-odq"/>
                                     </constraints>
@@ -160,8 +163,8 @@
                                 <constraint firstItem="pEd-SX-2IW" firstAttribute="top" secondItem="UV7-dP-P8T" secondAttribute="bottom" constant="39" id="Dk4-a8-lcc"/>
                                 <constraint firstItem="M4W-43-oK8" firstAttribute="leading" secondItem="XG1-eu-Ip1" secondAttribute="leadingMargin" id="NDd-K5-wXa"/>
                                 <constraint firstItem="pEd-SX-2IW" firstAttribute="bottom" secondItem="M4W-43-oK8" secondAttribute="bottom" id="WHs-vg-XIn"/>
-                                <constraint firstAttribute="trailing" secondItem="pEd-SX-2IW" secondAttribute="trailing" constant="21" id="ZIk-I3-paH"/>
-                                <constraint firstItem="uEa-ms-hzm" firstAttribute="leading" secondItem="pEd-SX-2IW" secondAttribute="trailing" constant="3" id="bIF-fa-uGf"/>
+                                <constraint firstAttribute="trailing" secondItem="pEd-SX-2IW" secondAttribute="trailing" constant="182" id="ZIk-I3-paH"/>
+                                <constraint firstItem="uEa-ms-hzm" firstAttribute="leading" secondItem="pEd-SX-2IW" secondAttribute="trailing" constant="8" id="bIF-fa-uGf"/>
                                 <constraint firstItem="pEd-SX-2IW" firstAttribute="baseline" secondItem="uEa-ms-hzm" secondAttribute="baseline" id="hJt-XJ-b0O"/>
                                 <constraint firstItem="UV7-dP-P8T" firstAttribute="trailing" secondItem="uEa-ms-hzm" secondAttribute="trailing" id="hUv-NC-3gt"/>
                                 <constraint firstItem="pEd-SX-2IW" firstAttribute="firstBaseline" secondItem="uEa-ms-hzm" secondAttribute="firstBaseline" id="kGI-U0-tZN"/>

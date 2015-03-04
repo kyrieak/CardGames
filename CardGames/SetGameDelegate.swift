@@ -39,17 +39,15 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
       var game = getGame(collectionView)
 
       selectIdxPaths.append(indexPath)
-      NSLog("input idx is: \(indexPath.item)")
-      game.updateTurn(indexPath.item)
       
-      NSLog("will get status in DIDSELECT")
+      game.updateTurn(indexPath.item)
 
-      let (isSet, statusMsg) = getStatus(game)
+      var status = getStatus(game)
 
-      statusLabel!.text = statusMsg
+      statusLabel!.text = status.msg
       
       if (game.currentTurn().done()) {
-        scoreLabel!.text = game.currentPlayer() + ": \(game.getCurrentPlayerScore())"
+        scoreLabel!.text = game.currentPlayer().name + ": \(game.getScoreForCurrentPlayer())"
       }
   }
   
@@ -57,34 +55,29 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
   func collectionView(collectionView: UICollectionView,
     shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
       var game = getGame(collectionView)
-
-      NSLog("will get status in SHOULDSELECT")
       
       if (game.waitingNextTurn()) {
-        let (isSet, statusMsg) = getStatus(game)
-
         game.endTurn()
 
-        if (!isSet) {
+        var status = getStatus(game)
+        NSLog("\(status.isSet)============================")
+        statusLabel!.text = status.msg
+        scoreLabel!.text = game.nextPlayer().name + ": \(game.getScoreForPlayer(game.nextPlayer()))"
+        
+        if (status.isSet) {
+          collectionView.reloadItemsAtIndexPaths(selectIdxPaths)
+        } else {
           for path in selectIdxPaths {
             collectionView.deselectItemAtIndexPath(path, animated: false)
           }
-        } else {
-          collectionView.reloadItemsAtIndexPaths(selectIdxPaths)
         }
         selectIdxPaths = []
-
-        statusLabel!.text = statusMsg
         
         return false
       } else {
         if (game.currentTurn().hasEnded) {
-          NSLog("turn has ended, starting new turn")
-
           game.startNewTurn()
         }
-        
-        NSLog("slot is empty? \(game.getCardAt(indexPath.item) == nil)")
 
         return (game.getCardAt(indexPath.item) != nil)
       }
@@ -103,9 +96,10 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
   }
   
   
-  private func getStatus(game: SetGame) -> (Bool, String) {
+  private func getStatus(game: SetGame) -> (isSet: Bool, msg: String) {
+    NSLog("is multiplayer? \(game.isMultiPlayer())")
     if (game.isMultiPlayer() && game.currentTurn().hasEnded) {
-      return (false, (game.nextPlayer() + "\'s Turn"))
+      return (game.currentTurn().didMakeSet, (game.nextPlayer().name + "\'s Turn"))
     } else {
       let statusMaker = SetGameStatus(cards: game.getSelectedCards())
       

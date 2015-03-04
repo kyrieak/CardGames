@@ -15,6 +15,10 @@ class Deck<T: Card> {
     cards = []
   }
   
+  func isEmpty() -> Bool {
+    return (cards.count == 0)
+  }
+  
   func addCard(card:T) {
     self.cards.append(card);
   }
