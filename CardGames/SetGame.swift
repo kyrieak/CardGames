@@ -16,6 +16,7 @@ class SetGame: CardGame {
   private var cardsInPlay: [SetCard?] = []
   private var deck: Deck<SetCard>     = SetGame.standardDeck()
   private var scores: [Player: Int]   = [Player: Int]()
+  private var isOver: Bool = false
   
   required init(players: [String]) {
     turnKeeper = SetTurnKeeper(playerNames: players)
@@ -34,13 +35,31 @@ class SetGame: CardGame {
     
     self.init(players: playerNames)
   }
-
+  
+  
+  class func standardDeck() -> Deck<SetCard> {
+    var deck = Deck<SetCard>()
+    
+    for i in 0...9 {
+      for shape in ["▲", "●", "■"] {
+        deck.addCard(SetCard(shape: shape, color: UIColor.redColor()))
+        deck.addCard(SetCard(shape: shape, color: UIColor.blueColor()))
+        deck.addCard(SetCard(shape: shape, color: UIColor.greenColor()))
+      }
+    }
+    
+    deck.shuffle()
+    
+    return deck
+  }
+  
   
   func startNewRound(numCards: Int) {
     cardsInPlay = []
     
-    if (numCards > deck.cards.count) {
-      
+    if (deck.cards.count < 3) {
+      endGame()
+    } else if (numCards > deck.cards.count) {
       while (deck.cards.count > 0) {
         cardsInPlay.append(deck.removeTopCard())
       }
@@ -49,6 +68,11 @@ class SetGame: CardGame {
         cardsInPlay.append(deck.removeTopCard())
       }
     }
+  }
+  
+  
+  func endGame() {
+    isOver = true
   }
   
   
@@ -74,7 +98,6 @@ class SetGame: CardGame {
   func endTurn() {
     if (currentTurn().didMakeSet) {
       for idx in currentTurn().cardIndexes {
-        NSLog("will set index: \(idx) to nil here")
         cardsInPlay[idx] = nil
       }
     }
@@ -123,37 +146,22 @@ class SetGame: CardGame {
   }
 
   
-  func getCardsInPlay() -> [SetCard?] {
-    return cardsInPlay
-  }
-  
-  
   func getCardAt(idx: Int) -> SetCard? {
     return cardsInPlay[idx]
   }
+
   
-  func getCardsAt(indexes: [Int]) -> [SetCard?] {
-    let cards = indexes.map({(idx: Int) -> SetCard? in
-      return self.cardsInPlay[idx]
-    })
-    
-    return cards
+  func hasCardAt(idx: Int) -> Bool {
+    return getCardAt(idx) != nil
   }
   
+  
   func getSelectedCards() -> [SetCard] {
-    NSLog("\(currentTurn().cardIndexes)")
     let cards = currentTurn().cardIndexes.map({(idx: Int) -> SetCard in
-      NSLog("idx: \(idx)")
-      NSLog("card count is ========= \(self.cardsInPlay.count)")
       return self.cardsInPlay[idx]!
     })
     
     return cards
-  }
-  
-  
-  func getTurnScore() -> Int {
-    return currentTurn().setValue
   }
   
   
@@ -178,6 +186,13 @@ class SetGame: CardGame {
       }      
     }
   }
+  
+  
+  func numberOfCardPositions() -> Int {
+    return cardsInPlay.count
+  }
+  
+
 
   
   private func isSameOrUnique(values: [UIColor]) -> Bool {
@@ -212,26 +227,10 @@ class SetGame: CardGame {
       }
     }
   }
-
-  
-  class func standardDeck() -> Deck<SetCard> {
-    var deck = Deck<SetCard>()
-    
-    for i in 0...9 {
-      for shape in ["▲", "●", "■"] {
-        deck.addCard(SetCard(shape: shape, color: UIColor.redColor()))
-        deck.addCard(SetCard(shape: shape, color: UIColor.blueColor()))
-        deck.addCard(SetCard(shape: shape, color: UIColor.greenColor()))
-      }
-    }
-    
-    deck.shuffle()
-    
-    return deck
-  }
-
 }
 
+
+// =============================================================
 
 class SetTurnKeeper: TurnKeeper {
   var currentTurn: SetTurn
@@ -268,6 +267,9 @@ class SetTurnKeeper: TurnKeeper {
     currentTurn.setValue = setValue
   }
 }
+
+
+// =============================================================
 
 
 struct SetTurn: Turn {

@@ -33,8 +33,7 @@ class SetGameDataSource: NSObject, UICollectionViewDataSource {
   
   func collectionView(collectionView: UICollectionView,
     numberOfItemsInSection section: Int) -> Int {
-      NSLog("================= my count is: \(game.getCardsInPlay().count)")
-      return game.getCardsInPlay().count
+      return game.numberOfCardPositions()
   }
   
   
@@ -69,7 +68,8 @@ class SetGameDataSource: NSObject, UICollectionViewDataSource {
         forIndexPath: indexPath) as? UICollectionViewCell)!
       
       if (card != nil) {
-        cell.backgroundView = cellBgView(cell.frame)
+//        cell.backgroundView = cellBgView(cell.frame)
+        cell.backgroundView = tempBgView(card!, withFrame: cell.frame)
         cell.selectedBackgroundView = cellSelectedBgView(card!, withFrame: cell.frame)
       } else {
         cell.backgroundView = nil
@@ -128,6 +128,11 @@ class SetGameDataSource: NSObject, UICollectionViewDataSource {
     style.applyShade(bgView.layer)
     
     return bgView
+  }
+  
+  private func tempBgView(card: SetCard, withFrame: CGRect) -> UILabel {
+    var tempCard = SetCard(shape: card.shape, color: UIColor.blackColor())
+    return cellSelectedBgView(tempCard, withFrame: withFrame)
   }
   
   private func cellSelectedBgView(card: SetCard, withFrame: CGRect) -> UILabel {

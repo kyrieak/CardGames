@@ -130,6 +130,7 @@
                                     </state>
                                     <connections>
                                         <action selector="clickedDeckButton:" destination="I9X-cb-r4T" eventType="touchUpInside" id="wSv-m0-hcs"/>
+                                        <action selector="startNewRound:" destination="rOu-dJ-arH" eventType="touchUpInside" id="6t2-F8-doY"/>
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UV7-dP-P8T">

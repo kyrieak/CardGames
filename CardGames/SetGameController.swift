@@ -15,4 +15,20 @@ class SetGameController: UICollectionViewController {
     
     collectionView!.allowsMultipleSelection = true
   }
+  
+  @IBAction func startNewRound(sender: UIButton) {
+    var game = getGame()
+    NSLog("\(game.numberOfCardPositions())")
+    game.startNewRound(game.numberOfCardPositions())
+    collectionView!.reloadData()
+    getDelegate().selectIdxPaths = []
+  }
+  
+  private func getGame() -> SetGame {
+    return (collectionView!.dataSource! as SetGameDataSource).game
+  }
+  
+  private func getDelegate() -> SetGameDelegate {
+    return (collectionView!.delegate! as SetGameDelegate)
+  }
 }

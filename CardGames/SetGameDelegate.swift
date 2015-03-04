@@ -60,7 +60,7 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
         game.endTurn()
 
         var status = getStatus(game)
-        NSLog("\(status.isSet)============================")
+        
         statusLabel!.text = status.msg
         scoreLabel!.text = game.nextPlayer().name + ": \(game.getScoreForPlayer(game.nextPlayer()))"
         
@@ -79,7 +79,7 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
           game.startNewTurn()
         }
 
-        return (game.getCardAt(indexPath.item) != nil)
+        return (game.hasCardAt(indexPath.item))
       }
   }
   
@@ -97,7 +97,7 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
   
   
   private func getStatus(game: SetGame) -> (isSet: Bool, msg: String) {
-    NSLog("is multiplayer? \(game.isMultiPlayer())")
+    
     if (game.isMultiPlayer() && game.currentTurn().hasEnded) {
       return (game.currentTurn().didMakeSet, (game.nextPlayer().name + "\'s Turn"))
     } else {
