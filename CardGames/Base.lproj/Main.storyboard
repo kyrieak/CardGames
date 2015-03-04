@@ -93,7 +93,7 @@
         <!--Set-->
         <scene sceneID="4V2-So-ti6">
             <objects>
-                <collectionViewController title="Set" id="rOu-dJ-arH" customClass="MatchingGameController" customModule="CardGames" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController title="Set" id="rOu-dJ-arH" customClass="SetGameController" customModule="CardGames" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="6r9-mS-7V6">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -116,6 +116,7 @@
                             </collectionViewCell>
                         </cells>
                         <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="game_header" id="XG1-eu-Ip1">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="130"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M4W-43-oK8">
@@ -168,6 +169,7 @@
                             </constraints>
                         </collectionReusableView>
                         <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="game_footer" id="hBO-S8-O9S">
+                            <rect key="frame" x="0.0" y="250" width="320" height="50"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="50" text="Game Start!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fIW-b2-0yG">
@@ -190,7 +192,7 @@
                         </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="2hR-Ha-jX1" id="Jix-dI-gIx"/>
-                            <outlet property="delegate" destination="rOu-dJ-arH" id="K46-VS-kPc"/>
+                            <outlet property="delegate" destination="Icw-7o-DtZ" id="XaI-Wr-3gG"/>
                         </connections>
                     </collectionView>
                     <tabBarItem key="tabBarItem" title="Set" image="diamonds" id="mj4-D8-vRS"/>
@@ -198,14 +200,15 @@
                     <size key="freeformSize" width="320" height="568"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1OB-yE-IrA" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="2hR-Ha-jX1" customClass="TrumpCardCollectionDataSource" customModule="CardGames" customModuleProvider="target"/>
+                <customObject id="2hR-Ha-jX1" customClass="SetGameDataSource" customModule="CardGames" customModuleProvider="target"/>
+                <customObject id="Icw-7o-DtZ" customClass="SetGameDelegate" customModule="CardGames" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="425" y="556"/>
         </scene>
         <!--Matching Game-->
         <scene sceneID="jsd-L8-jqu">
             <objects>
-                <collectionViewController title="Matching Game" id="I9X-cb-r4T" customClass="MatchingGameController" customModule="CardGames" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController title="Matching Game" id="I9X-cb-r4T" customClass="SetGameController" customModule="CardGames" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="568" indicatorStyle="white" dataMode="prototypes" id="ORX-ms-dHc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -277,7 +280,7 @@
                             </constraints>
                         </collectionReusableView>
                         <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="6" contentMode="center" reuseIdentifier="game_footer" id="eZL-9H-GzA">
-                            <rect key="frame" x="0.0" y="250" width="320" height="100"/>
+                            <rect key="frame" x="0.0" y="250" width="320" height="50"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="50" text="Game Start!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j6F-7G-2mq">
@@ -301,8 +304,8 @@
                             </constraints>
                         </collectionReusableView>
                         <connections>
-                            <outlet property="dataSource" destination="76O-L0-CGy" id="PSb-Nf-mVr"/>
-                            <outlet property="delegate" destination="I9X-cb-r4T" id="nha-Hz-reB"/>
+                            <outlet property="dataSource" destination="76O-L0-CGy" id="iHo-gQ-Hzf"/>
+                            <outlet property="delegate" destination="L4i-wz-QG2" id="FcU-3t-nwX"/>
                         </connections>
                     </collectionView>
                     <tabBarItem key="tabBarItem" title="Memory" image="spades" id="9oK-cR-b9o"/>
@@ -310,7 +313,8 @@
                     <size key="freeformSize" width="320" height="568"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3V9-MV-IpW" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="76O-L0-CGy" customClass="TrumpCardCollectionDataSource" customModule="CardGames" customModuleProvider="target"/>
+                <customObject id="76O-L0-CGy" customClass="SetGameDataSource" customModule="CardGames" customModuleProvider="target"/>
+                <customObject id="L4i-wz-QG2" customClass="SetGameDelegate" customModule="CardGames" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="980" y="275"/>
         </scene>

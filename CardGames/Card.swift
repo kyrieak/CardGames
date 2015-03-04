@@ -13,15 +13,15 @@ class Card {
   var faceUp: Bool;
   
   init() {
-    self.faceUp = false
+    faceUp = false
   }
   
-  init(isFaceUp: Bool) {
-    self.faceUp = isFaceUp
+  init(faceUp: Bool) {
+    self.faceUp = faceUp
   }
   
   func initCopy() -> Card {
-    return Card.init(isFaceUp: self.faceUp)
+    return Card.init(faceUp: self.faceUp)
   }
   
   func isFaceUp() -> Bool {
