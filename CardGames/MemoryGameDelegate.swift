@@ -1,17 +1,17 @@
 //
-//  SetCardCollectionDataSource.swift
+//  MemoryGameDelegate.swift
 //  CardGames
 //
-//  Created by Kyrie Kopczynski on 2/26/15.
+//  Created by Kyrie Kopczynski on 3/9/15.
 //  Copyright (c) 2015 Kyrie. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-class SetGameDelegate: NSObject, UICollectionViewDelegate {
+class MemoryGameDelegate: NSObject, UICollectionViewDelegate {
   private var gameStatuses: [String] = []
-  
+
   var header: UICollectionReusableView?
   var footer: UICollectionReusableView?
   var statusLabel: UILabel?
@@ -37,38 +37,38 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
   
   func collectionView(collectionView: UICollectionView,
     didSelectItemAtIndexPath indexPath: NSIndexPath) {
+      NSLog("here in didselect")
       var game = getGame(collectionView)
-
+      
       selectIdxPaths.append(indexPath)
       
       game.updateTurn(indexPath.item)
-
+      
       var status = getStatus(game)
-
+      
       statusLabel!.text = status.msg
       
       if (game.currentTurn().done()) {
         scoreLabel!.text = game.currentPlayer().name + ": \(game.getScoreForCurrentPlayer())"
       }
       
-      
-      recordStatus(status.msg)
+      gameStatuses.append(status.msg)
   }
   
   
   func collectionView(collectionView: UICollectionView,
     shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
       var game = getGame(collectionView)
+      NSLog("here in should select")
       
       if (game.waitingNextTurn()) {
-        game.endTurn()
-
         var status = getStatus(game)
+        game.endTurn()
         
         statusLabel!.text = status.msg
         scoreLabel!.text = game.nextPlayer().name + ": \(game.getScoreForPlayer(game.nextPlayer()))"
         
-        if (status.isSet) {
+        if (status.isMatch) {
           collectionView.reloadItemsAtIndexPaths(selectIdxPaths)
         } else {
           for path in selectIdxPaths {
@@ -76,14 +76,15 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
           }
         }
         selectIdxPaths = []
+        
         recordStatus(status.msg)
-
+        
         return false
       } else {
         if (game.currentTurn().hasEnded) {
           game.startNewTurn()
         }
-
+        
         return (game.hasCardAt(indexPath.item))
       }
   }
@@ -92,14 +93,14 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
   func collectionView(collectionView: UICollectionView,
     shouldDeselectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
       // Sets remaining view and controller properties and inits game model
-    return false
+      return false
   }
   
-
+  
   func getGameStatuses() -> [String] {
     return gameStatuses
   }
-
+  
   
   func recordStatus(status: String) {
     gameStatuses.append(status)
@@ -111,35 +112,35 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
   }
   
   
-  private func getGame(collectionView: UICollectionView) -> SetGame {
-    return (collectionView.dataSource! as SetGameDataSource).game
+  private func getGame(collectionView: UICollectionView) -> MemoryGame {
+    return (collectionView.dataSource! as MemoryGameDataSource).game
   }
   
   
-  private func getStatus(game: SetGame) -> (isSet: Bool, msg: String) {
+  private func getStatus(game: MemoryGame) -> (isMatch: Bool, msg: String) {
     
     if (game.isMultiPlayer() && game.currentTurn().hasEnded) {
-      return (game.currentTurn().didMakeSet, (game.nextPlayer().name + "\'s Turn"))
+      return (game.currentTurn().didMatch, (game.nextPlayer().name + "\'s Turn"))
     } else {
-      let statusMaker = SetGameStatus(cards: game.getSelectedCards())
+      let statusMaker = MGStatus(cards: game.getSelectedCards())
       
       if (!game.currentTurn().done()) {
         return (false, statusMaker.listCards())
-      } else if (game.currentTurn().didMakeSet) {
-        return (true, statusMaker.isSetMsg(game.currentTurn().setValue))
+      } else if (game.currentTurn().didMatch) {
+        return (true, statusMaker.isMatchMsg(game.currentTurn().matchValue))
       } else {
-        return (false, statusMaker.notSetMsg(game.currentTurn().setValue))
+        return (false, statusMaker.noMatchMsg(game.currentTurn().penaltyValue))
       }
     }
   }
 }
 
-struct SetGameStatus {
+struct MGStatus {
   private var cardsStr: String
   
-  init(cards: [SetCard]) {
-    cardsStr = join(", ", cards.map({(sc: SetCard) -> String in
-      return sc.shape
+  init(cards: [TrumpCard]) {
+    cardsStr = join(", ", cards.map({(c: TrumpCard) -> String in
+      return c.label()
     }))
     
     if (cards.count > 0) {
@@ -151,17 +152,17 @@ struct SetGameStatus {
     return cardsStr
   }
   
-  func isSetMsg(matchVal: Int) -> String {
-    return cardsStr + " is a set for \(matchVal) Points!"
+  func isMatchMsg(matchVal: Int) -> String {
+    return cardsStr + " is a match for \(matchVal) Points!"
   }
   
-  func notSetMsg(penaltyVal: Int) -> String {
+  func noMatchMsg(penaltyVal: Int) -> String {
     var penalty = abs(penaltyVal)
     
     if (penalty > 0) {
-      return cardsStr + " is not a set. \(penalty) point penalty."
+      return cardsStr + " is not a match. \(penalty) point penalty."
     } else {
-      return cardsStr + " is not a set"
+      return cardsStr + " is not a match"
     }
   }
 }

@@ -109,7 +109,7 @@ class CardViewController: UIViewController {
     
     updateCardView(topCard)
 
-    if var vc = parentVC as? ViewController {
+    if var vc = parentVC as? CardFlipController {
       vc.updateDiscardLabel(discardPile)
     }
     

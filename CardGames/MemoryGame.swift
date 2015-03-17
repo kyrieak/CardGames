@@ -5,270 +5,359 @@
 ////  Created by Kyrie Kopczynski on 1/29/15.
 ////  Copyright (c) 2015 Kyrie. All rights reserved.
 ////
-//
-//import Foundation
-//
-//class MemoryGame: CardGame {
-//  let scorer = MemoryGameScorer()
-//  var scores: [String: Int] = [String: Int]()
-//  var currentTurn: MemoryTurn
-//  var viewedCards: [TrumpCard?]
-//  var turnKeeper: MemoryTurnKeeper
-//  
-//  required init(players: [String]) {
-//    for (idx, name) in enumerate(players) {
-//      scores[name + " \(idx + 1)"] = 0
-//    }
-//    
-//    turnKeeper = MemoryTurnKeeper(playerKeys: players)
-//    currentTurn = turnKeeper.currentTurn
-//  }
-//  
-//  init(cardCount: Int, cardsPerTurn: Int) {
-//    viewedCards = [TrumpCard?](count: cardCount, repeatedValue: nil)
-//    currentTurn = MemoryTurn(cardsPerTurn: cardsPerTurn)
-//  }
-//  
-//  func nextRound(cardCount: Int) {
-//    viewedCards = [TrumpCard?](count: cardCount, repeatedValue: nil)
-//    currentTurn.reset()
-//  }
-//  
-//  func updateTurn(turn: MemoryTurn) {
-//    turnKeeper.currentTurn = turn
-//  }
-//  
-//  func startNewTurn() -> MemoryTurn {
-//    turnKeeper.startNextTurn()
-//    
-//    return turnKeeper.currentTurn
-//  }
-//  
-//  func updateTurn(cardIdx: Int, card: TrumpCard) -> (Bool, String) {
-//    if (currentTurn.done()) {
-//      currentTurn.reset()
-//    }
-//
-////    currentTurn.lastIsRepeat = (viewedCards[cardIdx] != nil)
-////    
-////    if (!currentTurn.lastIsRepeat) { viewedCards[cardIdx] = card }
-//    
-//    currentTurn.addCard(cardIdx)
-//    
-//    var (turnScore, status) = getTurnStatus(currentTurn)
-//    
-//    turnKeeper.updateTurn(currentTurn)
-//    
-////    if (currentTurn.done()) { score += turnScore }
-//    
-//    return ((turnScore > 0), status)
-//  }
-//  
-//  func evaluateMatchScore() -> Int {
-//    var cards = currentTurn.cardIndexes.map({ (idx) -> TrumpCard in
-//      return self.viewedCards[idx]!
-//    })
-//    
-//    return 0
-//  }
-//  
-//
-//  
-//  func evaluateTurnScore() -> Int {
-//    var cards = turnKeeper.currentTurn.cardIndexes
-//    
-//    return 0
-//  }
-//  
-//  
-//  func getScore() -> Int {
-//    return scores[turnKeeper.currentPlayer]!
-//  }
-//  
-//  func getTurnStatus(turn: Turn) -> (Int, String) {
-//    var cards = cardsFromTurn(currentTurn)
-//    
-//    if (cards.count == 1) {
-//      return (0, "\(cards[0].label())")
-//    } else if (cards.count > 1) {
-//      var mv = matchValueForCards(cards)
-//      
-//      if (mv > 0) {
-//        return (mv, MemoryGame.matchMsg(cards, matchValue: mv))
-//      } else {
-//        if (turn.done()) {
-//          if (turn.lastIsRepeat) {
-//            mv = scorer.PenaltyPoints
-//          }
-//          return (mv, MemoryGame.mismatchMsg(cards, penaltyValue: mv))
-//        } else {
-//          return (0, "\(cards[0].label()), \(cards[1].label())")
-//        }
-//      }
-//    } else {
-//      return (0, "")
-//    }
-//  }
-//  
-//  func hasUnviewedCards() -> Bool {
-//    for card in viewedCards {
-//      if (card == nil) {
-//        NSLog("\(viewedCards)")
-//        return true }
-//    }
-//    
-//    return false
-//  }
-//  
-//  private func cardsFromTurn(turn: Turn) -> [TrumpCard] {
-//    var cards = turn.cardIndexes.map{
-//      (var i) -> TrumpCard in
-//      return self.viewedCards[i]!
-//    }
-//    
-//    return cards
-//  }
-//  
-//  private func matchValue(cardA: TrumpCard, cardB: TrumpCard) -> Int {
-//    if (!MemoryGame.isMatch(cardA, b: cardB)) {
-//      return 0
-//    } else if (MemoryGame.isBonusMatch(cardA, b: cardB)) {
-//      return (scorer.MatchPoints + scorer.BonusPoints)
-//    } else {
-//      return scorer.MatchPoints
-//    }
-//  }
-//  
-//  private func matchValueForCards(var cards: [TrumpCard]) -> Int {
-//    var matchVal = 0
-//    
-//    if (cards.count == 2) {
-//      matchVal = matchValue(cards[0], cardB: cards[1])
-//    } else if (cards.count == 3) {
-//      var tripleMatch = true
-//      
-//      for (idxA, idxB) in [(0, 1), (0, 2), (1, 2)] {
-//        var mv = self.matchValue(cards[idxA], cardB: cards[idxB])
-//        
-//        if (mv > matchVal) {
-//          matchVal = mv
-//        } else if (mv < 1) {
-//          tripleMatch = false
-//        }
-//      }
-//      
-//      if (tripleMatch) { matchVal *= scorer.BonusMultiplier }
-//    }
-//    
-//    return matchVal
-//  }
-//  
-//  // == Class Methods ===================================================
-//  
-//  class func isMatch(a: TrumpCard, b: TrumpCard) -> Bool {
-//    return a.rank == b.rank
-//  }
-//  
-//  class func isBonusMatch(a: TrumpCard, b: TrumpCard) -> Bool {
-//    return a.color() == b.color()
-//  }
-//  
-//  class func matchMsg(cards: [TrumpCard], matchValue: Int) -> String {
-//    var statusMsg = "Matched "
-//    
-//    if (cards.count == 2) {
-//      statusMsg += "\(cards[0].label()) and \(cards[1].label())"
-//    } else if (cards.count == 3) {
-//      statusMsg += "\(cards[0].label()), \(cards[1].label()), and \(cards[2].label())"
-//    }
-//    
-//    statusMsg += " for \(matchValue) Points!"
-//    
-//    return statusMsg
-//  }
-//  
-//  class func mismatchMsg(cards: [TrumpCard], penaltyValue: Int) -> String {
-//    var statusMsg = ""
-//    
-//    if (cards.count == 2) {
-//      statusMsg = "\(cards[0].label()) and \(cards[1].label()) do not match."
-//    } else if (cards.count == 3) {
-//      statusMsg = "\(cards[0].label()), \(cards[1].label()), and \(cards[2].label()) do not match."
-//    }
-//    
-//    if (penaltyValue == 0) {
-//      return statusMsg + " No penalty"
-//    } else {
-//      return statusMsg + " \(abs(penaltyValue)) point penalty :("
-//    }
-//  }
-//}
+
+import Foundation
+
+class MemoryGame: CardGame {
+  typealias turnType = MemoryTurn
+  
+  let scorer = MGScorer()
+  
+  private var turnKeeper: MemoryTurnKeeper
+  private var cardsInPlay: [MGPosition]
+  private var deck: Deck<TrumpCard> = MemoryGame.standardDeck()
+  private var scores: [Player: Int] = [Player: Int]()
+  var isOver: Bool = false
+  
+  required init(players: [String]) {
+    turnKeeper = MemoryTurnKeeper(playerNames: players, cardsPerTurn: 2)
+    
+    for player in turnKeeper.players {
+      scores[player] = 0
+    }
+
+    cardsInPlay = []
+    startNewRound(10)
+  }
+  
+  convenience init() {
+    self.init(players: ["Player"])
+  }
+  
+  // == UNIMPLEMENTED ================================================
+  
+  func currentPlayer() -> Player {
+    return turnKeeper.currentPlayer
+  }
+  
+  
+  func nextPlayer() -> Player {
+    return turnKeeper.nextPlayer()
+  }
+  
+  
+  func currentTurn() -> MemoryTurn {
+    return turnKeeper.currentTurn
+  }
+  
+  
+  func startNewTurn() {
+    turnKeeper.startNewTurn()
+  }
+  
+
+  func updateTurn(idx: Int) {
+    if (!currentTurn().done()) {
+//      cardsInPlay[idx].hasBeenViewed = true
+      
+      turnKeeper.updateTurn(idx)
+    }
+    
+    if (currentTurn().done()) {
+      var indexes = currentTurn().cardIndexes
+      var (mv, pv): (Int, Int)
+      
+      if (currentTurn().cardsPerTurn == 3) {
+        (mv, pv) = evaluateThreeMatch(getSelectedPositions())
+      } else {
+        (mv, pv) = evaluateMatch(getSelectedPositions())
+      }
+      
+      turnKeeper.updateTurn(mv, penaltyValue: pv)
+      
+      scores[currentPlayer()]! += (mv + pv)
+    }
+  }
+  
+  
+  func endTurn() {
+    let matched = currentTurn().didMatch
+    
+    for idx in currentTurn().cardIndexes {
+      cardsInPlay[idx].hasBeenViewed = true
+
+      if (matched) {
+        cardsInPlay[idx].card = nil
+      }
+    }
+
+    turnKeeper.endTurn()
+  }
+  
+  
+  func waitingNextTurn() -> Bool {
+    NSLog("calling waiting next turn ========================")
+    NSLog("\(currentTurn().done())")
+
+    return (currentTurn().done() && !currentTurn().hasEnded)
+  }
+  
+  
+  func getScoreForCurrentPlayer() -> Int {
+    return scores[currentPlayer()]!
+  }
+
+  
+  func getScoreForPlayer(player: Player) -> Int {
+    return scores[player]!
+  }
+
+  // == endof UNIMPLEMENTED ================================================
+
+  
+  func numberOfCardPositions() -> Int {
+    return cardsInPlay.count
+  }
+  
+  
+  func getCardAt(idx: Int) -> TrumpCard? {
+    return cardsInPlay[idx].card
+  }
+  
+  
+  func hasCardAt(idx: Int) -> Bool {
+    return (cardsInPlay[idx].card != nil)
+  }
+
+  
+  func startNewRound(numCards: Int) {
+    cardsInPlay = []
+    
+    if (deck.cards.count < 3) {
+      endGame()
+    } else if (numCards > deck.cards.count) {
+      while (deck.cards.count > 0) {
+        cardsInPlay.append(MGPosition(card: deck.removeTopCard()))
+      }
+    } else {
+      for i in 1...numCards {
+        cardsInPlay.append(MGPosition(card: deck.removeTopCard()))
+      }
+    }
+    
+    turnKeeper.startNewTurn()
+  }
+  
+  
+  func endGame() {
+    isOver = true
+  }
+  
+  
+  func isMultiPlayer() -> Bool {
+    return !isSinglePlayer()
+  }
+  
+  
+  func isSinglePlayer() -> Bool {
+    return turnKeeper.players.count < 2
+  }
+  
+  
+  func getSelectedCards() -> [TrumpCard] {
+    return currentTurn().cardIndexes.map({(idx: Int) -> TrumpCard in
+      return self.cardsInPlay[idx].card!
+    })
+  }
+
+  
+  func evaluateMatch(positions: [MGPosition]) -> (matchValue: Int, penaltyValue: Int) {
+    let (posA, posB) = (positions[0], positions[1])
+    let (rankMatch, colorMatch) = match(posA.card!, cardB: posB.card!)
+
+    var (mval, pval) = (0, 0)
+    
+    if (rankMatch) {
+      mval = scorer.MatchPoints
+
+      if (colorMatch) { mval += scorer.BonusPoints }
+      
+    } else if (posB.hasBeenViewed) {
+      pval = scorer.PenaltyPoints
+    }
+    
+    return (matchValue: mval, penaltyValue: pval)
+  }
+  
+  
+  func evaluateThreeMatch(positions: [MGPosition]) -> (matchValue: Int, penaltyValue: Int) {
+    let (posA, posB, posC) = (positions[0], positions[1], positions[2])
+    
+    let (rankMatch, colorMatch, threeMatch) = matchThree(posA.card!, cardB: posB.card!, cardC: posC.card!)
+
+    var (mval, pval) = (0, 0)
+    
+    if (rankMatch) {
+      mval = scorer.MatchPoints
+      
+      if (colorMatch) { mval += scorer.BonusPoints }
+      if (threeMatch) { mval *= scorer.BonusMultiplier }
+      
+    } else if (posC.hasBeenViewed) {
+      pval = scorer.PenaltyPoints
+    }
+
+    return (matchValue: mval, penaltyValue: pval)
+  }
+  
+  
+  private func getSelectedPositions() -> [MGPosition] {
+    return currentTurn().cardIndexes.map({(idx: Int) -> MGPosition in
+      return self.cardsInPlay[idx]
+    })
+  }
+
+  
+  private func match(cardA: TrumpCard, cardB: TrumpCard) -> (rankMatch: Bool, colorMatch: Bool) {
+    return ((cardA.rank == cardB.rank), (cardA.color() == cardB.color()))
+  }
+  
+  
+  private func matchThree(cardA: TrumpCard, cardB: TrumpCard, cardC: TrumpCard) -> (rankMatch: Bool, colorMatch: Bool, threeMatch: Bool) {
+    
+    var colorMatch = (cardA.color() == cardB.color()) && (cardB.color() == cardC.color())
+    
+    var m1 = (cardA.rank == cardB.rank)
+    var m2 = (cardB.rank == cardC.rank)
+    
+    var isMatch = (m1 || m2) || (cardA.rank == cardC.rank)
+    
+    return (isMatch, colorMatch, (m1 && m2))
+  }
+
+
+  // == Class Methods ==================================================
+
+  
+  class func standardDeck() -> Deck<TrumpCard> {
+    var deck = TrumpCard.standardDeck()
+
+    deck.shuffle()
+    
+    return deck
+  }
+}
 //
 ////// == Struct Definitions ===================================================
 ////
-//
-//
-//struct MemoryGameScorer {
-//  let PenaltyPoints = -1
-//  let MatchPoints = 2
-//  let BonusPoints = 2
-//  let BonusMultiplier = 2
-//}
-//
-//
-//class MemoryTurnKeeper: TurnKeeper {
-//  var currentTurn: MemoryTurn
-//  
-//  override init(playerKeys: [String]) {
-//    currentTurn = MemoryTurn()
-//    
-//    super.init(playerKeys: playerKeys)
-//  }
-//  
-//  init(playerKeys: [String], cardsPerTurn: Int) {
-//    currentTurn = MemoryTurn(cardsPerTurn: cardsPerTurn)
-//    
-//    super.init(playerKeys: playerKeys)
-//  }
-//  
-//  override func startNextTurn() {
-//    super.startNextTurn()
-//    
-//    currentTurn.reset()
-//  }
-//}
-//
-//
-//struct MemoryTurn: Turn {
-//  let maxCards: Int
-//  
-//  var cardIndexes: [Int] = []
-//  var hasEnded: Bool = false
-//  
-//  init() {
-//    maxCards = 2
-//  }
-//  
-//  init(cardsPerTurn: Int) {
-//    maxCards = cardsPerTurn
-//  }
-//  
-//  func done() -> Bool {
-//    return !(cardIndexes.count < maxCards)
-//  }
-//  
-//  mutating func addCard(cardIdx: Int) {
-//    cardIndexes.append(cardIdx)
-//  }
-//  
-//  mutating func endTurn() {
-//    hasEnded = true
-//  }
-//  
-//  mutating func reset() {
-//    hasEnded = false
-//    cardIndexes = []
-//  }
-//}
-//
-//
+
+
+struct MGScorer {
+  let PenaltyPoints = -1
+  let MatchPoints = 2
+  let BonusPoints = 2
+  let BonusMultiplier = 2
+}
+
+
+class MemoryTurnKeeper: TurnKeeper {
+  var currentTurn: MemoryTurn
+  
+  override init(playerNames: [String]) {
+    currentTurn = MemoryTurn()
+    
+    super.init(playerNames: playerNames)
+  }
+  
+  init(playerNames: [String], cardsPerTurn: Int) {
+    currentTurn = MemoryTurn(cardsPerTurn: cardsPerTurn)
+    
+    super.init(playerNames: playerNames)
+  }
+  
+  override func startNewTurn() {
+    super.startNewTurn()
+    
+    currentTurn.reset()
+  }
+  
+  func updateTurn(idx: Int) {
+    currentTurn.addCardIdx(idx)
+    NSLog("in turnkeeper")
+    currentTurn.log()
+  }
+  
+  func updateTurn(matchValue: Int, penaltyValue: Int) {
+    currentTurn.didMatch   = (matchValue > 0)
+    currentTurn.matchValue = matchValue
+    currentTurn.penaltyValue = penaltyValue
+  }
+  
+  func endTurn() {
+    NSLog("turnkeeper end turn")
+    currentTurn.endTurn()
+  }
+}
+
+
+struct MemoryTurn: Turn {
+  let cardsPerTurn: Int
+
+  var hasEnded: Bool     = false
+  var didMatch: Bool     = false
+  var matchValue: Int    = 0
+  var penaltyValue: Int    = 0
+  var cardIndexes: [Int] = []
+  
+  init() {
+    cardsPerTurn = 2
+  }
+  
+  init(cardsPerTurn: Int) {
+    self.cardsPerTurn = cardsPerTurn
+  }
+  
+  func done() -> Bool {
+    NSLog("-----------\(cardIndexes.count)")
+    NSLog("-----------\(cardsPerTurn)")
+    return !(cardIndexes.count < cardsPerTurn)
+  }
+  
+  mutating func addCardIdx(idx: Int) {
+    cardIndexes.append(idx)
+  }
+  
+  mutating func endTurn() {
+    hasEnded = true
+  }
+  
+  mutating func reset() {
+    hasEnded = false
+    cardIndexes = []
+  }
+  
+  func log() {
+//    NSLog("done(): \(done())")
+//    NSLog("cardsPerTurn: \(cardsPerTurn)")
+//    NSLog("hasEnded: \(hasEnded)")
+  }
+}
+
+struct MGPosition {
+  var card: TrumpCard?
+  var hasBeenViewed: Bool
+  
+  init() {
+    hasBeenViewed = false
+  }
+  
+  init(card: TrumpCard) {
+    self.card = card
+    hasBeenViewed = false
+  }
+  
+  mutating func reset(replacementCard: TrumpCard?) {
+    card = replacementCard
+    hasBeenViewed = false
+  }
+}

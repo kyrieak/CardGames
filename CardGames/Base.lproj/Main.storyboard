@@ -7,10 +7,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Tab Bar Controller-->
+        <!--Main Controller-->
         <scene sceneID="gyR-uv-sVd">
             <objects>
-                <tabBarController id="doC-lR-4Eg" sceneMemberID="viewController">
+                <tabBarController id="doC-lR-4Eg" customClass="MainController" customModule="CardGames" customModuleProvider="target" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="568"/>
@@ -23,6 +23,7 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="Tyb-cx-Hom"/>
                         <segue destination="I9X-cb-r4T" kind="relationship" relationship="viewControllers" id="Hu8-Tx-LdZ"/>
                         <segue destination="rOu-dJ-arH" kind="relationship" relationship="viewControllers" id="avh-AN-lkv"/>
+                        <segue destination="hLr-oa-hKP" kind="relationship" relationship="viewControllers" id="XS5-rI-OQD"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fHe-dn-LDM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -32,7 +33,7 @@
         <!--Card Game-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="Card Game" id="BYZ-38-t0r" customClass="ViewController" customModule="CardGames" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Card Game" id="BYZ-38-t0r" customClass="CardFlipController" customModule="CardGames" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -88,7 +89,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="980" y="-357"/>
+            <point key="canvasLocation" x="425" y="789"/>
         </scene>
         <!--Set-->
         <scene sceneID="4V2-So-ti6">
@@ -180,8 +181,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                     <color key="backgroundColor" red="0.59999999999999998" green="0.41176470590000003" blue="0.37254901959999998" alpha="0.35999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="50" id="8P4-2T-BCW"/>
-                                        <constraint firstAttribute="width" constant="320" id="XyI-nh-kgh"/>
+                                        <constraint firstAttribute="height" constant="50" id="2ui-Jk-OK8"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" red="0.067340061069999999" green="0.25241810079999999" blue="0.1519812495" alpha="1" colorSpace="calibratedRGB"/>
@@ -190,8 +190,9 @@
                                 </label>
                             </subviews>
                             <constraints>
-                                <constraint firstAttribute="bottomMargin" secondItem="fIW-b2-0yG" secondAttribute="bottom" constant="-8" id="5lb-bD-eOt"/>
-                                <constraint firstItem="fIW-b2-0yG" firstAttribute="leading" secondItem="hBO-S8-O9S" secondAttribute="leadingMargin" constant="-8" id="h5c-vl-Tfs"/>
+                                <constraint firstItem="fIW-b2-0yG" firstAttribute="leading" secondItem="hBO-S8-O9S" secondAttribute="leadingMargin" constant="-8" id="3Fp-Wq-TDH"/>
+                                <constraint firstItem="fIW-b2-0yG" firstAttribute="top" secondItem="hBO-S8-O9S" secondAttribute="topMargin" constant="-8" id="sRC-jO-uzV"/>
+                                <constraint firstAttribute="trailingMargin" secondItem="fIW-b2-0yG" secondAttribute="trailing" constant="-8" id="xyS-vp-5Zn"/>
                             </constraints>
                         </collectionReusableView>
                         <connections>
@@ -207,12 +208,76 @@
                 <customObject id="2hR-Ha-jX1" customClass="SetGameDataSource" customModule="CardGames" customModuleProvider="target"/>
                 <customObject id="Icw-7o-DtZ" customClass="SetGameDelegate" customModule="CardGames" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="425" y="556"/>
+            <point key="canvasLocation" x="883" y="163"/>
         </scene>
-        <!--Matching Game-->
+        <!--HistoryViewController-->
+        <scene sceneID="g3J-7t-ISO">
+            <objects>
+                <tableViewController title="HistoryViewController" id="hLr-oa-hKP" customClass="HistoryViewController" customModule="CardGames" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="cQB-iw-69O">
+                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="section_header" id="nat-3M-SKm">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nat-3M-SKm" id="Gqf-d4-hGc">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Section Header" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UFP-oA-wVb">
+                                            <rect key="frame" x="8" y="8" width="304" height="28"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="UFP-oA-wVb" firstAttribute="leading" secondItem="Gqf-d4-hGc" secondAttribute="leadingMargin" id="44V-Ik-WY3"/>
+                                        <constraint firstItem="UFP-oA-wVb" firstAttribute="bottom" secondItem="Gqf-d4-hGc" secondAttribute="bottomMargin" id="9iW-AU-X1x"/>
+                                        <constraint firstItem="UFP-oA-wVb" firstAttribute="trailing" secondItem="Gqf-d4-hGc" secondAttribute="trailingMargin" id="eml-Dx-FV8"/>
+                                        <constraint firstItem="UFP-oA-wVb" firstAttribute="top" secondItem="Gqf-d4-hGc" secondAttribute="topMargin" id="wqr-PP-QAc"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="status_row" id="wbb-Dx-wNS">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wbb-Dx-wNS" id="UL7-u2-0aE">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Regular Status" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MjI-fu-bdz">
+                                            <rect key="frame" x="8" y="8" width="304" height="28"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="MjI-fu-bdz" firstAttribute="bottom" secondItem="UL7-u2-0aE" secondAttribute="bottomMargin" id="7iE-Az-cro"/>
+                                        <constraint firstItem="MjI-fu-bdz" firstAttribute="leading" secondItem="UL7-u2-0aE" secondAttribute="leadingMargin" id="kkQ-dY-u9a"/>
+                                        <constraint firstItem="MjI-fu-bdz" firstAttribute="top" secondItem="UL7-u2-0aE" secondAttribute="topMargin" id="tNs-IL-mCH"/>
+                                        <constraint firstItem="MjI-fu-bdz" firstAttribute="trailing" secondItem="UL7-u2-0aE" secondAttribute="trailingMargin" id="xNf-dq-UZD"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="hLr-oa-hKP" id="kNL-rX-IcJ"/>
+                            <outlet property="delegate" destination="hLr-oa-hKP" id="wJu-Ez-sr8"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="History" image="royal" id="2Ly-nt-6nL"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="568"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a97-M5-fSk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1437" y="-175"/>
+        </scene>
+        <!--MemoryGameController-->
         <scene sceneID="jsd-L8-jqu">
             <objects>
-                <collectionViewController title="Matching Game" id="I9X-cb-r4T" customClass="SetGameController" customModule="CardGames" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController title="MemoryGameController" id="I9X-cb-r4T" customClass="MemoryGameController" customModule="CardGames" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="568" indicatorStyle="white" dataMode="prototypes" id="ORX-ms-dHc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -249,7 +314,7 @@
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
-                                        <action selector="clickedDeckButton:" destination="I9X-cb-r4T" eventType="touchUpInside" id="YCn-VO-dw4"/>
+                                        <action selector="startNewRound:" destination="I9X-cb-r4T" eventType="touchUpInside" id="Mce-RT-kpH"/>
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nQS-uY-KLh">
@@ -308,7 +373,7 @@
                             </constraints>
                         </collectionReusableView>
                         <connections>
-                            <outlet property="dataSource" destination="76O-L0-CGy" id="iHo-gQ-Hzf"/>
+                            <outlet property="dataSource" destination="76O-L0-CGy" id="0zu-vQ-cvk"/>
                             <outlet property="delegate" destination="L4i-wz-QG2" id="FcU-3t-nwX"/>
                         </connections>
                     </collectionView>
@@ -317,10 +382,10 @@
                     <size key="freeformSize" width="320" height="568"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3V9-MV-IpW" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="76O-L0-CGy" customClass="SetGameDataSource" customModule="CardGames" customModuleProvider="target"/>
-                <customObject id="L4i-wz-QG2" customClass="SetGameDelegate" customModule="CardGames" customModuleProvider="target"/>
+                <customObject id="76O-L0-CGy" customClass="MemoryGameDataSource" customModule="CardGames" customModuleProvider="target"/>
+                <customObject id="L4i-wz-QG2" customClass="MemoryGameDelegate" customModule="CardGames" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="980" y="275"/>
+            <point key="canvasLocation" x="883" y="-483"/>
         </scene>
         <!--CardViewController-->
         <scene sceneID="OHU-gX-ssr">
@@ -398,13 +463,14 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1371" y="-357"/>
+            <point key="canvasLocation" x="843" y="789"/>
         </scene>
     </scenes>
     <resources>
         <image name="card_back" width="400" height="200"/>
         <image name="diamonds" width="29" height="29"/>
         <image name="hearts" width="29" height="29"/>
+        <image name="royal" width="29" height="29"/>
         <image name="spades" width="29" height="29"/>
     </resources>
 </document>

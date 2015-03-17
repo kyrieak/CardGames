@@ -9,6 +9,23 @@
 import Foundation
 import UIKit
 
+//struct Player: Hashable {
+//  let key: Int
+//  let name: String
+//  let hashValue: Int
+//  
+//  init(key: Int, name: String) {
+//    self.key = key
+//    self.name = name
+//    self.hashValue = key
+//  }
+//}
+//
+//func ==(lhs: Player, rhs: Player) -> Bool {
+//  return lhs.key == rhs.key
+//}
+
+
 class SetGame: CardGame {
   typealias turnType = SetTurn
   
@@ -16,7 +33,7 @@ class SetGame: CardGame {
   private var cardsInPlay: [SetCard?] = []
   private var deck: Deck<SetCard>     = SetGame.standardDeck()
   private var scores: [Player: Int]   = [Player: Int]()
-  private var isOver: Bool = false
+  var isOver: Bool = false
   
   required init(players: [String]) {
     turnKeeper = SetTurnKeeper(playerNames: players)
@@ -112,7 +129,9 @@ class SetGame: CardGame {
   
   
   func waitingNextTurn() -> Bool {
-    return turnKeeper.waitingNextTurn()
+    let turn = currentTurn()
+    
+    return (turn.done() && !turn.hasEnded)
   }
 
   
@@ -254,10 +273,6 @@ class SetTurnKeeper: TurnKeeper {
   }
 
   
-  func waitingNextTurn() -> Bool {
-    return (currentTurn.done() && !currentTurn.hasEnded)
-  }
-
   func updateTurn(cardIdx: Int) {
     currentTurn.addCardIdx(cardIdx)
   }

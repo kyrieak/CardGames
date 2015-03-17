@@ -9,7 +9,7 @@
 import UIKit
 import QuartzCore
 
-class ViewController: UIViewController {
+class CardFlipController: UIViewController {
   
   @IBOutlet var discardsLabel: UILabel!
   let style = Style()
@@ -28,7 +28,7 @@ class ViewController: UIViewController {
 //      println("sender")
 //      println("\(sender)")
     
-    if var vc = sender as? ViewController {
+    if var vc = sender as? CardFlipController {
       if var dvc = segue.destinationViewController as? CardViewController {
         dvc.parentVC = vc
       }

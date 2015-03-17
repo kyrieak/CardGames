@@ -11,6 +11,8 @@ import Foundation
 protocol CardGame {
   typealias turnType
   
+  var isOver: Bool { get }
+  
   init(players: [String])
   
   func currentPlayer() -> Player
@@ -24,6 +26,13 @@ protocol CardGame {
 //  func endTurn(inout turn: turnType)
   
   func getScoreForCurrentPlayer() -> Int
+}
+
+
+protocol GameRecorder {
+  var gameHistory: [[String]] { get }
+
+  class func recordCategory() -> String
 }
 
 
