@@ -56,12 +56,15 @@ class SetGame: CardGame {
   
   class func standardDeck() -> Deck<SetCard> {
     var deck = Deck<SetCard>()
+    let stdAttrs = SetCard.standardAttrs()
     
-    for i in 0...9 {
-      for shape in ["▲", "●", "■"] {
-        deck.addCard(SetCard(shape: shape, color: UIColor.redColor()))
-        deck.addCard(SetCard(shape: shape, color: UIColor.blueColor()))
-        deck.addCard(SetCard(shape: shape, color: UIColor.greenColor()))
+    for shape in stdAttrs.shapes {   // for shape in ["▲", "●", "■"] {
+      for color in stdAttrs.colors {
+        for shading in stdAttrs.shading {
+          for number in stdAttrs.numbers {
+            deck.addCard(SetCard(shape: shape, color: color, shading: shading, number: number))
+          }
+        }
       }
     }
     

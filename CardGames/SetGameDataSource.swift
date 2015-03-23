@@ -69,8 +69,10 @@ class SetGameDataSource: NSObject, UICollectionViewDataSource {
       
       if (card != nil) {
 //        cell.backgroundView = cellBgView(cell.frame)
-        cell.backgroundView = cellBgView(card!, withFrame: cell.frame)
-        cell.selectedBackgroundView = cellSelectedBgView(card!, withFrame: cell.frame)
+        cell.backgroundView = tempBgView(card!, withFrame: cell.frame)
+        cell.selectedBackgroundView = tempBgSelectedView(card!, withFrame: cell.frame)
+//        cell.backgroundView = cellBgView(card!, withFrame: cell.frame)
+//        cell.selectedBackgroundView = cellSelectedBgView(card!, withFrame: cell.frame)
       } else {
         cell.backgroundView = nil
         cell.selectedBackgroundView = nil
@@ -134,11 +136,23 @@ class SetGameDataSource: NSObject, UICollectionViewDataSource {
     return bgView
   }
   
-  private func tempBgView(card: SetCard, withFrame: CGRect) -> UILabel {
-    var tempCard = SetCard(shape: card.shape, color: UIColor.blackColor())
-    return cellSelectedBgView(tempCard, withFrame: withFrame)
+  private func tempBgView(card: SetCard, withFrame: CGRect) -> SetCardView {
+    var view = SetCardView(frame: withFrame, color: card.color, shape: card.shape, count: card.number)
+    
+    view.backgroundColor = UIColor.whiteColor()
+    
+    return view
   }
-  
+
+  private func tempBgSelectedView(card: SetCard, withFrame: CGRect) -> SetCardView {
+    var selectedView = tempBgView(card, withFrame: withFrame)
+
+    selectedView.layer.borderWidth = 2
+    selectedView.layer.borderColor = UIColor.blueColor().CGColor
+    
+    return selectedView
+  }
+
   private func cellSelectedBgView(card: SetCard, withFrame: CGRect) -> UILabel {
     var selectedView = cellBgView(card, withFrame: withFrame)
 

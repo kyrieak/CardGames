@@ -31,6 +31,7 @@
 		348FF6411AA1658B0041C5C6 /* SetGameDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348FF6401AA1658B0041C5C6 /* SetGameDataSource.swift */; };
 		349A2C6F1A6DAD5900580219 /* MemoryGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349A2C6E1A6DAD5900580219 /* MemoryGameController.swift */; };
 		34A9233E1AA19C15009D0134 /* SetCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A9233D1AA19C15009D0134 /* SetCard.swift */; };
+		34CC1E561ABCC83D005B2CD1 /* SetCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CC1E551ABCC83D005B2CD1 /* SetCardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,7 @@
 		348FF6401AA1658B0041C5C6 /* SetGameDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetGameDataSource.swift; sourceTree = "<group>"; };
 		349A2C6E1A6DAD5900580219 /* MemoryGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryGameController.swift; sourceTree = "<group>"; };
 		34A9233D1AA19C15009D0134 /* SetCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetCard.swift; sourceTree = "<group>"; };
+		34CC1E551ABCC83D005B2CD1 /* SetCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetCardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +119,7 @@
 				34A6D3981A85AD96002CFD7B /* Controllers */,
 				34005EF11A4FC8DD00BDFD0F /* Models */,
 				34005ED31A4FACDB00BDFD0F /* Main.storyboard */,
+				34CC1E571ABCC844005B2CD1 /* Views */,
 				348472AF1AAE808C00A07AE7 /* MemoryGameDelegate.swift */,
 				342885761AA7FC640003AC75 /* MemoryGameDataSource.swift */,
 				345695401A9FB4510076FD39 /* SetGameDelegate.swift */,
@@ -180,6 +183,14 @@
 				347511711AB38C2200AF5DE7 /* HistoryViewController.swift */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		34CC1E571ABCC844005B2CD1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				34CC1E551ABCC83D005B2CD1 /* SetCardView.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -298,6 +309,7 @@
 				345695431A9FBDC50076FD39 /* SetGame.swift in Sources */,
 				342885771AA7FC640003AC75 /* MemoryGameDataSource.swift in Sources */,
 				34A9233E1AA19C15009D0134 /* SetCard.swift in Sources */,
+				34CC1E561ABCC83D005B2CD1 /* SetCardView.swift in Sources */,
 				348472B01AAE808C00A07AE7 /* MemoryGameDelegate.swift in Sources */,
 				347511721AB38C2200AF5DE7 /* HistoryViewController.swift in Sources */,
 				348FF63F1AA1629C0041C5C6 /* SetGameController.swift in Sources */,
