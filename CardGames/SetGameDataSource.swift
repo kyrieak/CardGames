@@ -137,7 +137,7 @@ class SetGameDataSource: NSObject, UICollectionViewDataSource {
   }
   
   private func tempBgView(card: SetCard, withFrame: CGRect) -> SetCardView {
-    var view = SetCardView(frame: withFrame, color: card.color, shape: card.shape, count: card.number)
+    var view = SetCardView(frame: withFrame, attrs: card.attributes())
     
     view.backgroundColor = UIColor.whiteColor()
     

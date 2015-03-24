@@ -24,12 +24,37 @@ class SetCard: Card {
     super.init()
   }
   
+  func attributes() -> SetCardAttributes {
+    return SetCardAttributes(card: self)
+  }
+  
   convenience init(shape: String, color: UIColor) {
     self.init(shape: shape, color: color, shading: "solid", number: 1)
   }
   
   class func standardAttrs() -> StandardSetAttrs {
     return StandardSetAttrs()
+  }
+}
+
+struct SetCardAttributes {
+  let shape: String
+  let color: UIColor
+  let shading: String
+  let number: Int
+  
+  init(number: Int, shape: String, shading: String, color: UIColor) {
+    self.number = number
+    self.shape = shape
+    self.shading = shading
+    self.color = color
+  }
+  
+  init(card: SetCard) {
+    self.number = card.number
+    self.shape = card.shape
+    self.shading = card.shading
+    self.color = card.color
   }
 }
 

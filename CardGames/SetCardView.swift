@@ -10,30 +10,45 @@ import Foundation
 import UIKit
 
 class SetCardView: UIView {
-  let rgbColor: [CGFloat]
-  let shape: String
-  let count: Int
-//  required init(coder aDecoder: NSCoder) {
-//    super.init(coder: aDecoder)
-//  }
-//
-//  override init(frame: CGRect) {
-//    super.init(frame: frame)
-//  }
+  var rgbColor: [CGFloat]
+  var shape: String
+  var number: Int
+  var shading: String
   
-  init(frame: CGRect, rgbColor: [CGFloat], shape: String, count: Int) {
-    self.shape = shape
-    self.count = count
+  init(frame: CGRect, attrs: SetCardAttributes) {
+    self.number   = attrs.number
+    self.shape    = attrs.shape
+    self.shading  = attrs.shading
+    self.rgbColor = SetCardView.toRGB(attrs.color)
+    
+    super.init(frame: frame)
+  }
+  
+  init(frame: CGRect, number: Int, shape: String, shading: String, rgbColor: [CGFloat]) {
+    self.number   = number
+    self.shape    = shape
+    self.shading  = shading
     self.rgbColor = rgbColor
+    
     super.init(frame: frame)
   }
 
-  init(frame: CGRect, color: UIColor, shape: String, count: Int) {
-    self.shape = shape
-    self.count = count
-    self.rgbColor = SetCardView.toRGB(color)
-
+  init(frame: CGRect, number: Int, shape: String, shading: String, uiColor: UIColor) {
+    self.number   = number
+    self.shape    = shape
+    self.shading  = shading
+    self.rgbColor = SetCardView.toRGB(uiColor)
+    
     super.init(frame: frame)
+  }
+  
+  required init(coder aDecoder: NSCoder) {
+    self.shape = "square"
+    self.number = 1
+    self.rgbColor = [0, 0, 0, 0]
+    self.shading = "solid"
+    
+    super.init(coder: aDecoder)
   }
   
   class func toRGB(color: UIColor) -> [CGFloat] {
@@ -44,16 +59,8 @@ class SetCardView: UIView {
     return [r, g, b, a]
   }
 
-  required init(coder aDecoder: NSCoder) {
-    self.shape = "square"
-    self.count = 1
-    self.rgbColor = [0, 0, 0, 0]
-    
-    super.init(coder: aDecoder)
-  }
-  
   func diamondSize(bounds: CGSize) -> CGSize {
-    let dividedHeight = bounds.height / CGFloat(count)
+    let dividedHeight = bounds.height / CGFloat(number)
     
     var w = bounds.width
     var h = min((bounds.width * 0.5), (dividedHeight * 0.9))
@@ -75,33 +82,39 @@ class SetCardView: UIView {
     CGContextSetFillColor(context, rgbColor)
     CGContextSaveGState(context) // --- Context Saved ---
     
-    let inset = rect.width * 0.2
-    let innerBounds = CGRectInset(rect, inset, inset)
+    var insetX = rect.width * 0.2
+    var insetY = insetX
+    let innerBounds = CGRectInset(rect, insetX, insetY)
     let shapeSize = getShapeSize(innerBounds)
     
+    
     if (shapeSize.width < innerBounds.width) {
-      var insetX = inset + ((innerBounds.width - shapeSize.width) / 2)
-
-      CGContextTranslateCTM(context, insetX, inset)
-    } else {
-      CGContextTranslateCTM(context, inset, inset)
+      insetX += ((innerBounds.width - shapeSize.width) / 2)
     }
     
-    drawShape(shapeSize)
+    if (number == 1) {
+      insetY += ((innerBounds.height - shapeSize.height) / 2)
+    }
     
-    if (count > 1) {
-      let dist = ((innerBounds.height - shapeSize.height) / CGFloat(count - 1))
-      
-      for i in 2...count {
+    CGContextTranslateCTM(context, insetX, insetY)
+
+    drawShape(context, size: shapeSize)
+    
+    if (number > 1) {
+      let dist = ((innerBounds.height - shapeSize.height) / CGFloat(number - 1))
+
+      for i in 2...number {
         CGContextTranslateCTM(context, 0, dist)
-        drawShape(shapeSize)
+        drawShape(context, size: shapeSize)
       }
     }
-        
+    
     CGContextRestoreGState(context) // --- Context Restored ---
   }
 
-  func drawShape(size: CGSize) {
+  func drawShape(context: CGContextRef, size: CGSize) {
+    CGContextSaveGState(context) // --- Context Saved ---
+    
     switch(shape) {
       case "diamond":
         drawDiamond(size)
@@ -112,25 +125,84 @@ class SetCardView: UIView {
       default:
         NSLog("shape is \(shape)")
     }
+    
+    CGContextRestoreGState(context) // --- Context Restored ---
   }
   
-  func drawOval(size: CGSize) {}
-  func drawSquiggle(size: CGSize) {}
+  func drawStripes(size: CGSize) {
+    var path = UIBezierPath()
+    var upperBound = Int(size.width) + Int(size.height)
+    var i = 1
+
+    while (i < upperBound) {
+      path.moveToPoint(CGPoint(x: i, y: 0))
+      path.addLineToPoint(CGPoint(x: 0, y: i))
+      i += 4
+    }
+    
+    path.stroke()
+  }
+  
+  func drawOval(size: CGSize) {
+    let path = UIBezierPath(ovalInRect: CGRect(origin: CGPointZero, size: size))
+    
+    path.stroke()
+    path.addClip()
+    
+    if (shading == "solid") {
+      path.fill()
+    } else if (shading == "striped") {
+      drawStripes(size)
+    }
+  }
+  
+  func drawSquiggle(size: CGSize) {
+    let path = UIBezierPath()
+    var sp = CGPoint(x: (size.width * 3 / 16), y: 0)
+    var ep = CGPointZero
+    
+    var xInc = size.width / 12
+    var yInc = size.height / 6
+    
+    path.moveToPoint(CGPoint(x: 0, y: yInc * 5))
+    path.addLineToPoint(CGPoint(x: 0, y: yInc * 3))
+    path.addLineToPoint(CGPoint(x: xInc * 2, y: yInc))
+    path.addLineToPoint(CGPoint(x: xInc * 4, y: 0))
+    path.addLineToPoint(CGPoint(x: xInc * 5, y: 0))
+    path.addLineToPoint(CGPoint(x: xInc * 7, y: yInc * 2))
+    path.addLineToPoint(CGPoint(x: xInc * 8, y: yInc * 2))
+    path.addLineToPoint(CGPoint(x: xInc * 10, y: 0))
+    path.addLineToPoint(CGPoint(x: xInc * 11, y: 0))
+    path.addLineToPoint(CGPoint(x: size.width, y: yInc))
+    path.addLineToPoint(CGPoint(x: size.width, y: yInc * 3))
+    path.addLineToPoint(CGPoint(x: xInc * 10, y: yInc * 5))
+    path.addLineToPoint(CGPoint(x: xInc * 8, y: yInc * 6))
+    path.addLineToPoint(CGPoint(x: xInc * 7, y: yInc * 6))
+    path.addLineToPoint(CGPoint(x: xInc * 5, y: yInc * 4))
+    path.addLineToPoint(CGPoint(x: xInc * 4, y: yInc * 4))
+    path.addLineToPoint(CGPoint(x: xInc * 2, y: size.height))
+    path.addLineToPoint(CGPoint(x: xInc, y: size.height))
+
+    path.closePath()
+    
+    path.stroke()
+    path.addClip()
+    
+    if (shading == "solid") {
+      path.fill()
+    } else if (shading == "striped") {
+      drawStripes(size)
+    }
+  }
   
   func getShapeSize(bounds: CGRect) -> CGSize {
-    let dividedHeight = bounds.height / CGFloat(count)
+    let dividedHeight = bounds.height / CGFloat(number)
     let maxHeight = dividedHeight * 0.7
     
     var w, h: CGFloat
 
-    switch(shape) {
-    case "diamond":
-      h = min((bounds.width * 0.5), maxHeight)
-      w = min((h * 2), bounds.width)
-    default:
-      w = bounds.width
-      h = maxHeight
-    }
+    h = min((bounds.width * 0.5), maxHeight)
+    w = min((h * 2), bounds.width)
     
     return CGSizeMake(w, h)
   }
@@ -146,7 +218,13 @@ class SetCardView: UIView {
     path.addLineToPoint(CGPointMake(0, midY))
     path.closePath()
     
-    path.fill()
     path.stroke()
+    path.addClip()
+    
+    if (shading == "solid") {
+      path.fill()
+    } else if (shading == "striped") {
+      drawStripes(size)
+    }
   }
 }
