@@ -56,12 +56,11 @@ class SetGame: CardGame {
   
   class func standardDeck() -> Deck<SetCard> {
     var deck = Deck<SetCard>()
-    let stdAttrs = SetCard.standardAttrs()
     
-    for shape in stdAttrs.shapes {   // for shape in ["▲", "●", "■"] {
-      for color in stdAttrs.colors {
-        for shading in stdAttrs.shading {
-          for number in stdAttrs.numbers {
+    for shape in SetGame.standardShapes() {
+      for color in SetGame.standardColors() {
+        for shading in SetGame.standardShading() {
+          for number in SetGame.standardNumbers() {
             deck.addCard(SetCard(shape: shape, color: color, shading: shading, number: number))
           }
         }
@@ -71,6 +70,26 @@ class SetGame: CardGame {
     deck.shuffle()
     
     return deck
+  }
+  
+  class func standardNumbers() -> [Int] {
+    return [1, 2, 3]
+  }
+  
+  class func standardShapes() -> [String] {
+    return ["diamond", "oval", "squiggle"]
+  }
+
+  class func standardShading() -> [String] {
+    return ["solid", "striped", "open"]
+  }
+  
+  class func standardColors() -> [UIColor] {
+    let red = UIColor(red: 0.875, green: 0.259, blue: 0.302, alpha: 2.0)
+    let green = UIColor(red: 0.102, green: 0.694, blue: 0.365, alpha: 2.0)
+    let purple = UIColor(red: 0.286, green: 0.2, blue: 0.565, alpha: 2.0)
+
+    return [red, green, purple]
   }
   
   

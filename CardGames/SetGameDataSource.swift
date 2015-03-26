@@ -68,11 +68,8 @@ class SetGameDataSource: NSObject, UICollectionViewDataSource {
         forIndexPath: indexPath) as? UICollectionViewCell)!
       
       if (card != nil) {
-//        cell.backgroundView = cellBgView(cell.frame)
-        cell.backgroundView = tempBgView(card!, withFrame: cell.frame)
-        cell.selectedBackgroundView = tempBgSelectedView(card!, withFrame: cell.frame)
-//        cell.backgroundView = cellBgView(card!, withFrame: cell.frame)
-//        cell.selectedBackgroundView = cellSelectedBgView(card!, withFrame: cell.frame)
+        cell.backgroundView = cellBgView(card!, withFrame: cell.frame)
+        cell.selectedBackgroundView = cellSelectedView(card!, withFrame: cell.frame)
       } else {
         cell.backgroundView = nil
         cell.selectedBackgroundView = nil
@@ -123,50 +120,22 @@ class SetGameDataSource: NSObject, UICollectionViewDataSource {
   }
   
   
-  private func cellBgView(card: SetCard, withFrame: CGRect) -> UILabel {
-    var bgView = UILabel(frame: withFrame)
-    
-    bgView.text            = card.shape
-    bgView.textColor       = card.color
-    bgView.textAlignment   = NSTextAlignment.Center
-    bgView.backgroundColor = UIColor.whiteColor()
-    
-    style.applyShade(bgView.layer, color: style.darkShadeColor, thickness: 1)
-    
-    return bgView
-  }
-  
-  private func tempBgView(card: SetCard, withFrame: CGRect) -> SetCardView {
+  private func cellBgView(card: SetCard, withFrame: CGRect) -> SetCardView {
     var view = SetCardView(frame: withFrame, attrs: card.attributes())
     
     view.backgroundColor = UIColor.whiteColor()
-    
+
+    style.applyShade(view.layer, color: style.darkShadeColor, thickness: 1)
+
     return view
   }
 
-  private func tempBgSelectedView(card: SetCard, withFrame: CGRect) -> SetCardView {
-    var selectedView = tempBgView(card, withFrame: withFrame)
-
-    selectedView.layer.borderWidth = 2
-    selectedView.layer.borderColor = UIColor.blueColor().CGColor
-    
-    return selectedView
-  }
-
-  private func cellSelectedBgView(card: SetCard, withFrame: CGRect) -> UILabel {
+  private func cellSelectedView(card: SetCard, withFrame: CGRect) -> SetCardView {
     var selectedView = cellBgView(card, withFrame: withFrame)
 
     selectedView.layer.borderWidth = 2
     selectedView.layer.borderColor = UIColor.blueColor().CGColor
-//    var selectedView = UILabel(frame: withFrame)
-//    
-//    selectedView.text            = card.shape
-//    selectedView.textColor       = card.color
-//    selectedView.textAlignment   = NSTextAlignment.Center
-//    selectedView.backgroundColor = UIColor.whiteColor()
-//    
-//    style.applyShade(selectedView.layer, color: style.darkShadeColor, thickness: 1)
-
+    
     return selectedView
   }
 }
