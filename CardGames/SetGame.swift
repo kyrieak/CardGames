@@ -211,16 +211,24 @@ class SetGame: CardGame {
       return (false, 0)
     } else {
       let (cardA, cardB, cardC) = (cards[0], cards[1], cards[2])
+
+      let numSet = isSameOrUnique(cards.map({(card: SetCard) -> Int in
+        return card.number
+      }))
       
       let shapeSet = isSameOrUnique(cards.map({(card: SetCard) -> String in
         return card.shape
+      }))
+
+      let shadeSet = isSameOrUnique(cards.map({(card: SetCard) -> String in
+        return card.shading
       }))
       
       let colorSet = isSameOrUnique(cards.map({(card: SetCard) -> UIColor in
         return card.color
       }))
       
-      if (shapeSet && colorSet) {
+      if (numSet && shapeSet && shadeSet && colorSet) {
         return (true, 6)
       } else {
         return (false, 0)
@@ -254,6 +262,22 @@ class SetGame: CardGame {
 
   
   private func isSameOrUnique(values: [String]) -> Bool {
+    if (values.count != 3) {
+      return false
+    } else {
+      let (v1, v2, v3) = (values[0], values[1], values[2])
+      
+      if ((v1 == v2) && (v1 == v3)) {
+        return true
+      } else if ((v1 != v2) && (v1 != v3) && (v2 != v3)) {
+        return true
+      } else {
+        return false
+      }
+    }
+  }
+  
+  private func isSameOrUnique(values: [Int]) -> Bool {
     if (values.count != 3) {
       return false
     } else {

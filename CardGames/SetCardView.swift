@@ -10,11 +10,11 @@ import Foundation
 import UIKit
 
 class SetCardView: UIView {
-  var rgbColor: [CGFloat]
-  var shape: String
-  var number: Int
-  var shading: String
-  var drawingBounds = CGRectZero
+  private var rgbColor: [CGFloat]
+  private var shape: String
+  private var number: Int
+  private var shading: String
+  private var drawingBounds = CGRectZero
   
   // MARK: - Initializers -
   
@@ -166,237 +166,7 @@ class SetCardView: UIView {
     path.stroke()
     
     CGContextRestoreGState(context)
-  }
-  
-  
-  private func drawSquiggle2(size: CGSize) {
-    let path = UIBezierPath()
-    
-    var xInc = size.width / 12
-    var yInc = size.height / 6
-    
-    let midX = xInc * 6
-    let midY = yInc * 3
-    
-    let startingPoint = CGPoint(x: 0, y: yInc * 5)
-    
-    path.moveToPoint(startingPoint)
-
-    //==========================================
-    // A0
-    var c1 = CGPoint(x: 0, y: yInc * 3)
-    var c2 = CGPoint(x: xInc * 2, y: yInc)
-    var ep = CGPoint(x: xInc * 4, y: yInc / 2)
-    
-    path.addCurveToPoint(ep, controlPoint1: c1, controlPoint2: c2)
-    
-    // A
-    c1 = CGPoint(x: xInc * 6, y: yInc / 2)
-    c2 = CGPoint(x: xInc * 6, y: yInc * 2)
-    ep = CGPoint(x: xInc * 8, y: yInc * 2)
-
-    path.addCurveToPoint(ep, controlPoint1: c1, controlPoint2: c2)
-    
-    // B
-    c1 = CGPoint(x: xInc * 10, y: yInc * 2)
-    c2  = CGPoint(x: xInc * 10, y: yInc)
-    ep = CGPoint(x: size.width, y: yInc)
-
-    path.addCurveToPoint(ep, controlPoint1: c1, controlPoint2: c2)
-
-//    // C
-//    c1 = CGPoint(x: size.width, y: yInc)
-//    c2 = CGPoint(x: size.width, y: yInc * 2)
-//    ep = CGPoint(x: size.width, y: yInc * 3)
-//    
-//    path.addCurveToPoint(ep, controlPoint1: c1, controlPoint2: c2)
-    
-    // last point of first half must end in starting point's transform
-    //    epT = CGPoint(x: size.width, y: yInc)
-
-//    // D
-//    c1 = CGPoint(x: size.width, y: yInc * 4)
-//    c2 = CGPoint(x: xInc * 11, y: size.height)
-//    ep = CGPoint(x: xInc * 8, y: size.height)
-//
-//    path.addCurveToPoint(ep, controlPoint1: c1, controlPoint2: c2)
-//
-//    // E
-//    c1 = CGPoint(x: xInc * 6, y: size.height)
-//    c2 = CGPoint(x: xInc * 5.5, y: yInc * 4)
-//    ep = CGPoint(x: xInc * 4, y: yInc * 4)
-//    
-//    path.addCurveToPoint(ep, controlPoint1: c1, controlPoint2: c2)
-//    
-//    // F
-//    c1 = CGPoint(x: xInc * 3, y: yInc * 4)
-//    c2 = CGPoint(x: xInc * 2, y: size.height)
-//    ep = CGPoint(x: xInc, y: size.height)
-//
-//    path.addCurveToPoint(ep, controlPoint1: c1, controlPoint2: c2)
-//    
-//    // G
-//    c1 = CGPoint(x: 0, y: size.height)
-//    c2 = CGPoint(x: 0, y: yInc * 5)
-//    ep = startingPoint
-//    
-//    path.addCurveToPoint(ep, controlPoint1: c1, controlPoint2: c2)
-
-    //==========================================
-
-    // A0'
-    var c1T = CGPoint(x: size.width, y: yInc * 3)
-    var c2T = CGPoint(x: xInc * 10, y: yInc * 5)
-    var epT = CGPoint(x: xInc * 8, y: yInc * 5.5)
-
-    path.addCurveToPoint(epT, controlPoint1: c1T, controlPoint2: c2T)
-
-
-    // A'
-    c1T = CGPoint(x: xInc * 6, y: yInc * 5.5)
-    c2T = CGPoint(x: xInc * 6, y: yInc * 4)
-    epT = CGPoint(x: xInc * 4, y: yInc * 4)
-
-    path.addCurveToPoint(epT, controlPoint1: c1T, controlPoint2: c2T)
-
-    // B'
-    c1T = CGPoint(x: xInc * 2, y: yInc * 4)
-    c2T = CGPoint(x: xInc * 2, y: yInc * 5)
-        epT = startingPoint
-//    epT = CGPoint(x: xInc, y: yInc * 5)
-//
-//    path.addCurveToPoint(epT, controlPoint1: c1T, controlPoint2: c2T)
-
-//    // C'
-//    c1T = CGPoint(x: 0, y: yInc * 5)
-//    c2T = CGPoint(x: 0, y: yInc * 4)
-//    epT = CGPoint(x: 0, y: yInc * 3)
-
-    path.addCurveToPoint(epT, controlPoint1: c1T, controlPoint2: c2T)
-    
-//    // D'
-//    c1T = CGPoint(x: 0, y: yInc * 2)
-//    c2T = CGPoint(x: xInc, y: 0)
-//    epT = CGPoint(x: xInc * 4, y: 0)
-//    
-//    // E'
-//    c1T = CGPoint(x: xInc * 6, y: 0)
-//    c2T = CGPoint(x: xInc * 6.5, y: yInc * 2)
-//    epT = CGPoint(x: xInc * 8, y: yInc * 2)
-//    
-//    // F'
-//    c1T = CGPoint(x: xInc * 9, y: yInc * 2)
-//    c2T = CGPoint(x: xInc * 10, y: 0)
-//    epT = CGPoint(x: xInc * 11, y: 0)
-//    
-//    // G'
-//    c1T = CGPoint(x: size.width, y: 0)
-//    c2T = CGPoint(x: size.width, y: yInc)
-//    epT = CGPoint(x: size.width, y: yInc)
-//    //==========================================
-    
-    
-    
-    
-    path.closePath()
-    
-    path.stroke()
-    path.addClip()
-    
-    if (shading == "solid") {
-      path.fill()
-    } else if (shading == "striped") {
-      drawStripes(size)
-    }
-  }
-  
-  
-  private func freeform(size: CGSize) {
-    var xInc = size.width / 12
-    var yInc = size.height / 6
-    
-    let midX = xInc * 6
-    let midY = yInc * 3
-    
-    var startingPoint = CGPoint(x: 0, y: yInc * 5)
-    
-    var sp = startingPoint
-    var c1 = CGPoint(x: 0, y: yInc * 3)
-    var c2 = CGPoint(x: xInc * 2, y: yInc)
-    var ep = CGPoint(x: xInc * 4, y: yInc / 2)
-
-    var spT = CGPoint(x: size.width, y: yInc)
-    var c1T = CGPoint(x: size.width, y: yInc * 3)
-    var c2T = CGPoint(x: xInc * 10, y: yInc * 5)
-    var epT = CGPoint(x: xInc * 8, y: yInc * 5.5)
-
-    //==========================================
-    
-    c1 = CGPoint(x: xInc * 6, y: yInc / 2)
-    c2 = CGPoint(x: xInc * 6, y: yInc * 2)
-    ep = CGPoint(x: xInc * 8, y: yInc * 2)
-
-    c1T = CGPoint(x: xInc * 6, y: yInc * 5.5)
-    c2T = CGPoint(x: xInc * 6, y: yInc * 4)
-    epT = CGPoint(x: xInc * 4, y: yInc * 4)
-//==========================================
-    c1 = CGPoint(x: xInc * 10, y: yInc * 2)
-    c2  = CGPoint(x: xInc * 10, y: yInc)
-    ep = CGPoint(x: xInc * 11, y: yInc)
-
-    c1T = CGPoint(x: xInc * 2, y: yInc * 4)
-    c2T = CGPoint(x: xInc * 2, y: yInc * 5)
-    epT = CGPoint(x: xInc, y: yInc * 5)
-    //==========================================
-    
-    c1 = CGPoint(x: size.width, y: yInc)
-    c2 = CGPoint(x: size.width, y: yInc * 2)
-    ep = CGPoint(x: size.width, y: yInc * 3)
-
-    c1T = CGPoint(x: 0, y: yInc * 5)
-    c2T = CGPoint(x: 0, y: yInc * 4)
-    epT = CGPoint(x: 0, y: yInc * 3)
-    //==========================================
-    
-    c1 = CGPoint(x: size.width, y: yInc * 4)
-    c2 = CGPoint(x: xInc * 11, y: size.height)
-    ep = CGPoint(x: xInc * 8, y: size.height)
-    
-    
-    c1T = CGPoint(x: 0, y: yInc * 2)
-    c2T = CGPoint(x: xInc, y: 0)
-    epT = CGPoint(x: xInc * 4, y: 0)
-    //==========================================
-
-    c1 = CGPoint(x: xInc * 6, y: size.height)
-    c2 = CGPoint(x: xInc * 5.5, y: yInc * 4)
-    ep = CGPoint(x: xInc * 4, y: yInc * 4)
-
-    
-    c1T = CGPoint(x: xInc * 6, y: 0)
-    c2T = CGPoint(x: xInc * 6.5, y: yInc * 2)
-    epT = CGPoint(x: xInc * 8, y: yInc * 2)
-    //==========================================
-
-    c1 = CGPoint(x: xInc * 3, y: yInc * 4)
-    c2 = CGPoint(x: xInc * 2, y: size.height)
-    ep = CGPoint(x: xInc, y: size.height)
-
-    
-    c1T = CGPoint(x: xInc * 9, y: yInc * 2)
-    c2T = CGPoint(x: xInc * 10, y: 0)
-    epT = CGPoint(x: xInc * 11, y: 0)
-    //==========================================
-
-    c1 = CGPoint(x: 0, y: size.height)
-    c2 = CGPoint(x: 0, y: yInc * 5)
-    ep = startingPoint
-
-    c1T = CGPoint(x: size.width, y: 0)
-    c2T = CGPoint(x: size.width, y: yInc)
-    epT = CGPoint(x: size.width, y: yInc)
-    //==========================================
-  }
+  }  
 
   
   private func drawSquiggle(size: CGSize) {
@@ -420,45 +190,6 @@ class SetCardView: UIView {
       drawStripes(size)
     }
   }
-//  
-//  private func drawSquiggle(size: CGSize) {
-//    let path = UIBezierPath()
-//    var sp = CGPoint(x: (size.width * 3 / 16), y: 0)
-//    var ep = CGPointZero
-//    
-//    var xInc = size.width / 12
-//    var yInc = size.height / 6
-//    
-//    path.moveToPoint(CGPoint(x: 0, y: yInc * 5))
-//    path.addLineToPoint(CGPoint(x: 0, y: yInc * 3))
-//    path.addLineToPoint(CGPoint(x: xInc * 2, y: yInc))
-//    path.addLineToPoint(CGPoint(x: xInc * 4, y: 0))
-//    path.addLineToPoint(CGPoint(x: xInc * 5, y: 0))
-//    path.addLineToPoint(CGPoint(x: xInc * 7, y: yInc * 2))
-//    path.addLineToPoint(CGPoint(x: xInc * 8, y: yInc * 2))
-//    path.addLineToPoint(CGPoint(x: xInc * 10, y: 0))
-//    path.addLineToPoint(CGPoint(x: xInc * 11, y: 0))
-//    path.addLineToPoint(CGPoint(x: size.width, y: yInc))
-//    path.addLineToPoint(CGPoint(x: size.width, y: yInc * 3))
-//    path.addLineToPoint(CGPoint(x: xInc * 10, y: yInc * 5))
-//    path.addLineToPoint(CGPoint(x: xInc * 8, y: yInc * 6))
-//    path.addLineToPoint(CGPoint(x: xInc * 7, y: yInc * 6))
-//    path.addLineToPoint(CGPoint(x: xInc * 5, y: yInc * 4))
-//    path.addLineToPoint(CGPoint(x: xInc * 4, y: yInc * 4))
-//    path.addLineToPoint(CGPoint(x: xInc * 2, y: size.height))
-//    path.addLineToPoint(CGPoint(x: xInc, y: size.height))
-//
-//    path.closePath()
-//    
-//    path.stroke()
-//    path.addClip()
-//    
-//    if (shading == "solid") {
-//      path.fill()
-//    } else if (shading == "striped") {
-//      drawStripes(size)
-//    }
-//  }
   
   
   private func drawStripes(size: CGSize) {
@@ -475,12 +206,6 @@ class SetCardView: UIView {
   }
 }
 
-////    // C'
-////    c1T = CGPoint(x: 0, y: yInc * 5)
-////    c2T = CGPoint(x: 0, y: yInc * 4)
-////    epT = CGPoint(x: 0, y: yInc * 3)
-//
-//path.addCurveToPoint(epT, controlPoint1: c1T, controlPoint2: c2T)
 
 
 struct Squiggle {

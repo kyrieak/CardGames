@@ -31,6 +31,8 @@
 		348FF6411AA1658B0041C5C6 /* SetGameDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348FF6401AA1658B0041C5C6 /* SetGameDataSource.swift */; };
 		349A2C6F1A6DAD5900580219 /* MemoryGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349A2C6E1A6DAD5900580219 /* MemoryGameController.swift */; };
 		34A9233E1AA19C15009D0134 /* SetCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A9233D1AA19C15009D0134 /* SetCard.swift */; };
+		34BCFC3F1AC50DD8005A4840 /* CardGameStatusLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BCFC3E1AC50DD8005A4840 /* CardGameStatusLabel.swift */; };
+		34BCFC411AC51217005A4840 /* TrumpCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BCFC401AC51217005A4840 /* TrumpCardView.swift */; };
 		34CC1E561ABCC83D005B2CD1 /* SetCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CC1E551ABCC83D005B2CD1 /* SetCardView.swift */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +75,8 @@
 		348FF6401AA1658B0041C5C6 /* SetGameDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetGameDataSource.swift; sourceTree = "<group>"; };
 		349A2C6E1A6DAD5900580219 /* MemoryGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryGameController.swift; sourceTree = "<group>"; };
 		34A9233D1AA19C15009D0134 /* SetCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetCard.swift; sourceTree = "<group>"; };
+		34BCFC3E1AC50DD8005A4840 /* CardGameStatusLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardGameStatusLabel.swift; sourceTree = "<group>"; };
+		34BCFC401AC51217005A4840 /* TrumpCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrumpCardView.swift; sourceTree = "<group>"; };
 		34CC1E551ABCC83D005B2CD1 /* SetCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetCardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -189,6 +193,8 @@
 			isa = PBXGroup;
 			children = (
 				34CC1E551ABCC83D005B2CD1 /* SetCardView.swift */,
+				34BCFC401AC51217005A4840 /* TrumpCardView.swift */,
+				34BCFC3E1AC50DD8005A4840 /* CardGameStatusLabel.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -294,11 +300,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				349A2C6F1A6DAD5900580219 /* MemoryGameController.swift in Sources */,
+				34BCFC411AC51217005A4840 /* TrumpCardView.swift in Sources */,
 				343587111A6A246C00DD7F1A /* TrumpCardCollectionDataSource.swift in Sources */,
 				34005EF31A4FC8F500BDFD0F /* Deck.swift in Sources */,
 				34005ED21A4FACDA00BDFD0F /* CardFlipController.swift in Sources */,
 				347511741AB3BB8300AF5DE7 /* MainController.swift in Sources */,
 				34005EF71A4FC94A00BDFD0F /* TrumpCard.swift in Sources */,
+				34BCFC3F1AC50DD8005A4840 /* CardGameStatusLabel.swift in Sources */,
 				34005EF51A4FC91500BDFD0F /* Card.swift in Sources */,
 				34005ED01A4FACDA00BDFD0F /* AppDelegate.swift in Sources */,
 				34005EF01A4FC5BC00BDFD0F /* CardViewController.swift in Sources */,

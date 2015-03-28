@@ -129,3 +129,19 @@ func <(lhs:TrumpCard, rhs:TrumpCard) -> Bool {
     return lhs.suit.tier > rhs.suit.tier
   }
 }
+
+
+struct TrumpCardAttributes {
+  let rank: Int
+  let suit: Suit
+  
+  init(card: TrumpCard) {
+    self.rank = card.rank
+    self.suit = card.suit
+  }
+  
+  init(rank: Int, suit: Suit) {
+    self.rank = rank
+    self.suit = suit
+  }
+}
