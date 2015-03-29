@@ -173,26 +173,22 @@
                                 <constraint firstItem="M4W-43-oK8" firstAttribute="bottom" secondItem="XG1-eu-Ip1" secondAttribute="bottomMargin" id="krK-ol-Fkv"/>
                             </constraints>
                         </collectionReusableView>
-                        <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="game_footer" id="hBO-S8-O9S">
+                        <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="game_status" id="hBO-S8-O9S">
                             <rect key="frame" x="0.0" y="250" width="320" height="50"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="50" text="Game Start!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fIW-b2-0yG">
+                                <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FOE-ZY-hxt" customClass="SetGameStatusView" customModule="CardGames" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
-                                    <color key="backgroundColor" red="0.59999999999999998" green="0.41176470590000003" blue="0.37254901959999998" alpha="0.35999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" red="0.79708167989417988" green="0.75889349234764281" blue="0.70999322936110598" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="50" id="2ui-Jk-OK8"/>
+                                        <constraint firstAttribute="height" constant="50" id="uJu-yD-Enf"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" red="0.067340061069999999" green="0.25241810079999999" blue="0.1519812495" alpha="1" colorSpace="calibratedRGB"/>
-                                    <nil key="highlightedColor"/>
-                                    <size key="shadowOffset" width="0.0" height="0.0"/>
-                                </label>
+                                </view>
                             </subviews>
                             <constraints>
-                                <constraint firstItem="fIW-b2-0yG" firstAttribute="leading" secondItem="hBO-S8-O9S" secondAttribute="leadingMargin" constant="-8" id="3Fp-Wq-TDH"/>
-                                <constraint firstItem="fIW-b2-0yG" firstAttribute="top" secondItem="hBO-S8-O9S" secondAttribute="topMargin" constant="-8" id="sRC-jO-uzV"/>
-                                <constraint firstAttribute="trailingMargin" secondItem="fIW-b2-0yG" secondAttribute="trailing" constant="-8" id="xyS-vp-5Zn"/>
+                                <constraint firstAttribute="trailingMargin" secondItem="FOE-ZY-hxt" secondAttribute="trailing" constant="-8" id="Vth-nb-HPL"/>
+                                <constraint firstItem="FOE-ZY-hxt" firstAttribute="leading" secondItem="hBO-S8-O9S" secondAttribute="leadingMargin" constant="-8" id="jmH-AJ-WIC"/>
+                                <constraint firstItem="FOE-ZY-hxt" firstAttribute="top" secondItem="hBO-S8-O9S" secondAttribute="topMargin" constant="-8" id="zsB-gq-lUd"/>
                             </constraints>
                         </collectionReusableView>
                         <connections>

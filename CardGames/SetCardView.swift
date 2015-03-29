@@ -25,6 +25,8 @@ class SetCardView: UIView {
     self.rgbColor = attrs.color
     
     super.init(frame: frame)
+    
+    backgroundColor = UIColor.whiteColor()
   }
   
   
@@ -35,11 +37,15 @@ class SetCardView: UIView {
     self.shading = "solid"
     
     super.init(coder: aDecoder)
+
+    backgroundColor = UIColor.whiteColor()
   }
   
   // - MARK: - Public -
   
   override func drawRect(rect: CGRect) {
+    NSLog("====setcardview draw rect called===========================")
+    NSLog("===========================================")
     let context = UIGraphicsGetCurrentContext()
     let colorSpace = CGColorSpaceCreateDeviceRGB()
     let color = CGColorCreate(colorSpace, rgbColor)

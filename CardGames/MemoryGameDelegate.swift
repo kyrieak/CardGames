@@ -127,9 +127,9 @@ class MemoryGameDelegate: NSObject, UICollectionViewDelegate {
       if (!game.currentTurn().done()) {
         return (false, statusMaker.listCards())
       } else if (game.currentTurn().didMatch) {
-        return (true, statusMaker.isMatchMsg(game.currentTurn().matchValue))
+        return (true, statusMaker.isMatchMsg(game.currentTurn().matchValue).statusText)
       } else {
-        return (false, statusMaker.noMatchMsg(game.currentTurn().penaltyValue))
+        return (false, statusMaker.noMatchMsg(game.currentTurn().penaltyValue).statusText)
       }
     }
   }
@@ -152,17 +152,17 @@ struct MGStatus {
     return cardsStr
   }
   
-  func isMatchMsg(matchVal: Int) -> String {
-    return cardsStr + " is a match for \(matchVal) Points!"
+  func isMatchMsg(matchVal: Int) -> (cardListText: String, statusText: String) {
+    return (cardListText: cardsStr, statusText: "is a match for \(matchVal) Points!")
   }
   
-  func noMatchMsg(penaltyVal: Int) -> String {
+  func noMatchMsg(penaltyVal: Int) -> (cardListText: String, statusText: String) {
     var penalty = abs(penaltyVal)
     
     if (penalty > 0) {
-      return cardsStr + " is not a match. \(penalty) point penalty."
+      return (cardListText: cardsStr, statusText: "is not a match. \(penalty) point penalty.")
     } else {
-      return cardsStr + " is not a match"
+      return (cardListText: cardsStr, statusText: "is not a match.")
     }
   }
 }

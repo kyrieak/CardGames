@@ -12,7 +12,7 @@ import UIKit
 class SetGameDataSource: NSObject, UICollectionViewDataSource {
   let cellReuseId   = "card_cell"
   let headerReuseId = "game_header"
-  let footerReuseId = "game_footer"
+  let footerReuseId = "game_status"
 
   let deckButtonTag = 1
   let style = Style()
