@@ -16,10 +16,10 @@ class CardViewController: UIViewController {
 //
 //  let cardBackImage = UIImage(named: "card_back")
   
-  let hearts   = Suit(title: "Hearts", symbol: "♥︎", tier: 1, color: UIColor.redColor())
-  let diamonds = Suit(title: "Diamonds", symbol: "♦︎", tier: 1, color: UIColor.redColor())
-  let spades   = Suit(title: "Spades", symbol: "♠︎", tier: 1, color: UIColor.blackColor())
-  let clubs    = Suit(title: "Clubs", symbol: "♣︎", tier: 1, color: UIColor.blackColor())
+//  let hearts   = Suit(title: "Hearts", symbol: "♥︎", tier: 1, color: UIColor.redColor())
+//  let diamonds = Suit(title: "Diamonds", symbol: "♦︎", tier: 1, color: UIColor.redColor())
+//  let spades   = Suit(title: "Spades", symbol: "♠︎", tier: 1, color: UIColor.blackColor())
+//  let clubs    = Suit(title: "Clubs", symbol: "♣︎", tier: 1, color: UIColor.blackColor())
  
   var drawPile = Deck<TrumpCard>()
   var discardPile = Deck<TrumpCard>()
@@ -32,11 +32,11 @@ class CardViewController: UIViewController {
     style.applyCardBg(self.view, withScale: 2.0)
     style.applyShade(self.view.layer, color: style.darkShadeColor, thickness: 2)
 
-    for rankVal in 1...13 {
-      drawPile.addCard(TrumpCard(suit: hearts, rank: rankVal))
-      drawPile.addCard(TrumpCard(suit: diamonds, rank: rankVal))
-      drawPile.addCard(TrumpCard(suit: spades, rank: rankVal))
-      drawPile.addCard(TrumpCard(suit: clubs, rank: rankVal))
+    for i in 1...13 {
+      drawPile.addCard(TrumpCard(rank: i, suit: NamedSuit.Diamonds))
+      drawPile.addCard(TrumpCard(rank: i, suit: NamedSuit.Spades))
+      drawPile.addCard(TrumpCard(rank: i, suit: NamedSuit.Hearts))
+      drawPile.addCard(TrumpCard(rank: i, suit: NamedSuit.Clubs))
     }
     
     drawPile.shuffle()
@@ -52,7 +52,7 @@ class CardViewController: UIViewController {
       
       if (card!.isFaceUp()) {
         label = card!.label()
-        var color = card!.color()
+        var color = Style.getUIColorFor(card!.color())
         
         if (cardLabelTop.textColor != color) {
           cardLabelTop.textColor = color

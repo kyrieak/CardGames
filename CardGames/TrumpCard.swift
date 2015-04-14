@@ -9,81 +9,126 @@
 import Foundation
 import UIKit
 
-struct Suit {
-  let title:String
-  let symbol:String
-  let tier:Int
-  let color:UIColor
-  
-  init(title:String, symbol:String, tier:Int, color:UIColor) {
-    self.title  = title
-    self.symbol = symbol
-    self.tier   = tier
-    self.color  = color
-  }
+enum NamedSuit {
+  case Hearts, Spades, Diamonds, Clubs
+}
+
+enum NamedColor {
+  case Red, Black
 }
 
 class TrumpCard:Card, Comparable {
-  var suit:Suit
+  var suit: NamedSuit
   var rank:Int
   
-  init(suit:Suit, rank:Int) {
+  init(rank:Int, suit: NamedSuit) {
     self.suit = suit
     self.rank = rank
+    
     super.init()
   }
   
   override func initCopy() -> TrumpCard {
-    return TrumpCard.init(suit: self.suit, rank: self.rank)
+    return TrumpCard.init(rank: self.rank, suit: self.suit)
   }
   
   func label() -> String {
-    return { (rank: Int) -> String in
-      switch (rank) {
+    return rankAbbv() + suitSymbol()
+  }
+  
+  private func rankAbbv() -> String {
+    switch (rank) {
       case 1:
-        return "🔵"
+        return "A"
       case 11:
-        return "🐸"
+        return "J"
       case 12:
-        return "🐴👀🐴"
+        return "Q"
       case 13:
-        return "🐰"
+        return "K"
       default:
-        return "\(self.rank)"
-      }
-    }(self.rank) + self.suit.symbol
+        return "\(rank)"
+    }
+    //  switch (rank) {
+    //    case 1:
+    //      return "🔵"
+    //    case 11:
+    //      return "🐸"
+    //    case 12:
+    //      return "🐴👀🐴"
+    //    case 13:
+    //      return "🐰"
+    //    default:
+    //      return "\(self.rank)"
+    //  }
   }
   
-  func color() -> UIColor {
-    return suit.color
+  private func suitSymbol() -> String {
+    switch(suit) {
+      case .Hearts:
+        return "♥︎"
+      case .Spades:
+        return "♠︎"
+      case .Diamonds:
+        return "♦︎"
+      case .Clubs:
+        return "♣︎"
+    }
   }
   
-  class func hearts() -> Suit {
-    return Suit(title: "Hearts", symbol: "♥︎", tier: 1, color: UIColor.redColor())
+  func name() -> String {
+    return rankName() + " of " + suitName()
   }
   
-  class func diamonds() -> Suit {
-    return Suit(title: "Diamonds", symbol: "♦︎", tier: 1, color: UIColor.redColor())
+  private func rankName() -> String {
+    switch (rank) {
+      case 1:
+        return "Ace"
+      case 11:
+        return "Jack"
+      case 12:
+        return "Queen"
+      case 13:
+        return "King"
+      default:
+        return "\(rank)"
+    }
+    
+    //  switch (rank) {
+    //    case 1:
+    //      return "Meep"
+    //    case 11:
+    //      return "Carrot Master"
+    //    case 12:
+    //      return "Romulebie"
+    //    case 13:
+    //      return "Bunny"
+    //    default:
+    //      return "\(self.rank)"
+    //  }
   }
   
-  class func spades() -> Suit {
-    return Suit(title: "Spades", symbol: "♠︎", tier: 1, color: UIColor.blackColor())
+  private func suitName() -> String {
+    switch(suit) {
+      case .Hearts:
+        return "Hearts"
+      case .Diamonds:
+        return "Diamonds"
+      case .Spades:
+        return "Spades"
+      case .Clubs:
+        return "Clubs"
+    }
   }
   
-  class func clubs() -> Suit {
-    return Suit(title: "Clubs", symbol: "♣︎", tier: 1, color: UIColor.blackColor())
+  func color() -> NamedColor {
+    switch(suit) {
+      case .Hearts, .Diamonds:
+        return NamedColor.Red
+      case .Spades, .Clubs:
+        return NamedColor.Black
+    }
   }
-  
-//  var cardSets: NSDictionary
-//  
-//  init(keys: [AnyObject]) {
-//
-//  func addCard(card: T, key: AnyObject) {
-//    if var cardSet = cardSets.objectForKey(key) as? NSMutableSet {
-//      cardSet.addObject(card)
-//    }
-//  }
-
   
   class func standardSet() -> NSDictionary {
     var obj = [NSMutableSet]()
@@ -92,10 +137,10 @@ class TrumpCard:Card, Comparable {
     for i in 1...13 {
       var set = NSMutableSet()
       
-      set.addObject(TrumpCard(suit: diamonds(), rank: i))
-      set.addObject(TrumpCard(suit: spades(), rank: i))
-      set.addObject(TrumpCard(suit: hearts(), rank: i))
-      set.addObject(TrumpCard(suit: clubs(), rank: i))
+      set.addObject(TrumpCard(rank: i, suit: NamedSuit.Diamonds))
+      set.addObject(TrumpCard(rank: i, suit: NamedSuit.Spades))
+      set.addObject(TrumpCard(rank: i, suit: NamedSuit.Hearts))
+      set.addObject(TrumpCard(rank: i, suit: NamedSuit.Clubs))
       
       obj.append(set)
       keys.append(i)
@@ -108,39 +153,35 @@ class TrumpCard:Card, Comparable {
     var deck = Deck<TrumpCard>()
 
     for i in 1...13 {
-      deck.addCard(TrumpCard(suit: diamonds(), rank: i))
-      deck.addCard(TrumpCard(suit: spades(), rank: i))
-      deck.addCard(TrumpCard(suit: hearts(), rank: i))
-      deck.addCard(TrumpCard(suit: clubs(), rank: i))
+      deck.addCard(TrumpCard(rank: i, suit: NamedSuit.Diamonds))
+      deck.addCard(TrumpCard(rank: i, suit: NamedSuit.Spades))
+      deck.addCard(TrumpCard(rank: i, suit: NamedSuit.Hearts))
+      deck.addCard(TrumpCard(rank: i, suit: NamedSuit.Clubs))
     }
     
     return deck
   }
 }
 
+
 func ==(lhs:TrumpCard, rhs:TrumpCard) -> Bool {
-  return lhs.suit.tier == rhs.suit.tier
+  return ((lhs.suit == rhs.suit) && (lhs.rank == rhs.rank))
 }
 
 func <(lhs:TrumpCard, rhs:TrumpCard) -> Bool {
-  if (lhs.suit.tier == rhs.suit.tier) {
-    return lhs.rank < rhs.rank
-  } else {
-    return lhs.suit.tier > rhs.suit.tier
-  }
+  return lhs.rank < rhs.rank
 }
-
 
 struct TrumpCardAttributes {
   let rank: Int
-  let suit: Suit
+  let suit: NamedSuit
   
   init(card: TrumpCard) {
     self.rank = card.rank
     self.suit = card.suit
   }
   
-  init(rank: Int, suit: Suit) {
+  init(rank: Int, suit: NamedSuit) {
     self.rank = rank
     self.suit = suit
   }

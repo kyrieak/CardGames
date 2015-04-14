@@ -36,4 +36,13 @@ struct Style {
     var scaledImg = UIImage(CGImage: cardBgImage.CGImage, scale: withScale, orientation: UIImageOrientation.Up)
     view.backgroundColor = UIColor(patternImage: scaledImg!)
   }
+  
+  static func getUIColorFor(color: NamedColor) -> UIColor {
+    switch(color) {
+      case .Red:
+        return UIColor.redColor()
+      case .Black:
+        return UIColor.blackColor()
+    }
+  }
 }

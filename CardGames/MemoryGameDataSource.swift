@@ -122,7 +122,6 @@ class MemoryGameDataSource: NSObject, UICollectionViewDataSource {
   
   private func cellBgView(withFrame: CGRect) -> UIView {
     var bgView = UIView(frame: withFrame)
-    
     style.applyCardBg(bgView, withScale: 3.0)
     style.applyShade(bgView.layer)
     
@@ -130,15 +129,18 @@ class MemoryGameDataSource: NSObject, UICollectionViewDataSource {
   }
   
   
-  private func cellSelectedBgView(card: TrumpCard, withFrame: CGRect) -> UILabel {
-    var selectedView = UILabel(frame: withFrame)
+  private func cellSelectedBgView(card: TrumpCard, withFrame: CGRect) -> TrumpCardView {
+    let cardAttrs = TrumpCardAttributes(card: card)
+
+    var selectedView = TrumpCardView(frame: withFrame, attrs: cardAttrs)
+//    var selectedView = UILabel(frame: withFrame)
     
-    selectedView.text            = card.label()
-    selectedView.textColor       = card.color()
-    selectedView.textAlignment   = NSTextAlignment.Center
+//    selectedView.text            = card.label()
+//    selectedView.textColor       = Style.getUIColorFor(card.color())
+//    selectedView.textAlignment   = NSTextAlignment.Center
     selectedView.backgroundColor = UIColor.whiteColor()
-    
-    style.applyShade(selectedView.layer, color: style.darkShadeColor, thickness: 1)
+//
+//    style.applyShade(selectedView.layer, color: style.darkShadeColor, thickness: 1)
     
     return selectedView
   }

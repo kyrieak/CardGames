@@ -115,7 +115,7 @@ class MemoryGameStatusView: CardGameStatusView {
   func addCardToListView(attrs: TrumpCardAttributes) {
     var cardFrame = CGRect(origin: cardListView!.getCornerRight(),
       size: cardListView!.cardSize)
-    var cardView = TrumpCardView(attrs: attrs)
+    var cardView = TrumpCardView(frame: cardFrame, attrs: attrs)
     
     addCardViewToList(cardView)
   }

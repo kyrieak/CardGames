@@ -199,13 +199,12 @@ class TrumpCardCollectionDataSource: NSObject, UICollectionViewDataSource {
     var label = UILabel(frame: withFrame)
     
     label.text = card.label()
-    label.textColor = card.color()
+    label.textColor = Style.getUIColorFor(card.color())
     label.textAlignment = NSTextAlignment.Center
     label.backgroundColor = UIColor.whiteColor()
     
     return label
   }
-  
   
   // --- Class Functions ------------------------------------
   
