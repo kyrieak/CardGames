@@ -25,9 +25,9 @@ class TrumpCardViewLayout: NSObject {
     drawArea   = TrumpCardViewLayout.paddedArea(viewRect)
     numPips    = TrumpCardViewLayout.pipDistribution(attrs.rank)
     flankWidth = TrumpCardViewLayout.flankWidthFor(drawArea)
-    pipSize    = TrumpCardViewLayout.pipSizeFor(attrs.suit, width: flankWidth)
+    pipSize    = TrumpCardViewLayout.pipSizeFor(attrs.suit, maxWidth: flankWidth)
     pipArea    = TrumpCardViewLayout.pipAreaRectFor(drawArea)
-    dy         = pipArea.height / CGFloat(max(numPips.outer, numPips.inner))
+    dy         = (pipArea.height - pipSize.height) / CGFloat(max(numPips.outer - 1, numPips.inner - 1))
   }
   
   
@@ -37,9 +37,9 @@ class TrumpCardViewLayout: NSObject {
     drawArea   = TrumpCardViewLayout.paddedArea(viewRect)
     numPips    = TrumpCardViewLayout.pipDistribution(attrs.rank)
     flankWidth = TrumpCardViewLayout.flankWidthFor(drawArea)
-    pipSize    = TrumpCardViewLayout.pipSizeFor(attrs.suit, width: flankWidth)
+    pipSize    = TrumpCardViewLayout.pipSizeFor(attrs.suit, maxWidth: flankWidth)
     pipArea    = TrumpCardViewLayout.pipAreaRectFor(drawArea)
-    dy         = pipArea.height / CGFloat(max(numPips.outer, numPips.inner))
+    dy         = (pipArea.height - pipSize.height) / CGFloat(max(numPips.outer - 1, numPips.inner - 1))
   }
   
   func topPipCenterPoint(column: PipColumn) -> CGPoint {
@@ -69,6 +69,7 @@ class TrumpCardViewLayout: NSObject {
   }
   
   
+  
   // MARK: - Class Methods -
   
   class func paddedArea(rect: CGRect) -> CGRect {
@@ -91,8 +92,17 @@ class TrumpCardViewLayout: NSObject {
   }
   
   
-  class func pipSizeFor(suit: NamedSuit, width: CGFloat) -> CGSize {
-    return CGSize(width: width, height: width)
+  class func pipSizeFor(suit: NamedSuit, maxWidth: CGFloat) -> CGSize {
+    var size: CGSize
+
+    switch (suit) {
+      case .Diamonds:
+        size = CGSize(width: maxWidth / 1.5, height: maxWidth)
+      case .Hearts, .Clubs, .Spades:
+        size = CGSize(width: maxWidth, height: maxWidth)
+    }
+    
+    return size
   }
   
   

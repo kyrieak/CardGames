@@ -131,7 +131,7 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
   
   
   private func getGame(collectionView: UICollectionView) -> SetGame {
-    return (collectionView.dataSource! as SetGameDataSource).game
+    return (collectionView.dataSource! as! SetGameDataSource).game
   }
   
   

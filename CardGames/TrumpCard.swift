@@ -184,5 +184,5 @@ struct TrumpCardAttributes {
   init(rank: Int, suit: NamedSuit) {
     self.rank = rank
     self.suit = suit
-  }
+  }  
 }

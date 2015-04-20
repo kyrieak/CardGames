@@ -28,15 +28,15 @@ class SetGameController: UICollectionViewController {
   }
   
   private func getGame() -> SetGame {
-    return (collectionView!.dataSource! as SetGameDataSource).game
+    return (collectionView!.dataSource! as! SetGameDataSource).game
   }
   
   private func getDelegate() -> SetGameDelegate {
-    return (collectionView!.delegate! as SetGameDelegate)
+    return (collectionView!.delegate! as! SetGameDelegate)
   }
   
   private func getDataSource() -> SetGameDataSource {
-    return (collectionView!.dataSource! as SetGameDataSource)
+    return (collectionView!.dataSource! as! SetGameDataSource)
   }
   
   private func getCurrentGame() -> SetGame {

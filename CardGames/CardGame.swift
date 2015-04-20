@@ -32,7 +32,7 @@ protocol CardGame {
 protocol GameRecorder {
   var gameHistory: [[String]] { get }
 
-  class func recordCategory() -> String
+  static func recordCategory() -> String
 }
 
 

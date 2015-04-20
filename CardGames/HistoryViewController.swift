@@ -43,9 +43,9 @@ class HistoryViewController: UITableViewController, UITableViewDataSource {
       let key = sectionWithIdx(indexPath.section).title
       let count = history[key]!.count
       
-      var cell = tableView.dequeueReusableCellWithIdentifier("status_row", forIndexPath: indexPath) as UITableViewCell
+      var cell = tableView.dequeueReusableCellWithIdentifier("status_row", forIndexPath: indexPath) as! UITableViewCell
       
-      var label = cell.viewWithTag(1) as UILabel
+      var label = cell.viewWithTag(1) as! UILabel
       label.text = history[key]![count - 1 - indexPath.item]
       
       return cell

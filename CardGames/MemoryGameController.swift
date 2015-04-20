@@ -214,11 +214,11 @@ class MemoryGameController: UICollectionViewController, UICollectionViewDelegate
   }
 
   private func getGame() -> MemoryGame {
-    return (collectionView!.dataSource! as MemoryGameDataSource).game
+    return (collectionView!.dataSource! as! MemoryGameDataSource).game
   }
 
   private func getDelegate() -> MemoryGameDelegate {
-    return (collectionView!.delegate! as MemoryGameDelegate)
+    return (collectionView!.delegate! as! MemoryGameDelegate)
   }
   
   func getGameHistory() -> [String] {

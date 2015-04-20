@@ -19,14 +19,14 @@ class TrumpCardCollectionDataSource: NSObject, UICollectionViewDataSource {
 
   let style = Style()
   
-  override init() {
-    cardsInPlay = []
-    cardPairs = Array<[TrumpCard]>()
-    
-    super.init()
-
-    loadNewCardSet()
-  }
+//  override init() {
+//    cardsInPlay = []
+//    cardPairs = Array<[TrumpCard]>()
+//    
+//    super.init()
+//
+//    loadNewCardSet()
+//  }
   
   init(totalViewHeight: Int) {
     cardsInPlay = []
@@ -50,7 +50,7 @@ class TrumpCardCollectionDataSource: NSObject, UICollectionViewDataSource {
       var cards: [TrumpCard] = []
       
       for card in cardSet.allObjects {
-        cards.append(card as TrumpCard)
+        cards.append(card as! TrumpCard)
       }
       
       TrumpCardCollectionDataSource.shuffleCards(&cards)

@@ -113,7 +113,7 @@ class MemoryGameDelegate: NSObject, UICollectionViewDelegate {
   
   
   private func getGame(collectionView: UICollectionView) -> MemoryGame {
-    return (collectionView.dataSource! as MemoryGameDataSource).game
+    return (collectionView.dataSource! as! MemoryGameDataSource).game
   }
   
   

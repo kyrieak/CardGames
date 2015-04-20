@@ -21,7 +21,7 @@ class MainController: UITabBarController, UITabBarControllerDelegate {
   func tabBarController(tabBarController: UITabBarController,
     shouldSelectViewController viewController: UIViewController) -> Bool {
       if (selectedViewController!.isKindOfClass(SetGameController)) {
-        var sgc = selectedViewController as SetGameController
+        var sgc = selectedViewController as! SetGameController
         
         var didPush = pushToHistory("Set", statuses: sgc.getGameHistory())
         
@@ -29,7 +29,7 @@ class MainController: UITabBarController, UITabBarControllerDelegate {
           sgc.clearOldHistory()
         }
       } else if (selectedViewController!.isKindOfClass(MemoryGameController)) {
-        var mgc = selectedViewController as MemoryGameController
+        var mgc = selectedViewController as! MemoryGameController
         
         var didPush = pushToHistory("Memory", statuses: mgc.getGameHistory())
         
