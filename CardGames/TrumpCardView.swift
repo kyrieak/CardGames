@@ -48,10 +48,8 @@ class TrumpCardView: UIView {
     
     var origin = layout.drawArea.origin
     
-//    CGContextSetFillColorWithColor(context, UIColor.purpleColor().CGColor)
-//    var rectPatho = UIBezierPath(rect: CGRect(origin: origin, size: CGSize(width: layout.flankWidth, height: layout.drawArea.size.height)))
-//    rectPatho.fill()
-//    CGContextSetFillColorWithColor(context, suitColor.CGColor)
+    drawColoredRect(context, rect: CGRect(origin: origin, size: CGSize(width: layout.flankWidth, height: layout.drawArea.size.height)),
+                             color: UIColor.purpleColor())
     
     CGContextTranslateCTM(context, origin.x, origin.y)
     CGContextSaveGState(context) // --- Context Saved padding ---
@@ -61,11 +59,9 @@ class TrumpCardView: UIView {
     CGContextTranslateCTM(context, layout.drawArea.width, layout.drawArea.height)
     CGContextRotateCTM(context, CGFloat(M_PI))
 
-//    CGContextSetFillColorWithColor(context, UIColor.purpleColor().CGColor)
-//    rectPatho = UIBezierPath(rect: CGRect(origin: CGPointZero, size: CGSize(width: layout.flankWidth, height: layout.drawArea.size.height)))
-//    rectPatho.fill()
-//    CGContextSetFillColorWithColor(context, suitColor.CGColor)
-
+    drawColoredRect(context, rect: CGRect(origin: CGPointZero, size: CGSize(width: layout.flankWidth, height: layout.drawArea.size.height)),
+      color: UIColor.purpleColor())
+    
     drawFlank(context, flankWidth: layout.flankWidth, pipSize: layout.pipSize)
     CGContextRestoreGState(context) // --- Context Restored padding ---
 
@@ -74,14 +70,20 @@ class TrumpCardView: UIView {
     
     CGContextTranslateCTM(context, origin.x, origin.y)
     
-//    CGContextSetFillColorWithColor(context, UIColor.blueColor().CGColor)
-//    rectPatho = UIBezierPath(rect: CGRect(origin: CGPointZero, size: CGSize(width: layout.pipArea.size.width, height: layout.pipArea.size.height)))
-//    rectPatho.fill()
-//    CGContextSetFillColorWithColor(context, suitColor.CGColor)
+    drawColoredRect(context, rect: CGRect(origin: CGPointZero, size: CGSize(width: layout.pipArea.size.width, height: layout.pipArea.size.height)),
+                             color: UIColor.blueColor())
 
     drawPipArea(context, layout: layout)
     CGContextRestoreGState(context) // --- Context Restored 0 ---
     CGContextRestoreGState(context) // --- Context Restored -1 ---
+  }
+  
+  func drawColoredRect(context: CGContextRef, rect: CGRect, color: UIColor) {
+    var rectPath = UIBezierPath(rect: rect)
+    
+    CGContextSetFillColorWithColor(context, color.CGColor)
+    rectPath.fill()
+    CGContextSetFillColorWithColor(context, suitColor.CGColor)
   }
   
   func drawFlank(context: CGContextRef, flankWidth: CGFloat, pipSize: CGSize) {
@@ -163,14 +165,28 @@ class TrumpCardView: UIView {
   
   func drawHeartPip(centerPoint: CGPoint, pipSize: CGSize) {
     var path = UIBezierPath()
-    let halfW = pipSize.width / 2
-    let halfH = pipSize.height / 2
+    let minY = centerPoint.y - (pipSize.height / 2)
+    let minX = centerPoint.x - (pipSize.width / 2)
     
-    path.moveToPoint(CGPoint(x: centerPoint.x, y: centerPoint.y - halfH))
-    path.addLineToPoint(CGPoint(x: centerPoint.x + halfW, y: centerPoint.y))
-    path.addLineToPoint(CGPoint(x: centerPoint.x, y: centerPoint.y + halfH))
-    path.addLineToPoint(CGPoint(x: centerPoint.x - halfW, y: centerPoint.y))
-    path.addLineToPoint(CGPoint(x: centerPoint.x, y: centerPoint.y - halfH))
+    var heart = Heart(ctrPoint: centerPoint, size: pipSize)
+    var lCurve = heart.getLeftCurve()
+    var rCurve = heart.getRightCurve()
+
+    path.moveToPoint(heart.cuspPoint)
+    
+    for connect in lCurve.connections {
+      path.addCurveToPoint(connect.ep, controlPoint1: connect.cp1, controlPoint2: connect.cp2)
+    }
+    
+    path.closePath()
+    path.fill()
+
+    path.moveToPoint(heart.cuspPoint)
+
+    for connect in rCurve.connections {
+      path.addCurveToPoint(connect.ep, controlPoint1: connect.cp1, controlPoint2: connect.cp2)
+    }
+
     path.closePath()
     path.fill()
   }

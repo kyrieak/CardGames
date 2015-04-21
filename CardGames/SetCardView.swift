@@ -181,8 +181,8 @@ class SetCardView: UIView {
 
     path.moveToPoint(squiggle.startingPoint)
     
-    for arc in squiggle.arcs {
-      path.addCurveToPoint(arc.ep, controlPoint1: arc.cp1, controlPoint2: arc.cp2)
+    for connection in squiggle.connections {
+      path.addCurveToPoint(connection.ep, controlPoint1: connection.cp1, controlPoint2: connection.cp2)
     }
     
     path.closePath()
@@ -209,58 +209,5 @@ class SetCardView: UIView {
     }
     
     path.stroke()
-  }
-}
-
-
-
-struct Squiggle {
-  let startingPoint: CGPoint
-  let arcs: [(cp1: CGPoint, cp2: CGPoint, ep: CGPoint)]
-  
-  init(size: CGSize) {
-    var defin = Squiggle.defineCurves(size)
-    startingPoint = defin.0
-    arcs = defin.1
-  }
-
-  private static func defineCurves(size: CGSize) -> (CGPoint, [(cp1: CGPoint, cp2: CGPoint, ep: CGPoint)]) {
-    let xInc = size.width / 12
-    let yInc = size.height / 6
-    
-    var A, B, C, AT, BT, CT: CGPoint
-
-    A  = CGPoint(x: 0, y: yInc * 5)
-    B  = CGPoint(x: xInc * 4, y: yInc / 2)
-    C  = CGPoint(x: xInc * 8, y: yInc * 2)
-    AT = CGPoint(x: size.width, y: yInc)
-    BT = CGPoint(x: xInc * 8, y: yInc * 5.5)
-    CT = CGPoint(x: xInc * 4, y: yInc * 4)
-
-    var arcB = (cp1: CGPoint(x: 0, y: yInc * 3),
-                cp2: CGPoint(x: xInc * 2, y: yInc),
-                 ep: B)
-    
-    var arcC = (cp1: CGPoint(x: xInc * 6, y: yInc / 2),
-                cp2: CGPoint(x: xInc * 6, y: yInc * 2),
-                 ep: C)
-    
-    var arcAT = (cp1: CGPoint(x: xInc * 10, y: yInc * 2),
-                 cp2: CGPoint(x: xInc * 10, y: yInc),
-                  ep: AT)
-
-    var arcBT = (cp1: CGPoint(x: size.width, y: yInc * 3),
-                 cp2: CGPoint(x: xInc * 10, y: yInc * 5),
-                  ep: BT)
-
-    var arcCT = (cp1: CGPoint(x: xInc * 6, y: yInc * 5.5),
-                 cp2: CGPoint(x: xInc * 6, y: yInc * 4),
-                  ep: CT)
-    
-    var arcA = (cp1: CGPoint(x: xInc * 2, y: yInc * 4),
-                cp2: CGPoint(x: xInc * 2, y: yInc * 5),
-                 ep: A)
-    
-    return (A, [arcB, arcC, arcAT, arcBT, arcCT, arcA])
   }
 }
