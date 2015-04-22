@@ -48,8 +48,8 @@ class TrumpCardView: UIView {
     
     var origin = layout.drawArea.origin
     
-    drawColoredRect(context, rect: CGRect(origin: origin, size: CGSize(width: layout.flankWidth, height: layout.drawArea.size.height)),
-                             color: UIColor.purpleColor())
+//    drawColoredRect(context, rect: CGRect(origin: origin, size: CGSize(width: layout.flankWidth, height: layout.drawArea.size.height)),
+//                             color: UIColor.purpleColor())
     
     CGContextTranslateCTM(context, origin.x, origin.y)
     CGContextSaveGState(context) // --- Context Saved padding ---
@@ -59,8 +59,8 @@ class TrumpCardView: UIView {
     CGContextTranslateCTM(context, layout.drawArea.width, layout.drawArea.height)
     CGContextRotateCTM(context, CGFloat(M_PI))
 
-    drawColoredRect(context, rect: CGRect(origin: CGPointZero, size: CGSize(width: layout.flankWidth, height: layout.drawArea.size.height)),
-      color: UIColor.purpleColor())
+//    drawColoredRect(context, rect: CGRect(origin: CGPointZero, size: CGSize(width: layout.flankWidth, height: layout.drawArea.size.height)),
+//      color: UIColor.purpleColor())
     
     drawFlank(context, flankWidth: layout.flankWidth, pipSize: layout.pipSize)
     CGContextRestoreGState(context) // --- Context Restored padding ---
@@ -70,8 +70,8 @@ class TrumpCardView: UIView {
     
     CGContextTranslateCTM(context, origin.x, origin.y)
     
-    drawColoredRect(context, rect: CGRect(origin: CGPointZero, size: CGSize(width: layout.pipArea.size.width, height: layout.pipArea.size.height)),
-                             color: UIColor.blueColor())
+//    drawColoredRect(context, rect: CGRect(origin: CGPointZero, size: CGSize(width: layout.pipArea.size.width, height: layout.pipArea.size.height)),
+//                             color: UIColor.blueColor())
 
     drawPipArea(context, layout: layout)
     CGContextRestoreGState(context) // --- Context Restored 0 ---
@@ -208,17 +208,35 @@ class TrumpCardView: UIView {
   }
   
   func drawClubPip(centerPoint: CGPoint, pipSize: CGSize) {
-    var path = UIBezierPath()
-    let halfW = pipSize.width / 2
-    let halfH = pipSize.height / 2
+    let club = Club(ctrPoint: centerPoint, size: pipSize)
+    let stem = club.getStem()
+    let leafCtrPoints = club.getLeafCenterPoints()
+
+    for point in leafCtrPoints {
+      var path = UIBezierPath(arcCenter: point, radius: club.r, startAngle: CGFloat(0), endAngle: CGFloat(M_2_PI), clockwise: false)
+      path.closePath()
+      path.fill()
+    }
     
-    path.moveToPoint(CGPoint(x: centerPoint.x, y: centerPoint.y - halfH))
-    path.addLineToPoint(CGPoint(x: centerPoint.x + halfW, y: centerPoint.y))
-    path.addLineToPoint(CGPoint(x: centerPoint.x, y: centerPoint.y + halfH))
-    path.addLineToPoint(CGPoint(x: centerPoint.x - halfW, y: centerPoint.y))
-    path.addLineToPoint(CGPoint(x: centerPoint.x, y: centerPoint.y - halfH))
-    path.closePath()
-    path.fill()
+    let lCurve = stem.getLeftCurve()
+    let rCurve = stem.getRightCurve()
+    
+    for curve in [lCurve, rCurve] {
+      var stemPath = UIBezierPath()
+      
+      stemPath.moveToPoint(curve.startingPoint)
+      
+      for connect in curve.connections {
+        stemPath.addCurveToPoint(connect.ep, controlPoint1: connect.cp1, controlPoint2: connect.cp2)
+      }
+
+      stemPath.addLineToPoint(stem.basePoint)
+      stemPath.closePath()
+      stemPath.fill()
+    }
+    
+    var path = UIBezierPath(rect: club.bounds)
+//    path.fill()
   }
   
   func drawDiamondPip(centerPoint: CGPoint, pipSize: CGSize) {
