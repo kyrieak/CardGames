@@ -128,6 +128,7 @@ struct Squiggle: Shape {
   }
 }
 
+
 struct Heart: Shape {
   var center: CGPoint
   var bounds: CGRect
@@ -194,6 +195,80 @@ struct Heart: Shape {
     return curve
   }
 }
+
+
+struct Spade: Shape {
+  var center: CGPoint
+  var bounds: CGRect
+  var cuspPoint, endPoint: CGPoint
+  private var qtrSize: CGSize
+  
+  init(ctrPoint: CGPoint, size: CGSize) {
+    center = ctrPoint
+    bounds = CGRect(ctrPoint: ctrPoint, size: size)
+    qtrSize = CGSize(width: size.width / 4, height: size.height / 4)
+    
+    cuspPoint = CGPoint(x: ctrPoint.x, y: bounds.midY)
+    endPoint  = CGPoint(x: ctrPoint.x, y: bounds.minY)
+  }
+  
+  func getLeftCurve() -> Curve {
+    var ePoint, cPoint1, cPoint2: CGPoint
+    var curve = Curve(startingPoint: cuspPoint)
+    
+    ePoint  = CGPoint(x: cuspPoint.x - qtrSize.width, y: cuspPoint.y + qtrSize.height)
+    cPoint1 = ePoint
+    cPoint2 = ePoint
+    
+    curve.addConnection(CurveConnector(ep: ePoint, cp1: cPoint1, cp2: cPoint2))
+    
+    ePoint  = CGPoint(x: ePoint.x - qtrSize.width, y: cuspPoint.y)
+    cPoint1 = ePoint
+    cPoint2 = ePoint
+    
+    curve.addConnection(CurveConnector(ep: ePoint, cp1: cPoint1, cp2: cPoint2))
+    
+    ePoint  = endPoint
+    cPoint1 = ePoint
+    cPoint2 = ePoint
+    
+    curve.addConnection(CurveConnector(ep: ePoint, cp1: cPoint1, cp2: cPoint2))
+    
+    return curve
+  }
+
+  func getRightCurve() -> Curve {
+    var ePoint, cPoint1, cPoint2: CGPoint
+    var curve = Curve(startingPoint: cuspPoint)
+    
+    ePoint  = CGPoint(x: cuspPoint.x + qtrSize.width, y: cuspPoint.y + qtrSize.height)
+    cPoint1 = ePoint
+    cPoint2 = ePoint
+    
+    curve.addConnection(CurveConnector(ep: ePoint, cp1: cPoint1, cp2: cPoint2))
+    
+    ePoint  = CGPoint(x: ePoint.x + qtrSize.width, y: cuspPoint.y)
+    cPoint1 = ePoint
+    cPoint2 = ePoint
+    
+    curve.addConnection(CurveConnector(ep: ePoint, cp1: cPoint1, cp2: cPoint2))
+    
+    ePoint  = endPoint
+    cPoint1 = ePoint
+    cPoint2 = ePoint
+    
+    curve.addConnection(CurveConnector(ep: ePoint, cp1: cPoint1, cp2: cPoint2))
+    
+    return curve
+  }
+
+  func getStem() -> Stem {
+    let bPoint = CGPoint(x: center.x, y: bounds.maxY)
+    let bWidth = bounds.size.width / 4.5
+    return Stem(basePoint: bPoint, baseWidth: bWidth, height: bWidth * 3)
+  }
+}
+
 
 struct Club: Shape {
   var center: CGPoint
@@ -270,3 +345,4 @@ struct Stem {
     return rCurve
   }
 }
+

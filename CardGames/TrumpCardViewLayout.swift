@@ -54,12 +54,14 @@ class TrumpCardViewLayout: NSObject {
       case .Middle:
         posX = colWidth * 1.5
         
-        if (numPips.outer > 0) {
-          if ((numPips.inner == 1) && ((numPips.outer % 2) == 0)) {
-            posY = pipArea.height * 0.5
+        if (numPips.inner == 1) {
+          if ((numPips.outer % 2) == 0) {
+            posY = pipArea.height / 2
           } else {
             posY += (dy * 0.5)
           }
+        } else if (numPips.outer > 1) {
+          posY += (dy * 0.5)
         }
       case .Right:
         posX = colWidth * 2.5
