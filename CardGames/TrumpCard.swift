@@ -130,6 +130,10 @@ class TrumpCard:Card, Comparable {
     }
   }
   
+  func attributes() -> TrumpCardAttributes {
+    return TrumpCardAttributes(rank: self.rank, suit: self.suit)
+  }
+  
   class func standardSet() -> NSDictionary {
     var obj = [NSMutableSet]()
     var keys = [Int]()

@@ -145,23 +145,27 @@ struct Heart: Shape {
   }
   
   func getLeftCurve() -> Curve {
-    var ePoint, cPoint1, cPoint2: CGPoint
+    var sPoint, ePoint, cPoint1, cPoint2: CGPoint
     var curve = Curve(startingPoint: cuspPoint)
+    let dx = qtrSize.width / 2
+    let dy = qtrSize.height / 2
     
     ePoint  = CGPoint(x: cuspPoint.x - qtrSize.width, y: cuspPoint.y - qtrSize.height)
-    cPoint1 = ePoint
-    cPoint2 = ePoint
-    
+    cPoint1 = CGPoint(x: cuspPoint.x, y: cuspPoint.y - dy)
+    cPoint2 = CGPoint(x: ePoint.x + dx, y: ePoint.y)
+
     curve.addConnection(CurveConnector(ep: ePoint, cp1: cPoint1, cp2: cPoint2))
     
+    sPoint  = ePoint
     ePoint  = CGPoint(x: ePoint.x - qtrSize.width, y: cuspPoint.y)
-    cPoint1 = ePoint
-    cPoint2 = ePoint
+    cPoint1 = CGPoint(x: sPoint.x - dx, y: sPoint.y)
+    cPoint2 = CGPoint(x: ePoint.x, y: ePoint.y - dy)
     
     curve.addConnection(CurveConnector(ep: ePoint, cp1: cPoint1, cp2: cPoint2))
-    
+
+    sPoint = ePoint
     ePoint  = endPoint
-    cPoint1 = ePoint
+    cPoint1 = CGPoint(x: sPoint.x, y: sPoint.y + qtrSize.height)
     cPoint2 = ePoint
     
     curve.addConnection(CurveConnector(ep: ePoint, cp1: cPoint1, cp2: cPoint2))
@@ -171,23 +175,27 @@ struct Heart: Shape {
   
   
   func getRightCurve() -> Curve {
-    var ePoint, cPoint1, cPoint2: CGPoint
+    var sPoint, ePoint, cPoint1, cPoint2: CGPoint
     var curve = Curve(startingPoint: cuspPoint)
+    let dx = qtrSize.width / 2
+    let dy = qtrSize.height / 2
     
     ePoint  = CGPoint(x: cuspPoint.x + qtrSize.width, y: cuspPoint.y - qtrSize.height)
-    cPoint1 = ePoint
-    cPoint2 = ePoint
+    cPoint1 = CGPoint(x: cuspPoint.x, y: cuspPoint.y - dy)
+    cPoint2 = CGPoint(x: ePoint.x - dx, y: ePoint.y)
     
     curve.addConnection(CurveConnector(ep: ePoint, cp1: cPoint1, cp2: cPoint2))
     
+    sPoint = ePoint
     ePoint  = CGPoint(x: ePoint.x + qtrSize.width, y: cuspPoint.y)
-    cPoint1 = ePoint
-    cPoint2 = ePoint
+    cPoint1 = CGPoint(x: sPoint.x + dx, y: sPoint.y)
+    cPoint2 = CGPoint(x: ePoint.x, y: ePoint.y - dy)
     
     curve.addConnection(CurveConnector(ep: ePoint, cp1: cPoint1, cp2: cPoint2))
     
+    sPoint = ePoint
     ePoint  = endPoint
-    cPoint1 = ePoint
+    cPoint1 = CGPoint(x: sPoint.x, y: sPoint.y + qtrSize.height)
     cPoint2 = ePoint
     
     curve.addConnection(CurveConnector(ep: ePoint, cp1: cPoint1, cp2: cPoint2))
