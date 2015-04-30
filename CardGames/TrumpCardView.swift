@@ -46,6 +46,10 @@ class TrumpCardView: UIView {
     cardBack.frame = CGRect(origin: CGPointZero, size: self.frame.size)
     style.applyCardBg(cardBack)
     
+    if (cardAttrs.faceUp) {
+      cardBack.hidden = true
+    }
+    
     self.addSubview(cardBack)
   }
   
@@ -85,7 +89,7 @@ class TrumpCardView: UIView {
   override func drawRect(rect: CGRect) {
     let layout = TrumpCardViewLayout(viewRect: rect, attrs: cardAttrs)
     let context = UIGraphicsGetCurrentContext()
-
+    
     CGContextSaveGState(context) // --- Context Saved -1 ---
     
     setupContext(context)
@@ -133,9 +137,9 @@ class TrumpCardView: UIView {
   }
   
   func drawFlank(context: CGContextRef, flankWidth: CGFloat, pipSize: CGSize) {
-    var rankText = addTextAttrs("\(cardAttrs.rank)")
+    var rankText = addTextAttrs(rankString(), fontSize: pipSize.height)
     var posX, posY: CGFloat
-    
+
     posX = (flankWidth - rankText.size().width) / 2
 
     rankText.drawAtPoint(CGPoint(x: posX, y: 0))
@@ -145,8 +149,8 @@ class TrumpCardView: UIView {
     drawPip(CGPoint(x: flankWidth / 2, y: posY), pipSize: pipSize)
   }
   
-  func addTextAttrs(str: String) -> NSMutableAttributedString {
-    var font = CTFontCreateWithName("Baskerville", 0.0, nil)
+  func addTextAttrs(str: String, fontSize: CGFloat) -> NSMutableAttributedString {
+    var font = CTFontCreateWithName("Baskerville", fontSize, nil)
     
     var attrs: [NSObject: AnyObject] = [NSFontAttributeName: font,
       NSForegroundColorAttributeName: suitColor]
@@ -363,4 +367,20 @@ class TrumpCardView: UIView {
     path.fill()
   }
   
+  private func rankString() -> String {
+    let rank = cardAttrs.rank
+    
+    switch(rank) {
+      case 1:
+        return "A"
+      case 11:
+        return "J"
+      case 12:
+        return "Q"
+      case 13:
+        return "K"
+      default:
+        return "\(rank)"
+    }
+  }
 }
