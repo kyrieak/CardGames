@@ -10,43 +10,77 @@ import UIKit
 import QuartzCore
 
 class CardFlipController: UIViewController {
-  
+  @IBOutlet var cardView: TrumpCardView!
   @IBOutlet var discardsLabel: UILabel!
+
   let style = Style()
+
+//  var dataSource = TrumpDeckDataSource()
+  
+  private var topCard: TrumpCard? {
+    if (drawPile.isEmpty()) {
+      return nil
+    } else {
+      return drawPile.cards[0]
+    }
+  }
+  
+  private var drawPile    = TrumpCard.standardDeck()
+  private var discardPile = Deck<TrumpCard>()
+
+  
+  required init(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+
+    drawPile.shuffle()
+  }
+  
+  
+  @IBAction func tapCardAction(sender: UITapGestureRecognizer) {
+    if (topCard != nil) {
+      if (topCard!.isFaceUp()) {
+        discardTopCard()
+      } else {
+        flipTopCard()
+      }
+    }
+  }
+  
+  func flipTopCard() {
+    if (topCard != nil) {
+      topCard!.flip()
+      cardView.flipCard()
+      // cardView set needs display
+    }
+  }
+  
+  func discardTopCard() {
+    if (topCard != nil) {
+      drawPile.removeTopCard()
+      
+      if (topCard != nil) {
+        cardView.displayCard(topCard!.attributes())
+      }
+    }
+  }
 
   override func viewDidLoad() {
     super.viewDidLoad()
-//    var pageButton = self.view.viewWithTag(1)!
-//    
+    
+    if (topCard != nil) {
+      cardView.displayCard(topCard!.attributes())
+    }
+    
     self.view.layer.insertSublayer(makeHeaderLayer(), atIndex: 0)
     style.applyShade(discardsLabel.layer)
-//    style.applyShade(pageButton.layer, color: style.liteShadeColor, thickness: 1)
-    // Do any additional setup after loading the view, typically from a nib.
   }
 
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//      println("sender")
-//      println("\(sender)")
-    
-    if var vc = sender as? CardFlipController {
-      if var dvc = segue.destinationViewController as? CardViewController {
-        dvc.parentVC = vc
-      }
-    }
-//    
-//    println("segue dest")
-//    println("\(segue.destinationViewController)")
-  }
-  
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
-  }
 
   func updateDiscardLabel<T: Card>(discard: Deck<T>) {
     discardsLabel.drawTextInRect(UIEdgeInsetsInsetRect(discardsLabel.frame, UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)))
-    self.discardsLabel.text = "Discards: \(discard.cards.count)"
+    discardsLabel.text = "Discards: \(discard.cards.count)"
   }
+  
   
   private func makeHeaderLayer() -> CALayer {
     var headerLayer = CALayer()
@@ -58,6 +92,7 @@ class CardFlipController: UIViewController {
     
     return headerLayer
   }
+  
   
   private func makeFooterLayer() -> CALayer {
     var footerLayer = CALayer()

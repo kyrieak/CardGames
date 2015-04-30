@@ -11,7 +11,10 @@ import UIKit
 
 class TrumpCardView: UIView {
   private var cardAttrs: TrumpCardAttributes
+  var cardBack = UIView(frame: CGRectZero)
 
+  let style = Style()
+  
   var suitColor: UIColor {
     switch (cardAttrs.suit) {
       case .Diamonds, .Hearts:
@@ -25,25 +28,68 @@ class TrumpCardView: UIView {
     cardAttrs = attrs
 
     super.init(frame: frame)
+
+    style.applyShade(self.layer, color: style.liteShadeColor, thickness: 1)
+    setupCardBackView()
   }
   
   required init(coder aDecoder: NSCoder) {
-    cardAttrs = TrumpCardAttributes(rank: 1, suit: NamedSuit.Hearts)
+    cardAttrs = TrumpCardAttributes(rank: 1, suit: NamedSuit.Hearts, faceUp: false)
 
     super.init(coder: aDecoder)
+    
+    style.applyShade(self.layer, color: style.darkShadeColor, thickness: 1)
+    setupCardBackView()
   }
   
-  override func drawRect(rect: CGRect) {
-    let layout = TrumpCardViewLayout(viewRect: rect, attrs: cardAttrs)
+  private func setupCardBackView() {
+    cardBack.frame = CGRect(origin: CGPointZero, size: self.frame.size)
+    style.applyCardBg(cardBack)
     
-    let context = UIGraphicsGetCurrentContext()
-    CGContextSaveGState(context) // --- Context Saved -1 ---
-
+    self.addSubview(cardBack)
+  }
+  
+  private func setupContext(context: CGContextRef) {
     let color = suitColor.CGColor
     
     CGContextSetLineWidth(context, 2.0)
     CGContextSetStrokeColorWithColor(context, color)
     CGContextSetFillColorWithColor(context, color)
+  }
+  
+  
+  func flipCard() {
+    cardAttrs.faceUp = !cardAttrs.faceUp
+
+    if (cardAttrs.faceUp) {
+      cardBack.hidden = true
+    } else {
+      cardBack.hidden = false
+    }
+  }
+
+  
+  func displayCard(attrs: TrumpCardAttributes) {
+    cardAttrs = attrs
+
+    if (cardAttrs.faceUp) {
+      cardBack.hidden = true
+    } else {
+      cardBack.hidden = false
+    }
+    
+    self.setNeedsDisplay()
+  }
+  
+  
+  override func drawRect(rect: CGRect) {
+    let layout = TrumpCardViewLayout(viewRect: rect, attrs: cardAttrs)
+    let context = UIGraphicsGetCurrentContext()
+
+    CGContextSaveGState(context) // --- Context Saved -1 ---
+    
+    setupContext(context)
+    
     CGContextSaveGState(context) // --- Context Saved 0 ---
     
     var offsetOrigin = layout.drawArea.origin
@@ -54,12 +100,10 @@ class TrumpCardView: UIView {
     
     offsetOrigin = CGPoint(x: layout.drawArea.maxX, y: layout.drawArea.maxY)
     
-    drawFromOffsetOrigin(context,
-                         offset: offsetOrigin,
-                         drawFunc: {
-                           CGContextRotateCTM(context, CGFloat(M_PI))
-                           self.drawFlank(context, flankWidth: layout.flankWidth, pipSize: layout.pipSize)
-                         })
+    drawFromOffsetOrigin(context, offset: offsetOrigin, drawFunc: {
+      CGContextRotateCTM(context, CGFloat(M_PI))
+      self.drawFlank(context, flankWidth: layout.flankWidth, pipSize: layout.pipSize)
+    })
     
     offsetOrigin = layout.pipArea.origin
     

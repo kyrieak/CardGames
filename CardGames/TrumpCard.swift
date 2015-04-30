@@ -131,7 +131,7 @@ class TrumpCard:Card, Comparable {
   }
   
   func attributes() -> TrumpCardAttributes {
-    return TrumpCardAttributes(rank: self.rank, suit: self.suit)
+    return TrumpCardAttributes(card: self)
   }
   
   class func standardSet() -> NSDictionary {
@@ -179,14 +179,17 @@ func <(lhs:TrumpCard, rhs:TrumpCard) -> Bool {
 struct TrumpCardAttributes {
   let rank: Int
   let suit: NamedSuit
+  var faceUp: Bool
   
   init(card: TrumpCard) {
-    self.rank = card.rank
-    self.suit = card.suit
+    self.rank   = card.rank
+    self.suit   = card.suit
+    self.faceUp = card.faceUp
   }
   
-  init(rank: Int, suit: NamedSuit) {
-    self.rank = rank
-    self.suit = suit
-  }  
+  init(rank: Int, suit: NamedSuit, faceUp: Bool) {
+    self.rank   = rank
+    self.suit   = suit
+    self.faceUp = faceUp
+  }
 }

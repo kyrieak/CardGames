@@ -36,6 +36,7 @@
 		34BCFC3F1AC50DD8005A4840 /* CardGameStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BCFC3E1AC50DD8005A4840 /* CardGameStatusView.swift */; };
 		34BCFC411AC51217005A4840 /* TrumpCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BCFC401AC51217005A4840 /* TrumpCardView.swift */; };
 		34CC1E561ABCC83D005B2CD1 /* SetCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CC1E551ABCC83D005B2CD1 /* SetCardView.swift */; };
+		34E450001AF024B000993692 /* CardViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E44FFF1AF024B000993692 /* CardViewDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,7 @@
 		34BCFC3E1AC50DD8005A4840 /* CardGameStatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardGameStatusView.swift; sourceTree = "<group>"; };
 		34BCFC401AC51217005A4840 /* TrumpCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrumpCardView.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		34CC1E551ABCC83D005B2CD1 /* SetCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetCardView.swift; sourceTree = "<group>"; };
+		34E44FFF1AF024B000993692 /* CardViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardViewDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 				34005EF11A4FC8DD00BDFD0F /* Models */,
 				34005ED31A4FACDB00BDFD0F /* Main.storyboard */,
 				34CC1E571ABCC844005B2CD1 /* Views */,
+				34E44FFF1AF024B000993692 /* CardViewDelegate.swift */,
 				348472AF1AAE808C00A07AE7 /* MemoryGameDelegate.swift */,
 				342885761AA7FC640003AC75 /* MemoryGameDataSource.swift */,
 				345695401A9FB4510076FD39 /* SetGameDelegate.swift */,
@@ -316,6 +319,7 @@
 				34BCFC3F1AC50DD8005A4840 /* CardGameStatusView.swift in Sources */,
 				34005EF51A4FC91500BDFD0F /* Card.swift in Sources */,
 				34005ED01A4FACDA00BDFD0F /* AppDelegate.swift in Sources */,
+				34E450001AF024B000993692 /* CardViewDelegate.swift in Sources */,
 				34005EF01A4FC5BC00BDFD0F /* CardViewController.swift in Sources */,
 				3460E1121A7B4DF0000FD1EB /* MemoryGame.swift in Sources */,
 				348FF6411AA1658B0041C5C6 /* SetGameDataSource.swift in Sources */,
