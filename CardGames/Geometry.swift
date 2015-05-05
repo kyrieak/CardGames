@@ -209,29 +209,29 @@ struct Spade: Shape {
   var center: CGPoint
   var bounds: CGRect
   var cuspPoint, endPoint: CGPoint
-  private var thirdSize: CGSize
+  private var qtrSize: CGSize
   private var headBounds: CGRect
   
   init(ctrPoint: CGPoint, size: CGSize) {
     center = ctrPoint
     bounds = CGRect(ctrPoint: ctrPoint, size: size)
     headBounds = Spade.getHeadBounds(bounds)
-    thirdSize = CGSize(width: headBounds.width / 3, height: headBounds.height / 3)
-    
-    cuspPoint = CGPoint(x: headBounds.midX, y: headBounds.maxY - thirdSize.height)
+    qtrSize = CGSize(width: headBounds.width / 4, height: headBounds.height / 4)
+    cuspPoint = CGPoint(x: headBounds.midX, y: headBounds.maxY - qtrSize.height)
     endPoint  = CGPoint(x: headBounds.midX, y: headBounds.minY)
   }
   
   func getLeftCurve() -> Curve {
     var ePoint, cPoint1, cPoint2: CGPoint
     var curve = Curve(startingPoint: cuspPoint)
-    let dx = thirdSize.width / 2
-    let dy = thirdSize.height / 2
+    
+    let dx = qtrSize.width / 2
+    let dy = qtrSize.height / 2
     
     cPoint1 = CGPoint(x: cuspPoint.x,
-                      y: cuspPoint.y + dy)
-    ePoint  = CGPoint(x: cuspPoint.x - thirdSize.width,
-                      y: cuspPoint.y + thirdSize.height)
+                      y: cuspPoint.y)
+    ePoint  = CGPoint(x: cuspPoint.x - qtrSize.width,
+                      y: cuspPoint.y + qtrSize.height)
     cPoint2 = CGPoint(x: ePoint.x + dx,
                       y: ePoint.y)
     
@@ -239,7 +239,7 @@ struct Spade: Shape {
     
     cPoint1 = CGPoint(x: ePoint.x - dx,
                       y: ePoint.y)
-    ePoint  = CGPoint(x: ePoint.x - thirdSize.width,
+    ePoint  = CGPoint(x: ePoint.x - qtrSize.width,
                       y: cuspPoint.y)
     cPoint2 = CGPoint(x: ePoint.x,
                       y: ePoint.y + dy)
@@ -247,7 +247,7 @@ struct Spade: Shape {
     curve.addConnection(CurveConnector(ep: ePoint, cp1: cPoint1, cp2: cPoint2))
     
     cPoint1 = CGPoint(x: ePoint.x,
-                      y: ePoint.y - dy)
+                      y: ePoint.y - dy - dy)
     ePoint  = endPoint
     cPoint2 = CGPoint(x: endPoint.x,
                       y: endPoint.y + dy)
@@ -260,12 +260,12 @@ struct Spade: Shape {
   func getRightCurve() -> Curve {
     var ePoint, cPoint1, cPoint2: CGPoint
     var curve = Curve(startingPoint: cuspPoint)
-    let dx = thirdSize.width / 2
-    let dy = thirdSize.height / 2
+    let dx = qtrSize.width / 2
+    let dy = qtrSize.height / 2
 
-    cPoint1 = CGPoint(x: cuspPoint.x, y: cuspPoint.y + dy)
-    ePoint  = CGPoint(x: cuspPoint.x + thirdSize.width,
-                      y: cuspPoint.y + thirdSize.height)
+    cPoint1 = CGPoint(x: cuspPoint.x, y: cuspPoint.y)
+    ePoint  = CGPoint(x: cuspPoint.x + qtrSize.width,
+                      y: cuspPoint.y + qtrSize.height)
     cPoint2 = CGPoint(x: ePoint.x - dx,
                       y: ePoint.y)
     
@@ -274,7 +274,7 @@ struct Spade: Shape {
     
     cPoint1 = CGPoint(x: ePoint.x + dx,
                       y: ePoint.y)
-    ePoint  = CGPoint(x: ePoint.x + thirdSize.width,
+    ePoint  = CGPoint(x: ePoint.x + qtrSize.width,
                       y: cuspPoint.y)
     cPoint2 = CGPoint(x: ePoint.x,
                       y: ePoint.y + dy)
@@ -282,9 +282,11 @@ struct Spade: Shape {
     curve.addConnection(CurveConnector(ep: ePoint, cp1: cPoint1, cp2: cPoint2))
     
     
-    cPoint1 = CGPoint(x: ePoint.x, y: ePoint.y - dy)
+    cPoint1 = CGPoint(x: ePoint.x,
+                      y: ePoint.y - dy - dy)
     ePoint  = endPoint
-    cPoint2 = CGPoint(x: endPoint.x, y: endPoint.y + dy)
+    cPoint2 = CGPoint(x: endPoint.x,
+                      y: endPoint.y + dy)
     
     curve.addConnection(CurveConnector(ep: ePoint, cp1: cPoint1, cp2: cPoint2))
     
@@ -294,16 +296,15 @@ struct Spade: Shape {
   func getStem() -> Stem {
     let bPoint = CGPoint(x: center.x, y: bounds.maxY)
     let bWidth = bounds.size.width / 4.5
-    return Stem(basePoint: bPoint, baseWidth: bWidth, height: bWidth * 3)
+    return Stem(basePoint: bPoint, baseWidth: bWidth, height: bWidth * 4)
   }
   
   static func getHeadBounds(bounds: CGRect) -> CGRect {
     let d = min(bounds.width, bounds.height)
-    let insetX = d * 0.2
-    let insetY = d * 0.1
+    let inset = d * 0.1
     
-    var hBounds = CGRectInset(bounds, insetX, insetY)
-    hBounds.origin.y -= insetY
+    var hBounds = CGRectInset(bounds, inset, inset)
+    hBounds.origin.y -= inset
 
     return hBounds
   }
