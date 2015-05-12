@@ -15,10 +15,12 @@ struct Style {
   let darkShadeColor = UIColor(white: 0.4, alpha: 0.2).CGColor
   let cardBgImage = UIImage(named: "card_back")!
   let cardBgPattern = UIColor(patternImage: UIImage(named: "card_back")!)
-  let medGreenColor = UIColor(red: 0.49, green: 0.66, blue: 0.51, alpha: 0.35).CGColor
+  let medGreenColor = Style.rgbToUIColor(205, g: 225 , b: 208)
+//  let medGreenColor = UIColor(red: 0.49, green: 0.66, blue: 0.51, alpha: 0.35).CGColor
   let medBrownColor = UIColor(red: 0.6, green: 0.41, blue: 0.37, alpha: 0.36).CGColor
-  
   func applyShade(layer: CALayer) {
+    NSLog("here-=-------------------------")
+    NSLog("\(medGreenColor)")
     layer.borderColor = medShadeColor
     layer.borderWidth = 2
   }
@@ -44,5 +46,11 @@ struct Style {
       case .Black:
         return UIColor.blackColor()
     }
+  }
+  
+  static func rgbToUIColor(r: Int, g: Int, b: Int) -> UIColor {
+    let max = CGFloat(255)
+    
+    return UIColor(red: (CGFloat(r) / max), green: (CGFloat(g) / max), blue: (CGFloat(b) / max), alpha: CGFloat(2))
   }
 }

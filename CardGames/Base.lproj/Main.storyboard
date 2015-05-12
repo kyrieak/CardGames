@@ -12,8 +12,6 @@
             <objects>
                 <tabBarController id="doC-lR-4Eg" customClass="MainController" customModule="CardGames" customModuleProvider="target" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="568"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="AdS-di-ELC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -28,7 +26,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fHe-dn-LDM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="425" y="-175"/>
+            <point key="canvasLocation" x="-465" y="-364.5"/>
         </scene>
         <!--Card Game-->
         <scene sceneID="tne-QT-ifu">
@@ -39,17 +37,11 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="568" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flip-the-Card" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PeB-gj-M9y">
-                                <rect key="frame" x="50" y="51" width="221" height="40"/>
-                                <fontDescription key="fontDescription" name="Palatino-BoldItalic" family="Palatino" pointSize="36"/>
-                                <color key="textColor" red="0.64792129269999998" green="0.75111607140000003" blue="0.65828785040000004" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="50" restorationIdentifier="discardsLabel" text="   Discards: 0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Htl-jd-ATm">
-                                <rect key="frame" x="0.0" y="469" width="320" height="50"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="50" restorationIdentifier="discardsLabel" text="   Discards: 0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Htl-jd-ATm">
+                                <rect key="frame" x="0.0" y="469" width="600" height="50"/>
                                 <color key="backgroundColor" red="0.59999999999999998" green="0.41176470590000003" blue="0.37254901959999998" alpha="0.35999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="thV-WK-p4k"/>
@@ -58,9 +50,9 @@
                                 <color key="textColor" red="0.067340061069999999" green="0.25241810079999999" blue="0.1519812495" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nuw-oV-cUu" customClass="TrumpCardView" customModule="CardGames" customModuleProvider="target">
-                                <rect key="frame" x="40" y="99" width="240" height="360"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nuw-oV-cUu" customClass="TrumpCardView" customModule="CardGames" customModuleProvider="target">
+                                <rect key="frame" x="180" y="99" width="240" height="360"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="nuw-oV-cUu" secondAttribute="height" multiplier="2:3" id="Aa8-F7-45a"/>
@@ -70,24 +62,64 @@
                                     <outletCollection property="gestureRecognizers" destination="81d-DD-yEv" appends="YES" id="BTE-HV-jkb"/>
                                 </connections>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Flip-the-Card" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PeB-gj-M9y">
+                                <rect key="frame" x="190" y="51" width="221" height="40"/>
+                                <color key="backgroundColor" red="0.80392156862745101" green="0.88235294117647056" blue="0.81568627450980391" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="130" id="GBe-8t-97u"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Palatino-BoldItalic" family="Palatino" pointSize="36"/>
+                                <color key="textColor" red="0.60784313729999995" green="0.73333333329999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="GBe-8t-97u"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="GBe-8t-97u"/>
+                                    </mask>
+                                </variation>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.92941176469999998" green="0.96947297489999995" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="nuw-oV-cUu" secondAttribute="centerX" id="5WY-x8-Rtd"/>
-                            <constraint firstAttribute="centerX" secondItem="PeB-gj-M9y" secondAttribute="centerX" constant="-0.5" id="67C-u9-Jnn"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Htl-jd-ATm" secondAttribute="bottom" id="6io-Ab-uZh"/>
+                            <constraint firstAttribute="centerX" secondItem="PeB-gj-M9y" secondAttribute="centerX" constant="-0.5" id="67C-u9-Jnn">
+                                <variation key="widthClass=compact" constant="0.0"/>
+                            </constraint>
+                            <constraint firstItem="PeB-gj-M9y" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="FiF-ek-aoq">
+                                <variation key="widthClass=compact" constant="-20"/>
+                            </constraint>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Htl-jd-ATm" secondAttribute="bottom" id="Vbg-Ma-7Kn"/>
                             <constraint firstAttribute="centerX" secondItem="Htl-jd-ATm" secondAttribute="centerX" id="VwX-gP-Ndl"/>
                             <constraint firstItem="Htl-jd-ATm" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="aVj-je-Y4z"/>
-                            <constraint firstItem="PeB-gj-M9y" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="31" id="fZ5-Mj-IS5"/>
-                            <constraint firstItem="Htl-jd-ATm" firstAttribute="top" secondItem="nuw-oV-cUu" secondAttribute="bottom" constant="10" id="v8N-7w-L10"/>
+                            <constraint firstAttribute="width" secondItem="PeB-gj-M9y" secondAttribute="width" id="fmE-Vg-Yji"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="nuw-oV-cUu" secondAttribute="bottom" constant="58" id="xZE-R2-22F"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="FiF-ek-aoq"/>
+                                <exclude reference="fmE-Vg-Yji"/>
+                                <exclude reference="Vbg-Ma-7Kn"/>
+                                <exclude reference="xZE-R2-22F"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="constraints">
+                                <include reference="FiF-ek-aoq"/>
+                                <include reference="fmE-Vg-Yji"/>
+                                <include reference="Vbg-Ma-7Kn"/>
+                                <include reference="xZE-R2-22F"/>
+                            </mask>
+                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Card Flipper" image="hearts" id="gTx-NY-QrS"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="568"/>
                     <connections>
                         <outlet property="cardView" destination="nuw-oV-cUu" id="Xrm-Fs-I6b"/>
                         <outlet property="discardsLabel" destination="Htl-jd-ATm" id="FX7-R7-KC6"/>
+                        <outlet property="headerView" destination="PeB-gj-M9y" id="PUO-9U-GDy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -97,14 +129,14 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="425" y="789"/>
+            <point key="canvasLocation" x="-465" y="355"/>
         </scene>
         <!--Set-->
         <scene sceneID="4V2-So-ti6">
             <objects>
                 <collectionViewController title="Set" id="rOu-dJ-arH" customClass="SetGameController" customModule="CardGames" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="6r9-mS-7V6">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.92941176469999998" green="0.96947297489999995" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="6" minimumInteritemSpacing="6" id="Zqj-Yx-y0F">
@@ -125,7 +157,7 @@
                             </collectionViewCell>
                         </cells>
                         <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="game_header" id="XG1-eu-Ip1">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="130"/>
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="130"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M4W-43-oK8">
@@ -142,13 +174,13 @@
                                         <action selector="startNewRound:" destination="rOu-dJ-arH" eventType="touchUpInside" id="6t2-F8-doY"/>
                                     </connections>
                                 </button>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UV7-dP-P8T">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Set" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UV7-dP-P8T">
                                     <rect key="frame" x="178" y="22" width="134" height="40"/>
                                     <fontDescription key="fontDescription" name="Palatino-BoldItalic" family="Palatino" pointSize="36"/>
                                     <color key="textColor" red="0.64792129269999998" green="0.75111607140000003" blue="0.65828785040000004" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uEa-ms-hzm">
+                                <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uEa-ms-hzm">
                                     <rect key="frame" x="146" y="101" width="166" height="21"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="166" id="iEN-iR-BO8"/>
@@ -157,7 +189,7 @@
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pEd-SX-2IW">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Score:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pEd-SX-2IW">
                                     <rect key="frame" x="88" y="101" width="50" height="21"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="21" id="79s-um-odq"/>
@@ -182,10 +214,10 @@
                             </constraints>
                         </collectionReusableView>
                         <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="game_status" id="hBO-S8-O9S">
-                            <rect key="frame" x="0.0" y="250" width="320" height="50"/>
+                            <rect key="frame" x="0.0" y="250" width="600" height="50"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
-                                <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FOE-ZY-hxt" customClass="SetGameStatusView" customModule="CardGames" customModuleProvider="target">
+                                <view tag="1" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FOE-ZY-hxt" customClass="SetGameStatusView" customModule="CardGames" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                     <color key="backgroundColor" red="0.79708167989417988" green="0.75889349234764281" blue="0.70999322936110598" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
@@ -205,21 +237,19 @@
                         </connections>
                     </collectionView>
                     <tabBarItem key="tabBarItem" title="Set" image="diamonds" id="mj4-D8-vRS"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="568"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1OB-yE-IrA" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <customObject id="2hR-Ha-jX1" customClass="SetGameDataSource" customModule="CardGames" customModuleProvider="target"/>
                 <customObject id="Icw-7o-DtZ" customClass="SetGameDelegate" customModule="CardGames" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="883" y="163"/>
+            <point key="canvasLocation" x="378" y="135.75"/>
         </scene>
         <!--HistoryViewController-->
         <scene sceneID="g3J-7t-ISO">
             <objects>
                 <tableViewController title="HistoryViewController" id="hLr-oa-hKP" customClass="HistoryViewController" customModule="CardGames" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="cQB-iw-69O">
-                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
@@ -272,19 +302,17 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="History" image="royal" id="2Ly-nt-6nL"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="568"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a97-M5-fSk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1437" y="-175"/>
+            <point key="canvasLocation" x="1071" y="-394.5"/>
         </scene>
         <!--MemoryGameController-->
         <scene sceneID="jsd-L8-jqu">
             <objects>
                 <collectionViewController title="MemoryGameController" id="I9X-cb-r4T" customClass="MemoryGameController" customModule="CardGames" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="568" indicatorStyle="white" dataMode="prototypes" id="ORX-ms-dHc">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.92941176470588238" green="0.9694729749417248" blue="0.92941176470588238" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="6" minimumInteritemSpacing="0.0" id="rMa-m8-GXs">
@@ -306,7 +334,7 @@
                             </collectionViewCell>
                         </cells>
                         <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="-6" contentMode="scaleAspectFit" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="115" reuseIdentifier="game_header" id="VBp-Zo-hM2">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="130"/>
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="130"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dC3-Ba-7CU">
@@ -322,19 +350,19 @@
                                         <action selector="startNewRound:" destination="I9X-cb-r4T" eventType="touchUpInside" id="Mce-RT-kpH"/>
                                     </connections>
                                 </button>
-                                <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nQS-uY-KLh">
+                                <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nQS-uY-KLh">
                                     <rect key="frame" x="302" y="101" width="10" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LxL-Lb-lYj">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Score:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LxL-Lb-lYj">
                                     <rect key="frame" x="249" y="101" width="50" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Memory" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UOY-08-rTJ">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Memory" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UOY-08-rTJ">
                                     <rect key="frame" x="178" y="22" width="134" height="40"/>
                                     <fontDescription key="fontDescription" name="Palatino-BoldItalic" family="Palatino" pointSize="36"/>
                                     <color key="textColor" red="0.64792129269955179" green="0.7511160714285714" blue="0.65828785041276761" alpha="1" colorSpace="calibratedRGB"/>
@@ -354,10 +382,10 @@
                             </constraints>
                         </collectionReusableView>
                         <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="6" contentMode="center" reuseIdentifier="game_footer" id="eZL-9H-GzA">
-                            <rect key="frame" x="0.0" y="250" width="320" height="50"/>
+                            <rect key="frame" x="0.0" y="250" width="600" height="50"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="50" text="Game Start!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j6F-7G-2mq">
+                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="50" text="Game Start!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j6F-7G-2mq">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                     <color key="backgroundColor" red="0.59999999999999998" green="0.41176470590000003" blue="0.37254901959999998" alpha="0.35999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
@@ -383,14 +411,12 @@
                         </connections>
                     </collectionView>
                     <tabBarItem key="tabBarItem" title="Memory" image="spades" id="9oK-cR-b9o"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="568"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3V9-MV-IpW" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <customObject id="76O-L0-CGy" customClass="MemoryGameDataSource" customModule="CardGames" customModuleProvider="target"/>
                 <customObject id="L4i-wz-QG2" customClass="MemoryGameDelegate" customModule="CardGames" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="883" y="-483"/>
+            <point key="canvasLocation" x="378" y="-514.5"/>
         </scene>
     </scenes>
     <resources>

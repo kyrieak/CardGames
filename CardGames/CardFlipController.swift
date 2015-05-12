@@ -10,6 +10,7 @@ import UIKit
 import QuartzCore
 
 class CardFlipController: UIViewController {
+  @IBOutlet var headerView: UILabel!
   @IBOutlet var cardView: TrumpCardView!
   @IBOutlet var discardsLabel: UILabel!
 
@@ -71,7 +72,7 @@ class CardFlipController: UIViewController {
       cardView.displayCard(topCard!.attributes())
     }
     
-    self.view.layer.insertSublayer(makeHeaderLayer(), atIndex: 0)
+    style.applyShade(headerView.layer)
     style.applyShade(discardsLabel.layer)
   }
 
@@ -82,28 +83,16 @@ class CardFlipController: UIViewController {
   }
   
   
-  private func makeHeaderLayer() -> CALayer {
-    var headerLayer = CALayer()
-    
-    headerLayer.bounds = CGRect(origin: self.view.bounds.origin, size: CGSize(width: self.view.bounds.width, height: 130))
-    headerLayer.frame.origin = self.view.frame.origin
-    headerLayer.backgroundColor = style.medGreenColor
-    style.applyShade(headerLayer)
-    
-    return headerLayer
-  }
-  
-  
-  private func makeFooterLayer() -> CALayer {
-    var footerLayer = CALayer()
-    var footerOrigin = CGPoint(x: 0, y:self.view.frame.height - 100)
-    
-    footerLayer.bounds = CGRect(origin: footerOrigin, size: CGSize(width: self.view.bounds.width, height: 50))
-    footerLayer.frame.origin = footerOrigin
-    footerLayer.backgroundColor = style.medBrownColor
-    style.applyShade(footerLayer)
-    
-    return footerLayer
-  }
+//  private func makeFooterLayer() -> CALayer {
+//    var footerLayer = CALayer()
+//    var footerOrigin = CGPoint(x: 0, y:self.view.frame.height - 100)
+//    
+//    footerLayer.bounds = CGRect(origin: footerOrigin, size: CGSize(width: self.view.bounds.width, height: 50))
+//    footerLayer.frame.origin = footerOrigin
+//    footerLayer.backgroundColor = style.medBrownColor
+//    style.applyShade(footerLayer)
+//    
+//    return footerLayer
+//  }
 }
 

@@ -254,21 +254,10 @@ class TrumpCardView: UIView {
     let minX = centerPoint.x - (pipSize.width / 2)
     
     var heart = Heart(ctrPoint: centerPoint, size: pipSize)
-    var lCurve = heart.getLeftCurve()
-    var rCurve = heart.getRightCurve()
-
-    path.moveToPoint(heart.cuspPoint)
+    var curve = heart.curve
+    path.moveToPoint(curve.startingPoint)
     
-    for connect in lCurve.connections {
-      path.addCurveToPoint(connect.ep, controlPoint1: connect.cp1, controlPoint2: connect.cp2)
-    }
-    
-    path.closePath()
-    path.fill()
-
-    path.moveToPoint(heart.cuspPoint)
-
-    for connect in rCurve.connections {
+    for connect in curve.connections {
       path.addCurveToPoint(connect.ep, controlPoint1: connect.cp1, controlPoint2: connect.cp2)
     }
 
@@ -282,87 +271,74 @@ class TrumpCardView: UIView {
     let minX = centerPoint.x - (pipSize.width / 2)
     
     var spade = Spade(ctrPoint: centerPoint, size: pipSize)
-    var lCurve = spade.getLeftCurve()
-    var rCurve = spade.getRightCurve()
+    var curve = spade.getCurve()
     
-    path.moveToPoint(spade.cuspPoint)
+    path.moveToPoint(curve.startingPoint)
     
-    for connect in lCurve.connections {
+    for connect in curve.connections {
       path.addCurveToPoint(connect.ep, controlPoint1: connect.cp1, controlPoint2: connect.cp2)
     }
     
     path.closePath()
     path.fill()
     
-    path.moveToPoint(spade.cuspPoint)
-    
-    for connect in rCurve.connections {
-      path.addCurveToPoint(connect.ep, controlPoint1: connect.cp1, controlPoint2: connect.cp2)
+    let stemCurve = spade.getStemCurve()
+    var stemPath = UIBezierPath()
+
+    stemPath.moveToPoint(stemCurve.startingPoint)
+
+    for connect in stemCurve.connections {
+      stemPath.addCurveToPoint(connect.ep, controlPoint1: connect.cp1, controlPoint2: connect.cp2)
     }
-    
-    path.closePath()
-    path.fill()
-    
-    let stem = spade.getStem()
-    (lCurve, rCurve) = (stem.getLeftCurve(), stem.getRightCurve())
-    
-    for curve in [lCurve, rCurve] {
-      var stemPath = UIBezierPath()
-      
-      stemPath.moveToPoint(curve.startingPoint)
-      
-      for connect in curve.connections {
-        stemPath.addCurveToPoint(connect.ep, controlPoint1: connect.cp1, controlPoint2: connect.cp2)
-      }
-      
-      stemPath.addLineToPoint(stem.basePoint)
-      stemPath.closePath()
-      stemPath.fill()
-    }
+
+    stemPath.closePath()
+    stemPath.fill()
   }
   
   func drawClubPip(centerPoint: CGPoint, pipSize: CGSize) {
     let club = Club(ctrPoint: centerPoint, size: pipSize)
-    let stem = club.getStem()
-    let leafCtrPoints = club.getLeafCenterPoints()
-
-    for point in leafCtrPoints {
-      var path = UIBezierPath(arcCenter: point, radius: club.r, startAngle: CGFloat(0), endAngle: CGFloat(M_2_PI), clockwise: false)
+    let leafCurves = club.getLeafCurves()
+    let stemCurve  = club.getStemCurve()
+    
+    var path = UIBezierPath()
+    
+    for curve in leafCurves {
+      path.moveToPoint(curve.startingPoint)
+      
+      for connect in curve.connections {
+        path.addCurveToPoint(connect.ep, controlPoint1: connect.cp1, controlPoint2: connect.cp2)
+      }
+      
       path.closePath()
       path.fill()
     }
     
-    let lCurve = stem.getLeftCurve()
-    let rCurve = stem.getRightCurve()
+    var stemPath = UIBezierPath()
     
-    for curve in [lCurve, rCurve] {
-      var stemPath = UIBezierPath()
-      
-      stemPath.moveToPoint(curve.startingPoint)
-      
-      for connect in curve.connections {
-        stemPath.addCurveToPoint(connect.ep, controlPoint1: connect.cp1, controlPoint2: connect.cp2)
-      }
-
-      stemPath.addLineToPoint(stem.basePoint)
-      stemPath.closePath()
-      stemPath.fill()
+    stemPath.moveToPoint(stemCurve.startingPoint)
+    
+    for connect in stemCurve.connections {
+      stemPath.addCurveToPoint(connect.ep, controlPoint1: connect.cp1, controlPoint2: connect.cp2)
     }
     
-    var path = UIBezierPath(rect: club.bounds)
-//    path.fill()
+    stemPath.closePath()
+    stemPath.fill()
   }
   
   func drawDiamondPip(centerPoint: CGPoint, pipSize: CGSize) {
-    var path = UIBezierPath()
-    let halfW = pipSize.width / 2
-    let halfH = pipSize.height / 2
+    let diamond = Diamond(ctrPoint: centerPoint, size: pipSize)
+    let curve = diamond.getCurve()
     
-    path.moveToPoint(CGPoint(x: centerPoint.x, y: centerPoint.y - halfH))
-    path.addLineToPoint(CGPoint(x: centerPoint.x + halfW, y: centerPoint.y))
-    path.addLineToPoint(CGPoint(x: centerPoint.x, y: centerPoint.y + halfH))
-    path.addLineToPoint(CGPoint(x: centerPoint.x - halfW, y: centerPoint.y))
-    path.addLineToPoint(CGPoint(x: centerPoint.x, y: centerPoint.y - halfH))
+    var path = UIBezierPath()
+//    let halfW = pipSize.width / 2
+//    let halfH = pipSize.height / 2
+    
+    path.moveToPoint(curve.startingPoint)
+    
+    for connect in curve.connections {
+      path.addCurveToPoint(connect.ep, controlPoint1: connect.cp1, controlPoint2: connect.cp2)
+    }
+    
     path.closePath()
     path.fill()
   }

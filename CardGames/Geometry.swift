@@ -9,9 +9,41 @@
 import Foundation
 import UIKit
 
+
 extension CGPoint {
-  func getDistance(toPoint: CGPoint) -> CGPoint {
-    return CGPoint(x: (toPoint.x - x), y: (toPoint.y - y))
+  func getDistance(toPoint: CGPoint) -> (dx: CGFloat, dy: CGFloat, abs: CGFloat) {
+    let _dx  = toPoint.x - self.x
+    let _dy  = toPoint.y - self.y
+    let _abs = sqrt(pow(_dx, 2) + pow(_dy, 2))
+    
+    return (dx: _dx, dy: _dy, abs: _abs)
+  }
+  
+  func rotatedPoint(aboutOrigin: CGPoint, rotationAngle: Double) -> CGPoint {
+    let dist = aboutOrigin.getDistance(self)
+    let r = Double(dist.abs)
+    
+    let theta = atan2(Double(dist.dy), Double(dist.dx)) + rotationAngle
+    
+    return CGPoint(x: aboutOrigin.x + CGFloat(r * cos(theta)),
+                   y: aboutOrigin.y + CGFloat(r * sin(theta)))
+  }
+  
+
+  func xReflectedPoint(axisX: CGFloat) -> CGPoint {
+    let dx = self.x - axisX
+    
+    return CGPoint(x: (axisX - dx), y: self.y)
+  }
+
+  func yReflectedPoint(axisY: CGFloat) -> CGPoint {
+    let dy = self.x - axisY
+    
+    return CGPoint(x: self.x, y: (axisY - dy))
+  }
+  
+  func offsetPoint(dx: CGFloat, dy: CGFloat) -> CGPoint{
+    return CGPoint(x: self.x + dx, y: self.y + dy)
   }
 }
 
@@ -43,6 +75,14 @@ struct Curve {
   mutating func addConnection(connector: CurveConnector) {
     connections.append(connector)
   }
+  
+  mutating func move(dx: CGFloat, dy: CGFloat) {
+    startingPoint = startingPoint.offsetPoint(dx, dy: dy)
+    
+    for (var c) in connections {
+      c.move(dx, dy: dy)
+    }
+  }
 }
 
 struct CurveConnector {
@@ -53,343 +93,22 @@ struct CurveConnector {
     self.cp1 = cp1
     self.cp2 = cp2
   }
+  
+  mutating func move(dx: CGFloat, dy: CGFloat) {
+    ep  = ep.offsetPoint(dx, dy: dy)
+    cp1 = cp1.offsetPoint(dx, dy: dy)
+    cp2 = cp2.offsetPoint(dx, dy: dy)
+  }
 }
 
 
 protocol Shape {
   var center: CGPoint { get }
+  var size: CGSize { get }
   var bounds: CGRect { get }
   
   init(ctrPoint: CGPoint, size: CGSize)
 }
 
 // =========== Shapes =========================================
-
-struct Squiggle: Shape {
-  var center: CGPoint
-  var bounds: CGRect
-  let curve: Curve
-  
-  var startingPoint: CGPoint {
-    return curve.startingPoint
-  }
-  
-  var connections: [CurveConnector] {
-    return curve.connections
-  }
-  
-  init(size: CGSize) {
-    center = CGPoint(x: size.width / 2, y: size.height / 2)
-    bounds = CGRect(origin: CGPointZero, size: size)
-    curve = Squiggle.defineCurve(size)
-  }
-  
-  init(ctrPoint: CGPoint, size: CGSize) {
-    center = ctrPoint
-    bounds = CGRect(ctrPoint: ctrPoint, size: size)
-    curve = Squiggle.defineCurve(size)
-  }
-  
-  private static func defineCurve(size: CGSize) -> Curve {
-    let xInc = size.width / 12
-    let yInc = size.height / 6
-    
-    var A, B, C, AT, BT, CT: CGPoint
-    var ep, cp1, cp2: CGPoint
-    
-    A  = CGPoint(x: 0, y: yInc * 5)
-    B  = CGPoint(x: xInc * 4, y: yInc / 2)
-    C  = CGPoint(x: xInc * 8, y: yInc * 2)
-    AT = CGPoint(x: size.width, y: yInc)
-    BT = CGPoint(x: xInc * 8, y: yInc * 5.5)
-    CT = CGPoint(x: xInc * 4, y: yInc * 4)
-
-    var curve = Curve(startingPoint: A)
-    
-    curve.addConnection(CurveConnector(ep: B, cp1: CGPoint(x: 0, y: yInc * 3),
-                                              cp2: CGPoint(x: xInc * 2, y: yInc)))
-    
-    curve.addConnection(CurveConnector(ep: C, cp1: CGPoint(x: xInc * 6, y: yInc / 2),
-                                              cp2: CGPoint(x: xInc * 6, y: yInc * 2)))
-    
-    curve.addConnection(CurveConnector(ep: AT, cp1: CGPoint(x: xInc * 10, y: yInc * 2),
-                                               cp2: CGPoint(x: xInc * 10, y: yInc)))
-    
-    curve.addConnection(CurveConnector(ep: BT, cp1: CGPoint(x: size.width, y: yInc * 3),
-                                               cp2: CGPoint(x: xInc * 10, y: yInc * 5)))
-    
-    curve.addConnection(CurveConnector(ep: CT, cp1: CGPoint(x: xInc * 6, y: yInc * 5.5),
-                                               cp2: CGPoint(x: xInc * 6, y: yInc * 4)))
-    
-    curve.addConnection(CurveConnector(ep: A, cp1: CGPoint(x: xInc * 2, y: yInc * 4),
-                                              cp2: CGPoint(x: xInc * 2, y: yInc * 5)))
-    
-    return curve
-  }
-}
-
-
-struct Heart: Shape {
-  var center: CGPoint
-  var bounds: CGRect
-  var cuspPoint, endPoint: CGPoint
-  private var qtrSize: CGSize
-  
-  init(ctrPoint: CGPoint, size: CGSize) {
-    center = ctrPoint
-    bounds = CGRect(ctrPoint: ctrPoint, size: size)
-    qtrSize = CGSize(width: size.width / 4, height: size.height / 4)
-    
-    cuspPoint = CGPoint(x: ctrPoint.x, y: ctrPoint.y - qtrSize.height)
-    endPoint  = CGPoint(x: ctrPoint.x, y: ctrPoint.y + (size.height / 2))
-  }
-  
-  func getLeftCurve() -> Curve {
-    var sPoint, ePoint, cPoint1, cPoint2: CGPoint
-    var curve = Curve(startingPoint: cuspPoint)
-    let dx = qtrSize.width / 2
-    let dy = qtrSize.height / 2
-    
-    ePoint  = CGPoint(x: cuspPoint.x - qtrSize.width, y: cuspPoint.y - qtrSize.height)
-    cPoint1 = CGPoint(x: cuspPoint.x, y: cuspPoint.y - dy)
-    cPoint2 = CGPoint(x: ePoint.x + dx, y: ePoint.y)
-
-    curve.addConnection(CurveConnector(ep: ePoint, cp1: cPoint1, cp2: cPoint2))
-    
-    sPoint  = ePoint
-    ePoint  = CGPoint(x: ePoint.x - qtrSize.width, y: cuspPoint.y)
-    cPoint1 = CGPoint(x: sPoint.x - dx, y: sPoint.y)
-    cPoint2 = CGPoint(x: ePoint.x, y: ePoint.y - dy)
-    
-    curve.addConnection(CurveConnector(ep: ePoint, cp1: cPoint1, cp2: cPoint2))
-
-    sPoint = ePoint
-    ePoint  = endPoint
-    cPoint1 = CGPoint(x: sPoint.x, y: sPoint.y + qtrSize.height)
-    cPoint2 = ePoint
-    
-    curve.addConnection(CurveConnector(ep: ePoint, cp1: cPoint1, cp2: cPoint2))
-    
-    return curve
-  }
-  
-  
-  func getRightCurve() -> Curve {
-    var sPoint, ePoint, cPoint1, cPoint2: CGPoint
-    var curve = Curve(startingPoint: cuspPoint)
-    let dx = qtrSize.width / 2
-    let dy = qtrSize.height / 2
-    
-    ePoint  = CGPoint(x: cuspPoint.x + qtrSize.width, y: cuspPoint.y - qtrSize.height)
-    cPoint1 = CGPoint(x: cuspPoint.x, y: cuspPoint.y - dy)
-    cPoint2 = CGPoint(x: ePoint.x - dx, y: ePoint.y)
-    
-    curve.addConnection(CurveConnector(ep: ePoint, cp1: cPoint1, cp2: cPoint2))
-    
-    sPoint = ePoint
-    ePoint  = CGPoint(x: ePoint.x + qtrSize.width, y: cuspPoint.y)
-    cPoint1 = CGPoint(x: sPoint.x + dx, y: sPoint.y)
-    cPoint2 = CGPoint(x: ePoint.x, y: ePoint.y - dy)
-    
-    curve.addConnection(CurveConnector(ep: ePoint, cp1: cPoint1, cp2: cPoint2))
-    
-    sPoint = ePoint
-    ePoint  = endPoint
-    cPoint1 = CGPoint(x: sPoint.x, y: sPoint.y + qtrSize.height)
-    cPoint2 = ePoint
-    
-    curve.addConnection(CurveConnector(ep: ePoint, cp1: cPoint1, cp2: cPoint2))
-    
-    return curve
-  }
-}
-
-
-struct Spade: Shape {
-  var center: CGPoint
-  var bounds: CGRect
-  var cuspPoint, endPoint: CGPoint
-  private var qtrSize: CGSize
-  private var headBounds: CGRect
-  
-  init(ctrPoint: CGPoint, size: CGSize) {
-    center = ctrPoint
-    bounds = CGRect(ctrPoint: ctrPoint, size: size)
-    headBounds = Spade.getHeadBounds(bounds)
-    qtrSize = CGSize(width: headBounds.width / 4, height: headBounds.height / 4)
-    cuspPoint = CGPoint(x: headBounds.midX, y: headBounds.maxY - qtrSize.height)
-    endPoint  = CGPoint(x: headBounds.midX, y: headBounds.minY)
-  }
-  
-  func getLeftCurve() -> Curve {
-    var ePoint, cPoint1, cPoint2: CGPoint
-    var curve = Curve(startingPoint: cuspPoint)
-    
-    let dx = qtrSize.width / 2
-    let dy = qtrSize.height / 2
-    
-    cPoint1 = CGPoint(x: cuspPoint.x,
-                      y: cuspPoint.y)
-    ePoint  = CGPoint(x: cuspPoint.x - qtrSize.width,
-                      y: cuspPoint.y + qtrSize.height)
-    cPoint2 = CGPoint(x: ePoint.x + dx,
-                      y: ePoint.y)
-    
-    curve.addConnection(CurveConnector(ep: ePoint, cp1: cPoint1, cp2: cPoint2))
-    
-    cPoint1 = CGPoint(x: ePoint.x - dx,
-                      y: ePoint.y)
-    ePoint  = CGPoint(x: ePoint.x - qtrSize.width,
-                      y: cuspPoint.y)
-    cPoint2 = CGPoint(x: ePoint.x,
-                      y: ePoint.y + dy)
-    
-    curve.addConnection(CurveConnector(ep: ePoint, cp1: cPoint1, cp2: cPoint2))
-    
-    cPoint1 = CGPoint(x: ePoint.x,
-                      y: ePoint.y - dy - dy)
-    ePoint  = endPoint
-    cPoint2 = CGPoint(x: endPoint.x,
-                      y: endPoint.y + dy)
-    
-    curve.addConnection(CurveConnector(ep: ePoint, cp1: cPoint1, cp2: cPoint2))
-    
-    return curve
-  }
-
-  func getRightCurve() -> Curve {
-    var ePoint, cPoint1, cPoint2: CGPoint
-    var curve = Curve(startingPoint: cuspPoint)
-    let dx = qtrSize.width / 2
-    let dy = qtrSize.height / 2
-
-    cPoint1 = CGPoint(x: cuspPoint.x, y: cuspPoint.y)
-    ePoint  = CGPoint(x: cuspPoint.x + qtrSize.width,
-                      y: cuspPoint.y + qtrSize.height)
-    cPoint2 = CGPoint(x: ePoint.x - dx,
-                      y: ePoint.y)
-    
-    curve.addConnection(CurveConnector(ep: ePoint, cp1: cPoint1, cp2: cPoint2))
-    
-    
-    cPoint1 = CGPoint(x: ePoint.x + dx,
-                      y: ePoint.y)
-    ePoint  = CGPoint(x: ePoint.x + qtrSize.width,
-                      y: cuspPoint.y)
-    cPoint2 = CGPoint(x: ePoint.x,
-                      y: ePoint.y + dy)
-    
-    curve.addConnection(CurveConnector(ep: ePoint, cp1: cPoint1, cp2: cPoint2))
-    
-    
-    cPoint1 = CGPoint(x: ePoint.x,
-                      y: ePoint.y - dy - dy)
-    ePoint  = endPoint
-    cPoint2 = CGPoint(x: endPoint.x,
-                      y: endPoint.y + dy)
-    
-    curve.addConnection(CurveConnector(ep: ePoint, cp1: cPoint1, cp2: cPoint2))
-    
-    return curve
-  }
-
-  func getStem() -> Stem {
-    let bPoint = CGPoint(x: center.x, y: bounds.maxY)
-    let bWidth = bounds.size.width / 4.5
-    return Stem(basePoint: bPoint, baseWidth: bWidth, height: bWidth * 4)
-  }
-  
-  static func getHeadBounds(bounds: CGRect) -> CGRect {
-    let d = min(bounds.width, bounds.height)
-    let inset = d * 0.1
-    
-    var hBounds = CGRectInset(bounds, inset, inset)
-    hBounds.origin.y -= inset
-
-    return hBounds
-  }
-}
-
-
-struct Club: Shape {
-  var center: CGPoint
-  var bounds: CGRect
-  var r: CGFloat
-  
-  init(ctrPoint: CGPoint, size: CGSize) {
-    center = ctrPoint
-    bounds = CGRect(ctrPoint: ctrPoint, size: size)
-    r = size.width / 4.5
-  }
-  
-  func getStem() -> Stem {
-    let bPoint = CGPoint(x: center.x, y: bounds.maxY)
-    
-    return Stem(basePoint: bPoint, baseWidth: r, height: r * 3)
-  }
-  
-  func getLeafCenterPoints() -> [CGPoint] {
-    var ctrPoints: [CGPoint] = []
-    var y0, y1: CGFloat
-    
-    y0 = bounds.minY + r
-    y1 = y0 + (r * sqrt(CGFloat(2)))
-    
-    ctrPoints.append(CGPoint(x: bounds.midX, y: y0))
-    ctrPoints.append(CGPoint(x: bounds.minX + r, y: y1))
-    ctrPoints.append(CGPoint(x: bounds.maxX - r, y: y1))
-    
-    return ctrPoints
-  }
-}
-
-
-struct Stem {
-  var basePoint: CGPoint
-  var bounds: CGRect
-  
-  private var baseWidth, height: CGFloat
-  
-  var topPoint: CGPoint {
-    return CGPoint(x: basePoint.x, y: bounds.minY)
-  }
-  
-  init(basePoint: CGPoint, baseWidth: CGFloat, height: CGFloat) {
-    self.bounds = CGRect(basePoint: basePoint, size: CGSize(width: baseWidth, height: height))
-    
-    self.basePoint = basePoint
-    self.baseWidth = baseWidth
-    self.height = height
-  }
-  
-  func getLeftCurve() -> Curve {
-    let dx = baseWidth * 0.25
-    let dy = baseWidth
-    
-    var lCurve = Curve(startingPoint: topPoint)
-    
-    var cPoint1 = CGPoint(x: topPoint.x, y: topPoint.y + dy)
-    var ePoint  = CGPoint(x: bounds.minX, y: bounds.maxY)
-    var cPoint2 = CGPoint(x: ePoint.x + dx, y: ePoint.y)
-    
-    lCurve.addConnection(CurveConnector(ep: ePoint, cp1: cPoint1, cp2: cPoint2))
-    
-    return lCurve
-  }
-  
-  func getRightCurve() -> Curve {
-    let dx = baseWidth * 0.25
-    let dy = baseWidth
-    
-    var rCurve = Curve(startingPoint: topPoint)
-    
-    var cPoint1 = CGPoint(x: topPoint.x, y: topPoint.y + dy)
-    var ePoint  = CGPoint(x: bounds.maxX, y: bounds.maxY)
-    var cPoint2 = CGPoint(x: ePoint.x - dx, y: ePoint.y)
-    
-    rCurve.addConnection(CurveConnector(ep: ePoint, cp1: cPoint1, cp2: cPoint2))
-    
-    return rCurve
-  }
-}
 
