@@ -28,8 +28,8 @@ class MemoryGameDataSource: NSObject, UICollectionViewDataSource {
   func startNewRound() {
     game.startNewRound(15)
   }
-  
-  // --- DataSource Functions ------------------------------------
+
+  // - MARK: - DataSource Functions -------------------------
   
   func collectionView(collectionView: UICollectionView,
     numberOfItemsInSection section: Int) -> Int {
@@ -82,7 +82,7 @@ class MemoryGameDataSource: NSObject, UICollectionViewDataSource {
   
   
   
-  // --- Private Functions ------------------------------------
+  // - MARK: - Private Functions ------------------------------------
   
   private func dequeHeaderView(collectionView: UICollectionView, indexPath: NSIndexPath) -> UICollectionReusableView {
     

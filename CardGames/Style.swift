@@ -18,9 +18,8 @@ struct Style {
   let medGreenColor = Style.rgbToUIColor(205, g: 225 , b: 208)
 //  let medGreenColor = UIColor(red: 0.49, green: 0.66, blue: 0.51, alpha: 0.35).CGColor
   let medBrownColor = UIColor(red: 0.6, green: 0.41, blue: 0.37, alpha: 0.36).CGColor
+
   func applyShade(layer: CALayer) {
-    NSLog("here-=-------------------------")
-    NSLog("\(medGreenColor)")
     layer.borderColor = medShadeColor
     layer.borderWidth = 2
   }

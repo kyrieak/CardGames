@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>DE3B18B7-7FCA-4470-8F1E-BA4AE8067E65</string>
 	<key>IDESourceControlProjectName</key>
-	<string>CardGames</string>
+	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>CB9159BE8D6B7515A56D9208FA765D494C287531</key>
 		<string>github.com:kyrieak/CardGames.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>CardGames.xcodeproj</string>
+	<string>CardGames.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>CB9159BE8D6B7515A56D9208FA765D494C287531</key>

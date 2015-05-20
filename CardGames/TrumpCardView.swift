@@ -11,6 +11,7 @@ import UIKit
 
 class TrumpCardView: UIView {
   private var cardAttrs: TrumpCardAttributes
+  
   var cardBack = UIView(frame: CGRectZero)
 
   let style = Style()
@@ -24,6 +25,7 @@ class TrumpCardView: UIView {
     }
   }
   
+  
   init(frame: CGRect, attrs: TrumpCardAttributes) {
     cardAttrs = attrs
 
@@ -33,6 +35,7 @@ class TrumpCardView: UIView {
     setupCardBackView()
   }
   
+  
   required init(coder aDecoder: NSCoder) {
     cardAttrs = TrumpCardAttributes(rank: 1, suit: NamedSuit.Hearts, faceUp: false)
 
@@ -41,6 +44,7 @@ class TrumpCardView: UIView {
     style.applyShade(self.layer, color: style.darkShadeColor, thickness: 1)
     setupCardBackView()
   }
+  
   
   private func setupCardBackView() {
     cardBack.frame = CGRect(origin: CGPointZero, size: self.frame.size)
@@ -52,6 +56,7 @@ class TrumpCardView: UIView {
     
     self.addSubview(cardBack)
   }
+  
   
   private func setupContext(context: CGContextRef) {
     let color = suitColor.CGColor
@@ -119,6 +124,7 @@ class TrumpCardView: UIView {
     CGContextRestoreGState(context) // --- Context Restored -1 ---
   }
   
+  
   func drawFromOffsetOrigin(context: CGContext, offset: CGPoint, drawFunc: () -> ()) {
     CGContextSaveGState(context)
     CGContextTranslateCTM(context, offset.x, offset.y)
@@ -128,6 +134,7 @@ class TrumpCardView: UIView {
     CGContextRestoreGState(context)
   }
   
+  
   func drawColoredRect(context: CGContextRef, rect: CGRect, color: UIColor) {
     var rectPath = UIBezierPath(rect: rect)
     
@@ -135,6 +142,7 @@ class TrumpCardView: UIView {
     rectPath.fill()
     CGContextSetFillColorWithColor(context, suitColor.CGColor)
   }
+  
   
   func drawFlank(context: CGContextRef, flankWidth: CGFloat, pipSize: CGSize) {
     var rankText = addTextAttrs(rankString(), fontSize: pipSize.height)
@@ -149,6 +157,7 @@ class TrumpCardView: UIView {
     drawPip(CGPoint(x: flankWidth / 2, y: posY), pipSize: pipSize)
   }
   
+  
   func addTextAttrs(str: String, fontSize: CGFloat) -> NSMutableAttributedString {
     var font = CTFontCreateWithName("Baskerville", fontSize, nil)
     
@@ -160,10 +169,6 @@ class TrumpCardView: UIView {
   
   
   func drawPipArea(context: CGContextRef, layout: TrumpCardViewLayout) {
-//    var origin = layout.drawArea.origin.getDistance(layout.pipArea.origin)
-//    CGContextTranslateCTM(context, origin.x, origin.y)
-
-    
     let numPips = layout.numPips
     let dy = layout.dy
     let pipSize = layout.pipSize
@@ -234,6 +239,7 @@ class TrumpCardView: UIView {
     }
   }
   
+
   func drawPip(centerPoint: CGPoint, pipSize: CGSize) {
     switch cardAttrs.suit {
       case .Hearts:
@@ -250,11 +256,9 @@ class TrumpCardView: UIView {
   
   func drawHeartPip(centerPoint: CGPoint, pipSize: CGSize) {
     var path = UIBezierPath()
-    let minY = centerPoint.y - (pipSize.height / 2)
-    let minX = centerPoint.x - (pipSize.width / 2)
-    
     var heart = Heart(ctrPoint: centerPoint, size: pipSize)
     var curve = heart.curve
+    
     path.moveToPoint(curve.startingPoint)
     
     for connect in curve.connections {
@@ -264,12 +268,10 @@ class TrumpCardView: UIView {
     path.closePath()
     path.fill()
   }
+
   
   func drawSpadePip(centerPoint: CGPoint, pipSize: CGSize) {
     var path = UIBezierPath()
-    let minY = centerPoint.y - (pipSize.height / 2)
-    let minX = centerPoint.x - (pipSize.width / 2)
-    
     var spade = Spade(ctrPoint: centerPoint, size: pipSize)
     var curve = spade.getCurve()
     
@@ -295,6 +297,7 @@ class TrumpCardView: UIView {
     stemPath.fill()
   }
   
+
   func drawClubPip(centerPoint: CGPoint, pipSize: CGSize) {
     let club = Club(ctrPoint: centerPoint, size: pipSize)
     let leafCurves = club.getLeafCurves()
@@ -325,13 +328,12 @@ class TrumpCardView: UIView {
     stemPath.fill()
   }
   
+  
   func drawDiamondPip(centerPoint: CGPoint, pipSize: CGSize) {
     let diamond = Diamond(ctrPoint: centerPoint, size: pipSize)
     let curve = diamond.getCurve()
     
     var path = UIBezierPath()
-//    let halfW = pipSize.width / 2
-//    let halfH = pipSize.height / 2
     
     path.moveToPoint(curve.startingPoint)
     
@@ -342,6 +344,7 @@ class TrumpCardView: UIView {
     path.closePath()
     path.fill()
   }
+ 
   
   private func rankString() -> String {
     let rank = cardAttrs.rank

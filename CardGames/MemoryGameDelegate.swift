@@ -37,7 +37,6 @@ class MemoryGameDelegate: NSObject, UICollectionViewDelegate {
   
   func collectionView(collectionView: UICollectionView,
     didSelectItemAtIndexPath indexPath: NSIndexPath) {
-      NSLog("here in didselect")
       var game = getGame(collectionView)
       
       selectIdxPaths.append(indexPath)
@@ -59,7 +58,6 @@ class MemoryGameDelegate: NSObject, UICollectionViewDelegate {
   func collectionView(collectionView: UICollectionView,
     shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
       var game = getGame(collectionView)
-      NSLog("here in should select")
       
       if (game.waitingNextTurn()) {
         var status = getStatus(game)

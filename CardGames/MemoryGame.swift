@@ -96,9 +96,6 @@ class MemoryGame: CardGame {
   
   
   func waitingNextTurn() -> Bool {
-    NSLog("calling waiting next turn ========================")
-    NSLog("\(currentTurn().done())")
-
     return (currentTurn().done() && !currentTurn().hasEnded)
   }
   
@@ -283,8 +280,6 @@ class MemoryTurnKeeper: TurnKeeper {
   
   func updateTurn(idx: Int) {
     currentTurn.addCardIdx(idx)
-    NSLog("in turnkeeper")
-    currentTurn.log()
   }
   
   func updateTurn(matchValue: Int, penaltyValue: Int) {
@@ -294,7 +289,6 @@ class MemoryTurnKeeper: TurnKeeper {
   }
   
   func endTurn() {
-    NSLog("turnkeeper end turn")
     currentTurn.endTurn()
   }
 }
@@ -318,8 +312,6 @@ struct MemoryTurn: Turn {
   }
   
   func done() -> Bool {
-    NSLog("-----------\(cardIndexes.count)")
-    NSLog("-----------\(cardsPerTurn)")
     return !(cardIndexes.count < cardsPerTurn)
   }
   
@@ -334,12 +326,6 @@ struct MemoryTurn: Turn {
   mutating func reset() {
     hasEnded = false
     cardIndexes = []
-  }
-  
-  func log() {
-//    NSLog("done(): \(done())")
-//    NSLog("cardsPerTurn: \(cardsPerTurn)")
-//    NSLog("hasEnded: \(hasEnded)")
   }
 }
 

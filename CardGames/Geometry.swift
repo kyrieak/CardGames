@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+// - MARK: - CG Extensions ------------------------------------
 
 extension CGPoint {
   func getDistance(toPoint: CGPoint) -> (dx: CGFloat, dy: CGFloat, abs: CGFloat) {
@@ -63,6 +64,9 @@ extension CGRect {
   }
 }
 
+
+// - MARK: - Curve ------------------------------------
+
 struct Curve {
   var startingPoint: CGPoint
   var connections: [CurveConnector]
@@ -101,6 +105,7 @@ struct CurveConnector {
   }
 }
 
+// - MARK: - Shape ------------------------------------
 
 protocol Shape {
   var center: CGPoint { get }

@@ -20,10 +20,6 @@ protocol CardGame {
   func currentTurn() -> turnType
   
   func startNewTurn()
-
-//  func updateTurn(turn: turnType)
-//  
-//  func endTurn(inout turn: turnType)
   
   func getScoreForCurrentPlayer() -> Int
 }

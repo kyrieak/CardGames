@@ -22,7 +22,6 @@
 		3417237D1AFBFDE9002D8343 /* Stem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3417237C1AFBFDE9002D8343 /* Stem.swift */; };
 		341A2E431A8C92AE0091664E /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341A2E421A8C92AE0091664E /* Style.swift */; };
 		342885771AA7FC640003AC75 /* MemoryGameDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342885761AA7FC640003AC75 /* MemoryGameDataSource.swift */; };
-		343587111A6A246C00DD7F1A /* TrumpCardCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343587101A6A246C00DD7F1A /* TrumpCardCollectionDataSource.swift */; };
 		34527F5A1A96FC7D0039C913 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34527F591A96FC7D0039C913 /* Images.xcassets */; };
 		345695411A9FB4510076FD39 /* SetGameDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345695401A9FB4510076FD39 /* SetGameDelegate.swift */; };
 		345695431A9FBDC50076FD39 /* SetGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345695421A9FBDC50076FD39 /* SetGame.swift */; };
@@ -41,6 +40,7 @@
 		34BCFC411AC51217005A4840 /* TrumpCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BCFC401AC51217005A4840 /* TrumpCardView.swift */; };
 		34CC1E561ABCC83D005B2CD1 /* SetCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CC1E551ABCC83D005B2CD1 /* SetCardView.swift */; };
 		34DF3EF81B02B5E400B0331D /* Diamond.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34DF3EF71B02B5E400B0331D /* Diamond.swift */; };
+		34ED8AA01B0543D4005942E2 /* GameHistoryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34ED8A9F1B0543D4005942E2 /* GameHistoryDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,7 +73,6 @@
 		3417237C1AFBFDE9002D8343 /* Stem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stem.swift; sourceTree = "<group>"; };
 		341A2E421A8C92AE0091664E /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		342885761AA7FC640003AC75 /* MemoryGameDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryGameDataSource.swift; sourceTree = "<group>"; };
-		343587101A6A246C00DD7F1A /* TrumpCardCollectionDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrumpCardCollectionDataSource.swift; sourceTree = "<group>"; };
 		34527F591A96FC7D0039C913 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		345695401A9FB4510076FD39 /* SetGameDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetGameDelegate.swift; sourceTree = "<group>"; };
 		345695421A9FBDC50076FD39 /* SetGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetGame.swift; sourceTree = "<group>"; };
@@ -92,6 +91,7 @@
 		34BCFC401AC51217005A4840 /* TrumpCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrumpCardView.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		34CC1E551ABCC83D005B2CD1 /* SetCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetCardView.swift; sourceTree = "<group>"; };
 		34DF3EF71B02B5E400B0331D /* Diamond.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Diamond.swift; sourceTree = "<group>"; };
+		34ED8A9F1B0543D4005942E2 /* GameHistoryDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameHistoryDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,7 +142,7 @@
 				342885761AA7FC640003AC75 /* MemoryGameDataSource.swift */,
 				345695401A9FB4510076FD39 /* SetGameDelegate.swift */,
 				348FF6401AA1658B0041C5C6 /* SetGameDataSource.swift */,
-				343587101A6A246C00DD7F1A /* TrumpCardCollectionDataSource.swift */,
+				34ED8A9F1B0543D4005942E2 /* GameHistoryDataSource.swift */,
 				341723751AFBFB5A002D8343 /* Geometry */,
 				341A2E421A8C92AE0091664E /* Style.swift */,
 				34527F591A96FC7D0039C913 /* Images.xcassets */,
@@ -332,7 +332,6 @@
 				341723741AFBFAED002D8343 /* Squiggle.swift in Sources */,
 				34BCFC411AC51217005A4840 /* TrumpCardView.swift in Sources */,
 				3417237B1AFBFC5A002D8343 /* Club.swift in Sources */,
-				343587111A6A246C00DD7F1A /* TrumpCardCollectionDataSource.swift in Sources */,
 				34005EF31A4FC8F500BDFD0F /* Deck.swift in Sources */,
 				3417237D1AFBFDE9002D8343 /* Stem.swift in Sources */,
 				34005ED21A4FACDA00BDFD0F /* CardFlipController.swift in Sources */,
@@ -352,6 +351,7 @@
 				34A5F2BD1AD46DB9003B6536 /* TrumpCardViewLayout.swift in Sources */,
 				345695431A9FBDC50076FD39 /* SetGame.swift in Sources */,
 				342885771AA7FC640003AC75 /* MemoryGameDataSource.swift in Sources */,
+				34ED8AA01B0543D4005942E2 /* GameHistoryDataSource.swift in Sources */,
 				34A9233E1AA19C15009D0134 /* SetCard.swift in Sources */,
 				34CC1E561ABCC83D005B2CD1 /* SetCardView.swift in Sources */,
 				348472B01AAE808C00A07AE7 /* MemoryGameDelegate.swift in Sources */,

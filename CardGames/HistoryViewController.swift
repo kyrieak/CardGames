@@ -9,66 +9,64 @@
 import Foundation
 import UIKit
 
-class HistoryViewController: UITableViewController, UITableViewDataSource {
-  var history: Dictionary<String, [String]> = ["Memory": [], "Set": []]
-  
-  required init(coder aDecoder: NSCoder) {
-    super.init(coder: aDecoder)
-  }
-  
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-
-    NSLog("\(sender)")
-    super.prepareForSegue(segue, sender: sender)
-  }
+class HistoryViewController: UITableViewController, UITableViewDelegate {
   
   func update(gameKey: String, statuses: [String]) {
-    NSLog("here in update historyvc \(statuses)")
-    history[gameKey]! += statuses
+    let ds = tableView.dataSource! as! GameHistoryDataSource
+
+    ds.update(gameKey, statuses: statuses)
 
     tableView.reloadData()
   }
   
-  // required
-  override func tableView(tableView: UITableView,
-    numberOfRowsInSection section: Int) -> Int {
-      let key = sectionWithIdx(section).title
-      
-      return history[key]!.count
-  }
-
-  // required
-  override func tableView(tableView: UITableView,
-    cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-      let key = sectionWithIdx(indexPath.section).title
-      let count = history[key]!.count
-      
-      var cell = tableView.dequeueReusableCellWithIdentifier("status_row", forIndexPath: indexPath) as! UITableViewCell
-      
-      var label = cell.viewWithTag(1) as! UILabel
-      label.text = history[key]![count - 1 - indexPath.item]
-      
-      return cell
-  }
-  
-  
-  override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+  override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+    view.tag = section
     
-    return 2
+    view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: Selector("toggleSection:")))
   }
   
-  override func tableView(tableView: UITableView,
-    titleForHeaderInSection section: Int) -> String? {
+  
+  func rowsInSection(section: Int) -> [UITableViewCell] {
+    let rect = tableView.rectForSection(section)
+    let indexPaths = tableView.indexPathsForRowsInRect(rect)
+    
+    return indexPaths.map({(var path) -> UITableViewCell in
+      return self.tableView.cellForRowAtIndexPath(path as! NSIndexPath)!
+    })
+  }
+  
+  @IBAction func toggleSection(sender: UITapGestureRecognizer) {
+    let headerView = sender.view
+    
+    if (headerView != nil) {
+      let section = headerView!.tag
+      let rows = rowsInSection(section)
       
-      return sectionWithIdx(section).title
+      for r in rows {
+        r.hidden = !r.hidden
+      }
+    }
   }
   
-  func sectionWithIdx(idx: Int) -> (idx: Int, title: String) {
-    switch(idx) {
-      case 0:
-        return (idx: 0, title: "Memory")
-      default:
-        return (idx: 1, title: "Set")
-    }
+  override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+    NSLog("\(indexPath.row), \(indexPath.item)")
+//    if (indexPath.item == 0) {
+//      let rows = rowsInSection(indexPath.row)
+//      
+//      for row in rows {
+//        row.hidden = true
+//      }
+//    }
+  }
+  
+  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    NSLog("\(indexPath.row), \(indexPath.item)")
+//    if (indexPath.item == 0) {
+//      let rows = rowsInSection(indexPath.row)
+//      
+//      for row in rows {
+//        row.hidden = false
+//      }
+//    }
   }
 }

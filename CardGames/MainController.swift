@@ -44,7 +44,6 @@ class MainController: UITabBarController, UITabBarControllerDelegate {
   
   
   func pushToHistory(gameKey: String, statuses: [String]) -> Bool {
-    NSLog("here in pushtohistory maincon")
     getHistoryVC()!.update(gameKey, statuses: statuses)
 
     return true

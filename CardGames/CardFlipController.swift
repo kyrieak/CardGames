@@ -16,7 +16,6 @@ class CardFlipController: UIViewController {
 
   let style = Style()
 
-//  var dataSource = TrumpDeckDataSource()
   
   private var topCard: TrumpCard? {
     if (drawPile.isEmpty()) {
@@ -51,7 +50,6 @@ class CardFlipController: UIViewController {
     if (topCard != nil) {
       topCard!.flip()
       cardView.flipCard()
-      // cardView set needs display
     }
   }
   
@@ -81,18 +79,5 @@ class CardFlipController: UIViewController {
     discardsLabel.drawTextInRect(UIEdgeInsetsInsetRect(discardsLabel.frame, UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)))
     discardsLabel.text = "Discards: \(discard.cards.count)"
   }
-  
-  
-//  private func makeFooterLayer() -> CALayer {
-//    var footerLayer = CALayer()
-//    var footerOrigin = CGPoint(x: 0, y:self.view.frame.height - 100)
-//    
-//    footerLayer.bounds = CGRect(origin: footerOrigin, size: CGSize(width: self.view.bounds.width, height: 50))
-//    footerLayer.frame.origin = footerOrigin
-//    footerLayer.backgroundColor = style.medBrownColor
-//    style.applyShade(footerLayer)
-//    
-//    return footerLayer
-//  }
 }
 

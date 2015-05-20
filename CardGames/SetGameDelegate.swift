@@ -15,7 +15,6 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
   var header: UICollectionReusableView?
   var footer: UICollectionReusableView?
   var statusView: SetGameStatusView?
-//  var statusLabel: UILabel?
   var scoreLabel: UILabel?
   
   var selectIdxPaths: [NSIndexPath] = []
@@ -29,7 +28,6 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
         view.layer.position.y = collectionView.frame.height - (view.frame.height / 2) - 49
         footer = view
         statusView = view.viewWithTag(1) as? SetGameStatusView
-//        statusLabel = view.viewWithTag(1) as? UILabel
       } else {
         header = view
         scoreLabel = view.viewWithTag(3) as? UILabel
@@ -54,7 +52,6 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
       var (cardListText, statusText) = status.msg
 
       statusView!.setMessage(cardListText, statusText: statusText)
-//      statusLabel!.text = status.msg
       
       if (game.currentTurn().done()) {
         scoreLabel!.text = game.currentPlayer().name + ": \(game.getScoreForCurrentPlayer())"
@@ -78,7 +75,6 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
         
         statusView!.setMessage(cardListText, statusText: statusText)
         
-        //        statusLabel!.text = status.msg
         scoreLabel!.text = game.nextPlayer().name + ": \(game.getScoreForPlayer(game.nextPlayer()))"
         
         if (status.isSet) {
@@ -136,7 +132,6 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
   
   
   private func getStatus(game: SetGame) -> (isSet: Bool, msg: (String, String)) {
-    
     if (game.isMultiPlayer() && game.currentTurn().hasEnded) {
       return (game.currentTurn().didMakeSet, ("", (game.nextPlayer().name + "\'s Turn")))
     } else {

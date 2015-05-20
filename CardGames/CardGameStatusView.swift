@@ -4,29 +4,17 @@ import UIKit
 class CardGameStatusView: UIView {
   private var cardListView: CardListView?
   private var messageView: UILabel
-  
-//  override init() {
-////    cardListView = CardListView()
-//    messageView = UILabel()
-//    
-//    super.init()
-//
-////    addSubview(cardListView)
-//    addSubview(messageView)
-//  }
+
   
   override init(frame: CGRect) {
-//    cardListView = CardListView(frame: frame)
     messageView = UILabel(frame: frame)
     
     super.init(frame: frame)
     
-//    addSubview(cardListView)
     addSubview(messageView)
   }
   
   required init(coder aDecoder: NSCoder) {
-//    cardListView = CardListView()
     messageView = UILabel()
     
     super.init(coder: aDecoder)
@@ -34,7 +22,6 @@ class CardGameStatusView: UIView {
     cardListView = CardListView(frame: frame)
     messageView.frame = frame
     
-//    addSubview(cardListView)
     addSubview(messageView)
   }
   
@@ -74,22 +61,9 @@ class CardGameStatusView: UIView {
     messageView.text = nil
     messageView.frame.origin = CGPointZero
   }
-  
-  func log() {
-    NSLog("CardGameStatusView -----------------")
-    NSLog("frame: \(frame)")
-    NSLog("bounds: \(bounds)")
-    NSLog("------------------------------------")
-  }
 }
 
 class SetGameStatusView: CardGameStatusView {
-//  override init() {
-//    super.init()
-//    
-//    cardListView = CardListView(frame: frame)
-//    addSubview(cardListView!)
-//  }
 
   required init(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
@@ -130,14 +104,6 @@ class CardListView: UIView {
   private var cardSize = CGSizeZero
   private var numCards = 0
 
-//  convenience init() {
-//    self.init()
-//    cardSize = CGSize(width: (frame.height * 0.72), height: frame.height)
-//    backgroundColor = UIColor.whiteColor()
-//    var constraint = NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: self.superview, attribute: NSLayoutAttribute.Height, multiplier: 1.0, constant: 0.0)
-//    constraint.active = true
-//    addConstraint(constraint)
-//  }
   
   override init(frame: CGRect) {
     super.init(frame: frame)

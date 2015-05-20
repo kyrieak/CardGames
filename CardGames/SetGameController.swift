@@ -21,11 +21,12 @@ class SetGameController: UICollectionViewController {
   @IBAction func startNewRound(sender: UIButton) {
     var game = getGame()
     
-    NSLog("\(game.numberOfCardPositions())")
     game.startNewRound(game.numberOfCardPositions())
     collectionView!.reloadData()
     getDelegate().selectIdxPaths = []
   }
+  
+  // - MARK: - Private Functions ------------------------------------
   
   private func getGame() -> SetGame {
     return (collectionView!.dataSource! as! SetGameDataSource).game
@@ -59,6 +60,5 @@ class SetGameController: UICollectionViewController {
   
   func clearOldHistory() {
     getDelegate().clearOldStatuses()
-    NSLog("\(getDelegate().getGameStatuses())")
   }
 }

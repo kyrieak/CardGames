@@ -44,8 +44,6 @@ class SetCardView: UIView {
   // - MARK: - Public -
   
   override func drawRect(rect: CGRect) {
-    NSLog("====setcardview draw rect called===========================")
-    NSLog("===========================================")
     let context = UIGraphicsGetCurrentContext()
     let colorSpace = CGColorSpaceCreateDeviceRGB()
     let color = CGColorCreate(colorSpace, rgbColor)
