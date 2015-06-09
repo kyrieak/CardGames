@@ -41,6 +41,7 @@
 		34CC1E561ABCC83D005B2CD1 /* SetCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CC1E551ABCC83D005B2CD1 /* SetCardView.swift */; };
 		34DF3EF81B02B5E400B0331D /* Diamond.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34DF3EF71B02B5E400B0331D /* Diamond.swift */; };
 		34ED8AA01B0543D4005942E2 /* GameHistoryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34ED8A9F1B0543D4005942E2 /* GameHistoryDataSource.swift */; };
+		34F7A0721B0D894200DAAFBA /* StatusListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F7A0711B0D894200DAAFBA /* StatusListDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +93,7 @@
 		34CC1E551ABCC83D005B2CD1 /* SetCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetCardView.swift; sourceTree = "<group>"; };
 		34DF3EF71B02B5E400B0331D /* Diamond.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Diamond.swift; sourceTree = "<group>"; };
 		34ED8A9F1B0543D4005942E2 /* GameHistoryDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameHistoryDataSource.swift; sourceTree = "<group>"; };
+		34F7A0711B0D894200DAAFBA /* StatusListDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusListDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +145,7 @@
 				345695401A9FB4510076FD39 /* SetGameDelegate.swift */,
 				348FF6401AA1658B0041C5C6 /* SetGameDataSource.swift */,
 				34ED8A9F1B0543D4005942E2 /* GameHistoryDataSource.swift */,
+				34F7A0711B0D894200DAAFBA /* StatusListDataSource.swift */,
 				341723751AFBFB5A002D8343 /* Geometry */,
 				341A2E421A8C92AE0091664E /* Style.swift */,
 				34527F591A96FC7D0039C913 /* Images.xcassets */,
@@ -358,6 +361,7 @@
 				347511721AB38C2200AF5DE7 /* HistoryViewController.swift in Sources */,
 				348FF63F1AA1629C0041C5C6 /* SetGameController.swift in Sources */,
 				341A2E431A8C92AE0091664E /* Style.swift in Sources */,
+				34F7A0721B0D894200DAAFBA /* StatusListDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,8 +10,9 @@ import Foundation
 import UIKit
 
 class GameHistoryDataSource: NSObject, UITableViewDataSource {
+  let keys = ["Memory": 0, "Set": 1]
   var history: Dictionary<String, [String]> = ["Memory": [], "Set": []]
-
+  
   func update(gameKey: String, statuses: [String]) {
     history[gameKey]! += statuses
   }
@@ -31,25 +32,15 @@ class GameHistoryDataSource: NSObject, UITableViewDataSource {
       let count = history[key]!.count
       
       var cell = tableView.dequeueReusableCellWithIdentifier("status_row", forIndexPath: indexPath) as! UITableViewCell
-      
+      var tv = UITableView(frame: CGRectZero)
+      tv.dataSource = StatusListDataSource()
       var label = cell.viewWithTag(1) as! UILabel
       label.text = history[key]![count - 1 - indexPath.item]
       
       return cell
   }
 
-  
-  func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-    
-    return 2
-  }
 
-  
-  func tableView(tableView: UITableView,
-    titleForHeaderInSection section: Int) -> String? {
-      
-      return sectionWithIdx(section).title
-  }
   
   func sectionWithIdx(idx: Int) -> (idx: Int, title: String) {
     switch(idx) {

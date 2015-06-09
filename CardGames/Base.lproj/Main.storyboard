@@ -307,7 +307,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a97-M5-fSk" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <customObject id="JMI-o1-t63" customClass="GameHistoryDataSource" customModule="CardGames" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="1071" y="-394.5"/>
+            <point key="canvasLocation" x="1071" y="-395"/>
         </scene>
         <!--MemoryGameController-->
         <scene sceneID="jsd-L8-jqu">
@@ -369,7 +369,22 @@
                                     <fontDescription key="fontDescription" name="Palatino-BoldItalic" family="Palatino" pointSize="36"/>
                                     <color key="textColor" red="0.64792129269955179" green="0.7511160714285714" blue="0.65828785041276761" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
+                                    <variation key="widthClass=compact" misplaced="YES">
+                                        <rect key="frame" x="133" y="22" width="134" height="40"/>
+                                    </variation>
                                 </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zO6-82-KOK">
+                                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                    <color key="backgroundColor" red="0.58039215690000001" green="0.70980392160000005" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                    <state key="normal" title="⚙">
+                                        <color key="titleColor" red="0.26046317819999998" green="0.18727949260000001" blue="0.1132443026" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <variation key="widthClass=compact" fixedFrame="YES">
+                                        <rect key="frame" x="347" y="22" width="40" height="40"/>
+                                    </variation>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" red="0.49019607843137253" green="0.6588235294117647" blue="0.51372549019607838" alpha="0.35000000000000003" colorSpace="calibratedRGB"/>
                             <constraints>
@@ -382,6 +397,16 @@
                                 <constraint firstItem="nQS-uY-KLh" firstAttribute="leading" secondItem="LxL-Lb-lYj" secondAttribute="trailing" constant="3" id="ii1-Ei-IIh"/>
                                 <constraint firstItem="LxL-Lb-lYj" firstAttribute="bottom" secondItem="VBp-Zo-hM2" secondAttribute="bottomMargin" id="wi0-9O-oCr"/>
                             </constraints>
+                            <variation key="default">
+                                <mask key="subviews">
+                                    <exclude reference="zO6-82-KOK"/>
+                                </mask>
+                            </variation>
+                            <variation key="widthClass=compact">
+                                <mask key="subviews">
+                                    <include reference="zO6-82-KOK"/>
+                                </mask>
+                            </variation>
                         </collectionReusableView>
                         <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="6" contentMode="center" reuseIdentifier="game_footer" id="eZL-9H-GzA">
                             <rect key="frame" x="0.0" y="250" width="600" height="50"/>
@@ -418,7 +443,7 @@
                 <customObject id="76O-L0-CGy" customClass="MemoryGameDataSource" customModule="CardGames" customModuleProvider="target"/>
                 <customObject id="L4i-wz-QG2" customClass="MemoryGameDelegate" customModule="CardGames" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="378" y="-514.5"/>
+            <point key="canvasLocation" x="378" y="-515"/>
         </scene>
     </scenes>
     <resources>
