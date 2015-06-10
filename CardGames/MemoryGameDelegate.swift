@@ -14,8 +14,9 @@ class MemoryGameDelegate: NSObject, UICollectionViewDelegate {
 
   var header: UICollectionReusableView?
   var footer: UICollectionReusableView?
-  var statusLabel: UILabel?
+//  var statusLabel: UILabel?
   var scoreLabel: UILabel?
+  var statusView: MemoryGameStatusView?
   
   var selectIdxPaths: [NSIndexPath] = []
   
@@ -27,7 +28,7 @@ class MemoryGameDelegate: NSObject, UICollectionViewDelegate {
       if (elementKind == UICollectionElementKindSectionFooter) {
         view.layer.position.y = collectionView.frame.height - (view.frame.height / 2) - 49
         footer = view
-        statusLabel = view.viewWithTag(1) as? UILabel
+        statusView = footer!.viewWithTag(1) as? MemoryGameStatusView
       } else {
         header = view
         scoreLabel = view.viewWithTag(3) as? UILabel
@@ -45,7 +46,17 @@ class MemoryGameDelegate: NSObject, UICollectionViewDelegate {
       
       var status = getStatus(game)
       
-      statusLabel!.text = status.msg
+      var card = game.getCardAt(indexPath.item)!
+      statusView!.addCardToListView(card.attributes())
+      statusView!.setNeedsDisplay()
+      
+      statusView!.setMessage(status.msg)
+      
+      if (game.currentTurn().done()) {
+        scoreLabel!.text = game.currentPlayer().name + ": \(game.getScoreForCurrentPlayer())"
+      }
+      
+//      recordStatus(cardListText, statusText: statusText)
       
       if (game.currentTurn().done()) {
         scoreLabel!.text = game.currentPlayer().name + ": \(game.getScoreForCurrentPlayer())"
@@ -63,7 +74,8 @@ class MemoryGameDelegate: NSObject, UICollectionViewDelegate {
         var status = getStatus(game)
         game.endTurn()
         
-        statusLabel!.text = status.msg
+        statusView!.setMessage(status.msg)
+//        statusLabel!.text = status.msg
         scoreLabel!.text = game.nextPlayer().name + ": \(game.getScoreForPlayer(game.nextPlayer()))"
         
         if (status.isMatch) {
@@ -74,6 +86,8 @@ class MemoryGameDelegate: NSObject, UICollectionViewDelegate {
           }
         }
         selectIdxPaths = []
+        
+        statusView!.clear()
         
         recordStatus(status.msg)
         
@@ -123,7 +137,8 @@ class MemoryGameDelegate: NSObject, UICollectionViewDelegate {
       let statusMaker = MGStatus(cards: game.getSelectedCards())
       
       if (!game.currentTurn().done()) {
-        return (false, statusMaker.listCards())
+//        return (false, statusMaker.listCards())
+          return (false, "")
       } else if (game.currentTurn().didMatch) {
         return (true, statusMaker.isMatchMsg(game.currentTurn().matchValue).statusText)
       } else {

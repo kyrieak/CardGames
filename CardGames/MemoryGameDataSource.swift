@@ -110,13 +110,13 @@ class MemoryGameDataSource: NSObject, UICollectionViewDataSource {
   
   
   private func applyFooterStyle(inout suppView: UICollectionReusableView, collectionViewHeight: CGFloat) {
-    var label = suppView.viewWithTag(1)!
+//    var label = suppView.viewWithTag(1)!
     
     suppView.frame.origin.y = collectionViewHeight - 100
     
-    if (label.layer.borderWidth == 0) {
-      style.applyShade(label.layer)
-    }
+//    if (label.layer.borderWidth == 0) {
+//      style.applyShade(label.layer)
+//    }
   }
   
   

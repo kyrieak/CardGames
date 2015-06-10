@@ -7,38 +7,44 @@ class CardGameStatusView: UIView {
 
   
   override init(frame: CGRect) {
-    messageView = UILabel(frame: frame)
+    var initialSize = CGSize(width: frame.width, height: 50)
+    messageView = UILabel(frame: CGRect(origin: frame.origin, size: initialSize))
+    cardListView = CardListView(frame: CGRect(origin: frame.origin,
+      size: initialSize))
+
     
     super.init(frame: frame)
     
     addSubview(messageView)
+    addSubview(cardListView!)
   }
   
   required init(coder aDecoder: NSCoder) {
     messageView = UILabel()
-    
+
     super.init(coder: aDecoder)
     
-    cardListView = CardListView(frame: frame)
-    messageView.frame = frame
+    var initialSize = CGSize(width: frame.width, height: 50)
+
+    messageView = UILabel(frame: CGRect(origin: frame.origin, size: initialSize))
+    cardListView = CardListView(frame: CGRect(origin: frame.origin,
+      size: initialSize))
     
     addSubview(messageView)
+    addSubview(cardListView!)
   }
   
   func addCardViewToList(view: UIView) {
-    if (cardListView != nil) {
-      cardListView!.addCardView(view)
-      messageView.frame.origin = cardListView!.getCornerRight()
-    } else {
-      // added
-      cardListView = CardListView(frame: frame)
-      addSubview(cardListView!)
-    }
+    cardListView!.addCardView(view)
+    messageView.frame.origin = cardListView!.getCornerRight()
   }
   
   func setMessage(text: String) {
     messageView.text = text
     messageView.frame.origin.x = leftOffsetForMessage()
+    NSLog("\(messageView.text)")
+    NSLog("\(messageView.frame)")
+    messageView.setNeedsDisplay()
   }
   
   func setMessage(cardListAsText: String, statusText: String) {
@@ -68,8 +74,8 @@ class SetGameStatusView: CardGameStatusView {
   required init(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
     
-    cardListView = CardListView(frame: frame)
-    addSubview(cardListView!)
+//    cardListView = CardListView(frame: frame)
+//    addSubview(cardListView!)
   }
   
   override func setMessage(cardListAsText: String, statusText: String) {
@@ -86,10 +92,22 @@ class SetGameStatusView: CardGameStatusView {
 }
 
 class MemoryGameStatusView: CardGameStatusView {
+  required init(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+    NSLog("init \(frame)")
+    cardListView!.frame.size.height = 50
+//    cardListView = CardListView(frame: CGRect(origin: frame.origin,
+//      size: CGSize(width: 0, height: 50)))
+
+//    addSubview(cardListView!)
+  }
+  
   func addCardToListView(attrs: TrumpCardAttributes) {
     var cardFrame = CGRect(origin: cardListView!.getCornerRight(),
       size: cardListView!.cardSize)
     var cardView = TrumpCardView(frame: cardFrame, attrs: attrs)
+    cardView.flipCard()
+    cardView.backgroundColor = UIColor.whiteColor()
     
     addCardViewToList(cardView)
   }
@@ -97,7 +115,6 @@ class MemoryGameStatusView: CardGameStatusView {
   override func setMessage(cardListAsText: String, statusText: String) {
     setMessage(statusText)
   }
-
 }
 
 class CardListView: UIView {
@@ -107,6 +124,8 @@ class CardListView: UIView {
   
   override init(frame: CGRect) {
     super.init(frame: frame)
+    
+    NSLog("\(frame)")
     
     cardSize = CGSize(width: (frame.height * 0.72), height: frame.height)
   }
@@ -129,6 +148,7 @@ class CardListView: UIView {
   
   func addCardView(view: UIView) {
     view.frame = CGRect(origin: CGPoint(x: getContentWidth(), y: 0), size: cardSize)
+    NSLog("\(cardSize)")
     numCards += 1
     
     addSubview(view)
