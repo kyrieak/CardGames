@@ -10,55 +10,65 @@ import Foundation
 import UIKit
 
 class SetGameController: UICollectionViewController {
+  @IBOutlet var sgDataSource: SetGameDataSource!
+  @IBOutlet var sgDelegate: SetGameDelegate!
+  
+  private var game: SetGame {
+    return sgDataSource.game
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
     startNewGame()
-
+    for card in sgDataSource.game.cardsInPlay {
+      NSLog("\(card!.attributes().shape.hashValue)")
+    }
     collectionView!.allowsMultipleSelection = true
   }
   
   @IBAction func startNewRound(sender: UIButton) {
-    var game = getGame()
-    
     game.startNewRound(game.numberOfCardPositions())
+
     collectionView!.reloadData()
-    getDelegate().selectIdxPaths = []
+
+    sgDelegate.selectIdxPaths = []
   }
   
   // - MARK: - Private Functions ------------------------------------
   
-  private func getGame() -> SetGame {
-    return (collectionView!.dataSource! as! SetGameDataSource).game
-  }
+//  private func getGame() -> SetGame {
+//    return (collectionView!.dataSource! as! SetGameDataSource).game
+//  }
+//  
+//  private func getDelegate() -> SetGameDelegate {
+//    return (collectionView!.delegate! as! SetGameDelegate)
+//  }
   
-  private func getDelegate() -> SetGameDelegate {
-    return (collectionView!.delegate! as! SetGameDelegate)
-  }
-  
-  private func getDataSource() -> SetGameDataSource {
-    return (collectionView!.dataSource! as! SetGameDataSource)
-  }
+//  private func getDataSource() -> SetGameDataSource {
+//    return (collectionView!.dataSource! as! SetGameDataSource)
+//  }
   
   private func getCurrentGame() -> SetGame {
-    return getDataSource().game
+    return sgDataSource.game
   }
   
   func startNewGame() {
-    getDelegate().recordStatus("-- Game Started --")
+    sgDataSource.game = SetGame(_players: game.players)
+//    sgDelegate().recordStatus("-- Game Started --")
   }
 
   
   func endCurrentGame() {
-    getCurrentGame().endGame()
-    getDelegate().recordStatus("-- Game Ended --")
+    game.endGame()
+//    getDelegate().recordStatus("-- Game Ended --")
   }
   
   func getGameHistory() -> [String] {
-    return getDelegate().getGameStatuses()
+    return sgDelegate.getGameStatuses()
   }
   
   func clearOldHistory() {
-    getDelegate().clearOldStatuses()
+    sgDelegate.clearOldStatuses()
   }
 }

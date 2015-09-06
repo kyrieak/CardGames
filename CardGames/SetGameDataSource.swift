@@ -17,7 +17,7 @@ class SetGameDataSource: NSObject, UICollectionViewDataSource {
   let deckButtonTag = 1
   let style = Style()
   
-  let game: SetGame
+  var game: SetGame
   
   override init() {
     game = SetGame(numPlayers: 2)
@@ -120,6 +120,7 @@ class SetGameDataSource: NSObject, UICollectionViewDataSource {
   
   
   private func cellBgView(card: SetCard, withFrame: CGRect) -> SetCardView {
+    var attrs: SetCardAttrs = card.attributes()
     var view = SetCardView(frame: withFrame, attrs: card.attributes())
     
     view.backgroundColor = UIColor.whiteColor()

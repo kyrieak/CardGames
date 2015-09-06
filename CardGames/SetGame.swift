@@ -9,50 +9,43 @@
 import Foundation
 import UIKit
 
-//struct Player: Hashable {
-//  let key: Int
-//  let name: String
-//  let hashValue: Int
-//  
-//  init(key: Int, name: String) {
-//    self.key = key
-//    self.name = name
-//    self.hashValue = key
-//  }
-//}
-//
-//func ==(lhs: Player, rhs: Player) -> Bool {
-//  return lhs.key == rhs.key
-//}
-
-
-class SetGame: CardGame {
-  typealias turnType = SetTurn
-  
-  private var turnKeeper: SetTurnKeeper
-  private var cardsInPlay: [SetCard?] = []
-  private var deck: Deck<SetCard>     = SetGame.standardDeck()
-  private var scores: [Player: Int]   = [Player: Int]()
+class SetGame {
   var isOver: Bool = false
   
-  required init(players: [String]) {
-    turnKeeper = SetTurnKeeper(playerNames: players)
-    
-    for player in turnKeeper.players {
-      scores[player] = 0
-    }
+  private(set) var players: [Player]
+  private var scores: [Player: Int]
+
+  private var deck: Deck<SetCard>     = SetGame.standardDeck()
+  private(set) var cardsInPlay: [SetCard?] = []
+  
+  private(set) var currentMove: SGMove
+  
+  required init(_players: [Player]) {
+    players     = _players
+    scores      = SetGame.startingScores(players)
+    currentMove = SGMove()
     
     startNewRound(15)
   }
   
   convenience init(numPlayers: Int) {
-    var playerNames = (1...numPlayers).map({(num: Int) -> String in
-      return "Player \(num)"
+    var numberedPlayers = (1...numPlayers).map({(num: Int) -> Player in
+      return Player(key: num, name: "Player \(num)")
     })
     
-    self.init(players: playerNames)
+    self.init(_players: numberedPlayers)
   }
   
+  
+  class func startingScores(_players: [Player]) -> [Player: Int] {
+    var _scores = [Player: Int]()
+    
+    for player in _players {
+      _scores[player] = 0
+    }
+    
+    return _scores
+  }
   
   class func standardDeck() -> Deck<SetCard> {
     var deck = Deck<SetCard>()
@@ -76,20 +69,16 @@ class SetGame: CardGame {
     return [1, 2, 3]
   }
   
-  class func standardShapes() -> [String] {
-    return ["diamond", "oval", "squiggle"]
+  class func standardShapes() -> [SGShape] {
+    return [SGShape.Diamond, SGShape.Oval, SGShape.Squiggle]
   }
 
-  class func standardShading() -> [String] {
-    return ["solid", "striped", "open"]
+  class func standardShading() -> [SGShading] {
+    return [SGShading.Solid, SGShading.Striped, SGShading.Open]
   }
   
-  class func standardColors() -> [UIColor] {
-    let red = UIColor(red: 0.875, green: 0.259, blue: 0.302, alpha: 2.0)
-    let green = UIColor(red: 0.102, green: 0.694, blue: 0.365, alpha: 2.0)
-    let purple = UIColor(red: 0.286, green: 0.2, blue: 0.565, alpha: 2.0)
-
-    return [red, green, purple]
+  class func standardColors() -> [SGColor] {
+    return [SGColor.Red, SGColor.Green, SGColor.Purple]
   }
   
   
@@ -115,77 +104,54 @@ class SetGame: CardGame {
   }
   
   
-  func startNewTurn() {
-    turnKeeper.startNewTurn()
-  }
-
-  
-  func updateTurn(cardIdx: Int) {
-    if (!currentTurn().done()) {
-      turnKeeper.updateTurn(cardIdx)
+  func makeMove(cardIndexes: [Int], _player: Player) {
+    var cardPositions = [Int: SetCard]()
+    
+    for index in cardIndexes {
+      var cardAtIndex = cardsInPlay[index]!
+      
+      cardPositions[index] = cardAtIndex
     }
     
-    if (currentTurn().done()) {
-      let (isSet, setValue) = evaluateSet(getSelectedCards())
-
-      turnKeeper.updateTurn(isSet, setValue: setValue)
-
-      scores[currentPlayer()]! += setValue
+    currentMove.setCardPositions(cardPositions)
+    
+    if (currentMove.done) {
+      updateScore(_player)
     }
   }
   
-  func endTurn() {
-    if (currentTurn().didMakeSet) {
-      for idx in currentTurn().cardIndexes {
+  private func updateScore(_player: Player) {
+    if (currentMove.isASet) {
+        scores[_player]! += 5 // arbit
+    } else {
+        scores[_player]! -= 1 // arbit
+    }
+  }
+  
+  func endMove() {
+    if (currentMove.done && currentMove.isASet) {
+      for idx in currentMove.cardPositions.keys.array {
         cardsInPlay[idx] = nil
       }
     }
-
-    turnKeeper.endTurn()
-  }
-  
-  
-  func currentTurn() -> SetTurn {
-    return turnKeeper.currentTurn
-  }
-  
-  
-  func waitingNextTurn() -> Bool {
-    let turn = currentTurn()
     
-    return (turn.done() && !turn.hasEnded)
-  }
-
-  
-  func currentPlayer() -> Player {
-    return turnKeeper.currentPlayer
-  }
-  
-  
-  func nextPlayer() -> Player {
-    return turnKeeper.nextPlayer()
+    currentMove.reset()
   }
 
   
   func isSinglePlayer() -> Bool {
-    return turnKeeper.singlePlayer
+    return (players.count < 2)
   }
 
   
   func isMultiPlayer() -> Bool {
-    return !turnKeeper.singlePlayer
+    return !isSinglePlayer()
   }
   
   
   func getScoreForPlayer(p: Player) -> Int {
     return scores[p]!
   }
-  
-  
-  func getScoreForCurrentPlayer() -> Int {
-    return getScoreForPlayer(currentPlayer())
-  }
-
   
   func getCardAt(idx: Int) -> SetCard? {
     return cardsInPlay[idx]
@@ -198,172 +164,108 @@ class SetGame: CardGame {
   
   
   func getSelectedCards() -> [SetCard] {
-    let cards = currentTurn().cardIndexes.map({(idx: Int) -> SetCard in
-      return self.cardsInPlay[idx]!
-    })
+    let cards = currentMove.cardPositions.values.array
     
     return cards
   }
-  
-  
-  func evaluateSet(cards: [SetCard]) -> (Bool, Int) {
-    if (cards.count != 3) {
-      return (false, 0)
-    } else {
-      let (cardA, cardB, cardC) = (cards[0], cards[1], cards[2])
-
-      let numSet = isSameOrUnique(cards.map({(card: SetCard) -> Int in
-        return card.number
-      }))
-      
-      let shapeSet = isSameOrUnique(cards.map({(card: SetCard) -> String in
-        return card.shape
-      }))
-
-      let shadeSet = isSameOrUnique(cards.map({(card: SetCard) -> String in
-        return card.shading
-      }))
-      
-      let colorSet = isSameOrUnique(cards.map({(card: SetCard) -> UIColor in
-        return card.color
-      }))
-      
-      if (numSet && shapeSet && shadeSet && colorSet) {
-        return (true, 6)
-      } else {
-        return (false, 0)
-      }      
-    }
-  }
-  
   
   func numberOfCardPositions() -> Int {
     return cardsInPlay.count
   }
   
-
-
-  
-  private func isSameOrUnique(values: [UIColor]) -> Bool {
-    if (values.count != 3) {
-      return false
-    } else {
-      let (v1, v2, v3) = (values[0], values[1], values[2])
-      
-      if ((v1 == v2) && (v1 == v3)) {
-        return true
-      } else if ((v1 != v2) && (v1 != v3) && (v2 != v3)) {
-        return true
-      } else {
-        return false
-      }
-    }
-  }
-
-  
-  private func isSameOrUnique(values: [String]) -> Bool {
-    if (values.count != 3) {
-      return false
-    } else {
-      let (v1, v2, v3) = (values[0], values[1], values[2])
-      
-      if ((v1 == v2) && (v1 == v3)) {
-        return true
-      } else if ((v1 != v2) && (v1 != v3) && (v2 != v3)) {
-        return true
-      } else {
-        return false
-      }
-    }
-  }
-  
-  private func isSameOrUnique(values: [Int]) -> Bool {
-    if (values.count != 3) {
-      return false
-    } else {
-      let (v1, v2, v3) = (values[0], values[1], values[2])
-      
-      if ((v1 == v2) && (v1 == v3)) {
-        return true
-      } else if ((v1 != v2) && (v1 != v3) && (v2 != v3)) {
-        return true
-      } else {
-        return false
-      }
-    }
-  }
 }
-
-
-// =============================================================
-
-class SetTurnKeeper: TurnKeeper {
-  var currentTurn: SetTurn
-  
-  override init(playerNames: [String]) {
-    currentTurn = SetTurn()
-    
-    super.init(playerNames: playerNames)
-  }
-  
-  
-  override func startNewTurn() {
-    super.startNewTurn()
-    
-    currentTurn.reset()
-  }
-  
-  
-  func endTurn() {
-    currentTurn.endTurn()
-  }
-
-  
-  func updateTurn(cardIdx: Int) {
-    currentTurn.addCardIdx(cardIdx)
-  }
-  
-  func updateTurn(isSet: Bool, setValue: Int) {
-    currentTurn.didMakeSet = isSet
-    currentTurn.setValue = setValue
-  }
-}
-
-
 // =============================================================
 
 
-struct SetTurn: Turn {
-  var hasEnded: Bool
-  var didMakeSet: Bool
-  var setValue: Int
-  var cardIndexes: [Int]
- 
+class SGMove {
+  private(set) var isASet: Bool = false
+//  private(set) var player: Player?
+  private(set) var cardPositions: [Int: SetCard]
+
+  var done: Bool {
+    NSLog("counting: \(cardPositions.count) cards")
+    return cardPositions.count == 3
+  }
+
   let maxCards: Int = 3
   
   init() {
-    hasEnded    = false
-    didMakeSet  = false
-    setValue    = 0
-    cardIndexes = []
+    cardPositions = [Int: SetCard]()
   }
   
-  mutating func addCardIdx(idx: Int) {
-    cardIndexes.append(idx)
+  init(_player: Player) {
+//    player = _player
+    cardPositions = [Int: SetCard]()
   }
 
-  mutating func reset() {
-    didMakeSet = false
-    setValue = 0
-    hasEnded = false
-    cardIndexes = []
+//  func setPlayer(_player: Player) {
+//    if (player == nil) {
+//      player = _player
+//    }
+//  }
+  
+  func setCardPositions(_cardPositions: [Int: SetCard]) {
+    if ((cardPositions.count == 0) &&
+         (_cardPositions.count == 3)) {
+
+          cardPositions = _cardPositions
+          
+          if (done) {
+            updateIsASet()
+          }
+    }
   }
   
-  mutating func endTurn() {
-    hasEnded = true
+  func reset() {
+//    player = nil
+    cardPositions.removeAll(keepCapacity: true)
   }
+  
 
-  func done() -> Bool {
-    return !(cardIndexes.count < maxCards)
+  
+  private func updateIsASet() {
+    if (cardPositions.count == 3) {
+      let cards = cardPositions.values.array
+      
+      var numbers: [Int]       = []
+      var colors: [SGColor]    = []
+      var shading: [SGShading] = []
+      var shapes: [SGShape]    = []
+      
+      for card in cards {
+        numbers.append(card.number)
+        colors.append(card.color)
+        shading.append(card.shading)
+        shapes.append(card.shape)
+      }
+      
+      isASet = (isSameOrUnique(colors) &&
+              isSameOrUnique(shading) &&
+              isSameOrUnique(shapes) &&
+              isSameOrUnique(numbers))
+    } else {
+      isASet = false
+    }
+  }
+  
+  private func isSameOrUnique<T: Hashable>(values: [T]) -> Bool {
+    if (values.count != 3) {
+      return false
+    } else {
+      let (v1, v2, v3) = (values[0], values[1], values[2])
+      
+      if ((v1 == v2) && (v1 == v3)) {
+        return true
+      } else if ((v1 != v2) && (v1 != v3) && (v2 != v3)) {
+        return true
+      } else {
+        return false
+      }
+    }
   }
 }
+
+//    let red = UIColor(red: 0.875, green: 0.259, blue: 0.302, alpha: 2.0)
+//    let green = UIColor(red: 0.102, green: 0.694, blue: 0.365, alpha: 2.0)
+//    let purple = UIColor(red: 0.286, green: 0.2, blue: 0.565, alpha: 2.0)
+//

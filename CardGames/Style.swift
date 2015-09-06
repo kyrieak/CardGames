@@ -38,14 +38,14 @@ struct Style {
     view.backgroundColor = UIColor(patternImage: scaledImg!)
   }
   
-  static func getUIColorFor(color: NamedColor) -> UIColor {
-    switch(color) {
-      case .Red:
-        return UIColor.redColor()
-      case .Black:
-        return UIColor.blackColor()
-    }
-  }
+//  static func getUIColorFor(color: NamedColor) -> UIColor {
+//    switch(color) {
+//      case .Red:
+//        return UIColor.redColor()
+//      case .Black:
+//        return UIColor.blackColor()
+//    }
+//  }
   
   static func rgbToUIColor(r: Int, g: Int, b: Int) -> UIColor {
     let max = CGFloat(255)

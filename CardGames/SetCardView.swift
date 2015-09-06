@@ -11,19 +11,15 @@ import UIKit
 
 class SetCardView: UIView {
   private var rgbColor: [CGFloat]
-  private var shape: String
-  private var number: Int
-  private var shading: String
+  private var cardAttrs: SetCardAttrs
   private var drawingBounds = CGRectZero
   
   // MARK: - Initializers -
   
-  init(frame: CGRect, attrs: SetCardAttributes) {
-    self.number   = attrs.number
-    self.shape    = attrs.shape
-    self.shading  = attrs.shading
-    self.rgbColor = attrs.color
-    
+  init(frame: CGRect, attrs: SetCardAttrs) {
+    cardAttrs = attrs
+    rgbColor = [1.0, 0, 0, 1.0]
+
     super.init(frame: frame)
     
     backgroundColor = UIColor.whiteColor()
@@ -31,13 +27,13 @@ class SetCardView: UIView {
   
   
   required init(coder aDecoder: NSCoder) {
-    self.shape = "square"
-    self.number = 1
+    cardAttrs = SetCardAttrs(number: 1,
+                               shape: SGShape.Diamond,
+                                 shading: SGShading.Solid,
+                                   color: SGColor.Green)
     self.rgbColor = [0, 0, 0, 0]
-    self.shading = "solid"
     
     super.init(coder: aDecoder)
-
     backgroundColor = UIColor.whiteColor()
   }
   
@@ -46,13 +42,14 @@ class SetCardView: UIView {
   override func drawRect(rect: CGRect) {
     let context = UIGraphicsGetCurrentContext()
     let colorSpace = CGColorSpaceCreateDeviceRGB()
+    let number = cardAttrs.number
     let color = CGColorCreate(colorSpace, rgbColor)
 
     CGContextSetLineWidth(context, 2.0)
     CGContextSetStrokeColorWithColor(context, color)
     CGContextSetFillColor(context, rgbColor)
     CGContextSaveGState(context) // --- Context Saved ---
-    
+
     var insetX = rect.width * 0.2
     var insetY = insetX
     var dist: CGFloat = 0
@@ -90,7 +87,7 @@ class SetCardView: UIView {
   // - MARK: - Private -
   
   private func calcShapeSize(bounds: CGSize) -> CGSize {
-    let dividedHeight = bounds.height / CGFloat(number)
+    let dividedHeight = bounds.height / CGFloat(cardAttrs.number)
     let maxHeight = dividedHeight * 0.7
     
     var w, h: CGFloat
@@ -105,16 +102,14 @@ class SetCardView: UIView {
   private func drawShape(context: CGContextRef, size: CGSize) {
     CGContextSaveGState(context) // --- Context Saved ---
     
-    switch(shape) {
-      case "diamond":
+    switch(cardAttrs.shape) {
+      case .Diamond:
         drawDiamond(size)
-      case "oval":
+      case .Oval:
         drawOval(size)
-      case "squiggle":
+      case .Squiggle:
         CGContextSetLineCap(context, kCGLineCapRound)
         drawSquiggle(size)
-      default:
-        NSLog("shape is \(shape)")
     }
     
     CGContextRestoreGState(context) // --- Context Restored ---
@@ -135,9 +130,11 @@ class SetCardView: UIView {
     path.stroke()
     path.addClip()
     
-    if (shading == "solid") {
+    let shading = cardAttrs.shading
+    
+    if (shading == .Solid) {
       path.fill()
-    } else if (shading == "striped") {
+    } else if (shading == .Striped) {
       drawStripes(size)
     }
   }
@@ -149,9 +146,11 @@ class SetCardView: UIView {
     path.stroke()
     path.addClip()
     
-    if (shading == "solid") {
+    let shading = cardAttrs.shading
+    
+    if (shading == .Solid) {
       path.fill()
-    } else if (shading == "striped") {
+    } else if (shading == .Striped) {
       drawStripes(size)
     }
   }
@@ -188,9 +187,11 @@ class SetCardView: UIView {
     path.stroke()
     path.addClip()
     
-    if (shading == "solid") {
+    let shading = cardAttrs.shading
+    
+    if (shading == .Solid) {
       path.fill()
-    } else if (shading == "striped") {
+    } else if (shading == .Striped) {
       drawStripes(size)
     }
   }

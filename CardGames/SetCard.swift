@@ -10,12 +10,12 @@ import Foundation
 import UIKit
 
 class SetCard: Card {
-  let shape: String
-  let color: UIColor
-  let shading: String
+  let shape: SGShape
+  let color: SGColor
+  let shading: SGShading
   let number: Int
   
-  init(shape: String, color: UIColor, shading: String, number: Int) {
+  init(shape: SGShape, color: SGColor, shading: SGShading, number: Int) {
     self.shape = shape
     self.color = color
     self.shading = shading
@@ -24,47 +24,60 @@ class SetCard: Card {
     super.init()
   }
   
-  func attributes() -> SetCardAttributes {
-    return SetCardAttributes(card: self)
+  func attributes() -> SetCardAttrs {
+    return SetCardAttrs(card: self)
   }
   
-  convenience init(shape: String, color: UIColor) {
-    self.init(shape: shape, color: color, shading: "solid", number: 1)
+  convenience init(shape: SGShape, color: SGColor) {
+    self.init(shape: shape, color: color, shading: SGShading.Solid, number: 1)
   }
 }
 
-struct SetCardAttributes {
-  let shape: String
-  let color: [CGFloat]
-  let shading: String
+struct SetCardAttrs {
+  let shape: SGShape
+  let color: SGColor
+  let shading: SGShading
   let number: Int
-  
-  init(number: Int, shape: String, shading: String, color: [CGFloat]) {
+
+  init(number: Int, shape: SGShape, shading: SGShading, color: SGColor) {
     self.number = number
     self.shape = shape
     self.shading = shading
     self.color = color
-  }
-
-  init(number: Int, shape: String, shading: String, color: UIColor) {
-    self.number = number
-    self.shape = shape
-    self.shading = shading
-    self.color = SetCardAttributes.rgbColor(color)
   }
   
   init(card: SetCard) {
     self.number = card.number
     self.shape = card.shape
     self.shading = card.shading
-    self.color = SetCardAttributes.rgbColor(card.color)
+    self.color = card.color
   }
-  
-  static func rgbColor(color: UIColor) -> [CGFloat] {
-    var (r, g, b, a): (CGFloat, CGFloat, CGFloat, CGFloat) = (0, 0, 0, 0)
-    
-    color.getRed(&r, green: &g, blue: &b, alpha: &a)
-    
-    return [r, g, b, a]
-  }
+}
+
+
+//  static func rgbColor(color: UIColor) -> [CGFloat] {
+//    var (r, g, b, a): (CGFloat, CGFloat, CGFloat, CGFloat) = (0, 0, 0, 0)
+//
+//    color.getRed(&r, green: &g, blue: &b, alpha: &a)
+//
+//    return [r, g, b, a]
+//  }
+
+
+enum SGColor {
+  case Red
+  case Green
+  case Purple
+}
+
+enum SGShading {
+  case Open
+  case Striped
+  case Solid
+}
+
+enum SGShape {
+  case Diamond
+  case Oval
+  case Squiggle
 }

@@ -82,7 +82,7 @@ class SetGameStatusView: CardGameStatusView {
     setMessage(statusText)
   }
   
-  func addCardToListView(attrs: SetCardAttributes) {
+  func addCardToListView(attrs: SetCardAttrs) {
     var cardFrame = CGRect(origin: cardListView!.getCornerRight(),
                            size: cardListView!.cardSize)
     var cardView = SetCardView(frame: cardFrame, attrs: attrs)
@@ -91,31 +91,6 @@ class SetGameStatusView: CardGameStatusView {
   }
 }
 
-class MemoryGameStatusView: CardGameStatusView {
-  required init(coder aDecoder: NSCoder) {
-    super.init(coder: aDecoder)
-    NSLog("init \(frame)")
-    cardListView!.frame.size.height = 50
-//    cardListView = CardListView(frame: CGRect(origin: frame.origin,
-//      size: CGSize(width: 0, height: 50)))
-
-//    addSubview(cardListView!)
-  }
-  
-  func addCardToListView(attrs: TrumpCardAttributes) {
-    var cardFrame = CGRect(origin: cardListView!.getCornerRight(),
-      size: cardListView!.cardSize)
-    var cardView = TrumpCardView(frame: cardFrame, attrs: attrs)
-    cardView.flipCard()
-    cardView.backgroundColor = UIColor.whiteColor()
-    
-    addCardViewToList(cardView)
-  }
-  
-  override func setMessage(cardListAsText: String, statusText: String) {
-    setMessage(statusText)
-  }
-}
 
 class CardListView: UIView {
   private var cardSize = CGSizeZero

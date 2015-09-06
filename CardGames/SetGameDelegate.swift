@@ -11,6 +11,7 @@ import UIKit
 
 class SetGameDelegate: NSObject, UICollectionViewDelegate {
   private var gameStatuses: [String] = []
+  private var waitingNextMove = true
   
   var header: UICollectionReusableView?
   var footer: UICollectionReusableView?
@@ -40,25 +41,33 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
       var game = getGame(collectionView)
 
       selectIdxPaths.append(indexPath)
-      
-      game.updateTurn(indexPath.item)
-
-      var status = getStatus(game)
-
       var card = game.getCardAt(indexPath.item)!
+
       statusView!.addCardToListView(card.attributes())
       statusView!.setNeedsDisplay()
-      
-      var (cardListText, statusText) = status.msg
+  }
+  
+  
+  func makeMoveAction(_collectionView: UICollectionView) {
+    var game = getGame(_collectionView)
 
-      statusView!.setMessage(cardListText, statusText: statusText)
+    if (game.currentMove.done) {
+      let player = Player(key: 1, name: "hi") // placeholder
       
-      if (game.currentTurn().done()) {
-        scoreLabel!.text = game.currentPlayer().name + ": \(game.getScoreForCurrentPlayer())"
+      if (selectIdxPaths.count == 3) {
+        game.makeMove(selectedIndexes(), _player: player)
       }
       
+      var status = getStatus(game)
+      var (cardListText, statusText) = status.msg
       
-      recordStatus(cardListText, statusText: statusText)
+      statusView!.setMessage(cardListText, statusText: statusText)
+      
+//      if (currentMove.done) {
+//        NSLog("score goes here")
+//        //        scoreLabel!.text = game.currentPlayer().name + ": \(game.getScoreForCurrentPlayer())"
+//      }
+    }
   }
   
   
@@ -66,36 +75,10 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
     shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
       var game = getGame(collectionView)
       
-      if (game.waitingNextTurn()) {
-        game.endTurn()
-
-        var status = getStatus(game)
-
-        var (cardListText, statusText) = status.msg
-        
-        statusView!.setMessage(cardListText, statusText: statusText)
-        
-        scoreLabel!.text = game.nextPlayer().name + ": \(game.getScoreForPlayer(game.nextPlayer()))"
-        
-        if (status.isSet) {
-          collectionView.reloadItemsAtIndexPaths(selectIdxPaths)
-        } else {
-          for path in selectIdxPaths {
-            collectionView.deselectItemAtIndexPath(path, animated: false)
-          }
-        }
-        selectIdxPaths = []
-        statusView!.clear()
-        
-        recordStatus(cardListText, statusText: statusText)
-
+      if (selectIdxPaths.count > 2) {
         return false
       } else {
-        if (game.currentTurn().hasEnded) {
-          game.startNewTurn()
-        }
-
-        return (game.hasCardAt(indexPath.item))
+        return game.hasCardAt(indexPath.item)
       }
   }
   
@@ -132,18 +115,24 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
   
   
   private func getStatus(game: SetGame) -> (isSet: Bool, msg: (String, String)) {
-    if (game.isMultiPlayer() && game.currentTurn().hasEnded) {
-      return (game.currentTurn().didMakeSet, ("", (game.nextPlayer().name + "\'s Turn")))
+    if (game.currentMove.done) {
+      return (game.currentMove.isASet, ("", ("Ready for next move")))
     } else {
       let statusMaker = SetGameStatus(cards: game.getSelectedCards())
       
-      if (!game.currentTurn().done()) {
+      if (!game.currentMove.done) {
         return (false, (statusMaker.listCards(), ""))
-      } else if (game.currentTurn().didMakeSet) {
-        return (true, statusMaker.isSetMsg(game.currentTurn().setValue))
+      } else if (game.currentMove.isASet) {
+        return (true, statusMaker.isSetMsg(5)) // arbit 5pts
       } else {
-        return (false, statusMaker.notSetMsg(game.currentTurn().setValue))
+        return (false, statusMaker.notSetMsg(-1)) // arbit -1pts
       }
+    }
+  }
+  
+  private func selectedIndexes() -> [Int] {
+    return selectIdxPaths.map { (path: NSIndexPath) -> Int in
+      return path.item
     }
   }
 }
@@ -153,7 +142,14 @@ struct SetGameStatus {
   
   init(cards: [SetCard]) {
     cardsStr = join(", ", cards.map({(sc: SetCard) -> String in
-      return sc.shape
+      switch(sc.shape) {
+        case .Diamond:
+          return "Diamond"
+        case .Oval:
+          return "Oval"
+        case .Squiggle:
+          return "Squiggle"
+      }
     }))
     
     if (cards.count > 0) {
@@ -179,3 +175,38 @@ struct SetGameStatus {
     }
   }
 }
+// content of should select --------------------------
+//      if (currentMove.done) {
+////        game.endMove()
+//
+//        waitingNextMove = true
+//
+//        var status = getStatus(game)
+//
+//        var (cardListText, statusText) = status.msg
+//
+//        statusView!.setMessage(cardListText, statusText: statusText)
+//
+//        scoreLabel!.text = game.nextPlayer().name + ": \(game.getScoreForPlayer(game.nextPlayer()))"
+//
+//        if (status.isSet) {
+//          collectionView.reloadItemsAtIndexPaths(selectIdxPaths)
+//        } else {
+//          for path in selectIdxPaths {
+//            collectionView.deselectItemAtIndexPath(path, animated: false)
+//          }
+//        }
+//        selectIdxPaths = []
+//        statusView!.clear()
+//
+//        recordStatus(cardListText, statusText: statusText)
+//
+//        return false
+//      } else {
+//        if (game.currentTurn().hasEnded) {
+//          game.startNewTurn()
+//        }
+//
+//        return (game.hasCardAt(indexPath.item))
+//      }
+// --------------------------------
