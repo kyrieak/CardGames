@@ -20,19 +20,47 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
   
   var selectIdxPaths: [NSIndexPath] = []
   
+  
   func collectionView(collectionView: UICollectionView,
     willDisplaySupplementaryView view: UICollectionReusableView,
     forElementKind elementKind: String,
     atIndexPath indexPath: NSIndexPath) {
       
       if (elementKind == UICollectionElementKindSectionFooter) {
-        view.layer.position.y = collectionView.frame.height - (view.frame.height / 2) - 49
+        NSLog("collectionView.frame: \(collectionView.frame)")
+        view.frame.origin.y = collectionView.frame.height - view.frame.height
+//        addPlayerButtons(collectionView, footer: view)
         footer = view
-        statusView = view.viewWithTag(1) as? SetGameStatusView
+//        statusView = view.viewWithTag(1) as? SetGameStatusView
+        NSLog("\(view.viewWithTag(8)) view with tag 8?")
       } else {
         header = view
         scoreLabel = view.viewWithTag(3) as? UILabel
       }
+  }
+  
+  private func addPlayerButtons(collectionView: UICollectionView, footer: UIView) {
+    let _datasource = collectionView.dataSource! as? SetGameDataSource
+    let game = _datasource!.game
+    
+    var playerWrapView = footer.viewWithTag(8)!
+    NSLog("pwview size: \(playerWrapView.frame.size)")
+
+    let pCount = game.players.count
+    let h = playerWrapView.frame.height
+    var spacing = (collectionView.frame.width - (h * CGFloat(pCount))) / CGFloat(pCount + 1)
+    var _origin = CGPoint(x: spacing, y: 0)
+    let buttonSize = CGSize(width: h, height: h)
+    
+    for player in game.players {
+      var pButton = UIButton(frame: CGRect(origin: _origin, size: buttonSize))
+      pButton.backgroundColor = UIColor.blueColor()
+      playerWrapView.addSubview(pButton)
+      
+      NSLog("\(buttonSize)")
+      _origin.x = pButton.frame.maxX + spacing
+    }
+
   }
   
   

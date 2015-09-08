@@ -26,7 +26,7 @@ class SetGameDataSource: NSObject, UICollectionViewDataSource {
   }
   
   func startNewRound() {
-    game.startNewRound(15)
+    game.startNewRound(12)
   }
   
   // - MARK: - DataSource Functions ------------------------------------
@@ -42,14 +42,14 @@ class SetGameDataSource: NSObject, UICollectionViewDataSource {
     atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
       var suppView: UICollectionReusableView
 
-      switch (kind) {
-        case UICollectionElementKindSectionHeader:
-          suppView = dequeHeaderView(collectionView, indexPath: indexPath)
-          applyHeaderStyle(&suppView)
-          break
+      switch (kind) {        
+//        case UICollectionElementKindSectionHeader:
+//          suppView = dequeHeaderView(collectionView, indexPath: indexPath)
+//          applyHeaderStyle(&suppView)
+//          break
         case UICollectionElementKindSectionFooter:
           suppView = dequeFooterView(collectionView, indexPath: indexPath)
-          applyFooterStyle(&suppView, collectionViewHeight: collectionView.layer.frame.height)
+//          applyFooterStyle(&suppView, collectionViewSize: collectionView.frame.size)
           break
         default:
           suppView = UICollectionReusableView()
@@ -63,9 +63,12 @@ class SetGameDataSource: NSObject, UICollectionViewDataSource {
   func collectionView(collectionView: UICollectionView,
     cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
       var card: SetCard? = game.getCardAt(indexPath.item)
+      let attrs = collectionView.layoutAttributesForItemAtIndexPath(indexPath)
 
       var cell = (collectionView.dequeueReusableCellWithReuseIdentifier(cellReuseId,
         forIndexPath: indexPath) as? UICollectionViewCell)!
+      
+      cell.frame = attrs!.frame
       
       if (card != nil) {
         cell.backgroundView = cellBgView(card!, withFrame: cell.frame)
@@ -79,12 +82,15 @@ class SetGameDataSource: NSObject, UICollectionViewDataSource {
       
       return cell
   }
+  
+  
 
   
   // - MARK: - Private Functions ------------------------------------
 
-  private func dequeHeaderView(collectionView: UICollectionView, indexPath: NSIndexPath) -> UICollectionReusableView {
-    
+  private func dequeHeaderView(collectionView: UICollectionView,
+                                 indexPath: NSIndexPath) -> UICollectionReusableView {
+                                  
     return (collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader,
       withReuseIdentifier: headerReuseId,
       forIndexPath: indexPath) as? UICollectionReusableView)!
@@ -92,7 +98,6 @@ class SetGameDataSource: NSObject, UICollectionViewDataSource {
 
   
   private func dequeFooterView(collectionView: UICollectionView, indexPath: NSIndexPath) -> UICollectionReusableView {
-    
     return (collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionFooter,
       withReuseIdentifier: footerReuseId,
       forIndexPath: indexPath) as? UICollectionReusableView)!
@@ -108,14 +113,36 @@ class SetGameDataSource: NSObject, UICollectionViewDataSource {
   }
   
   
-  private func applyFooterStyle(inout suppView: UICollectionReusableView, collectionViewHeight: CGFloat) {
+  private func applyFooterStyle(inout suppView: UICollectionReusableView, collectionViewSize: CGSize) {
     var label = suppView.viewWithTag(1)!
 
-    suppView.frame.origin.y = collectionViewHeight - 100
+    
+    suppView.frame.origin.y = collectionViewSize.height - 100
 
     if (label.layer.borderWidth == 0) {
       style.applyShade(label.layer)
     }
+
+//    NSLog("\(suppView.viewWithTag(8))")
+//    
+//    var playerWrapView = suppView.viewWithTag(8)!
+//    let pCount = game.players.count
+//    let h = playerWrapView.frame.height
+//    var spacing = (collectionViewSize.width - (h * CGFloat(pCount))) / CGFloat(pCount + 1)
+//    var _origin = CGPoint(x: spacing, y: 0)
+//    let buttonSize = CGSize(width: h, height: h)
+//    
+//    for player in game.players {
+//      var pButton = UIButton(frame: CGRect(origin: _origin, size: buttonSize))
+//      pButton.backgroundColor = UIColor.blueColor()
+//      playerWrapView.addSubview(pButton)
+//      
+//      NSLog("\(pButton.frame.maxX + spacing + spacing + h)")
+//      _origin.x = pButton.frame.maxX + spacing
+//    }
+//    
+
+  
   }
   
   

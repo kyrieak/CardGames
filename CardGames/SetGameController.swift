@@ -13,17 +13,33 @@ class SetGameController: UICollectionViewController {
   @IBOutlet var sgDataSource: SetGameDataSource!
   @IBOutlet var sgDelegate: SetGameDelegate!
   
+  var headerHeight: CGFloat {
+    return view.frame.height * 0.2
+  }
+  
+  var contentHeight: CGFloat {
+    return view.frame.height * 0.6
+  }
+  
   private var game: SetGame {
     return sgDataSource.game
   }
   
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    startNewGame()
-    for card in sgDataSource.game.cardsInPlay {
-      NSLog("\(card!.attributes().shape.hashValue)")
-    }
+    collectionView!.frame.origin.y += headerHeight
+    collectionView!.frame.size.height = contentHeight
+    
+    collectionView!.setNeedsDisplay()
+    
+//    var _collectionView = self.collectionView!
+//
+//    _collectionView.setNeedsDisplay()
+    
+//    startNewGame()
+
     collectionView!.allowsMultipleSelection = true
   }
   

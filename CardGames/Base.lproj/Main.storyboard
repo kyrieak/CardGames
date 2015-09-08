@@ -135,6 +135,15 @@
                                     <segue destination="q5p-BK-A1i" kind="embed" id="BLb-wM-B0s"/>
                                 </connections>
                             </containerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="atW-om-Uhl">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="35" y="423" width="46" height="30"/>
+                                </variation>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.92941176469999998" green="0.96947297489999995" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -169,6 +178,7 @@
                                 <exclude reference="59A-Ld-fUc"/>
                                 <exclude reference="qYY-Pn-84O"/>
                                 <exclude reference="HWy-HU-mpO"/>
+                                <exclude reference="atW-om-Uhl"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="144-QZ-Jdv"/>
@@ -197,6 +207,7 @@
                                 <include reference="59A-Ld-fUc"/>
                                 <include reference="qYY-Pn-84O"/>
                                 <include reference="HWy-HU-mpO"/>
+                                <include reference="atW-om-Uhl"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="144-QZ-Jdv"/>
@@ -237,7 +248,7 @@
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="6" minimumInteritemSpacing="6" id="Zqj-Yx-y0F">
                             <size key="itemSize" width="72" height="100"/>
                             <size key="headerReferenceSize" width="320" height="130"/>
-                            <size key="footerReferenceSize" width="320" height="50"/>
+                            <size key="footerReferenceSize" width="320" height="120"/>
                             <inset key="sectionInset" minX="8" minY="10" maxX="8" maxY="10"/>
                         </collectionViewFlowLayout>
                         <cells>
@@ -271,25 +282,6 @@
                                         <action selector="startNewRound:" destination="rOu-dJ-arH" eventType="touchUpInside" id="6t2-F8-doY"/>
                                     </connections>
                                 </button>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cdj-fk-et9">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" secondItem="Cdj-fk-et9" secondAttribute="height" multiplier="141:22" id="4VF-7b-jUn"/>
-                                        <constraint firstAttribute="width" constant="282" id="rff-aT-lq3"/>
-                                    </constraints>
-                                    <variation key="default">
-                                        <mask key="constraints">
-                                            <exclude reference="4VF-7b-jUn"/>
-                                            <exclude reference="rff-aT-lq3"/>
-                                        </mask>
-                                    </variation>
-                                    <variation key="widthClass=compact">
-                                        <mask key="constraints">
-                                            <include reference="4VF-7b-jUn"/>
-                                            <include reference="rff-aT-lq3"/>
-                                        </mask>
-                                    </variation>
-                                </view>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gem-vk-m9a">
                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                     <color key="backgroundColor" red="0.79708167990000001" green="0.75889349230000003" blue="0.70999322939999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -320,55 +312,87 @@
                             <constraints>
                                 <constraint firstItem="gem-vk-m9a" firstAttribute="trailing" secondItem="XG1-eu-Ip1" secondAttribute="trailingMargin" id="5GM-ml-5Gt"/>
                                 <constraint firstItem="M4W-43-oK8" firstAttribute="leading" secondItem="XG1-eu-Ip1" secondAttribute="leadingMargin" id="NDd-K5-wXa"/>
-                                <constraint firstItem="Cdj-fk-et9" firstAttribute="bottom" secondItem="M4W-43-oK8" secondAttribute="bottom" id="aog-vW-zHz"/>
                                 <constraint firstItem="M4W-43-oK8" firstAttribute="bottom" secondItem="XG1-eu-Ip1" secondAttribute="bottomMargin" id="krK-ol-Fkv"/>
-                                <constraint firstItem="Cdj-fk-et9" firstAttribute="trailing" secondItem="gem-vk-m9a" secondAttribute="trailing" id="okx-KE-uif"/>
                                 <constraint firstItem="gem-vk-m9a" firstAttribute="top" secondItem="M4W-43-oK8" secondAttribute="top" constant="-14" id="urm-dH-g3w">
                                     <variation key="widthClass=compact" constant="0.0"/>
                                 </constraint>
                             </constraints>
                             <variation key="default">
                                 <mask key="subviews">
-                                    <exclude reference="Cdj-fk-et9"/>
                                     <exclude reference="gem-vk-m9a"/>
                                 </mask>
                                 <mask key="constraints">
                                     <exclude reference="5GM-ml-5Gt"/>
                                     <exclude reference="urm-dH-g3w"/>
-                                    <exclude reference="aog-vW-zHz"/>
-                                    <exclude reference="okx-KE-uif"/>
                                 </mask>
                             </variation>
                             <variation key="widthClass=compact">
                                 <mask key="subviews">
-                                    <include reference="Cdj-fk-et9"/>
                                     <include reference="gem-vk-m9a"/>
                                 </mask>
                                 <mask key="constraints">
                                     <include reference="5GM-ml-5Gt"/>
                                     <include reference="urm-dH-g3w"/>
-                                    <include reference="aog-vW-zHz"/>
-                                    <include reference="okx-KE-uif"/>
                                 </mask>
                             </variation>
                         </collectionReusableView>
                         <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="game_status" id="hBO-S8-O9S">
-                            <rect key="frame" x="0.0" y="250" width="600" height="50"/>
+                            <rect key="frame" x="0.0" y="233" width="600" height="120"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <view tag="1" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FOE-ZY-hxt" customClass="SetGameStatusView" customModule="CardGames" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
-                                    <color key="backgroundColor" red="0.79708167989417988" green="0.75889349234764281" blue="0.70999322936110598" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="50" id="uJu-yD-Enf"/>
                                     </constraints>
                                 </view>
+                                <view tag="8" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gHu-ir-HLd">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="54" id="o97-8f-Wq4"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="o97-8f-Wq4"/>
+                                        </mask>
+                                    </variation>
+                                    <variation key="widthClass=compact">
+                                        <mask key="constraints">
+                                            <include reference="o97-8f-Wq4"/>
+                                        </mask>
+                                    </variation>
+                                </view>
                             </subviews>
+                            <color key="backgroundColor" red="0.79708167990000001" green="0.75889349230000003" blue="0.70999322939999998" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
+                                <constraint firstItem="gHu-ir-HLd" firstAttribute="leading" secondItem="hBO-S8-O9S" secondAttribute="leadingMargin" id="5WI-2K-UwL"/>
+                                <constraint firstItem="gHu-ir-HLd" firstAttribute="bottom" secondItem="hBO-S8-O9S" secondAttribute="bottomMargin" id="7hP-yz-4eD"/>
+                                <constraint firstItem="gHu-ir-HLd" firstAttribute="trailing" secondItem="hBO-S8-O9S" secondAttribute="trailingMargin" id="ENS-Ke-3FK"/>
                                 <constraint firstAttribute="trailingMargin" secondItem="FOE-ZY-hxt" secondAttribute="trailing" constant="-8" id="Vth-nb-HPL"/>
                                 <constraint firstItem="FOE-ZY-hxt" firstAttribute="leading" secondItem="hBO-S8-O9S" secondAttribute="leadingMargin" constant="-8" id="jmH-AJ-WIC"/>
                                 <constraint firstItem="FOE-ZY-hxt" firstAttribute="top" secondItem="hBO-S8-O9S" secondAttribute="topMargin" constant="-8" id="zsB-gq-lUd"/>
                             </constraints>
+                            <variation key="default">
+                                <mask key="subviews">
+                                    <exclude reference="gHu-ir-HLd"/>
+                                </mask>
+                                <mask key="constraints">
+                                    <exclude reference="5WI-2K-UwL"/>
+                                    <exclude reference="7hP-yz-4eD"/>
+                                    <exclude reference="ENS-Ke-3FK"/>
+                                </mask>
+                            </variation>
+                            <variation key="widthClass=compact">
+                                <mask key="subviews">
+                                    <include reference="gHu-ir-HLd"/>
+                                </mask>
+                                <mask key="constraints">
+                                    <include reference="5WI-2K-UwL"/>
+                                    <include reference="7hP-yz-4eD"/>
+                                    <include reference="ENS-Ke-3FK"/>
+                                </mask>
+                            </variation>
                         </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="2hR-Ha-jX1" id="Jix-dI-gIx"/>

@@ -25,7 +25,7 @@ class SetGame {
     scores      = SetGame.startingScores(players)
     currentMove = SGMove()
     
-    startNewRound(15)
+    startNewRound(12)
   }
   
   convenience init(numPlayers: Int) {
@@ -183,7 +183,7 @@ class SGMove {
   private(set) var cardPositions: [Int: SetCard]
 
   var done: Bool {
-    NSLog("counting: \(cardPositions.count) cards")
+    NSLog("cardPositions.count: \(cardPositions.count) cards")
     return cardPositions.count == 3
   }
 
