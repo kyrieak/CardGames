@@ -18,7 +18,11 @@ class SetGameController: UICollectionViewController {
   }
   
   var contentHeight: CGFloat {
-    return view.frame.height * 0.6
+    return view.frame.height * 0.717
+  }
+  
+  var footerHeight: CGFloat {
+    return view.frame.height * 0.083
   }
   
   private var game: SetGame {
@@ -28,12 +32,17 @@ class SetGameController: UICollectionViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+    view.backgroundColor = collectionView!.backgroundColor
     collectionView!.frame.origin.y += headerHeight
     collectionView!.frame.size.height = contentHeight
     
+    let header = makeHeaderView()
+    
+    header.deckButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: Selector("startNewRound:")))
+    self.view.addSubview(header)
     collectionView!.setNeedsDisplay()
     
+      
 //    var _collectionView = self.collectionView!
 //
 //    _collectionView.setNeedsDisplay()
@@ -67,6 +76,21 @@ class SetGameController: UICollectionViewController {
   
   private func getCurrentGame() -> SetGame {
     return sgDataSource.game
+  }
+  
+  private func makeHeaderView() -> SGHeaderView {
+    var _frame = CGRect(origin: CGPointZero,
+                          size: CGSize(width: view.frame.width, height: headerHeight))
+    let _layout = collectionView!.collectionViewLayout as? UICollectionViewFlowLayout
+
+    return SGHeaderView(frame: _frame, layout: _layout!)
+  }
+  
+  private func addFooterView() {
+    var _frame = CGRect(origin: CGPoint(x: CGFloat(0), y: (headerHeight + contentHeight)),
+                          size: CGSize(width: view.frame.width, height: footerHeight))
+    
+    view.addSubview(UIView(frame: _frame))
   }
   
   func startNewGame() {

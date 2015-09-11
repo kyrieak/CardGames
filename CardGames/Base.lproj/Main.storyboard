@@ -247,8 +247,8 @@
                         <color key="backgroundColor" red="0.92941176469999998" green="0.96947297489999995" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="6" minimumInteritemSpacing="6" id="Zqj-Yx-y0F">
                             <size key="itemSize" width="72" height="100"/>
-                            <size key="headerReferenceSize" width="320" height="130"/>
-                            <size key="footerReferenceSize" width="320" height="120"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="320" height="50"/>
                             <inset key="sectionInset" minX="8" minY="10" maxX="8" maxY="10"/>
                         </collectionViewFlowLayout>
                         <cells>
@@ -262,80 +262,6 @@
                                 </view>
                             </collectionViewCell>
                         </cells>
-                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="game_header" id="XG1-eu-Ip1">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="130"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                            <subviews>
-                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M4W-43-oK8">
-                                    <rect key="frame" x="8" y="22" width="72" height="100"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="100" id="XCx-9n-Sep"/>
-                                        <constraint firstAttribute="width" secondItem="M4W-43-oK8" secondAttribute="height" multiplier="18:25" id="dvF-To-auz"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" name="Palatino-Italic" family="Palatino" pointSize="19"/>
-                                    <inset key="contentEdgeInsets" minX="0.0" minY="48" maxX="0.0" maxY="0.0"/>
-                                    <state key="normal" title="Redeal">
-                                        <color key="titleColor" red="0.42706266529999998" green="0.32570422939999999" blue="0.2707932394" alpha="1" colorSpace="calibratedRGB"/>
-                                        <color key="titleShadowColor" red="0.42706266529999998" green="0.32570422939999999" blue="0.2707932394" alpha="1" colorSpace="calibratedRGB"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="startNewRound:" destination="rOu-dJ-arH" eventType="touchUpInside" id="6t2-F8-doY"/>
-                                    </connections>
-                                </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gem-vk-m9a">
-                                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                    <color key="backgroundColor" red="0.79708167990000001" green="0.75889349230000003" blue="0.70999322939999998" alpha="1" colorSpace="calibratedRGB"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="103" id="FqQ-f7-qFz"/>
-                                        <constraint firstAttribute="width" secondItem="gem-vk-m9a" secondAttribute="height" multiplier="103:30" id="aI2-iC-wGd"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="16"/>
-                                    <state key="normal" title="New Game">
-                                        <color key="titleColor" red="0.42706266529999998" green="0.32570422939999999" blue="0.2707932394" alpha="1" colorSpace="calibratedRGB"/>
-                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <variation key="default">
-                                        <mask key="constraints">
-                                            <exclude reference="FqQ-f7-qFz"/>
-                                            <exclude reference="aI2-iC-wGd"/>
-                                        </mask>
-                                    </variation>
-                                    <variation key="widthClass=compact">
-                                        <mask key="constraints">
-                                            <include reference="FqQ-f7-qFz"/>
-                                            <include reference="aI2-iC-wGd"/>
-                                        </mask>
-                                    </variation>
-                                </button>
-                            </subviews>
-                            <color key="backgroundColor" red="0.49019607840000001" green="0.6588235294" blue="0.51372549020000002" alpha="0.34999999999999998" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstItem="gem-vk-m9a" firstAttribute="trailing" secondItem="XG1-eu-Ip1" secondAttribute="trailingMargin" id="5GM-ml-5Gt"/>
-                                <constraint firstItem="M4W-43-oK8" firstAttribute="leading" secondItem="XG1-eu-Ip1" secondAttribute="leadingMargin" id="NDd-K5-wXa"/>
-                                <constraint firstItem="M4W-43-oK8" firstAttribute="bottom" secondItem="XG1-eu-Ip1" secondAttribute="bottomMargin" id="krK-ol-Fkv"/>
-                                <constraint firstItem="gem-vk-m9a" firstAttribute="top" secondItem="M4W-43-oK8" secondAttribute="top" constant="-14" id="urm-dH-g3w">
-                                    <variation key="widthClass=compact" constant="0.0"/>
-                                </constraint>
-                            </constraints>
-                            <variation key="default">
-                                <mask key="subviews">
-                                    <exclude reference="gem-vk-m9a"/>
-                                </mask>
-                                <mask key="constraints">
-                                    <exclude reference="5GM-ml-5Gt"/>
-                                    <exclude reference="urm-dH-g3w"/>
-                                </mask>
-                            </variation>
-                            <variation key="widthClass=compact">
-                                <mask key="subviews">
-                                    <include reference="gem-vk-m9a"/>
-                                </mask>
-                                <mask key="constraints">
-                                    <include reference="5GM-ml-5Gt"/>
-                                    <include reference="urm-dH-g3w"/>
-                                </mask>
-                            </variation>
-                        </collectionReusableView>
                         <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="game_status" id="hBO-S8-O9S">
                             <rect key="frame" x="0.0" y="233" width="600" height="120"/>
                             <autoresizingMask key="autoresizingMask"/>
@@ -346,53 +272,13 @@
                                         <constraint firstAttribute="height" constant="50" id="uJu-yD-Enf"/>
                                     </constraints>
                                 </view>
-                                <view tag="8" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gHu-ir-HLd">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="54" id="o97-8f-Wq4"/>
-                                    </constraints>
-                                    <variation key="default">
-                                        <mask key="constraints">
-                                            <exclude reference="o97-8f-Wq4"/>
-                                        </mask>
-                                    </variation>
-                                    <variation key="widthClass=compact">
-                                        <mask key="constraints">
-                                            <include reference="o97-8f-Wq4"/>
-                                        </mask>
-                                    </variation>
-                                </view>
                             </subviews>
                             <color key="backgroundColor" red="0.79708167990000001" green="0.75889349230000003" blue="0.70999322939999998" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
-                                <constraint firstItem="gHu-ir-HLd" firstAttribute="leading" secondItem="hBO-S8-O9S" secondAttribute="leadingMargin" id="5WI-2K-UwL"/>
-                                <constraint firstItem="gHu-ir-HLd" firstAttribute="bottom" secondItem="hBO-S8-O9S" secondAttribute="bottomMargin" id="7hP-yz-4eD"/>
-                                <constraint firstItem="gHu-ir-HLd" firstAttribute="trailing" secondItem="hBO-S8-O9S" secondAttribute="trailingMargin" id="ENS-Ke-3FK"/>
                                 <constraint firstAttribute="trailingMargin" secondItem="FOE-ZY-hxt" secondAttribute="trailing" constant="-8" id="Vth-nb-HPL"/>
                                 <constraint firstItem="FOE-ZY-hxt" firstAttribute="leading" secondItem="hBO-S8-O9S" secondAttribute="leadingMargin" constant="-8" id="jmH-AJ-WIC"/>
                                 <constraint firstItem="FOE-ZY-hxt" firstAttribute="top" secondItem="hBO-S8-O9S" secondAttribute="topMargin" constant="-8" id="zsB-gq-lUd"/>
                             </constraints>
-                            <variation key="default">
-                                <mask key="subviews">
-                                    <exclude reference="gHu-ir-HLd"/>
-                                </mask>
-                                <mask key="constraints">
-                                    <exclude reference="5WI-2K-UwL"/>
-                                    <exclude reference="7hP-yz-4eD"/>
-                                    <exclude reference="ENS-Ke-3FK"/>
-                                </mask>
-                            </variation>
-                            <variation key="widthClass=compact">
-                                <mask key="subviews">
-                                    <include reference="gHu-ir-HLd"/>
-                                </mask>
-                                <mask key="constraints">
-                                    <include reference="5WI-2K-UwL"/>
-                                    <include reference="7hP-yz-4eD"/>
-                                    <include reference="ENS-Ke-3FK"/>
-                                </mask>
-                            </variation>
                         </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="2hR-Ha-jX1" id="Jix-dI-gIx"/>

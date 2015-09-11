@@ -105,11 +105,11 @@ class SetGameDataSource: NSObject, UICollectionViewDataSource {
 
   
   private func applyHeaderStyle(inout suppView: UICollectionReusableView) {
-    var buttonLeft = suppView.viewWithTag(deckButtonTag)!
-    
-    style.applyShade(suppView.layer)
-    style.applyCardBg(buttonLeft, withScale: 3.0)
-    style.applyShade(buttonLeft.layer, color: style.liteShadeColor, thickness: 2)
+//    var buttonLeft = suppView.viewWithTag(deckButtonTag)!
+//    
+//    style.applyShade(suppView.layer)
+//    style.applyCardBg(buttonLeft, withScale: 3.0)
+//    style.applyShade(buttonLeft.layer, color: style.liteShadeColor, thickness: 2)
   }
   
   

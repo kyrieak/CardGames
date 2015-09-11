@@ -31,11 +31,11 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
         view.frame.origin.y = collectionView.frame.height - view.frame.height
 //        addPlayerButtons(collectionView, footer: view)
         footer = view
-//        statusView = view.viewWithTag(1) as? SetGameStatusView
+        statusView = view.viewWithTag(1) as? SetGameStatusView
         NSLog("\(view.viewWithTag(8)) view with tag 8?")
       } else {
-        header = view
-        scoreLabel = view.viewWithTag(3) as? UILabel
+//        header = view
+//        scoreLabel = view.viewWithTag(3) as? UILabel
       }
   }
   
