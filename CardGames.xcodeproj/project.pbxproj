@@ -13,6 +13,7 @@
 		34005EE61A4FACDB00BDFD0F /* CardGamesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34005EE51A4FACDB00BDFD0F /* CardGamesTests.swift */; };
 		34005EF31A4FC8F500BDFD0F /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34005EF21A4FC8F500BDFD0F /* Deck.swift */; };
 		34005EF51A4FC91500BDFD0F /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34005EF41A4FC91500BDFD0F /* Card.swift */; };
+		340720531BC4E47F00A2E466 /* SGCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340720521BC4E47F00A2E466 /* SGCollectionViewLayout.swift */; settings = {ASSET_TAGS = (); }; };
 		341723741AFBFAED002D8343 /* Squiggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341723731AFBFAED002D8343 /* Squiggle.swift */; };
 		341A2E431A8C92AE0091664E /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341A2E421A8C92AE0091664E /* Style.swift */; };
 		34527F5A1A96FC7D0039C913 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34527F591A96FC7D0039C913 /* Images.xcassets */; };
@@ -27,6 +28,7 @@
 		34AF52DD1AE57C2600971176 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AF52DC1AE57C2600971176 /* Geometry.swift */; };
 		34BCFC3F1AC50DD8005A4840 /* CardGameStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BCFC3E1AC50DD8005A4840 /* CardGameStatusView.swift */; };
 		34CC1E561ABCC83D005B2CD1 /* SetCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CC1E551ABCC83D005B2CD1 /* SetCardView.swift */; };
+		34EE0AA11BAFAD2D0002043D /* SGFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EE0AA01BAFAD2D0002043D /* SGFooterView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +52,7 @@
 		34005EE51A4FACDB00BDFD0F /* CardGamesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGamesTests.swift; sourceTree = "<group>"; };
 		34005EF21A4FC8F500BDFD0F /* Deck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 		34005EF41A4FC91500BDFD0F /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		340720521BC4E47F00A2E466 /* SGCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SGCollectionViewLayout.swift; sourceTree = "<group>"; };
 		341723731AFBFAED002D8343 /* Squiggle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Squiggle.swift; sourceTree = "<group>"; };
 		341A2E421A8C92AE0091664E /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		34527F591A96FC7D0039C913 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -64,6 +67,7 @@
 		34AF52DC1AE57C2600971176 /* Geometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
 		34BCFC3E1AC50DD8005A4840 /* CardGameStatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardGameStatusView.swift; sourceTree = "<group>"; };
 		34CC1E551ABCC83D005B2CD1 /* SetCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetCardView.swift; sourceTree = "<group>"; };
+		34EE0AA01BAFAD2D0002043D /* SGFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SGFooterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +186,8 @@
 				34CC1E551ABCC83D005B2CD1 /* SetCardView.swift */,
 				34BCFC3E1AC50DD8005A4840 /* CardGameStatusView.swift */,
 				3499DAFA1B9F930200AD3466 /* SGHeaderView.swift */,
+				34EE0AA01BAFAD2D0002043D /* SGFooterView.swift */,
+				340720521BC4E47F00A2E466 /* SGCollectionViewLayout.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -230,7 +236,9 @@
 		34005EC21A4FACDA00BDFD0F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Kyrie;
 				TargetAttributes = {
 					34005EC91A4FACDA00BDFD0F = {
@@ -298,10 +306,12 @@
 				345695411A9FB4510076FD39 /* SetGameDelegate.swift in Sources */,
 				345695431A9FBDC50076FD39 /* SetGame.swift in Sources */,
 				3499DAFB1B9F930200AD3466 /* SGHeaderView.swift in Sources */,
+				340720531BC4E47F00A2E466 /* SGCollectionViewLayout.swift in Sources */,
 				34A9233E1AA19C15009D0134 /* SetCard.swift in Sources */,
 				34CC1E561ABCC83D005B2CD1 /* SetCardView.swift in Sources */,
 				348FF63F1AA1629C0041C5C6 /* SetGameController.swift in Sources */,
 				341A2E431A8C92AE0091664E /* Style.swift in Sources */,
+				34EE0AA11BAFAD2D0002043D /* SGFooterView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,6 +373,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -428,6 +439,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = CardGames/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Kyrie.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -438,6 +450,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = CardGames/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Kyrie.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -456,6 +469,7 @@
 				);
 				INFOPLIST_FILE = CardGamesTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Kyrie.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CardGames.app/CardGames";
 			};
@@ -471,6 +485,7 @@
 				);
 				INFOPLIST_FILE = CardGamesTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Kyrie.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CardGames.app/CardGames";
 			};

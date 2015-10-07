@@ -13,12 +13,12 @@ class SetCardView: UIView {
   private var rgbColor: [CGFloat]
   private var cardAttrs: SetCardAttrs
   private var drawingBounds = CGRectZero
-  
+
   // MARK: - Initializers -
   
   init(frame: CGRect, attrs: SetCardAttrs) {
-    cardAttrs = attrs
-    rgbColor = [1.0, 0, 0, 1.0]
+    cardAttrs = attrs    
+    rgbColor = SetCardView.rgbColor(attrs.color)
 
     super.init(frame: frame)
     
@@ -26,7 +26,7 @@ class SetCardView: UIView {
   }
   
   
-  required init(coder aDecoder: NSCoder) {
+  required init?(coder aDecoder: NSCoder) {
     cardAttrs = SetCardAttrs(number: 1,
                                shape: SGShape.Diamond,
                                  shading: SGShading.Solid,
@@ -50,11 +50,24 @@ class SetCardView: UIView {
     CGContextSetFillColor(context, rgbColor)
     CGContextSaveGState(context) // --- Context Saved ---
 
-    var insetX = rect.width * 0.2
+    var _rect = rect
+    
+    if (rect.width > rect.height) {
+      NSLog("rect is landscape oriented")
+      CGContextTranslateCTM(context, CGFloat(0), rect.height)
+      CGContextRotateCTM(context, CGFloat(M_PI_2 * 3))
+      
+      _rect.size.width = rect.height
+      _rect.size.height = rect.width
+    } else {
+      NSLog("rect is portrait oriented")
+    }
+    
+    var insetX = _rect.width * 0.2
     var insetY = insetX
     var dist: CGFloat = 0
 
-    let innerBounds = CGRectInset(rect, insetX, insetY)
+    let innerBounds = CGRectInset(_rect, insetX, insetY)
     let shapeSize = calcShapeSize(innerBounds.size)
 
     if (shapeSize.width < innerBounds.width) {
@@ -67,7 +80,7 @@ class SetCardView: UIView {
       dist = (innerBounds.height - shapeSize.height) / CGFloat(number - 1)
     }
     
-    drawingBounds = CGRectInset(rect, insetX, insetY)
+    drawingBounds = CGRectInset(_rect, insetX, insetY)
 
     CGContextTranslateCTM(context, insetX, insetY)
     
@@ -76,7 +89,7 @@ class SetCardView: UIView {
         CGContextTranslateCTM(context, 0, dist)
       }
 
-      drawShape(context, size: shapeSize)
+      drawShape(context!, size: shapeSize)
     }
     
     CGContextRestoreGState(context) // --- Context Restored ---
@@ -108,7 +121,7 @@ class SetCardView: UIView {
       case .Oval:
         drawOval(size)
       case .Squiggle:
-        CGContextSetLineCap(context, kCGLineCapRound)
+        CGContextSetLineCap(context, CGLineCap.Round)
         drawSquiggle(size)
     }
     
@@ -141,7 +154,7 @@ class SetCardView: UIView {
 
   
   private func drawOval(size: CGSize) {
-    var path = UIBezierPath(roundedRect: CGRect(origin: CGPointZero, size: size), cornerRadius: (size.height / 2))
+    let path = UIBezierPath(roundedRect: CGRect(origin: CGPointZero, size: size), cornerRadius: (size.height / 2))
 
     path.stroke()
     path.addClip()
@@ -162,7 +175,7 @@ class SetCardView: UIView {
     
     CGContextSetStrokeColor(context, [1.0, 0.0, 0.0, 2.0])
     
-    var path = UIBezierPath()
+    let path = UIBezierPath()
     path.moveToPoint(point)
 
     path.addArcWithCenter(point, radius: r, startAngle: 0, endAngle: CGFloat(M_PI * 2), clockwise: true)
@@ -198,7 +211,7 @@ class SetCardView: UIView {
   
   
   private func drawStripes(size: CGSize) {
-    var path = UIBezierPath()
+    let path = UIBezierPath()
     var xi: CGFloat = 1
     
     while (xi < size.width) {
@@ -208,5 +221,16 @@ class SetCardView: UIView {
     }
     
     path.stroke()
+  }
+  
+  class func rgbColor(color: SGColor) -> [CGFloat] {
+    switch(color) {
+      case .Green:
+        return [0.0, 1.0, 0.0, 1.0]
+      case .Purple:
+        return [1.0, 0.0, 1.0, 1.0]
+      case .Red:
+        return [1.0, 0.0, 0.0, 1.0]
+    }
   }
 }

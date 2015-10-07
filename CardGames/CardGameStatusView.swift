@@ -7,7 +7,7 @@ class CardGameStatusView: UIView {
 
   
   override init(frame: CGRect) {
-    var initialSize = CGSize(width: frame.width, height: 50)
+    let initialSize = CGSize(width: frame.width, height: 50)
     messageView = UILabel(frame: CGRect(origin: frame.origin, size: initialSize))
     cardListView = CardListView(frame: CGRect(origin: frame.origin,
       size: initialSize))
@@ -19,12 +19,12 @@ class CardGameStatusView: UIView {
     addSubview(cardListView!)
   }
   
-  required init(coder aDecoder: NSCoder) {
+  required init?(coder aDecoder: NSCoder) {
     messageView = UILabel()
 
     super.init(coder: aDecoder)
     
-    var initialSize = CGSize(width: frame.width, height: 50)
+    let initialSize = CGSize(width: frame.width, height: 50)
 
     messageView = UILabel(frame: CGRect(origin: frame.origin, size: initialSize))
     cardListView = CardListView(frame: CGRect(origin: frame.origin,
@@ -70,21 +70,21 @@ class CardGameStatusView: UIView {
 
 class SetGameStatusView: CardGameStatusView {
 
-  required init(coder aDecoder: NSCoder) {
-    super.init(coder: aDecoder)
-    
-//    cardListView = CardListView(frame: frame)
-//    addSubview(cardListView!)
-  }
+//  required init?(coder aDecoder: NSCoder) {
+//    super.init(coder: aDecoder)
+//    
+////    cardListView = CardListView(frame: frame)
+////    addSubview(cardListView!)
+//  }
   
   override func setMessage(cardListAsText: String, statusText: String) {
     setMessage(statusText)
   }
   
   func addCardToListView(attrs: SetCardAttrs) {
-    var cardFrame = CGRect(origin: cardListView!.getCornerRight(),
+    let cardFrame = CGRect(origin: cardListView!.getCornerRight(),
                            size: cardListView!.cardSize)
-    var cardView = SetCardView(frame: cardFrame, attrs: attrs)
+    let cardView = SetCardView(frame: cardFrame, attrs: attrs)
     
     addCardViewToList(cardView)
   }
@@ -104,7 +104,7 @@ class CardListView: UIView {
     cardSize = CGSize(width: (frame.height * 0.72), height: frame.height)
   }
   
-  required init(coder aDecoder: NSCoder) {
+  required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
     
     cardSize = CGSize(width: (frame.height * 0.72), height: frame.height)
@@ -115,7 +115,7 @@ class CardListView: UIView {
   }
   
   func getCornerRight() -> CGPoint {
-    var posX = self.frame.origin.x + getContentWidth()
+    let posX = self.frame.origin.x + getContentWidth()
 
     return CGPoint(x: posX, y: frame.origin.y)
   }
@@ -138,7 +138,7 @@ class CardListView: UIView {
     numCards = 0
     
     for sv in subviews {
-      sv.removeFromSuperview!()
+      sv.removeFromSuperview()
     }
     
     frame.size.width = 0

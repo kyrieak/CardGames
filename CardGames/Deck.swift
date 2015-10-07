@@ -36,7 +36,7 @@ class Deck<T: Card> {
   }
   
   func cut(pos:Int) {
-    for i in 0...pos {
+    for _ in 0...pos {
       self.moveCard(0, posB:self.cards.count)
     }
   }
@@ -45,7 +45,7 @@ class Deck<T: Card> {
     var j: Int
     var temp: T
 
-    var count = cards.count
+    let count = cards.count
     
     for i in (0..<count) {
       j = Int(arc4random_uniform(UInt32(count - 1)))

@@ -64,6 +64,15 @@ extension CGRect {
   }
 }
 
+extension UIEdgeInsets {
+  init(tb: CGFloat, lr: CGFloat) {
+    self.top    = tb
+    self.bottom = tb
+    self.left   = lr
+    self.right  = lr
+  }
+}
+
 
 // - MARK: - Curve ------------------------------------
 

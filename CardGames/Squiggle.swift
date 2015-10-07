@@ -45,7 +45,6 @@ struct Squiggle: Shape {
     let yInc = size.height / 6
     
     var A, B, C, AT, BT, CT: CGPoint
-    var ep, cp1, cp2: CGPoint
     
     A  = CGPoint(x: 0, y: yInc * 5)
     B  = CGPoint(x: xInc * 4, y: yInc / 2)

@@ -25,11 +25,11 @@ class SetGame {
     scores      = SetGame.startingScores(players)
     currentMove = SGMove()
     
-    startNewRound(12)
+    startNewRound(16)
   }
   
   convenience init(numPlayers: Int) {
-    var numberedPlayers = (1...numPlayers).map({(num: Int) -> Player in
+    let numberedPlayers = (1...numPlayers).map({(num: Int) -> Player in
       return Player(key: num, name: "Player \(num)")
     })
     
@@ -48,7 +48,7 @@ class SetGame {
   }
   
   class func standardDeck() -> Deck<SetCard> {
-    var deck = Deck<SetCard>()
+    let deck = Deck<SetCard>()
     
     for shape in SetGame.standardShapes() {
       for color in SetGame.standardColors() {
@@ -92,7 +92,7 @@ class SetGame {
         cardsInPlay.append(deck.removeTopCard())
       }
     } else {
-      for i in 1...numCards {
+      for _ in 1...numCards {
         cardsInPlay.append(deck.removeTopCard())
       }
     }
@@ -104,11 +104,31 @@ class SetGame {
   }
   
   
+  func makeMove(cardIndexes: [Int], playerKey: Int) {
+    let player = getPlayer(playerKey)
+
+    if (player != nil) {
+      makeMove(cardIndexes, _player: player!)
+    }
+  }
+  
+  func getPlayer(key: Int) -> Player? {
+    for p in players {
+      NSLog("\(p.hashValue) hash and key \(key)")
+      if (p.hashValue == key) {
+        return p
+      }
+    }
+
+    return nil
+  }
+  
   func makeMove(cardIndexes: [Int], _player: Player) {
+    NSLog("here in make move for _player")
     var cardPositions = [Int: SetCard]()
     
     for index in cardIndexes {
-      var cardAtIndex = cardsInPlay[index]!
+      let cardAtIndex = cardsInPlay[index]!
       
       cardPositions[index] = cardAtIndex
     }
@@ -130,7 +150,9 @@ class SetGame {
   
   func endMove() {
     if (currentMove.done && currentMove.isASet) {
-      for idx in currentMove.cardPositions.keys.array {
+      let indexes = Array(currentMove.cardPositions.keys)
+
+      for idx in indexes {
         cardsInPlay[idx] = nil
       }
     }
@@ -164,9 +186,7 @@ class SetGame {
   
   
   func getSelectedCards() -> [SetCard] {
-    let cards = currentMove.cardPositions.values.array
-    
-    return cards
+    return Array(currentMove.cardPositions.values)
   }
   
   func numberOfCardPositions() -> Int {
@@ -225,7 +245,7 @@ class SGMove {
   
   private func updateIsASet() {
     if (cardPositions.count == 3) {
-      let cards = cardPositions.values.array
+      let cards = Array(cardPositions.values)
       
       var numbers: [Int]       = []
       var colors: [SGColor]    = []

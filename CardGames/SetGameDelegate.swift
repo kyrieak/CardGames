@@ -13,12 +13,22 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
   private var gameStatuses: [String] = []
   private var waitingNextMove = true
   
-  var header: UICollectionReusableView?
-  var footer: UICollectionReusableView?
   var statusView: SetGameStatusView?
   var scoreLabel: UILabel?
-  
   var selectIdxPaths: [NSIndexPath] = []
+  
+  
+  lazy var screen: UIScreen = {
+    return UIScreen.mainScreen()
+  }()
+  
+  var horizontalSizeClass: UIUserInterfaceSizeClass {
+    return screen.traitCollection.horizontalSizeClass
+  }
+  
+  var verticalSizeClass: UIUserInterfaceSizeClass {
+    return screen.traitCollection.verticalSizeClass
+  }
   
   
   func collectionView(collectionView: UICollectionView,
@@ -27,81 +37,56 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
     atIndexPath indexPath: NSIndexPath) {
       
       if (elementKind == UICollectionElementKindSectionFooter) {
-        NSLog("collectionView.frame: \(collectionView.frame)")
         view.frame.origin.y = collectionView.frame.height - view.frame.height
-//        addPlayerButtons(collectionView, footer: view)
-        footer = view
         statusView = view.viewWithTag(1) as? SetGameStatusView
-        NSLog("\(view.viewWithTag(8)) view with tag 8?")
-      } else {
-//        header = view
-//        scoreLabel = view.viewWithTag(3) as? UILabel
+        NSLog("\(statusView)")
       }
-  }
-  
-  private func addPlayerButtons(collectionView: UICollectionView, footer: UIView) {
-    let _datasource = collectionView.dataSource! as? SetGameDataSource
-    let game = _datasource!.game
-    
-    var playerWrapView = footer.viewWithTag(8)!
-    NSLog("pwview size: \(playerWrapView.frame.size)")
-
-    let pCount = game.players.count
-    let h = playerWrapView.frame.height
-    var spacing = (collectionView.frame.width - (h * CGFloat(pCount))) / CGFloat(pCount + 1)
-    var _origin = CGPoint(x: spacing, y: 0)
-    let buttonSize = CGSize(width: h, height: h)
-    
-    for player in game.players {
-      var pButton = UIButton(frame: CGRect(origin: _origin, size: buttonSize))
-      pButton.backgroundColor = UIColor.blueColor()
-      playerWrapView.addSubview(pButton)
-      
-      NSLog("\(buttonSize)")
-      _origin.x = pButton.frame.maxX + spacing
-    }
-
   }
   
   
   func collectionView(collectionView: UICollectionView,
     didSelectItemAtIndexPath indexPath: NSIndexPath) {
-      var game = getGame(collectionView)
-
+      if (selectIdxPaths.count == 0) {
+        statusView!.clear()
+      }
+      
       selectIdxPaths.append(indexPath)
-      var card = game.getCardAt(indexPath.item)!
+
+      let game = getGame(collectionView)
+      let card = game.getCardAt(indexPath.item)!
 
       statusView!.addCardToListView(card.attributes())
       statusView!.setNeedsDisplay()
   }
   
   
-  func makeMoveAction(_collectionView: UICollectionView) {
-    var game = getGame(_collectionView)
+  func makeMove(collectionView: UICollectionView, game: SetGame, playerTag: Int) {
+    if (selectIdxPaths.count == 3) {
+      game.makeMove(selectedIndexes(), playerKey: playerTag)
 
-    if (game.currentMove.done) {
-      let player = Player(key: 1, name: "hi") // placeholder
-      
-      if (selectIdxPaths.count == 3) {
-        game.makeMove(selectedIndexes(), _player: player)
+      if (game.currentMove.isASet) {
+        collectionView.reloadData()
+      } else {
+        for path in selectIdxPaths {
+          collectionView.deselectItemAtIndexPath(path, animated: false)
+        }
       }
-      
-      var status = getStatus(game)
-      var (cardListText, statusText) = status.msg
+
+      selectIdxPaths = []
+
+      let status = getStatus(game)
+      let (cardListText, statusText) = status.msg
       
       statusView!.setMessage(cardListText, statusText: statusText)
       
-//      if (currentMove.done) {
-//        NSLog("score goes here")
-//        //        scoreLabel!.text = game.currentPlayer().name + ": \(game.getScoreForCurrentPlayer())"
-//      }
+      game.endMove()
     }
   }
   
   
   func collectionView(collectionView: UICollectionView,
     shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-      var game = getGame(collectionView)
+      let game = getGame(collectionView)
       
       if (selectIdxPaths.count > 2) {
         return false
@@ -113,8 +98,51 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
   
   func collectionView(collectionView: UICollectionView,
     shouldDeselectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-      // Sets remaining view and controller properties and inits game model
     return false
+  }
+  
+  func collectionView(collectionView: UICollectionView,
+    layout collectionViewLayout: UICollectionViewLayout,
+    minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
+      switch (collectionView.frame.width) {
+        case let x where x > 599:
+          return CGFloat(50)
+        default:
+          return CGFloat(8)
+      }
+  }
+  
+  func collectionView(collectionView: UICollectionView,
+    layout collectionViewLayout: UICollectionViewLayout,
+    insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+
+      switch (horizontalSizeClass) {
+        case UIUserInterfaceSizeClass.Regular:
+          return UIEdgeInsets(tb: 20, lr: 50)
+        default:
+          return UIEdgeInsets(tb: 10, lr: 8)
+      }
+  }
+  
+  func collectionView(collectionView: UICollectionView,
+         layout collectionViewLayout: UICollectionViewLayout,
+           sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+            var (w, h): (CGFloat, CGFloat)
+            
+            switch (horizontalSizeClass) {
+              case UIUserInterfaceSizeClass.Regular:
+                (w, h) = (166, 160)
+              case UIUserInterfaceSizeClass.Unspecified:
+                (w, h) = (88, 122)
+              default:
+                (w, h) = (68, 94)
+            }
+            
+            if (verticalSizeClass == UIUserInterfaceSizeClass.Compact) {
+              return CGSize(width: h, height: w)
+            } else {
+              return CGSize(width: w, height: h)
+            }
   }
   
 
@@ -126,11 +154,7 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
   func recordStatus(status: String) {
     gameStatuses.append(status)
   }
-  
-  func recordStatus(cardListText: String, statusText: String) {
-    recordStatus(cardListText + " " + statusText)
-  }
-  
+
   
   func clearOldStatuses() {
     gameStatuses = []
@@ -143,18 +167,14 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
   
   
   private func getStatus(game: SetGame) -> (isSet: Bool, msg: (String, String)) {
-    if (game.currentMove.done) {
-      return (game.currentMove.isASet, ("", ("Ready for next move")))
+    let statusMaker = SetGameStatus(cards: game.getSelectedCards())
+    
+    if (!game.currentMove.done) {
+      return (false, (statusMaker.listCards(), ""))
+    } else if (game.currentMove.isASet) {
+      return (true, statusMaker.isSetMsg(5)) // arbit 5pts
     } else {
-      let statusMaker = SetGameStatus(cards: game.getSelectedCards())
-      
-      if (!game.currentMove.done) {
-        return (false, (statusMaker.listCards(), ""))
-      } else if (game.currentMove.isASet) {
-        return (true, statusMaker.isSetMsg(5)) // arbit 5pts
-      } else {
-        return (false, statusMaker.notSetMsg(-1)) // arbit -1pts
-      }
+      return (false, statusMaker.notSetMsg(-1)) // arbit -1pts
     }
   }
   
@@ -169,7 +189,7 @@ struct SetGameStatus {
   private var cardsStr: String
   
   init(cards: [SetCard]) {
-    cardsStr = join(", ", cards.map({(sc: SetCard) -> String in
+    cardsStr = cards.map({(sc: SetCard) -> String in
       switch(sc.shape) {
         case .Diamond:
           return "Diamond"
@@ -178,7 +198,7 @@ struct SetGameStatus {
         case .Squiggle:
           return "Squiggle"
       }
-    }))
+    }).joinWithSeparator(", ")
     
     if (cards.count > 0) {
       cardsStr = "{ " + cardsStr + " }"
@@ -194,7 +214,7 @@ struct SetGameStatus {
   }
   
   func notSetMsg(penaltyVal: Int) -> (String, String) {
-    var penalty = abs(penaltyVal)
+    let penalty = abs(penaltyVal)
     
     if (penalty > 0) {
       return (cardsStr, "is not a set. \(penalty) point penalty.")
@@ -203,38 +223,3 @@ struct SetGameStatus {
     }
   }
 }
-// content of should select --------------------------
-//      if (currentMove.done) {
-////        game.endMove()
-//
-//        waitingNextMove = true
-//
-//        var status = getStatus(game)
-//
-//        var (cardListText, statusText) = status.msg
-//
-//        statusView!.setMessage(cardListText, statusText: statusText)
-//
-//        scoreLabel!.text = game.nextPlayer().name + ": \(game.getScoreForPlayer(game.nextPlayer()))"
-//
-//        if (status.isSet) {
-//          collectionView.reloadItemsAtIndexPaths(selectIdxPaths)
-//        } else {
-//          for path in selectIdxPaths {
-//            collectionView.deselectItemAtIndexPath(path, animated: false)
-//          }
-//        }
-//        selectIdxPaths = []
-//        statusView!.clear()
-//
-//        recordStatus(cardListText, statusText: statusText)
-//
-//        return false
-//      } else {
-//        if (game.currentTurn().hasEnded) {
-//          game.startNewTurn()
-//        }
-//
-//        return (game.hasCardAt(indexPath.item))
-//      }
-// --------------------------------
