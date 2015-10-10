@@ -123,228 +123,113 @@ class UIFontSet {
 }
 
 
-//class ViewStyle {
-//  var layerStyle: UILayerStyle
-//  var textStyle: UITextStyle
-//  var btnStyle: UITextStyle
-//
-//  init(layerStyle: UILayerStyle, textStyle: UITextStyle, btnStyle: UITextStyle) {
-//    self.layerStyle = layerStyle
-//    self.textStyle  = textStyle
-//    self.btnStyle   = btnStyle
-//  }
-//  
-//  private func applyLayerStyle(layer: CALayer, style: UILayerStyle) {
-//    layer.borderWidth     = style.borderWidth
-//    layer.borderColor     = style.borderColor.CGColor
-//    layer.backgroundColor = style.bgColor.CGColor
-//  }
-//  
-//  private func applyFontStyle(label: UILabel, style: UITextStyle) {
-//    label.font      = style.font
-//    label.textColor = style.fontColor
-//  }
-//  
-//  func applyStyle(view: UIView) {
-//    applyLayerStyle(view.layer, style: layerStyle)
-//  }
-//  
-//  func applyStyle(btn: UIButton) {
-//    applyLayerStyle(btn.layer, style: btnStyle.layerStyle)
-//    
-//    if (btn.titleLabel != nil) {
-//      applyFontStyle(btn.titleLabel!, style: btnStyle)
-//    }
-//  }
-//  
-//  func applyStyle(label: UILabel) {
-//    applyLayerStyle(label.layer, style: textStyle.layerStyle)
-//    applyFontStyle(label, style: textStyle)
-//  }
-//}
 
 class SG {
+  var theme = Theme.green()
   let cardBackImage = UIImage(named: "card_back")!
   let cardBackPattern = UIColor(patternImage: UIImage(named: "card_back")!)
+  
+  let headerFontSet = UIFontSet(fontName: "Arial",
+                                  headerFontName: "Palatino-BoldItalic")
+  let footerFontSet = UIFontSet(fontName: "Arial")
 
-  var headerFontSet: UIFontSet
-  var footerFontSet: UIFontSet
-
-  var headerLayerStyle: UILayerStyle
-  var contentLayerStyle: UILayerStyle
-  var footerLayerStyle: UILayerStyle
-  var cardBackLayerStyle: UILayerStyle
-  var cardFrontLayerStyle: UILayerStyle
+  var headerLayerStyle: UILayerStyle {
+    return UILayerStyle(bgColor: theme.bgColor2,
+                          borderWidth: CGFloat(1),
+                            borderColor: UIColor(white: 0.4, alpha: 0.2))
+  }
+  
+  var contentLayerStyle: UILayerStyle {
+    return UILayerStyle(bgColor: theme.bgColor1,
+                          borderWidth: CGFloat(0),
+                            borderColor: UIColor.clearColor())
+  }
+  
+  var footerLayerStyle: UILayerStyle {
+    return UILayerStyle(bgColor: theme.bgColor3,
+                          borderWidth: CGFloat(1),
+                            borderColor: UIColor(white: 0.4, alpha: 0.2))
+  }
+  
+  var cardBackLayerStyle: UILayerStyle {
+    return UILayerStyle(bgColor: cardBackPattern,
+                          borderWidth: CGFloat(1),
+                            borderColor: UIColor(white: 0.4, alpha: 0.2))
+  }
+  
+  var cardFrontLayerStyle = UILayerStyle(bgColor: UIColor.whiteColor(),
+                                           borderWidth: CGFloat(1),
+                                             borderColor: UIColor(white: 0.4, alpha: 0.2))
   
   init() {
-    headerFontSet = UIFontSet(fontName: "Arial",
-                                headerFontName: "Palatino-BoldItalic")
-    footerFontSet = UIFontSet(fontName: "Arial")
-    headerFontSet.color = UIColor(red: 0.61, green: 0.73,
-                                    blue: 0.61, alpha: 1.0)
-    footerFontSet.color = UIColor(red: 0.26, green: 0.19,
-                                    blue: 0.11, alpha: 1.0)
     headerFontSet.setH1Size(CGFloat(48))
-
+    headerFontSet.color = theme.fontColor2
+    footerFontSet.color = theme.fontColor3
+  }
+  
+  func setTheme(theme: Theme) {
+    self.theme = theme
     
-    headerLayerStyle = UILayerStyle(bgColor: UIColor(red: 0.80, green: 0.88,
-                                                       blue: 0.82, alpha: 1.0),
-                                      borderWidth: CGFloat(1),
-                                        borderColor: UIColor(white: 0.4, alpha: 0.2))
-    contentLayerStyle = UILayerStyle(bgColor: UIColor(red: 0.93, green: 0.97,
-                                                        blue: 0.93, alpha: 1.0),
-                                       borderWidth: CGFloat(0),
-                                         borderColor: UIColor.clearColor())
-    footerLayerStyle = UILayerStyle(bgColor: UIColor(red: 0.80, green: 0.76,
-                                                       blue: 0.71, alpha: 1.0),
-                                      borderWidth: CGFloat(1),
-                                        borderColor: UIColor(white: 0.4, alpha: 0.2))
-    cardBackLayerStyle = UILayerStyle(bgColor: cardBackPattern,
-                                        borderWidth: CGFloat(1),
-                                          borderColor: UIColor(white: 0.4, alpha: 0.2))
-    cardFrontLayerStyle = UILayerStyle(bgColor: UIColor.whiteColor(),
-                                         borderWidth: CGFloat(1),
-                                           borderColor: UIColor(white: 0.4, alpha: 0.2))
+    contentLayerStyle.bgColor = theme.bgColor1
+    headerLayerStyle.bgColor  = theme.bgColor2
+    footerLayerStyle.bgColor  = theme.bgColor3
+    
+    headerFontSet.color = theme.fontColor2
+    footerFontSet.color = theme.fontColor3
   }
 }
 
-//
-//class StyleGuide {
-////  var colors = ColorGuide()
-////  var fonts = FontGuide()
-//  let cardBgImage   = UIImage(named: "card_back")!
-//  let cardBgPattern = UIColor(patternImage: UIImage(named: "card_back")!)
-//  
-//  var font: (header: UIFont, content: UIFont, footer: UIFont)
-//  var contentStyle: ViewStyle
-//  var headerStyle: ViewStyle
-//  var footerStyle: ViewStyle
-//  
-//  init(styleSet: StyleSet) {
-//    contentStyle = styleSet.contentStyle()
-//    headerStyle = styleSet.headerStyle()
-//    footerStyle = styleSet.footerStyle()
-//  }
-//  
-//  init(_colorGuide: ColorGuide, _fontGuide: FontGuide) {
-//    colors = _colorGuide
-//    fonts  = _fontGuide
-//    
-//    headerStyle = ViewStyle(_layerStyle: LayerStyle(_bgColor: colors.headerBgColor),
-//                              _textStyle: TextStyle(_font: fonts.headerFont,
-//                                                      _color: colors.headerTextColor))
-//    contentStyle = ViewStyle(_layerStyle: LayerStyle(_bgColor: colors.contentBgColor),
-//                               _textStyle: TextStyle(_font: fonts.contentFont,
-//                                                       _color: colors.contentTextColor))
-//    footerStyle = ViewStyle(_layerStyle: LayerStyle(_bgColor: colors.footerBgColor),
-//                              _textStyle: TextStyle(_font: fonts.footerFont,
-//                                _color: colors.footerTextColor))
-//  }
-//  
-//  func applyCardBg(view: UIView) {
-//    view.backgroundColor = cardBgPattern
-//  }
-//  
-//  func applyCardBg(view: UIView, withScale: CGFloat) {
-//    var scaledImg = UIImage(CGImage: cardBgImage.CGImage, scale: withScale, orientation: UIImageOrientation.Up)
-//    view.backgroundColor = UIColor(patternImage: scaledImg!)
-//  }
-//  
-//  class func rgbToUIColor(r: Int, g: Int, b: Int) -> UIColor {
-//    let max = CGFloat(255)
-//    
-//    return UIColor(red: (CGFloat(r) / max), green: (CGFloat(g) / max), blue: (CGFloat(b) / max), alpha: CGFloat(2))
-//  }
-//}
-//
-//
-//struct StyleSet {
-//  let headerBgColor  = UIColor(red: 0.80, green: 0.88, blue: 0.82, alpha: 1.0)
-//  let footerBgColor  = UIColor(red: 0.80, green: 0.76, blue: 0.71, alpha: 1.0)
-//  let contentBgColor = UIColor(red: 0.93, green: 0.97, blue: 0.93, alpha: 1.0)
-//
-//  let headerFont  = UIFont(name: "Palatino-BoldItalic", size: 48)!
-//  let contentFont = UIFont(name: "Palatino", size: 12)!
-//  let footerFont  = UIFont(name: "Palatino", size: 24)!
-//  let clearLayerStyle = UILayerStyle(_bgColor: UIColor.clearColor(),
-//                                       _borderWidth: CGFloat(0),
-//                                         _borderColor: UIColor.clearColor())
-//  
-//  func headerLayerStyle(withBorder: Bool) -> UILayerStyle {
-//    var borderWidth = (withBorder) ? CGFloat(1) : CGFloat(0)
-//    var borderColor = (withBorder) ? UIColor(white: 0.4, alpha: 0.2) : headerBgColor
-//    
-//    return UILayerStyle(_bgColor: headerBgColor,
-//                          _borderWidth: borderWidth,
-//                            _borderColor: borderColor)
-//  }
-//  
-//  func footerLayerStyle(withBorder: Bool) -> UILayerStyle {
-//    var borderWidth = (withBorder) ? CGFloat(1) : CGFloat(0)
-//    var borderColor = (withBorder) ? UIColor(white: 0.4, alpha: 0.2) : footerBgColor
-//
-//    return UILayerStyle(_bgColor: footerBgColor,
-//                          _borderWidth: borderWidth,
-//                            _borderColor: borderColor)
-//  }
-//  
-//  func headerBtnStyle() -> UITextStyle {
-//    let textColor = UIColor(red: 0.61, green: 0.73, blue: 0.61, alpha: 1.0)
-//
-//    return UITextStyle(_layerStyle: headerLayerStyle(true),
-//                         _font: contentFont,
-//                           _fontColor: textColor)
-//  }
-//  
-//  func headerTitleStyle() -> UITextStyle {
-//    let textColor = UIColor(red: 0.61, green: 0.73, blue: 0.61, alpha: 1.0)
-//    
-//    UITextStyle(_layerStyle: clearLayerStyle,
-//                  _font: headerFont, _fontColor: textColor)
-//  }
-//  
-//  func contentTextStyle() -> UITextStyle {
-//    let textColor = UIColor(red: 0.61, green: 0.73, blue: 0.61, alpha: 1.0)
-//    
-//    return UITextStyle(_layerStyle: clearLayerStyle,
-//                         _font: contentFont, _fontColor: textColor)
-//  }
-//  
-//  func headerStyle() -> ViewStyle {
-//    return ViewStyle(layerStyle: headerLayerStyle(true),
-//                       textStyle: headerTitleStyle(),
-//                         btnStyle: headerBtnStyle())
-//  }
-//  
-//  func getContentStyle() -> ViewStyle {
-//    var lStyle = LayerStyle(_bgColor: contentBgColor)
-//  }
-//  
-//  func getContentBtnLayerStyle() -> LayerStyle {
-//    var style = LayerStyle(_bgColor: contentBtnBgColor)
-//
-//    style.setBorder(CGFloat(1), color: btnBorderColor)
-//    
-//    return style
-//  }
-//}
-//
-//struct SGColorSet {
-//  var headerBgColor    = UIColor(red: 0.80, green: 0.88, blue: 0.82, alpha: 1.0)
-//  var headerTextColor  = UIColor(red: 0.61, green: 0.73, blue: 0.61, alpha: 1.0)
-//  var contentBgColor    = UIColor(red: 0.93, green: 0.97, blue: 0.93, alpha: 1.0)
-//  var contentTextColor  = UIColor(red: 0.61, green: 0.73, blue: 0.61, alpha: 1.0)
-//  var contentBtnBgColor = UIColor.whiteColor()
-//  var footerBgColor    = UIColor(red: 0.80, green: 0.76, blue: 0.71, alpha: 1.0)
-//  var footerTextColor  = UIColor(red: 0.26, green: 0.19, blue: 0.11, alpha: 1.0)
-//  var btnBorderColor = UIColor(white: 0.4, alpha: 0.2)
-//  var stdBorderColor = UIColor(white: 0.4, alpha: 0.2)
-//}
-//
-//struct SGFontSet {
-//  var headerFont  = UIFont(name: "Palatino-BoldItalic", size: 48)!
-//  var contentFont = UIFont(name: "Palatino", size: 12)!
-//  var footerFont  = UIFont(name: "Palatino", size: 24)!
-//}
+enum ThemeLabel {
+  case green, grayscale, unlabeled
+}
+
+struct Theme {
+  var label: ThemeLabel
+  var bgColor1, bgColor2, bgColor3: UIColor
+  var fontColor2, fontColor3: UIColor
+  
+  init() {
+    label = ThemeLabel.unlabeled
+    bgColor1   = UIColor.whiteColor()
+    bgColor2   = UIColor.whiteColor()
+    bgColor3   = UIColor.whiteColor()
+    
+    fontColor2 = UIColor.blackColor()
+    fontColor3 = UIColor.blackColor()
+  }
+  
+  func thumbnail() -> [UIColor] {
+    return [bgColor1, bgColor2, bgColor3, fontColor3]
+  }
+  
+  static func grayscale() -> Theme {
+    var grayTheme = Theme()
+    grayTheme.label = .grayscale
+    
+    grayTheme.bgColor1 = UIColor(white: 0.7, alpha: 1.0)
+    grayTheme.bgColor2 = UIColor(white: 0.9, alpha: 1.0)
+    grayTheme.bgColor3 = UIColor(white: 0.8, alpha: 1.0)
+
+    return grayTheme
+  }
+  
+  static func green() -> Theme {
+    var greenTheme = Theme()
+    greenTheme.label = .green
+    
+    greenTheme.bgColor1   = UIColor(red: 0.93, green: 0.97, blue: 0.93, alpha: 1.0)
+    greenTheme.bgColor2   = UIColor(red: 0.80, green: 0.88, blue: 0.82, alpha: 1.0)
+    greenTheme.bgColor3   = UIColor(red: 0.80, green: 0.76, blue: 0.71, alpha: 1.0)
+    
+    greenTheme.fontColor2 = UIColor(red: 0.61, green: 0.73, blue: 0.61, alpha: 1.0)
+    greenTheme.fontColor3 = UIColor(red: 0.26, green: 0.19, blue: 0.11, alpha: 1.0)
+
+    return greenTheme
+  }
+  
+  static func all() -> [Theme] {
+    return [Theme.green(), Theme.grayscale()]
+  }
+}
 
 var styleGuide = SG()

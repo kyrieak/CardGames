@@ -53,14 +53,11 @@ class SetCardView: UIView {
     var _rect = rect
     
     if (rect.width > rect.height) {
-      NSLog("rect is landscape oriented")
       CGContextTranslateCTM(context, CGFloat(0), rect.height)
       CGContextRotateCTM(context, CGFloat(M_PI_2 * 3))
       
       _rect.size.width = rect.height
       _rect.size.height = rect.width
-    } else {
-      NSLog("rect is portrait oriented")
     }
     
     var insetX = _rect.width * 0.2

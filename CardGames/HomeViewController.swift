@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class GameSettingController: UIViewController {
+class HomeViewController: UIViewController {
 
   @IBOutlet var numPlayersLabel: UILabel!
   

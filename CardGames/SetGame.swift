@@ -11,13 +11,13 @@ import UIKit
 
 class SetGame {
   var isOver: Bool = false
+  var settings = GameSettings()
   
   private(set) var players: [Player]
   private var scores: [Player: Int]
 
   private var deck: Deck<SetCard>     = SetGame.standardDeck()
   private(set) var cardsInPlay: [SetCard?] = []
-  
   private(set) var currentMove: SGMove
   
   required init(_players: [Player]) {
@@ -283,6 +283,13 @@ class SGMove {
       }
     }
   }
+}
+
+
+struct GameSettings {
+  var colorsOn = true
+  var shapesOn = true
+  var patternsOn = true
 }
 
 //    let red = UIColor(red: 0.875, green: 0.259, blue: 0.302, alpha: 2.0)
