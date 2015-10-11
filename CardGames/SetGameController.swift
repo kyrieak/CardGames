@@ -10,31 +10,35 @@ import Foundation
 import UIKit
 
 class SetGameController: UIViewController {
+  
+  // - MARK: - CollectionView
+  
   @IBOutlet var sgDataSource: SetGameDataSource!
   @IBOutlet var sgDelegate: SetGameDelegate!
-  
-  @IBOutlet var headerView: SGHeaderView!
-  @IBOutlet var footerView: SGFooterView!
-  
-  @IBOutlet var wrapperView: UIView!
-  @IBOutlet var collectionView: UICollectionView!
   
   var game: SetGame {
     return sgDataSource.game
   }
   
+  // - MARK: Subviews
+  
+  @IBOutlet var headerView: SGHeaderView!
+  @IBOutlet var footerView: SGFooterView!
+  @IBOutlet var wrapperView: UIView!
+  @IBOutlet var collectionView: UICollectionView!
+  
   var deckButton: UIButton {
     return headerView.deckButton
   }
-  
-  var theme: ThemeLabel = styleGuide.theme.label
-  
-  lazy var orientation: UIDeviceOrientation = {
-    UIDevice.currentDevice().orientation
-  }()
 
+  // - MARK: Private Properties
   
-  // - MARK: - Override Functions ------------------------------------
+  private(set) var themeID: Int = styleGuide.themeID
+  private var layerElements: [ViewElement] = [.MainContent, .Header, .Footer, .Status, .CardBack]
+  private var textElements: [ViewElement] = [.HeadTitle]
+  
+  
+  // - MARK: - Override Functions
 
   
   override func viewDidLoad() {
@@ -52,7 +56,9 @@ class SetGameController: UIViewController {
     }
     
     collectionView.reloadData()
+    applyStyleToViews()
   }
+  
   
   override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
     super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
@@ -62,53 +68,8 @@ class SetGameController: UIViewController {
     footerView.setNeedsLayout()
   }
   
-
-  @IBAction func tapDeckAction(sender: UIButton) {
-    let alert = UIAlertController(title: "My Alert", message: "This is an action sheet.", preferredStyle: .Alert) // 1
-    
-    let redealAction = UIAlertAction(title: "Redeal", style: .Default) { (alert: UIAlertAction!) -> Void in
-      self.redealCards()
-    }
-    
-    let newGameAction = UIAlertAction(title: "New Game", style: .Default) { (alert: UIAlertAction!) -> Void in
-      self.startNewGame()
-    }
-    
-    alert.addAction(redealAction)
-    alert.addAction(newGameAction)
-    
-    presentViewController(alert, animated: true, completion:nil)
-  }
-  
-  
-  func redealCards() {
-    game.startNewRound(game.numberOfCardPositions())
-    
-    collectionView!.reloadData()
-    
-    sgDelegate.selectIdxPaths = []
-  }
-  
-  @IBAction func unwindToNewGame(segue: UIStoryboardSegue) {
-    startNewGame()
-  }
-  
-//  @IBAction func tapOnModal(segue: UIStoryboardSegue, sender: UITapGestureRecognizer) {
-//    let frame = segue.sourceViewController.view.frame
-//    let pt = sender.locationInView(nil)
-//    
-//    if ((pt.x < frame.minX) || (pt.x > frame.maxX) ||
-//        (pt.y < frame.minY) || (pt.y > frame.maxY)) {
-//      segue.sourceViewController.dismissViewController()
-//    } else {
-//      segue.cancel
-//    }
-//    
-//  }
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    NSLog("segue preparing from set game controller")
-    
     if (segue.identifier == "gameSettingsSegue") {
       let dvc = segue.destinationViewController as! GameSettingsController
       
@@ -118,48 +79,110 @@ class SetGameController: UIViewController {
     super.prepareForSegue(segue, sender: sender)
   }
   
-  @IBAction func prepareForUnwind(segue: UIStoryboardSegue, sender: AnyObject?) {
-    NSLog("preparing for segue --------")
+  // - MARK: - UIActions
+  
+  @IBAction func tapDeckAction(sender: UIButton) {
+    let alert = UIAlertController(title: "My Alert",
+                                    message: "This is an action sheet.",
+                                      preferredStyle: .Alert)
     
-    if ((sender as? AppSettingsController) != nil) {
-      if (theme != styleGuide.theme.label) {
-        theme = styleGuide.theme.label
-        headerView.backgroundColor = styleGuide.theme.bgColor2
-        footerView.backgroundColor = styleGuide.theme.bgColor2
-        collectionView.backgroundColor = styleGuide.theme.bgColor1
-        sgDelegate.statusView!.backgroundColor = styleGuide.theme.bgColor3
-        (headerView.viewWithTag(5)! as! UILabel).textColor = styleGuide.headerFontSet.color
-        
-      } else {
-        NSLog("\(styleGuide.theme.label)")
-      }
-    } else if ((sender as? UIButton) != nil){
-      let btn = sender as! UIButton
+    let redealAction = UIAlertAction(title: "Redeal", style: .Default)
+                                      { (alert: UIAlertAction!) -> Void in
+      self.redealCards()
+    }
+    
+    let newGameAction = UIAlertAction(title: "New Game", style: .Default)
+                                        { (alert: UIAlertAction!) -> Void in
+      let vc = self.storyboard?.instantiateViewControllerWithIdentifier("gameSettingController")
 
-      if (btn.titleLabel!.text == "Redeal") {
-        self.tapDeckAction(btn)
-      } else if (btn.titleLabel!.text == "New Game") {
-        self.startNewGame()
-      }
+      self.presentViewController(vc!, animated: true, completion: nil)
+    }
+    
+    alert.addAction(redealAction)
+    alert.addAction(newGameAction)
+    
+    presentViewController(alert, animated: true, completion:nil)
+  }
+
+  
+  @IBAction func makeMoveAction(sender: UIButton) {
+    sgDelegate.makeMove(collectionView, game: game, playerTag: sender.tag)
+  }
+  
+  // - MARK: - Unwind Segue Functions
+  
+  
+  @IBAction func prepareForNewGame(segue: UIStoryboardSegue) {
+    startNewGame()
+  }
+  
+  
+  @IBAction func prepareForThemeChange(segue: UIStoryboardSegue) {
+    if (themeID != styleGuide.themeID) {
+      applyStyleToViews()
     }
   }
   
   
-  func makeMoveAction(sender: UIButton) {
-    sgDelegate.makeMove(collectionView, game: game, playerTag: sender.tag)
-  }
+  // - MARK: - Private Functions
   
-  
-  
-  func startNewGame() {
+  private func startNewGame() {
     sgDataSource.game = SetGame(_players: game.players)
     collectionView.reloadData()
   }
 
   
-  func endCurrentGame() {
+  private func endCurrentGame() {
     game.endGame()
   }
-
-  // - MARK: - Private Functions ------------------------------------
+  
+  
+  private func redealCards() {
+    game.startNewRound(game.numberOfCardPositions())
+    
+    collectionView!.reloadData()
+    
+    sgDelegate.selectIdxPaths = []
+  }
+  
+  
+  
+  // - MARK: - UIViewStyleDelegate Protocol Functions
+  
+  
+  func viewsForLayerStyle(elem: ViewElement) -> [UIView] {
+    switch(elem) {
+      case .MainContent:
+        return [collectionView]
+      case .Header, .Footer:
+        return [headerView, footerView]
+      case .Status:
+        return (sgDelegate.statusView == nil) ? [] : [sgDelegate.statusView!]
+      case .CardBack:
+        return [deckButton]
+      default:
+        return []
+    }
+  }
+  
+  func viewsForFontStyle(elem: ViewElement) -> [UILabel] {
+    switch(elem) {
+      case .HeadTitle:
+        return [headerView.titleLabel]
+      default:
+        return []
+    }
+  }
+  
+  func applyStyleToViews() {
+    for elem in layerElements {
+      styleGuide.applyLayerStyle(elem, views: viewsForLayerStyle(elem))
+    }
+    
+    for elem in textElements {
+      styleGuide.applyFontStyle(elem, views: viewsForFontStyle(elem))
+    }
+  }
 }
+
+

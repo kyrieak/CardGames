@@ -10,21 +10,19 @@ import Foundation
 import UIKit
 
 class SGHeaderView: UIView {
-  let deckTag: Int  = 1
-  let layerStyle = styleGuide.headerLayerStyle
-  let fontSet    = styleGuide.headerFontSet
+  let titleTag: Int  = 1
+  let deckTag: Int   = 2
+  let gearTag: Int   = 3
   
-  var deckButton: UIButton {
-    return self.viewWithTag(deckTag)! as! UIButton
-  }
+  lazy var titleLabel: UILabel = {
+    return self.viewWithTag(self.titleTag)! as! UILabel
+    }()
   
-  required init?(coder aDecoder: NSCoder) {
-    super.init(coder: aDecoder)
-
-    let btnStyle = styleGuide.cardBackLayerStyle
-
-    deckButton.backgroundColor = btnStyle.bgColor
-    deckButton.layer.borderColor = btnStyle.borderColor.CGColor
-    deckButton.layer.borderWidth = btnStyle.borderWidth
-  }
+  lazy var deckButton: UIButton = {
+    return self.viewWithTag(self.deckTag)! as! UIButton
+  }()
+  
+  lazy var gearButton: UIButton = {
+    return self.viewWithTag(self.gearTag)! as! UIButton
+  }()
 }

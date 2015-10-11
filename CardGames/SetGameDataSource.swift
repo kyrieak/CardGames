@@ -17,18 +17,9 @@ class SetGameDataSource: NSObject, UICollectionViewDataSource {
   let deckButtonTag = 1
   
   var game: SetGame
-
-  lazy var cardLayerStyle: UILayerStyle = {
-    return styleGuide.cardFrontLayerStyle
-  }()
   
-  lazy var footerLayerStyle: UILayerStyle = {
-    return styleGuide.footerLayerStyle
-  }()
   
-  lazy var footerFontSet: UIFontSet = {
-    return styleGuide.footerFontSet
-  }()
+  // - MARK: - Initializer
   
   
   override init() {
@@ -37,13 +28,16 @@ class SetGameDataSource: NSObject, UICollectionViewDataSource {
     super.init()
   }
   
+  // - MARK: - Public Methods
   
   
   func startNewRound() {
     game.startNewRound(12)
   }
   
+  
   // - MARK: - DataSource Functions ------------------------------------
+  
   
   func collectionView(collectionView: UICollectionView,
     numberOfItemsInSection section: Int) -> Int {
@@ -82,9 +76,6 @@ class SetGameDataSource: NSObject, UICollectionViewDataSource {
   
   
   
-  
-
-  
   // - MARK: - Private Functions ------------------------------------
 
   
@@ -94,9 +85,8 @@ class SetGameDataSource: NSObject, UICollectionViewDataSource {
       forIndexPath: indexPath) as UICollectionReusableView
 //    var label = sectionFooter.viewWithTag(1)! as! UILabel
     
-    footerLayerStyle.apply(sectionFooter)
-//    footerFontSet.applyFont(label, h: nil)
-    
+    styleGuide.applyLayerStyle(.Status, views: [sectionFooter])
+
     return sectionFooter
   }
   
@@ -104,7 +94,8 @@ class SetGameDataSource: NSObject, UICollectionViewDataSource {
   private func cellBgView(card: SetCard, withFrame: CGRect) -> SetCardView {
     let view = SetCardView(frame: withFrame, attrs: card.attributes())
     
-    cardLayerStyle.apply(view)
+    
+    styleGuide.applyLayerStyle(.CardFront, views: [view])
 
     return view
   }
