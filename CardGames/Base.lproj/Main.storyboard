@@ -20,40 +20,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sXE-7z-GBQ">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="sXE-7z-GBQ" secondAttribute="height" multiplier="143:168" id="5Vg-hH-bp4"/>
-                                    <constraint firstAttribute="height" constant="336" id="yfK-NI-KIp"/>
-                                </constraints>
-                                <string key="text">The Game:
-
-The object of the game is to match as many "sets" of three cards as fast as possible. Three cards that make a set must follow all of these rules:
-The shapes either all match, or are all different
-The colors either all match, or are all different
-The pattern or filling all match, or are all different
-
-If any of these three criteria are not met, then it is not a valid set.
-
-If you are playing with multiple people, there is no turn taking - anybody can try to pick out a set at any time. In this app, you can pick a button to push after selecting cards for your set so that the it will be counted toward your points.
-
-This game is based on the original card game Set (1974), and this app is not associated with any company.</string>
-                                <color key="textColor" red="0.26046317819999998" green="0.18727949260000001" blue="0.1132443026" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="18"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="5Vg-hH-bp4"/>
-                                        <exclude reference="yfK-NI-KIp"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=compact">
-                                    <mask key="constraints">
-                                        <include reference="5Vg-hH-bp4"/>
-                                        <include reference="yfK-NI-KIp"/>
-                                    </mask>
-                                </variation>
-                            </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Players:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gho-D2-pia">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                 <constraints>
@@ -106,7 +72,7 @@ This game is based on the original card game Set (1974), and this app is not ass
                                     <segue destination="kmm-mS-WAn" kind="show" id="ag2-lq-9bi"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Take Three!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="59A-Ld-fUc">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Seta3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="59A-Ld-fUc">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="108" id="LBS-5O-hus"/>
@@ -136,6 +102,46 @@ This game is based on the original card game Set (1974), and this app is not ass
                                     </mask>
                                 </variation>
                             </stepper>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sXE-7z-GBQ">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="sXE-7z-GBQ" secondAttribute="height" multiplier="143:168" id="5Vg-hH-bp4">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="-48.09226190476187"/>
+                                    </constraint>
+                                    <constraint firstAttribute="height" constant="336" id="yfK-NI-KIp">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="392.5"/>
+                                    </constraint>
+                                </constraints>
+                                <string key="text">What is a Set?
+
+Three cards that make a set must follow all of these rules:
+0) The number of shapes...
+1) The shapes either all match, or are all different
+
+2) The colors either all match, or are all different
+
+3) The pattern or filling all match, or are all different
+
+
+The Challenge?
+
+With a keen eye, find as many sets as quickly as possible.</string>
+                                <color key="textColor" red="0.26046317819999998" green="0.18727949260000001" blue="0.1132443026" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="5Vg-hH-bp4"/>
+                                        <exclude reference="yfK-NI-KIp"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="5Vg-hH-bp4"/>
+                                        <include reference="yfK-NI-KIp"/>
+                                    </mask>
+                                </variation>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" red="0.92941176469999998" green="0.96947297489999995" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -144,7 +150,9 @@ This game is based on the original card game Set (1974), and this app is not ass
                                 <variation key="widthClass=compact" constant="7"/>
                             </constraint>
                             <constraint firstItem="gho-D2-pia" firstAttribute="leading" secondItem="59A-Ld-fUc" secondAttribute="leading" id="8Md-Bb-zSq"/>
-                            <constraint firstItem="sXE-7z-GBQ" firstAttribute="centerY" secondItem="BSz-Ka-r9e" secondAttribute="centerY" id="DLw-kO-NRs"/>
+                            <constraint firstItem="sXE-7z-GBQ" firstAttribute="centerY" secondItem="BSz-Ka-r9e" secondAttribute="centerY" id="DLw-kO-NRs">
+                                <variation key="heightClass=regular-widthClass=compact" constant="-61.75"/>
+                            </constraint>
                             <constraint firstItem="gho-D2-pia" firstAttribute="bottom" secondItem="qYY-Pn-84O" secondAttribute="bottom" constant="4" id="Kw5-Vr-3OA">
                                 <variation key="widthClass=compact" constant="7"/>
                             </constraint>
@@ -202,6 +210,7 @@ This game is based on the original card game Set (1974), and this app is not ass
                     </view>
                     <connections>
                         <outlet property="numPlayersLabel" destination="BJ4-QE-IfE" id="lhU-j3-6Qq"/>
+                        <outlet property="playBtn" destination="ELA-KI-XLG" id="duH-s9-Cok"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Rp-YX-EIU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -302,7 +311,7 @@ This game is based on the original card game Set (1974), and this app is not ass
                                             </mask>
                                         </variation>
                                         <connections>
-                                            <segue destination="G0X-0o-3yc" kind="unwind" unwindAction="unwindToNewGame:" id="4Yp-cG-Sdc"/>
+                                            <segue destination="G0X-0o-3yc" kind="unwind" identifier="newGameSegue" unwindAction="prepareForNewGame:" id="OU1-z4-07Z"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -492,7 +501,7 @@ This game is based on the original card game Set (1974), and this app is not ass
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="31"/>
                                         <state key="normal" title="⚙">
-                                            <color key="titleColor" red="0.42706266529999998" green="0.32570422939999999" blue="0.2707932394" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleColor" red="0.42745098039215684" green="0.32549019607843138" blue="0.27058823529411763" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <variation key="default">
                                             <mask key="constraints">
@@ -1180,9 +1189,6 @@ This game is based on the original card game Set (1974), and this app is not ass
                                         <rect key="frame" x="-47" y="-14" width="94" height="29"/>
                                         <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="198" y="164.5" width="94" height="29"/>
-                                        </variation>
                                         <connections>
                                             <action selector="stepperTapAction:" destination="EeB-En-4wN" eventType="valueChanged" id="8K8-ee-yf6"/>
                                         </connections>
@@ -1192,60 +1198,39 @@ This game is based on the original card game Set (1974), and this app is not ass
                                         <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
-                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="13" y="165" width="81" height="27.5"/>
-                                        </variation>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Color" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L2x-tP-5ub">
                                         <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
-                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="13" y="22" width="55" height="27.5"/>
-                                        </variation>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Pattern" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LJo-7H-o85">
                                         <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
-                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="13" y="108" width="73" height="27.5"/>
-                                        </variation>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Shape" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5NK-Xy-zdM">
                                         <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
-                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="13" y="65" width="65.5" height="27.5"/>
-                                        </variation>
                                     </label>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9ZF-xj-JAL">
                                         <rect key="frame" x="-25" y="-15" width="51" height="31"/>
-                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="243" y="20.5" width="51" height="31"/>
-                                        </variation>
                                         <connections>
                                             <action selector="colorSwitchAction:" destination="EeB-En-4wN" eventType="valueChanged" id="n1p-MU-Veq"/>
                                         </connections>
                                     </switch>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8GZ-TA-5LE">
                                         <rect key="frame" x="-25" y="-15" width="51" height="31"/>
-                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="243" y="63.5" width="51" height="31"/>
-                                        </variation>
                                         <connections>
                                             <action selector="shapeSwitchAction:" destination="EeB-En-4wN" eventType="valueChanged" id="xuA-La-4np"/>
                                         </connections>
                                     </switch>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="o41-Yo-5dB">
                                         <rect key="frame" x="-25" y="-15" width="51" height="31"/>
-                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="243" y="106.5" width="51" height="31"/>
-                                        </variation>
                                         <connections>
                                             <action selector="patternSwitchAction:" destination="EeB-En-4wN" eventType="valueChanged" id="oUr-e0-fA9"/>
                                         </connections>
@@ -1255,9 +1240,6 @@ This game is based on the original card game Set (1974), and this app is not ass
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
-                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="126" y="168.5" width="8" height="20.5"/>
-                                        </variation>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dYQ-11-Csp">
                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -1321,22 +1303,22 @@ This game is based on the original card game Set (1974), and this app is not ass
                                         <exclude reference="cXm-2g-neF"/>
                                         <exclude reference="Cwl-7F-2Km"/>
                                         <exclude reference="ZiH-su-dlv"/>
-                                        <exclude reference="ze4-eo-juW"/>
-                                        <exclude reference="xqS-dE-X4G"/>
                                         <exclude reference="hpG-6l-3o2"/>
+                                        <exclude reference="xqS-dE-X4G"/>
+                                        <exclude reference="ze4-eo-juW"/>
+                                        <exclude reference="akE-eh-12O"/>
+                                        <exclude reference="fHu-xh-Pur"/>
                                         <exclude reference="DVe-NU-el3"/>
                                         <exclude reference="hhR-LM-6e1"/>
-                                        <exclude reference="5D5-jX-KI4"/>
-                                        <exclude reference="twS-VD-9zm"/>
-                                        <exclude reference="wwK-9I-9Tc"/>
                                         <exclude reference="i8U-Fn-fr1"/>
                                         <exclude reference="rQI-yp-UvV"/>
-                                        <exclude reference="fHu-xh-Pur"/>
-                                        <exclude reference="akE-eh-12O"/>
-                                        <exclude reference="JMN-uA-Cef"/>
+                                        <exclude reference="wwK-9I-9Tc"/>
                                         <exclude reference="0Pn-JF-rCA"/>
-                                        <exclude reference="s95-2Z-U8t"/>
+                                        <exclude reference="JMN-uA-Cef"/>
+                                        <exclude reference="5D5-jX-KI4"/>
+                                        <exclude reference="twS-VD-9zm"/>
                                         <exclude reference="hM5-zt-YsS"/>
+                                        <exclude reference="s95-2Z-U8t"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact">
@@ -1347,22 +1329,22 @@ This game is based on the original card game Set (1974), and this app is not ass
                                         <include reference="cXm-2g-neF"/>
                                         <include reference="Cwl-7F-2Km"/>
                                         <include reference="ZiH-su-dlv"/>
-                                        <include reference="ze4-eo-juW"/>
-                                        <include reference="xqS-dE-X4G"/>
                                         <include reference="hpG-6l-3o2"/>
+                                        <include reference="xqS-dE-X4G"/>
+                                        <include reference="ze4-eo-juW"/>
+                                        <include reference="akE-eh-12O"/>
+                                        <include reference="fHu-xh-Pur"/>
                                         <include reference="DVe-NU-el3"/>
                                         <include reference="hhR-LM-6e1"/>
-                                        <include reference="5D5-jX-KI4"/>
-                                        <include reference="twS-VD-9zm"/>
-                                        <include reference="wwK-9I-9Tc"/>
                                         <include reference="i8U-Fn-fr1"/>
                                         <include reference="rQI-yp-UvV"/>
-                                        <include reference="fHu-xh-Pur"/>
-                                        <include reference="akE-eh-12O"/>
-                                        <include reference="JMN-uA-Cef"/>
+                                        <include reference="wwK-9I-9Tc"/>
                                         <include reference="0Pn-JF-rCA"/>
-                                        <include reference="s95-2Z-U8t"/>
+                                        <include reference="JMN-uA-Cef"/>
+                                        <include reference="5D5-jX-KI4"/>
+                                        <include reference="twS-VD-9zm"/>
                                         <include reference="hM5-zt-YsS"/>
+                                        <include reference="s95-2Z-U8t"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -1377,14 +1359,14 @@ This game is based on the original card game Set (1974), and this app is not ass
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="ftw-99-v0w"/>
                                 <exclude reference="Rf8-ft-nwY"/>
+                                <exclude reference="ftw-99-v0w"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="constraints">
-                                <include reference="ftw-99-v0w"/>
                                 <include reference="Rf8-ft-nwY"/>
+                                <include reference="ftw-99-v0w"/>
                             </mask>
                         </variation>
                         <connections>

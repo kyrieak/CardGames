@@ -11,24 +11,58 @@ import UIKit
 
 class SGFooterView: UIView {
   let pBtnSize = CGSize(width: 44, height: 44)
+  var btnTarget: SetGameController?
+  var btnAction = Selector("makeMoveAction:")
+
+  var playerBtns: [UIButton] {
+    return self.subviews as! [UIButton]
+  }
   
-  func addPlayerButtons(players: [Player], target: SetGameController, action: Selector) {
-    var ct: Int = 1
+  var playerBtnLabels: [UILabel] {
+    return playerBtns.map{(btn: UIButton) -> UILabel in
+                            return btn.titleLabel! }
+  }
+  
+  
+  func addPlayerButtons(players: [Player], target: SetGameController?, action: Selector) {
+    btnTarget = target
+    btnAction = action
     
     for p in players {
-      let pButton = makePlayerBtn(CGPointZero)
+      let btn = makePlayerBtn(CGPointZero)
       
-      pButton.setTitle("p \(ct)", forState: UIControlState.Normal)
-      pButton.addTarget(target, action: action, forControlEvents: UIControlEvents.TouchUpInside)
+      btn.setTitle(labelFor(p), forState: UIControlState.Normal)
+      btn.addTarget(target, action: action, forControlEvents: UIControlEvents.TouchUpInside)
       
-      pButton.tag = p.hashValue
-      pButton.backgroundColor = UIColor.blueColor()
+      btn.tag = p.hashValue
+//      btn.backgroundColor = UIColor.blueColor()
       
-      addSubview(pButton)
-      ct += 1
+      addSubview(btn)
     }
 
     layoutIfNeeded()
+  }
+  
+  func layoutPlayerBtns(players: [Player]) {
+    if (players.count != subviews.count) {
+      for btn in playerBtns {
+        btn.removeFromSuperview()
+      }
+      
+      addPlayerButtons(players, target: btnTarget, action: btnAction)
+    } else {
+      var idx = 0
+
+      for btn in playerBtns {
+        let player = players[idx]
+        
+        btn.setTitle(labelFor(player), forState: UIControlState.Normal)
+        btn.tag = player.hashValue
+        idx++
+      }
+      
+      layoutIfNeeded()
+    }
   }
   
   private func getPlayerBtnSpacing(numPlayers: Int) -> CGFloat {
@@ -74,31 +108,14 @@ class SGFooterView: UIView {
       origin.y = btn.frame.maxY + spacing
     }
   }
+  
+  private func labelFor(player: Player) -> String {
+    let name = player.name
+    
+    if (name.characters.count < 3) {
+      return name
+    } else {
+      return name.substringToIndex(name.startIndex.successor().successor())
+    }
+  }
 }
-
-/*
-private func addPlayerButtons(collectionView: UICollectionView, footer: UIView) {
-let _datasource = collectionView.dataSource! as? SetGameDataSource
-let game = _datasource!.game
-
-var playerWrapView = footer.viewWithTag(8)!
-NSLog("pwview size: \(playerWrapView.frame.size)")
-
-let pCount = game.players.count
-let h = playerWrapView.frame.height
-var spacing = (collectionView.frame.width - (h * CGFloat(pCount))) / CGFloat(pCount + 1)
-var _origin = CGPoint(x: spacing, y: 0)
-let buttonSize = CGSize(width: h, height: h)
-
-for player in game.players {
-var pButton = UIButton(frame: CGRect(origin: _origin, size: buttonSize))
-pButton.backgroundColor = UIColor.blueColor()
-playerWrapView.addSubview(pButton)
-
-NSLog("\(buttonSize)")
-_origin.x = pButton.frame.maxX + spacing
-}
-
-}
-
-*/

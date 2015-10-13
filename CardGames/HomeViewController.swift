@@ -10,8 +10,26 @@ import Foundation
 import UIKit
 
 class HomeViewController: UIViewController {
-
   @IBOutlet var numPlayersLabel: UILabel!
+  @IBOutlet var playBtn: UIButton!
+
+  var style = styleGuide
+  var themeID = styleGuide.themeID
   
+  func viewsForLayerStyle(sel: ViewSelector) -> [UIView] {
+    switch(sel) {
+      case .MainContent:
+        return [self.view]
+      default:
+        return []
+    }
+  }
   
+  func viewsForFontStyle(sel: ViewSelector) -> [UILabel] {
+    return []
+  }
+  
+  func applyStyleToViews() {
+    //
+  }
 }

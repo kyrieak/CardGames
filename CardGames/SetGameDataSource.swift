@@ -23,16 +23,9 @@ class SetGameDataSource: NSObject, UICollectionViewDataSource {
   
   
   override init() {
-    game = SetGame(numPlayers: 2)
+    game = SetGame(settings: GameSettings(numPlayers: 2))
     
     super.init()
-  }
-  
-  // - MARK: - Public Methods
-  
-  
-  func startNewRound() {
-    game.startNewRound(12)
   }
   
   

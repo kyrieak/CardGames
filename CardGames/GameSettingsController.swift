@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class GameSettingsController: UIViewController {
-  var settings = GameSettings()
+  var settings = GameSettings(numPlayers: 2)
 
   @IBOutlet var contentView: UIView!
   @IBOutlet var colorSwitch: UISwitch!
@@ -18,10 +18,12 @@ class GameSettingsController: UIViewController {
   @IBOutlet var patternSwitch: UISwitch!
   @IBOutlet var playerCountLabel: UILabel!
 
+  
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
     settings.colorsOn = false
   }
+  
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     NSLog("segue prepared")
@@ -31,7 +33,6 @@ class GameSettingsController: UIViewController {
       settings = vc.game.settings
     }
   }
-  
   
   override func viewWillLayoutSubviews() {
     colorSwitch.setOn(settings.colorsOn, animated: false)

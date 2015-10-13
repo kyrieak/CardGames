@@ -11,7 +11,7 @@ import UIKit
 
 class SetGame {
   var isOver: Bool = false
-  var settings = GameSettings()
+  var settings: GameSettings
   
   private(set) var players: [Player]
   private var scores: [Player: Int]
@@ -20,20 +20,14 @@ class SetGame {
   private(set) var cardsInPlay: [SetCard?] = []
   private(set) var currentMove: SGMove
   
-  required init(_players: [Player]) {
-    players     = _players
-    scores      = SetGame.startingScores(players)
-    currentMove = SGMove()
+  
+  required init(settings: GameSettings) {
+    self.settings    = settings
+    self.players     = Player.makeNumberedPlayers(settings.numPlayers)
+    self.scores      = SetGame.startingScores(players)
+    self.currentMove = SGMove()
     
     startNewRound(16)
-  }
-  
-  convenience init(numPlayers: Int) {
-    let numberedPlayers = (1...numPlayers).map({(num: Int) -> Player in
-      return Player(key: num, name: "Player \(num)")
-    })
-    
-    self.init(_players: numberedPlayers)
   }
   
   
@@ -287,9 +281,22 @@ class SGMove {
 
 
 struct GameSettings {
-  var colorsOn = true
-  var shapesOn = true
-  var patternsOn = true
+  var numPlayers: Int
+  var colorsOn, shapesOn, patternsOn: Bool
+  
+  init(numPlayers: Int, colorsOn: Bool, shapesOn: Bool, patternsOn: Bool) {
+    self.numPlayers = numPlayers
+    self.colorsOn   = colorsOn
+    self.shapesOn   = shapesOn
+    self.patternsOn = patternsOn
+  }
+  
+  init(numPlayers: Int) {
+    self.numPlayers = numPlayers
+    self.colorsOn   = true
+    self.shapesOn   = true
+    self.patternsOn = true
+  }
 }
 
 //    let red = UIColor(red: 0.875, green: 0.259, blue: 0.302, alpha: 2.0)

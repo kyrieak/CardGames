@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class SetGameController: UIViewController {
+class SetGameController: UIViewController, StyleGuideDelegate {
   
   // - MARK: - CollectionView
   
@@ -33,9 +33,10 @@ class SetGameController: UIViewController {
 
   // - MARK: Private Properties
   
+  private(set) var style: StyleGuide = styleGuide
   private(set) var themeID: Int = styleGuide.themeID
-  private var layerElements: [ViewElement] = [.MainContent, .Header, .Footer, .Status, .CardBack]
-  private var textElements: [ViewElement] = [.HeadTitle]
+  private var layerSelectors: [ViewSelector] = [.MainContent, .Header, .Footer, .Status, .CardBack, .FooterUIBtn]
+  private var textSelectors: [ViewSelector] = [.HeadTitle, .FooterUIBtn]
   
   
   // - MARK: - Override Functions
@@ -57,6 +58,8 @@ class SetGameController: UIViewController {
     
     collectionView.reloadData()
     applyStyleToViews()
+    
+    NSLog("\(footerView.subviews.first?.backgroundColor)")
   }
   
   
@@ -113,7 +116,15 @@ class SetGameController: UIViewController {
   
   
   @IBAction func prepareForNewGame(segue: UIStoryboardSegue) {
-    startNewGame()
+    if (segue.identifier == "newGameSegue") {
+      let vc = segue.sourceViewController as! GameSettingsController
+
+      startNewGame(vc.settings)
+      
+      footerView.layoutPlayerBtns(game.players)
+    } else {
+      startNewGame(game.settings)
+    }
   }
   
   
@@ -126,8 +137,11 @@ class SetGameController: UIViewController {
   
   // - MARK: - Private Functions
   
-  private func startNewGame() {
-    sgDataSource.game = SetGame(_players: game.players)
+  private func startNewGame(settings: GameSettings) {
+    if (game.settings.numPlayers != settings.numPlayers) {
+    }
+    sgDataSource.game = SetGame(settings: settings)
+
     collectionView.reloadData()
   }
 
@@ -150,8 +164,8 @@ class SetGameController: UIViewController {
   // - MARK: - UIViewStyleDelegate Protocol Functions
   
   
-  func viewsForLayerStyle(elem: ViewElement) -> [UIView] {
-    switch(elem) {
+  func viewsForLayerStyle(sel: ViewSelector) -> [UIView] {
+    switch(sel) {
       case .MainContent:
         return [collectionView]
       case .Header, .Footer:
@@ -160,26 +174,30 @@ class SetGameController: UIViewController {
         return (sgDelegate.statusView == nil) ? [] : [sgDelegate.statusView!]
       case .CardBack:
         return [deckButton]
+      case .FooterUIBtn:
+        return footerView.subviews
       default:
         return []
     }
   }
   
-  func viewsForFontStyle(elem: ViewElement) -> [UILabel] {
-    switch(elem) {
+  func viewsForFontStyle(sel: ViewSelector) -> [UILabel] {
+    switch(sel) {
       case .HeadTitle:
         return [headerView.titleLabel]
+      case .FooterUIBtn:
+        return footerView.playerBtnLabels
       default:
         return []
     }
   }
   
   func applyStyleToViews() {
-    for elem in layerElements {
+    for elem in layerSelectors {
       styleGuide.applyLayerStyle(elem, views: viewsForLayerStyle(elem))
     }
     
-    for elem in textElements {
+    for elem in textSelectors {
       styleGuide.applyFontStyle(elem, views: viewsForFontStyle(elem))
     }
   }
