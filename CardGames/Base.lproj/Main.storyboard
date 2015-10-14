@@ -423,8 +423,8 @@ With a keen eye, find as many sets as quickly as possible.</string>
                     <connections>
                         <outlet property="colorSwitch" destination="ggK-Ly-xCx" id="kzo-aP-hcN"/>
                         <outlet property="contentView" destination="6Qs-Ij-2cV" id="gU2-Ka-gZk"/>
-                        <outlet property="patternSwitch" destination="cpe-EJ-cvL" id="8Tp-HM-RDQ"/>
                         <outlet property="playerCountLabel" destination="Q8U-UQ-sTv" id="0gM-9m-r0d"/>
+                        <outlet property="shadingSwitch" destination="cpe-EJ-cvL" id="EoK-v9-LpZ"/>
                         <outlet property="shapeSwitch" destination="7vS-Mi-Jmm" id="wLY-yj-JFa"/>
                     </connections>
                 </viewController>
@@ -1008,7 +1008,8 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                                             <exclude reference="ikR-y9-lJI"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="90" y="7" width="142" height="44.5"/>
                                                         <mask key="constraints">
                                                             <include reference="ikR-y9-lJI"/>
                                                         </mask>

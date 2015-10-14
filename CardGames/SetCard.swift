@@ -10,16 +10,16 @@ import Foundation
 import UIKit
 
 class SetCard: Card {
+  let number: Int
   let shape: SGShape
   let color: SGColor
   let shading: SGShading
-  let number: Int
   
-  init(shape: SGShape, color: SGColor, shading: SGShading, number: Int) {
+  init(number: Int, shape: SGShape, color: SGColor, shading: SGShading) {
+    self.number = number
     self.shape = shape
     self.color = color
     self.shading = shading
-    self.number = number
 
     super.init()
   }
@@ -29,7 +29,7 @@ class SetCard: Card {
   }
   
   convenience init(shape: SGShape, color: SGColor) {
-    self.init(shape: shape, color: color, shading: SGShading.Solid, number: 1)
+    self.init(number: 1, shape: shape, color: color, shading: SGShading.Solid)
   }
 }
 
@@ -54,14 +54,6 @@ struct SetCardAttrs {
   }
 }
 
-
-//  static func rgbColor(color: UIColor) -> [CGFloat] {
-//    var (r, g, b, a): (CGFloat, CGFloat, CGFloat, CGFloat) = (0, 0, 0, 0)
-//
-//    color.getRed(&r, green: &g, blue: &b, alpha: &a)
-//
-//    return [r, g, b, a]
-//  }
 
 
 enum SGColor {

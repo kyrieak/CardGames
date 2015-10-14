@@ -10,18 +10,21 @@ import Foundation
 import UIKit
 
 class GameSettingsController: UIViewController {
-  var settings = GameSettings(numPlayers: 2)
+  var settings = defaultSettings
+
+  var options: GameOptions {
+    return settings.options
+  }
 
   @IBOutlet var contentView: UIView!
   @IBOutlet var colorSwitch: UISwitch!
   @IBOutlet var shapeSwitch: UISwitch!
-  @IBOutlet var patternSwitch: UISwitch!
+  @IBOutlet var shadingSwitch: UISwitch!
   @IBOutlet var playerCountLabel: UILabel!
 
   
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
-    settings.colorsOn = false
   }
   
   
@@ -35,21 +38,21 @@ class GameSettingsController: UIViewController {
   }
   
   override func viewWillLayoutSubviews() {
-    colorSwitch.setOn(settings.colorsOn, animated: false)
-    shapeSwitch.setOn(settings.shapesOn, animated: false)
-    patternSwitch.setOn(settings.patternsOn, animated: false)
+    colorSwitch.setOn(options.colorsOn, animated: false)
+    shapeSwitch.setOn(options.shapesOn, animated: false)
+    shadingSwitch.setOn(options.shadingOn, animated: false)
   }
   
   @IBAction func colorSwitchAction(sender: UISwitch) {
-    settings.colorsOn = sender.on
+    settings.options.colorsOn = sender.on
   }
 
   @IBAction func shapeSwitchAction(sender: UISwitch) {
-    settings.shapesOn = sender.on
+    settings.options.shapesOn = sender.on
   }
   
   @IBAction func patternSwitchAction(sender: UISwitch) {
-    settings.patternsOn = sender.on
+    settings.options.shadingOn = sender.on
   }
   
   @IBAction func stepperTapAction(sender: UIStepper) {

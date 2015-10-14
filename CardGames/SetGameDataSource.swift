@@ -19,15 +19,17 @@ class SetGameDataSource: NSObject, UICollectionViewDataSource {
   var game: SetGame
   
   
-  // - MARK: - Initializer
+  // - MARK: - Initializers
   
-  
-  override init() {
-    game = SetGame(settings: GameSettings(numPlayers: 2))
+  init(settings: GameSettings) {
+    game = SetGame(settings: settings)
     
     super.init()
   }
   
+  convenience override init() {
+    self.init(settings: defaultSettings)
+  }
   
   // - MARK: - DataSource Functions ------------------------------------
   

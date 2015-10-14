@@ -64,7 +64,7 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
     if (selectIdxPaths.count == 3) {
       game.makeMove(selectedIndexes(), playerKey: playerTag)
 
-      if (game.currentMove.isASet) {
+      if (game.currentMoveIsASet()) {
         collectionView.reloadData()
       } else {
         for path in selectIdxPaths {
@@ -87,10 +87,12 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
   func collectionView(collectionView: UICollectionView,
     shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
       let game = getGame(collectionView)
-      
+      NSLog("I am here in should select indexpath delegate")
+
       if (selectIdxPaths.count > 2) {
         return false
       } else {
+        NSLog("selectIdxPaths count is < 3, so game.hasCardAt is \(game.hasCardAt(indexPath.item))")
         return game.hasCardAt(indexPath.item)
       }
   }
@@ -171,7 +173,7 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
     
     if (!game.currentMove.done) {
       return (false, (statusMaker.listCards(), ""))
-    } else if (game.currentMove.isASet) {
+    } else if (game.currentMoveIsASet()) {
       return (true, statusMaker.isSetMsg(5)) // arbit 5pts
     } else {
       return (false, statusMaker.notSetMsg(-1)) // arbit -1pts

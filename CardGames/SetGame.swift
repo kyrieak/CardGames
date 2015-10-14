@@ -11,23 +11,51 @@ import UIKit
 
 class SetGame {
   var isOver: Bool = false
-  var settings: GameSettings
-  
-  private(set) var players: [Player]
+  private(set) var settings: GameSettings
   private var scores: [Player: Int]
 
   private var deck: Deck<SetCard>     = SetGame.standardDeck()
   private(set) var cardsInPlay: [SetCard?] = []
   private(set) var currentMove: SGMove
   
+  var players: [Player] {
+    return settings.players
+  }
+  
+  var options: GameOptions {
+    return settings.options
+  }
+  
   
   required init(settings: GameSettings) {
     self.settings    = settings
-    self.players     = Player.makeNumberedPlayers(settings.numPlayers)
-    self.scores      = SetGame.startingScores(players)
+    self.deck        = SetGame.customDeck(settings.options)
+    self.scores      = SetGame.startingScores(settings.players)
     self.currentMove = SGMove()
     
     startNewRound(16)
+  }
+  
+  class func customDeck(options: GameOptions) -> Deck<SetCard> {
+    let deck = Deck<SetCard>()
+    
+    let shapeSet: [SGShape]     = (options.shapesOn ? SetGame.standardShapes() : [.Diamond, .Diamond, .Diamond])
+    let colorSet: [SGColor]     = (options.colorsOn ? SetGame.standardColors() : [.Red, .Red, .Red])
+    let shadingSet: [SGShading] = (options.shadingOn ? SetGame.standardShading() : [.Solid, .Solid, .Solid])
+    
+    for shape in shapeSet {
+      for color in colorSet {
+        for shading in shadingSet {
+          for number in SetGame.standardNumbers() {
+            deck.addCard(SetCard(number: number, shape: shape, color: color, shading: shading))
+          }
+        }
+      }
+    }
+    
+    deck.shuffle()
+
+    return deck
   }
   
   
@@ -48,7 +76,7 @@ class SetGame {
       for color in SetGame.standardColors() {
         for shading in SetGame.standardShading() {
           for number in SetGame.standardNumbers() {
-            deck.addCard(SetCard(shape: shape, color: color, shading: shading, number: number))
+            deck.addCard(SetCard(number: number, shape: shape, color: color, shading: shading))
           }
         }
       }
@@ -64,15 +92,15 @@ class SetGame {
   }
   
   class func standardShapes() -> [SGShape] {
-    return [SGShape.Diamond, SGShape.Oval, SGShape.Squiggle]
+    return [.Diamond, .Oval, .Squiggle]
   }
 
   class func standardShading() -> [SGShading] {
-    return [SGShading.Solid, SGShading.Striped, SGShading.Open]
+    return [.Solid, .Striped, .Open]
   }
   
   class func standardColors() -> [SGColor] {
-    return [SGColor.Red, SGColor.Green, SGColor.Purple]
+    return [.Red, .Green, .Purple]
   }
   
   
@@ -134,8 +162,37 @@ class SetGame {
     }
   }
   
+  
+  func currentMoveIsASet() -> Bool {
+    return moveIsASet(currentMove)
+  }
+  
+  
+  func moveIsASet(move: SGMove) -> Bool {
+    if (move.done) {
+      var _isASet = true
+      
+      if (options.shapesOn) {
+        _isASet = (_isASet && move.isSameOrUniqueShape())
+      }
+      
+      if (options.colorsOn) {
+        _isASet = (_isASet && move.isSameOrUniqueColor())
+      }
+      
+      if (options.shadingOn) {
+        _isASet = (_isASet && move.isSameOrUniqueShading())
+      }
+      
+      return _isASet
+    } else {
+      return false
+    }
+  }
+  
+  
   private func updateScore(_player: Player) {
-    if (currentMove.isASet) {
+    if (moveIsASet(currentMove)) {
         scores[_player]! += 5 // arbit
     } else {
         scores[_player]! -= 1 // arbit
@@ -143,11 +200,18 @@ class SetGame {
   }
   
   func endMove() {
-    if (currentMove.done && currentMove.isASet) {
-      let indexes = Array(currentMove.cardPositions.keys)
-
-      for idx in indexes {
-        cardsInPlay[idx] = nil
+    if (moveIsASet(currentMove)) {
+      var indexes = Array(currentMove.cardPositions.keys)
+      
+      while (indexes.count > 0) {
+        let idx = indexes[0]
+        
+        if (deck.cards.count > 0) {
+          cardsInPlay[idx] = deck.removeTopCard()
+        } else {
+          cardsInPlay.removeAtIndex(idx)
+        }
+        indexes.removeFirst()
       }
     }
     
@@ -192,9 +256,12 @@ class SetGame {
 
 
 class SGMove {
-  private(set) var isASet: Bool = false
-//  private(set) var player: Player?
+//  private(set) var isASet: Bool = false
   private(set) var cardPositions: [Int: SetCard]
+  
+  var cards: [SetCard] {
+    return Array(cardPositions.values)
+  }
 
   var done: Bool {
     NSLog("cardPositions.count: \(cardPositions.count) cards")
@@ -208,16 +275,9 @@ class SGMove {
   }
   
   init(_player: Player) {
-//    player = _player
     cardPositions = [Int: SetCard]()
   }
 
-//  func setPlayer(_player: Player) {
-//    if (player == nil) {
-//      player = _player
-//    }
-//  }
-  
   func setCardPositions(_cardPositions: [Int: SetCard]) {
     if ((cardPositions.count == 0) &&
          (_cardPositions.count == 3)) {
@@ -225,42 +285,76 @@ class SGMove {
           cardPositions = _cardPositions
           
           if (done) {
-            updateIsASet()
+//            updateIsASet()
           }
     }
   }
   
   func reset() {
-//    player = nil
     cardPositions.removeAll(keepCapacity: true)
   }
   
+  
+  func isSameOrUniqueNumber() -> Bool {
+    let nums = cards.map{(card: SetCard) -> Int in
+      return card.number
+    }
+    
+    return isSameOrUnique(nums)
+  }
+  
+  
+  func isSameOrUniqueShape() -> Bool {
+    let shapes = cards.map{(card: SetCard) -> SGShape in
+      return card.shape
+    }
+    
+    return isSameOrUnique(shapes)
+  }
 
   
-  private func updateIsASet() {
-    if (cardPositions.count == 3) {
-      let cards = Array(cardPositions.values)
-      
-      var numbers: [Int]       = []
-      var colors: [SGColor]    = []
-      var shading: [SGShading] = []
-      var shapes: [SGShape]    = []
-      
-      for card in cards {
-        numbers.append(card.number)
-        colors.append(card.color)
-        shading.append(card.shading)
-        shapes.append(card.shape)
-      }
-      
-      isASet = (isSameOrUnique(colors) &&
-              isSameOrUnique(shading) &&
-              isSameOrUnique(shapes) &&
-              isSameOrUnique(numbers))
-    } else {
-      isASet = false
+  func isSameOrUniqueColor() -> Bool {
+    let colors = cards.map{(card: SetCard) -> SGColor in
+      return card.color
     }
+    
+    return isSameOrUnique(colors)
   }
+  
+  
+  func isSameOrUniqueShading() -> Bool {
+    let shadings = cards.map{(card: SetCard) -> SGShading in
+      return card.shading
+    }
+    
+    return isSameOrUnique(shadings)
+  }
+  
+  
+//  private func updateIsASet() {
+//    if (cardPositions.count == 3) {
+//      let cards = Array(cardPositions.values)
+//      
+//      var numbers: [Int]       = []
+//      var colors: [SGColor]    = []
+//      var shading: [SGShading] = []
+//      var shapes: [SGShape]    = []
+//      
+//      for card in cards {
+//        numbers.append(card.number)
+//        colors.append(card.color)
+//        shading.append(card.shading)
+//        shapes.append(card.shape)
+//      }
+//      
+//      isASet = (isSameOrUnique(colors) &&
+//              isSameOrUnique(shading) &&
+//              isSameOrUnique(shapes) &&
+//              isSameOrUnique(numbers))
+//    } else {
+//      isASet = false
+//    }
+//  }
   
   private func isSameOrUnique<T: Hashable>(values: [T]) -> Bool {
     if (values.count != 3) {
@@ -280,22 +374,36 @@ class SGMove {
 }
 
 
-struct GameSettings {
-  var numPlayers: Int
-  var colorsOn, shapesOn, patternsOn: Bool
+struct GameOptions {
+  var colorsOn, shapesOn, shadingOn: Bool
   
-  init(numPlayers: Int, colorsOn: Bool, shapesOn: Bool, patternsOn: Bool) {
-    self.numPlayers = numPlayers
-    self.colorsOn   = colorsOn
+  init(shapesOn: Bool, colorsOn: Bool, shadingOn: Bool) {
     self.shapesOn   = shapesOn
-    self.patternsOn = patternsOn
+    self.colorsOn   = colorsOn
+    self.shadingOn  = shadingOn
   }
   
-  init(numPlayers: Int) {
-    self.numPlayers = numPlayers
-    self.colorsOn   = true
-    self.shapesOn   = true
-    self.patternsOn = true
+  static func defaultOptions() -> GameOptions {
+    return GameOptions(shapesOn: true, colorsOn: true, shadingOn: true)
+  }
+}
+
+
+class GameSettings {
+  var players: [Player]
+  var options: GameOptions
+  
+  var numPlayers: Int {
+    return players.count
+  }
+  
+  init(players: [Player], options: GameOptions) {
+    self.players = players
+    self.options = options
+  }
+  
+  convenience init(players: [Player]) {
+    self.init(players: players, options: GameOptions.defaultOptions())
   }
 }
 
