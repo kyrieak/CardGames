@@ -85,26 +85,27 @@ class SetGameController: UIViewController, StyleGuideDelegate {
   // - MARK: - UIActions
   
   @IBAction func tapDeckAction(sender: UIButton) {
-    let alert = UIAlertController(title: "My Alert",
-                                    message: "This is an action sheet.",
-                                      preferredStyle: .Alert)
-    
-    let redealAction = UIAlertAction(title: "Redeal", style: .Default)
-                                      { (alert: UIAlertAction!) -> Void in
-      self.redealCards()
-    }
-    
-    let newGameAction = UIAlertAction(title: "New Game", style: .Default)
-                                        { (alert: UIAlertAction!) -> Void in
-      let vc = self.storyboard?.instantiateViewControllerWithIdentifier("gameSettingController")
-
-      self.presentViewController(vc!, animated: true, completion: nil)
-    }
-    
-    alert.addAction(redealAction)
-    alert.addAction(newGameAction)
-    
-    presentViewController(alert, animated: true, completion:nil)
+    self.redealCards()
+//    let alert = UIAlertController(title: "My Alert",
+//                                    message: "This is an action sheet.",
+//                                      preferredStyle: .Alert)
+//    
+//    let redealAction = UIAlertAction(title: "Redeal", style: .Default)
+//                                      { (alert: UIAlertAction!) -> Void in
+//      self.redealCards()
+//    }
+//    
+//    let newGameAction = UIAlertAction(title: "New Game", style: .Default)
+//                                        { (alert: UIAlertAction!) -> Void in
+//      let vc = self.storyboard?.instantiateViewControllerWithIdentifier("gameSettingController")
+//
+//      self.presentViewController(vc!, animated: true, completion: nil)
+//    }
+//    
+//    alert.addAction(redealAction)
+//    alert.addAction(newGameAction)
+//    
+//    presentViewController(alert, animated: true, completion:nil)
   }
 
   

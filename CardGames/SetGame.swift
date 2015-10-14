@@ -170,18 +170,20 @@ class SetGame {
   
   func moveIsASet(move: SGMove) -> Bool {
     if (move.done) {
-      var _isASet = true
+      var _isASet = move.isSameOrUniqueNumber()
       
-      if (options.shapesOn) {
-        _isASet = (_isASet && move.isSameOrUniqueShape())
-      }
-      
-      if (options.colorsOn) {
-        _isASet = (_isASet && move.isSameOrUniqueColor())
-      }
-      
-      if (options.shadingOn) {
-        _isASet = (_isASet && move.isSameOrUniqueShading())
+      if (_isASet) {
+        if (options.shapesOn) {
+          _isASet = (_isASet && move.isSameOrUniqueShape())
+        }
+        
+        if (options.colorsOn) {
+          _isASet = (_isASet && move.isSameOrUniqueColor())
+        }
+        
+        if (options.shadingOn) {
+          _isASet = (_isASet && move.isSameOrUniqueShading())
+        }
       }
       
       return _isASet
@@ -331,31 +333,6 @@ class SGMove {
   }
   
   
-//  private func updateIsASet() {
-//    if (cardPositions.count == 3) {
-//      let cards = Array(cardPositions.values)
-//      
-//      var numbers: [Int]       = []
-//      var colors: [SGColor]    = []
-//      var shading: [SGShading] = []
-//      var shapes: [SGShape]    = []
-//      
-//      for card in cards {
-//        numbers.append(card.number)
-//        colors.append(card.color)
-//        shading.append(card.shading)
-//        shapes.append(card.shape)
-//      }
-//      
-//      isASet = (isSameOrUnique(colors) &&
-//              isSameOrUnique(shading) &&
-//              isSameOrUnique(shapes) &&
-//              isSameOrUnique(numbers))
-//    } else {
-//      isASet = false
-//    }
-//  }
-  
   private func isSameOrUnique<T: Hashable>(values: [T]) -> Bool {
     if (values.count != 3) {
       return false
@@ -406,8 +383,3 @@ class GameSettings {
     self.init(players: players, options: GameOptions.defaultOptions())
   }
 }
-
-//    let red = UIColor(red: 0.875, green: 0.259, blue: 0.302, alpha: 2.0)
-//    let green = UIColor(red: 0.102, green: 0.694, blue: 0.365, alpha: 2.0)
-//    let purple = UIColor(red: 0.286, green: 0.2, blue: 0.565, alpha: 2.0)
-//

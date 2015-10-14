@@ -223,11 +223,11 @@ class SetCardView: UIView {
   class func rgbColor(color: SGColor) -> [CGFloat] {
     switch(color) {
       case .Green:
-        return [0.0, 1.0, 0.0, 1.0]
+        return [0.102, 0.694, 0.365, 1.0]
       case .Purple:
-        return [1.0, 0.0, 1.0, 1.0]
+        return [0.286, 0.2, 0.565, 1.0]
       case .Red:
-        return [1.0, 0.0, 0.0, 1.0]
+        return [0.875, 0.259, 0.302, 1.0]
     }
   }
 }
