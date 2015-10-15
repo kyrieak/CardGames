@@ -72,40 +72,20 @@ class SetGameController: UIViewController, StyleGuideDelegate {
   }
   
   
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if (segue.identifier == "gameSettingsSegue") {
-      let dvc = segue.destinationViewController as! GameSettingsController
-      
-      dvc.settings = game.settings
-    }
-    
-    super.prepareForSegue(segue, sender: sender)
-  }
+//  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//    if (segue.identifier == "gameSettingsSegue") {
+//      let dvc = segue.destinationViewController as! GameSettingsController
+//      
+//      dvc.settings = game.settings
+//    }
+//    
+//    super.prepareForSegue(segue, sender: sender)
+//  }
   
   // - MARK: - UIActions
   
   @IBAction func tapDeckAction(sender: UIButton) {
     self.redealCards()
-//    let alert = UIAlertController(title: "My Alert",
-//                                    message: "This is an action sheet.",
-//                                      preferredStyle: .Alert)
-//    
-//    let redealAction = UIAlertAction(title: "Redeal", style: .Default)
-//                                      { (alert: UIAlertAction!) -> Void in
-//      self.redealCards()
-//    }
-//    
-//    let newGameAction = UIAlertAction(title: "New Game", style: .Default)
-//                                        { (alert: UIAlertAction!) -> Void in
-//      let vc = self.storyboard?.instantiateViewControllerWithIdentifier("gameSettingController")
-//
-//      self.presentViewController(vc!, animated: true, completion: nil)
-//    }
-//    
-//    alert.addAction(redealAction)
-//    alert.addAction(newGameAction)
-//    
-//    presentViewController(alert, animated: true, completion:nil)
   }
 
   
@@ -117,15 +97,9 @@ class SetGameController: UIViewController, StyleGuideDelegate {
   
   
   @IBAction func prepareForNewGame(segue: UIStoryboardSegue) {
-    if (segue.identifier == "newGameSegue") {
-      let vc = segue.sourceViewController as! GameSettingsController
-
-      startNewGame(vc.settings)
-      
-      footerView.layoutPlayerBtns(game.players)
-    } else {
-      startNewGame(game.settings)
-    }
+    startNewGame(gameSettings)
+    
+    footerView.layoutPlayerBtns(gameSettings.players)
   }
   
   

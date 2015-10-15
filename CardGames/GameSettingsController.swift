@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class GameSettingsController: UIViewController {
-  var settings = defaultSettings
+  var settings = gameSettings
 
   var options: GameOptions {
     return settings.options

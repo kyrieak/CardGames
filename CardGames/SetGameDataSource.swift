@@ -28,7 +28,7 @@ class SetGameDataSource: NSObject, UICollectionViewDataSource {
   }
   
   convenience override init() {
-    self.init(settings: defaultSettings)
+    self.init(settings: gameSettings)
   }
   
   // - MARK: - DataSource Functions ------------------------------------

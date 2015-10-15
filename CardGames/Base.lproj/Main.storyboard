@@ -311,7 +311,7 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                             </mask>
                                         </variation>
                                         <connections>
-                                            <segue destination="G0X-0o-3yc" kind="unwind" identifier="newGameSegue" unwindAction="prepareForNewGame:" id="OU1-z4-07Z"/>
+                                            <segue destination="qiB-VV-Czl" kind="presentation" identifier="playerSettingSegue" modalTransitionStyle="crossDissolve" id="MnZ-WU-7KX"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sDc-st-hQS">
@@ -360,6 +360,19 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                     <mask key="constraints">
                                         <exclude reference="Mjf-Pa-yW9"/>
                                         <exclude reference="nSr-co-zEf"/>
+                                        <exclude reference="4fY-tx-rjl"/>
+                                        <exclude reference="QNs-4o-HFI"/>
+                                        <exclude reference="IUD-Xi-wKE"/>
+                                        <exclude reference="Obd-Re-5rJ"/>
+                                        <exclude reference="ODI-CW-eeC"/>
+                                        <exclude reference="QRh-qM-cgs"/>
+                                        <exclude reference="GK8-MK-OrM"/>
+                                        <exclude reference="PZ4-j7-Z1O"/>
+                                        <exclude reference="N9e-R2-2ld"/>
+                                        <exclude reference="DQE-UN-sXh"/>
+                                        <exclude reference="kfs-wJ-GyA"/>
+                                        <exclude reference="CVb-fL-jli"/>
+                                        <exclude reference="dwH-y9-V2J"/>
                                         <exclude reference="C6C-qx-i5e"/>
                                         <exclude reference="fwZ-44-cHS"/>
                                         <exclude reference="jae-G3-QB8"/>
@@ -367,21 +380,8 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                         <exclude reference="db4-VY-uMn"/>
                                         <exclude reference="AOw-el-x8v"/>
                                         <exclude reference="MFp-7O-raU"/>
-                                        <exclude reference="DQE-UN-sXh"/>
-                                        <exclude reference="kfs-wJ-GyA"/>
-                                        <exclude reference="CVb-fL-jli"/>
-                                        <exclude reference="dwH-y9-V2J"/>
-                                        <exclude reference="N9e-R2-2ld"/>
-                                        <exclude reference="ODI-CW-eeC"/>
-                                        <exclude reference="QRh-qM-cgs"/>
                                         <exclude reference="MzV-ep-cZn"/>
                                         <exclude reference="qmP-ht-I0V"/>
-                                        <exclude reference="IUD-Xi-wKE"/>
-                                        <exclude reference="Obd-Re-5rJ"/>
-                                        <exclude reference="GK8-MK-OrM"/>
-                                        <exclude reference="PZ4-j7-Z1O"/>
-                                        <exclude reference="4fY-tx-rjl"/>
-                                        <exclude reference="QNs-4o-HFI"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact">
@@ -391,6 +391,19 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                     <mask key="constraints">
                                         <include reference="Mjf-Pa-yW9"/>
                                         <include reference="nSr-co-zEf"/>
+                                        <include reference="4fY-tx-rjl"/>
+                                        <include reference="QNs-4o-HFI"/>
+                                        <include reference="IUD-Xi-wKE"/>
+                                        <include reference="Obd-Re-5rJ"/>
+                                        <include reference="ODI-CW-eeC"/>
+                                        <include reference="QRh-qM-cgs"/>
+                                        <include reference="GK8-MK-OrM"/>
+                                        <include reference="PZ4-j7-Z1O"/>
+                                        <include reference="N9e-R2-2ld"/>
+                                        <include reference="DQE-UN-sXh"/>
+                                        <include reference="kfs-wJ-GyA"/>
+                                        <include reference="CVb-fL-jli"/>
+                                        <include reference="dwH-y9-V2J"/>
                                         <include reference="C6C-qx-i5e"/>
                                         <include reference="fwZ-44-cHS"/>
                                         <include reference="jae-G3-QB8"/>
@@ -398,21 +411,8 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                         <include reference="db4-VY-uMn"/>
                                         <include reference="AOw-el-x8v"/>
                                         <include reference="MFp-7O-raU"/>
-                                        <include reference="DQE-UN-sXh"/>
-                                        <include reference="kfs-wJ-GyA"/>
-                                        <include reference="CVb-fL-jli"/>
-                                        <include reference="dwH-y9-V2J"/>
-                                        <include reference="N9e-R2-2ld"/>
-                                        <include reference="ODI-CW-eeC"/>
-                                        <include reference="QRh-qM-cgs"/>
                                         <include reference="MzV-ep-cZn"/>
                                         <include reference="qmP-ht-I0V"/>
-                                        <include reference="IUD-Xi-wKE"/>
-                                        <include reference="Obd-Re-5rJ"/>
-                                        <include reference="GK8-MK-OrM"/>
-                                        <include reference="PZ4-j7-Z1O"/>
-                                        <include reference="4fY-tx-rjl"/>
-                                        <include reference="QNs-4o-HFI"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -450,7 +450,6 @@ With a keen eye, find as many sets as quickly as possible.</string>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VY8-wh-7Xh" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="G0X-0o-3yc" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="AtD-0e-e1d">
                     <connections>
                         <action selector="respondToTap:" destination="mh9-fz-JHF" id="elm-HA-LQE"/>
@@ -458,6 +457,204 @@ With a keen eye, find as many sets as quickly as possible.</string>
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1086" y="-544.5"/>
+        </scene>
+        <!--Player Setting Controller-->
+        <scene sceneID="2bm-zD-vuk">
+            <objects>
+                <viewController id="qiB-VV-Czl" customClass="PlayerSettingController" customModule="CardGames" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="h6G-af-dgo"/>
+                        <viewControllerLayoutGuide type="bottom" id="HdX-Ha-0xE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nuO-RV-ZR4">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" sectionIndexMinimumDisplayRowCount="4" rowHeight="54" sectionHeaderHeight="44" sectionFooterHeight="55" translatesAutoresizingMaskIntoConstraints="NO" id="EAR-6O-6w4">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="SSs-EW-5go"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="52" id="nyg-Jq-MPg"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationLevel="2" indentationWidth="10" reuseIdentifier="playerCell" id="Cys-qD-gR9">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Cys-qD-gR9" id="bUp-G4-Nzk">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="53.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="P1" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YTl-4y-0wg">
+                                                    <rect key="frame" x="-25" y="-30" width="97" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                    <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                                        <rect key="frame" x="8" y="12" width="50" height="30"/>
+                                                    </variation>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="qiB-VV-Czl" id="gf6-Az-MKk"/>
+                                                    </connections>
+                                                </textField>
+                                                <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Player 1" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tmF-Em-J8S">
+                                                    <rect key="frame" x="-25" y="-30" width="97" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                    <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                                        <rect key="frame" x="71" y="12" width="221" height="30"/>
+                                                    </variation>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="qiB-VV-Czl" id="gVF-qc-Fja"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <variation key="default">
+                                                <mask key="subviews">
+                                                    <exclude reference="YTl-4y-0wg"/>
+                                                    <exclude reference="tmF-Em-J8S"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="heightClass=regular-widthClass=compact">
+                                                <mask key="subviews">
+                                                    <include reference="YTl-4y-0wg"/>
+                                                    <include reference="tmF-Em-J8S"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <sections/>
+                                <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="50" y="347" width="300" height="160"/>
+                                </variation>
+                                <connections>
+                                    <outlet property="dataSource" destination="qiB-VV-Czl" id="akH-3L-Ur0"/>
+                                    <outlet property="delegate" destination="qiB-VV-Czl" id="FrJ-fW-wBm"/>
+                                </connections>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yvW-8I-zXc" userLabel="Footer View">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n6y-lH-aGo">
+                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                        <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="63" id="bGt-tg-e9j"/>
+                                        </constraints>
+                                        <state key="normal" title="Start!">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="bGt-tg-e9j"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="heightClass=regular-widthClass=compact" ambiguous="YES">
+                                            <rect key="frame" x="119" y="7" width="63" height="30"/>
+                                            <mask key="constraints">
+                                                <include reference="bGt-tg-e9j"/>
+                                            </mask>
+                                        </variation>
+                                        <connections>
+                                            <segue destination="KJp-Pz-q4g" kind="unwind" identifier="unwindToNewGame" unwindAction="prepareForNewGame:" id="QsB-SC-4OQ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FFa-d0-7Y6">
+                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                        <state key="normal" title="&lt; Back"/>
+                                        <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
+                                            <rect key="frame" x="8" y="7" width="61" height="30"/>
+                                        </variation>
+                                        <connections>
+                                            <segue destination="KJp-Pz-q4g" kind="unwind" unwindAction="prepareBackUnwind:" id="T4N-Ib-Rnx"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="n6y-lH-aGo" firstAttribute="centerY" secondItem="yvW-8I-zXc" secondAttribute="centerY" id="8rv-pG-d2r"/>
+                                    <constraint firstItem="FFa-d0-7Y6" firstAttribute="leading" secondItem="yvW-8I-zXc" secondAttribute="leading" constant="8" id="Hd1-LX-txr"/>
+                                    <constraint firstAttribute="height" constant="44" id="J5S-eJ-3qU"/>
+                                    <constraint firstItem="FFa-d0-7Y6" firstAttribute="centerY" secondItem="yvW-8I-zXc" secondAttribute="centerY" id="JXt-lm-pPt"/>
+                                    <constraint firstItem="n6y-lH-aGo" firstAttribute="centerX" secondItem="yvW-8I-zXc" secondAttribute="centerX" id="lsf-xO-yqX"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="n6y-lH-aGo"/>
+                                        <exclude reference="FFa-d0-7Y6"/>
+                                    </mask>
+                                    <mask key="constraints">
+                                        <exclude reference="J5S-eJ-3qU"/>
+                                        <exclude reference="Hd1-LX-txr"/>
+                                        <exclude reference="JXt-lm-pPt"/>
+                                        <exclude reference="8rv-pG-d2r"/>
+                                        <exclude reference="lsf-xO-yqX"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="50" y="507" width="300" height="44"/>
+                                    <mask key="subviews">
+                                        <include reference="n6y-lH-aGo"/>
+                                        <include reference="FFa-d0-7Y6"/>
+                                    </mask>
+                                    <mask key="constraints">
+                                        <include reference="J5S-eJ-3qU"/>
+                                        <include reference="Hd1-LX-txr"/>
+                                        <include reference="JXt-lm-pPt"/>
+                                        <include reference="8rv-pG-d2r"/>
+                                        <include reference="lsf-xO-yqX"/>
+                                    </mask>
+                                </variation>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="EAR-6O-6w4" firstAttribute="centerY" secondItem="nuO-RV-ZR4" secondAttribute="centerY" id="Gz5-vz-ktX">
+                                <variation key="heightClass=regular-widthClass=compact" constant="27"/>
+                            </constraint>
+                            <constraint firstItem="EAR-6O-6w4" firstAttribute="centerX" secondItem="nuO-RV-ZR4" secondAttribute="centerX" id="MTG-BL-enG"/>
+                            <constraint firstItem="yvW-8I-zXc" firstAttribute="trailing" secondItem="EAR-6O-6w4" secondAttribute="trailing" id="fWc-Vj-BGT"/>
+                            <constraint firstItem="yvW-8I-zXc" firstAttribute="top" secondItem="EAR-6O-6w4" secondAttribute="bottom" id="mZA-IB-zS1"/>
+                            <constraint firstItem="yvW-8I-zXc" firstAttribute="leading" secondItem="EAR-6O-6w4" secondAttribute="leading" id="yKr-hi-gKL"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="EAR-6O-6w4"/>
+                                <exclude reference="yvW-8I-zXc"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="Gz5-vz-ktX"/>
+                                <exclude reference="MTG-BL-enG"/>
+                                <exclude reference="fWc-Vj-BGT"/>
+                                <exclude reference="mZA-IB-zS1"/>
+                                <exclude reference="yKr-hi-gKL"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="EAR-6O-6w4"/>
+                                <include reference="yvW-8I-zXc"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="Gz5-vz-ktX"/>
+                                <include reference="MTG-BL-enG"/>
+                                <include reference="fWc-Vj-BGT"/>
+                                <include reference="mZA-IB-zS1"/>
+                                <include reference="yKr-hi-gKL"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="footerView" destination="yvW-8I-zXc" id="U1O-qE-ClC"/>
+                        <outlet property="saveBtn" destination="n6y-lH-aGo" id="7Fg-HY-Hy3"/>
+                        <outlet property="tableView" destination="EAR-6O-6w4" id="toy-oH-MCH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ilp-os-LHg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="KJp-Pz-q4g" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1741.5" y="-544.5"/>
         </scene>
         <!--SetGame Controller-->
         <scene sceneID="qmm-UM-vLP">
@@ -535,7 +732,7 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                             </mask>
                                         </variation>
                                         <connections>
-                                            <segue destination="mh9-fz-JHF" kind="presentation" id="vdb-JC-5Oz"/>
+                                            <segue destination="mh9-fz-JHF" kind="presentation" identifier="gameOptionsSegue" modalTransitionStyle="crossDissolve" id="vdb-JC-5Oz"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Seta3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1bd-vb-ntq">
@@ -1193,7 +1390,7 @@ With a keen eye, find as many sets as quickly as possible.</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rS2-xy-8Be" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="6eC-z4-STj" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1164" y="90"/>
+            <point key="canvasLocation" x="1153.5" y="187.5"/>
         </scene>
     </scenes>
 </document>

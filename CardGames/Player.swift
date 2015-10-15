@@ -9,21 +9,55 @@
 import Foundation
 
 
-struct Player: Hashable {
+class Player: Hashable {
   let key: Int
-  let name: String
   let hashValue: Int
   
-  init(key: Int, name: String) {
+  private(set) var label: String
+  private(set) var name: String
+  
+  init(key: Int, name: String, label: String) {
     self.key = key
     self.name = name
+    self.label = label
     self.hashValue = key
   }
+
+  convenience init(key: Int) {
+    self.init(key: key, name: "Player \(key)", label: "P\(key)")
+  }
   
-  static func makeNumberedPlayers(count: Int) -> [Player] {
+  convenience init(key: Int, name: String) {
+    self.init(key: key, name: name, label: Player.makeLabelFrom(name))
+  }
+  
+  func setLabel(newLabel: String) {
+    let len = newLabel.characters.count
+    
+    if ((len < 3) && (len > 0)){
+      self.label = newLabel
+    }
+  }
+  
+  func setName(newName: String) {
+    if (newName.characters.count > 0) {
+      self.name = newName
+    }
+  }
+  
+  class func makeLabelFrom(name: String) -> String {
+    if (name.characters.count > 1) {
+      return name.substringToIndex(name.startIndex.successor().successor())
+    } else {
+      return name
+    }
+  }
+
+  
+  class func makeNumberedPlayers(count: Int) -> [Player] {
     if (count > 0) {
       let numberedPlayers = (1...count).map({(num: Int) -> Player in
-        return Player(key: num, name: "Kyrie\(num)")
+        return Player(key: num)
       })
 
       return numberedPlayers

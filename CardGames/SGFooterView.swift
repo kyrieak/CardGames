@@ -55,8 +55,11 @@ class SGFooterView: UIView {
 
       for btn in playerBtns {
         let player = players[idx]
+        NSLog("am here")
         
-        btn.setTitle(labelFor(player), forState: UIControlState.Normal)
+        btn.titleLabel!.text = player.label
+        //        btn.setTitle(labelFor(player), forState: UIControlState.Normal)
+
         btn.tag = player.hashValue
         idx++
       }
