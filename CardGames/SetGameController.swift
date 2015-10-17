@@ -30,14 +30,14 @@ class SetGameController: UIViewController, StyleGuideDelegate {
   var deckButton: UIButton {
     return headerView.deckButton
   }
-
+  
   // - MARK: Private Properties
   
   private(set) var style: StyleGuide = styleGuide
   private(set) var themeID: Int = styleGuide.themeID
-  private var layerSelectors: [ViewSelector] = [.MainContent, .Header, .Footer, .Status, .CardBack, .FooterUIBtn]
-  private var textSelectors: [ViewSelector] = [.HeadTitle, .FooterUIBtn]
-  
+
+  private var layerSelectors: [ViewSelector] = SetGameController.selectorsForViewLayers()
+  private var textSelectors: [ViewSelector] = SetGameController.selectorsForViewText()
   
   // - MARK: - Override Functions
 
@@ -58,16 +58,30 @@ class SetGameController: UIViewController, StyleGuideDelegate {
 
     applyStyleToViews()
   }
-  
+  override func willTransitionToTraitCollection(newCollection: UITraitCollection, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+    NSLog("will transition to trait collection")
+    super.willTransitionToTraitCollection(newCollection, withTransitionCoordinator: coordinator)
+  }
   
   override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
     super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+    NSLog("here in transition")
     
     headerView.setNeedsLayout()
     wrapperView.setNeedsLayout()
     footerView.setNeedsLayout()
   }
   
+  
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if (segue.identifier != nil) {
+      let sid = segue.identifier!
+      
+      if (sid == "gameSettingSegue") {
+        gameSettings.options = game.options
+      }
+    }
+  }
   
   // - MARK: - UIActions
   
@@ -89,17 +103,9 @@ class SetGameController: UIViewController, StyleGuideDelegate {
 
     styleGuide.applyLayerStyle(.FooterUIBtn, views: [sender])
   }
+
   
   // - MARK: - Unwind Segue Functions
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if (segue.identifier != nil) {
-      let sid = segue.identifier!
-      
-      if (sid == "gameSettingSegue") {
-        gameSettings.options = game.options
-      }
-    }
-  }
   
   @IBAction func prepareForNewGame(segue: UIStoryboardSegue) {
     startNewGame(gameSettings)
@@ -173,6 +179,14 @@ class SetGameController: UIViewController, StyleGuideDelegate {
       default:
         return []
     }
+  }
+  
+  class func selectorsForViewLayers() -> [ViewSelector] {
+    return [.MainContent, .Header, .Footer, .Status, .CardBack, .FooterUIBtn]
+  }
+  
+  class func selectorsForViewText() -> [ViewSelector] {
+    return [.HeadTitle, .FooterUIBtn]
   }
   
   func applyStyleToViews() {

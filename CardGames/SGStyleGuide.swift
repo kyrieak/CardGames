@@ -141,8 +141,11 @@ class SGStyleGuide: StyleGuide {
   
   private func headerLayerStyle() -> UILayerStyle {
     return UILayerStyle(bgColor: theme.bgColor2,
-      borderWidth: CGFloat(1),
-      borderColor: UIColor(white: 0.4, alpha: 0.2))
+                          borderWidth: CGFloat(1),
+                            borderColor: theme.bgColor2.getShade(-0.15))
+//    return UILayerStyle(bgColor: theme.bgColor2,
+//      borderWidth: CGFloat(1),
+//      borderColor: UIColor(white: 0.8, alpha: 1.0))
   }
   
   
@@ -174,7 +177,7 @@ class SGStyleGuide: StyleGuide {
   
   private func playerBtnLayerStyle() -> UILayerStyle {
     return UILayerStyle(bgColor: theme.bgColor1,
-      borderWidth: CGFloat(1), borderColor: theme.borderColor4)
+      borderWidth: CGFloat(1), borderColor: theme.bgColor1.getShade(-0.15))
   }
 
   private func playerBtnFontStyle() -> UIFontStyle {

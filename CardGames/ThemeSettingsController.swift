@@ -11,7 +11,8 @@ import UIKit
 
 class ThemeSettingsController: UIViewController, UITableViewDataSource, UITableViewDelegate, StyleGuideDelegate {
   let tableCellReuseId = "themeTableRow"
-  let themes = Theme.all()
+//  let themes = Theme.all()
+  let themes = [Theme.green(), Theme.grayscale(), Theme.green(), Theme.grayscale(), Theme.green(), Theme.grayscale(), Theme.green(), Theme.grayscale(), Theme.green(), Theme.grayscale()]
   var selectIdxPath: NSIndexPath?
   
   var style: StyleGuide {
@@ -21,10 +22,18 @@ class ThemeSettingsController: UIViewController, UITableViewDataSource, UITableV
   var themeID = styleGuide.themeID
 
   @IBOutlet var headerView: UIView!
-  @IBOutlet var newGameBtn: UIButton!
+  @IBOutlet var saveBtn: UIButton!
   @IBOutlet var backBtn: UIButton!
   @IBOutlet var themesTable: UITableView!
 
+  
+  override func viewDidLayoutSubviews() {
+    let computedHeight = themesTable.rowHeight * CGFloat(themes.count)
+    let maxHeight = saveBtn.frame.minY - themesTable.frame.minY - 60
+    themesTable.layer.borderWidth = CGFloat(1)
+
+    themesTable.addConstraint(NSLayoutConstraint(item: themesTable, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.Height, multiplier: CGFloat(1), constant: min(computedHeight, maxHeight)))
+  }
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return themes.count
@@ -67,7 +76,7 @@ class ThemeSettingsController: UIViewController, UITableViewDataSource, UITableV
       case .MainContent:
         return [self.view]
       case .Header:
-        return [headerView, newGameBtn]
+        return [headerView, saveBtn]
       default:
         return []
     }
@@ -76,7 +85,7 @@ class ThemeSettingsController: UIViewController, UITableViewDataSource, UITableV
   func viewsForFontStyle(sel: ViewSelector) -> [UILabel] {
     switch(sel) {
       case .FooterUIBtn:
-        return [newGameBtn.titleLabel!]
+        return [saveBtn.titleLabel!]
       default:
         return []
     }
@@ -89,6 +98,7 @@ class ThemeSettingsController: UIViewController, UITableViewDataSource, UITableV
       styleGuide.applyLayerStyle(sel, views: viewsForLayerStyle(sel))
     }
     
+    themesTable.layer.borderColor = styleGuide.theme.bgColor1.getShade(-0.15).CGColor
     styleGuide.applyFontStyle(.FooterUIBtn, views: viewsForFontStyle(.FooterUIBtn))
   }
 

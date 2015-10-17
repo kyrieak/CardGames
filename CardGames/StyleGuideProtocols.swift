@@ -56,3 +56,22 @@ protocol StyleGuideDelegate {
   func applyStyleToViews()
 }
 
+extension UIColor {
+  func getRGB() -> (r: CGFloat, g: CGFloat, b: CGFloat) {
+    var _r = CGFloat(0)
+    var _g = _r
+    var _b = _r
+    
+    self.getRed(&_r, green: &_g, blue: &_b, alpha: nil)
+    
+    return (r: _r, g: _g, b: _b)
+  }
+  
+  func getShade(delta: CGFloat) -> UIColor {
+    let values = self.getRGB()
+    
+    return UIColor(red: values.r + delta,
+                     green: values.g + delta,
+                       blue: values.b + delta, alpha: 1.0)
+  }  
+}
