@@ -19,7 +19,8 @@ enum ViewSelector {
        CardBack,
        CardFront,
        HeadTitle,
-       FooterUIBtn
+       FooterUIBtn,
+       UIBtn
 }
 
 // - MARK: - StyleGuide Protocol

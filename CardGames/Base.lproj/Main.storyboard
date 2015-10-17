@@ -232,14 +232,6 @@ With a keen eye, find as many sets as quickly as possible.</string>
                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Qs-Ij-2cV">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <subviews>
-                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="4" translatesAutoresizingMaskIntoConstraints="NO" id="cNC-GU-T9O">
-                                        <rect key="frame" x="-47" y="-14" width="94" height="29"/>
-                                        <color key="backgroundColor" red="0.40000000596046448" green="0.80000001192092896" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                        <connections>
-                                            <action selector="stepperTapAction:" destination="mh9-fz-JHF" eventType="valueChanged" id="2cV-LK-kas"/>
-                                        </connections>
-                                    </stepper>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Players:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bgp-p8-qC8">
                                         <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="23"/>
@@ -258,22 +250,10 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Shape" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t31-ZG-zIP">
-                                        <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ggK-Ly-xCx">
                                         <rect key="frame" x="-25" y="-15" width="51" height="31"/>
                                         <connections>
                                             <action selector="colorSwitchAction:" destination="mh9-fz-JHF" eventType="valueChanged" id="jta-az-S0J"/>
-                                        </connections>
-                                    </switch>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7vS-Mi-Jmm">
-                                        <rect key="frame" x="-25" y="-15" width="51" height="31"/>
-                                        <connections>
-                                            <action selector="shapeSwitchAction:" destination="mh9-fz-JHF" eventType="valueChanged" id="diW-nt-Htf"/>
                                         </connections>
                                     </switch>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cpe-EJ-cvL">
@@ -288,6 +268,14 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="4" translatesAutoresizingMaskIntoConstraints="NO" id="cNC-GU-T9O">
+                                        <rect key="frame" x="-47" y="-14" width="94" height="29"/>
+                                        <color key="backgroundColor" red="0.40000000596046448" green="0.80000001192092896" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <action selector="stepperTapAction:" destination="mh9-fz-JHF" eventType="valueChanged" id="2cV-LK-kas"/>
+                                        </connections>
+                                    </stepper>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="34B-TH-jgu">
                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                         <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -311,7 +299,7 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                             </mask>
                                         </variation>
                                         <connections>
-                                            <segue destination="qiB-VV-Czl" kind="presentation" identifier="playerSettingSegue" modalTransitionStyle="crossDissolve" id="MnZ-WU-7KX"/>
+                                            <segue destination="qiB-VV-Czl" kind="show" identifier="playerSettingSegue" id="MnZ-WU-7KX"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sDc-st-hQS">
@@ -323,6 +311,18 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                             </segue>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Shape" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t31-ZG-zIP">
+                                        <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7vS-Mi-Jmm">
+                                        <rect key="frame" x="-25" y="-15" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="shapeSwitchAction:" destination="mh9-fz-JHF" eventType="valueChanged" id="diW-nt-Htf"/>
+                                        </connections>
+                                    </switch>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -331,7 +331,7 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                     <constraint firstItem="RhG-Vg-mgK" firstAttribute="top" secondItem="6Qs-Ij-2cV" secondAttribute="top" constant="22" id="C6C-qx-i5e"/>
                                     <constraint firstItem="Q8U-UQ-sTv" firstAttribute="leading" secondItem="Bgp-p8-qC8" secondAttribute="trailing" constant="32" id="CVb-fL-jli"/>
                                     <constraint firstItem="Bgp-p8-qC8" firstAttribute="top" secondItem="6Qs-Ij-2cV" secondAttribute="top" constant="165" id="DQE-UN-sXh"/>
-                                    <constraint firstItem="cpe-EJ-cvL" firstAttribute="top" secondItem="7vS-Mi-Jmm" secondAttribute="bottom" constant="12" id="GK8-MK-OrM"/>
+                                    <constraint firstItem="cpe-EJ-cvL" firstAttribute="top" secondItem="ggK-Ly-xCx" secondAttribute="bottom" constant="12.5" id="GNe-Dt-mmb"/>
                                     <constraint firstItem="34B-TH-jgu" firstAttribute="centerX" secondItem="6Qs-Ij-2cV" secondAttribute="centerX" id="IUD-Xi-wKE"/>
                                     <constraint firstItem="z5X-QY-FVc" firstAttribute="leading" secondItem="6Qs-Ij-2cV" secondAttribute="leading" constant="13" id="MFp-7O-raU"/>
                                     <constraint firstAttribute="height" constant="246" id="Mjf-Pa-yW9">
@@ -343,7 +343,6 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                     <constraint firstAttribute="bottom" secondItem="34B-TH-jgu" secondAttribute="bottom" constant="20" id="Obd-Re-5rJ"/>
                                     <constraint firstAttribute="trailing" secondItem="cpe-EJ-cvL" secondAttribute="trailing" constant="8" id="PZ4-j7-Z1O"/>
                                     <constraint firstAttribute="trailing" secondItem="sDc-st-hQS" secondAttribute="trailing" constant="8" id="QNs-4o-HFI"/>
-                                    <constraint firstItem="7vS-Mi-Jmm" firstAttribute="top" secondItem="ggK-Ly-xCx" secondAttribute="bottom" constant="12" id="QRh-qM-cgs"/>
                                     <constraint firstItem="t31-ZG-zIP" firstAttribute="leading" secondItem="6Qs-Ij-2cV" secondAttribute="leading" constant="13" id="dHe-9t-gWm"/>
                                     <constraint firstItem="t31-ZG-zIP" firstAttribute="centerY" secondItem="7vS-Mi-Jmm" secondAttribute="centerY" id="db4-VY-uMn"/>
                                     <constraint firstItem="Q8U-UQ-sTv" firstAttribute="centerY" secondItem="Bgp-p8-qC8" secondAttribute="centerY" id="dwH-y9-V2J"/>
@@ -351,6 +350,7 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                     <constraint firstItem="RhG-Vg-mgK" firstAttribute="leading" secondItem="6Qs-Ij-2cV" secondAttribute="leading" constant="13" id="jae-G3-QB8"/>
                                     <constraint firstItem="Bgp-p8-qC8" firstAttribute="leading" secondItem="6Qs-Ij-2cV" secondAttribute="leading" constant="13" id="kfs-wJ-GyA"/>
                                     <constraint firstAttribute="width" constant="300" id="nSr-co-zEf"/>
+                                    <constraint firstItem="7vS-Mi-Jmm" firstAttribute="top" secondItem="cpe-EJ-cvL" secondAttribute="bottom" constant="12" id="oEr-Th-BrV"/>
                                     <constraint firstAttribute="trailing" secondItem="cNC-GU-T9O" secondAttribute="trailing" constant="8" id="qmP-ht-I0V"/>
                                 </constraints>
                                 <variation key="default">
@@ -360,28 +360,27 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                     <mask key="constraints">
                                         <exclude reference="Mjf-Pa-yW9"/>
                                         <exclude reference="nSr-co-zEf"/>
-                                        <exclude reference="4fY-tx-rjl"/>
-                                        <exclude reference="QNs-4o-HFI"/>
-                                        <exclude reference="IUD-Xi-wKE"/>
-                                        <exclude reference="Obd-Re-5rJ"/>
-                                        <exclude reference="ODI-CW-eeC"/>
-                                        <exclude reference="QRh-qM-cgs"/>
-                                        <exclude reference="GK8-MK-OrM"/>
-                                        <exclude reference="PZ4-j7-Z1O"/>
-                                        <exclude reference="N9e-R2-2ld"/>
+                                        <exclude reference="C6C-qx-i5e"/>
+                                        <exclude reference="fwZ-44-cHS"/>
+                                        <exclude reference="jae-G3-QB8"/>
+                                        <exclude reference="AOw-el-x8v"/>
+                                        <exclude reference="MFp-7O-raU"/>
+                                        <exclude reference="dHe-9t-gWm"/>
+                                        <exclude reference="db4-VY-uMn"/>
                                         <exclude reference="DQE-UN-sXh"/>
                                         <exclude reference="kfs-wJ-GyA"/>
                                         <exclude reference="CVb-fL-jli"/>
                                         <exclude reference="dwH-y9-V2J"/>
-                                        <exclude reference="C6C-qx-i5e"/>
-                                        <exclude reference="fwZ-44-cHS"/>
-                                        <exclude reference="jae-G3-QB8"/>
-                                        <exclude reference="dHe-9t-gWm"/>
-                                        <exclude reference="db4-VY-uMn"/>
-                                        <exclude reference="AOw-el-x8v"/>
-                                        <exclude reference="MFp-7O-raU"/>
+                                        <exclude reference="N9e-R2-2ld"/>
+                                        <exclude reference="PZ4-j7-Z1O"/>
                                         <exclude reference="MzV-ep-cZn"/>
                                         <exclude reference="qmP-ht-I0V"/>
+                                        <exclude reference="IUD-Xi-wKE"/>
+                                        <exclude reference="Obd-Re-5rJ"/>
+                                        <exclude reference="ODI-CW-eeC"/>
+                                        <exclude reference="oEr-Th-BrV"/>
+                                        <exclude reference="4fY-tx-rjl"/>
+                                        <exclude reference="QNs-4o-HFI"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact">
@@ -391,28 +390,27 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                     <mask key="constraints">
                                         <include reference="Mjf-Pa-yW9"/>
                                         <include reference="nSr-co-zEf"/>
-                                        <include reference="4fY-tx-rjl"/>
-                                        <include reference="QNs-4o-HFI"/>
-                                        <include reference="IUD-Xi-wKE"/>
-                                        <include reference="Obd-Re-5rJ"/>
-                                        <include reference="ODI-CW-eeC"/>
-                                        <include reference="QRh-qM-cgs"/>
-                                        <include reference="GK8-MK-OrM"/>
-                                        <include reference="PZ4-j7-Z1O"/>
-                                        <include reference="N9e-R2-2ld"/>
+                                        <include reference="C6C-qx-i5e"/>
+                                        <include reference="fwZ-44-cHS"/>
+                                        <include reference="jae-G3-QB8"/>
+                                        <include reference="AOw-el-x8v"/>
+                                        <include reference="MFp-7O-raU"/>
+                                        <include reference="dHe-9t-gWm"/>
+                                        <include reference="db4-VY-uMn"/>
                                         <include reference="DQE-UN-sXh"/>
                                         <include reference="kfs-wJ-GyA"/>
                                         <include reference="CVb-fL-jli"/>
                                         <include reference="dwH-y9-V2J"/>
-                                        <include reference="C6C-qx-i5e"/>
-                                        <include reference="fwZ-44-cHS"/>
-                                        <include reference="jae-G3-QB8"/>
-                                        <include reference="dHe-9t-gWm"/>
-                                        <include reference="db4-VY-uMn"/>
-                                        <include reference="AOw-el-x8v"/>
-                                        <include reference="MFp-7O-raU"/>
+                                        <include reference="N9e-R2-2ld"/>
+                                        <include reference="PZ4-j7-Z1O"/>
                                         <include reference="MzV-ep-cZn"/>
                                         <include reference="qmP-ht-I0V"/>
+                                        <include reference="IUD-Xi-wKE"/>
+                                        <include reference="Obd-Re-5rJ"/>
+                                        <include reference="ODI-CW-eeC"/>
+                                        <include reference="oEr-Th-BrV"/>
+                                        <include reference="4fY-tx-rjl"/>
+                                        <include reference="QNs-4o-HFI"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -444,7 +442,8 @@ With a keen eye, find as many sets as quickly as possible.</string>
                     <connections>
                         <outlet property="colorSwitch" destination="ggK-Ly-xCx" id="kzo-aP-hcN"/>
                         <outlet property="contentView" destination="6Qs-Ij-2cV" id="gU2-Ka-gZk"/>
-                        <outlet property="playerCountLabel" destination="Q8U-UQ-sTv" id="0gM-9m-r0d"/>
+                        <outlet property="playerCtLabel" destination="Q8U-UQ-sTv" id="bSk-lo-cH9"/>
+                        <outlet property="playerCtStepper" destination="cNC-GU-T9O" id="vKY-7K-mIs"/>
                         <outlet property="shadingSwitch" destination="cpe-EJ-cvL" id="EoK-v9-LpZ"/>
                         <outlet property="shapeSwitch" destination="7vS-Mi-Jmm" id="wLY-yj-JFa"/>
                     </connections>
@@ -679,7 +678,6 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                             <constraint firstAttribute="width" constant="88" id="OxZ-4e-Dg7"/>
                                             <constraint firstAttribute="width" constant="115.5" id="cog-LH-Wa6"/>
                                         </constraints>
-                                        <state key="normal" title="Deck"/>
                                         <variation key="default">
                                             <mask key="constraints">
                                                 <exclude reference="2g5-UH-kZh"/>
@@ -1090,10 +1088,10 @@ With a keen eye, find as many sets as quickly as possible.</string>
             </objects>
             <point key="canvasLocation" x="390" y="90"/>
         </scene>
-        <!--App Settings Controller-->
+        <!--Theme Settings Controller-->
         <scene sceneID="m3p-j9-aGn">
             <objects>
-                <viewController id="luK-Cw-9qx" customClass="AppSettingsController" customModule="CardGames" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="luK-Cw-9qx" customClass="ThemeSettingsController" customModule="CardGames" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cVH-Ss-12W"/>
                         <viewControllerLayoutGuide type="bottom" id="okh-BM-Hss"/>
@@ -1383,6 +1381,7 @@ With a keen eye, find as many sets as quickly as possible.</string>
                     <size key="freeformSize" width="400" height="800"/>
                     <connections>
                         <outlet property="backBtn" destination="twF-YV-CZ1" id="nSW-51-TPX"/>
+                        <outlet property="headerView" destination="kaE-OT-hLF" id="i7G-hr-6gP"/>
                         <outlet property="newGameBtn" destination="chW-hm-XIU" id="Emi-5l-wza"/>
                         <outlet property="themesTable" destination="rcR-Nu-Vwb" id="tQl-xJ-p4w"/>
                     </connections>

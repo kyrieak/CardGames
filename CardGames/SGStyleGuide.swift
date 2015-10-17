@@ -102,14 +102,17 @@ class SGStyleGuide: StyleGuide {
       let style = layerStyle(sel)!
       
       for v in views {
-        v.layer.backgroundColor = style.bgColor.CGColor
+        if (v.backgroundColor != style.bgColor) {
+          v.backgroundColor = style.bgColor
+        }
+        
         v.layer.borderColor     = style.borderColor.CGColor
         v.layer.borderWidth     = style.borderWidth
       }
     }
   }
   
-  
+    
   func applyFontStyle(sel: ViewSelector, views: [UILabel]) {
     if (hasFontStyle(sel)) {
       let style = fontStyle(sel)!
@@ -117,6 +120,18 @@ class SGStyleGuide: StyleGuide {
       for v in views {
         v.font = style.font
         v.textColor = style.color
+      }
+    }
+  }
+  
+  func applyBtnFontStyle(sel: ViewSelector, views: [UIButton]) {
+    if (hasFontStyle(sel)) {
+      let style = fontStyle(sel)!
+      
+      for btn in views {
+        btn.titleLabel?.font = style.font
+        btn.setTitleColor(style.color, forState: UIControlState.Normal)
+//        btn.setTitleColor(UIColor.blackColor(), forState: UIControlState.Highlighted)
       }
     }
   }
@@ -153,18 +168,20 @@ class SGStyleGuide: StyleGuide {
   private func cardFrontLayerStyle() -> UILayerStyle {
     return UILayerStyle(bgColor: UIColor.whiteColor(),
       borderWidth: CGFloat(1),
-      borderColor: UIColor(white: 0.4, alpha: 0.2))
+      borderColor: UIColor(white: 0.9, alpha: 1.0))
   }
   
+  
   private func playerBtnLayerStyle() -> UILayerStyle {
-    return UILayerStyle(bgColor: theme.bgColor4,
-      borderWidth: CGFloat(1), borderColor: UIColor.blackColor())
+    return UILayerStyle(bgColor: theme.bgColor1,
+      borderWidth: CGFloat(1), borderColor: theme.borderColor4)
   }
 
   private func playerBtnFontStyle() -> UIFontStyle {
     var fs = statusFS
     
     fs.color = theme.fontColor4
+    fs.baseSize = 22
     
     return fs
   }

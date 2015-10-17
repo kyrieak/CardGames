@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class SGFooterView: UIView {
-  let pBtnSize = CGSize(width: 44, height: 44)
+  var pBtnSize = CGSize(width: 88, height: 44)
   var btnTarget: SetGameController?
   var btnAction = Selector("makeMoveAction:")
 
@@ -24,7 +24,39 @@ class SGFooterView: UIView {
   }
   
   
+  private func setBtnSize(numPlayers: Int) {
+    if (self.frame.width > self.frame.height) {
+      setBtnSizeForHorizontalLayout(numPlayers)
+    } else {
+      setBtnSizeForVerticalLayout(numPlayers)
+    }
+  }
+  
+  private func setBtnSizeForHorizontalLayout(numPlayers: Int) {
+    if (numPlayers > 1) {
+      pBtnSize.width = (self.frame.width / CGFloat(numPlayers))
+    } else {
+      NSLog("width is set to 88?")
+      pBtnSize.width = 160
+      NSLog("checking pbtnwidth \(pBtnSize.width)")
+    }
+    
+    pBtnSize.height = 44
+  }
+  
+  private func setBtnSizeForVerticalLayout(numPlayers: Int) {
+    pBtnSize.width = self.frame.width
+    
+    if (numPlayers > 1) {
+      pBtnSize.height = (self.frame.height / CGFloat(numPlayers))
+    } else {
+      pBtnSize.height = 88
+    }
+  }
+  
+  
   func addPlayerButtons(players: [Player], target: SetGameController?, action: Selector) {
+    setBtnSize(players.count)
     btnTarget = target
     btnAction = action
     
@@ -32,10 +64,10 @@ class SGFooterView: UIView {
       let btn = makePlayerBtn(CGPointZero)
       
       btn.setTitle(labelFor(p), forState: UIControlState.Normal)
+      btn.addTarget(self, action: Selector("addActiveBorder:"), forControlEvents: UIControlEvents.TouchDown)
       btn.addTarget(target, action: action, forControlEvents: UIControlEvents.TouchUpInside)
       
       btn.tag = p.hashValue
-//      btn.backgroundColor = UIColor.blueColor()
       
       addSubview(btn)
     }
@@ -43,24 +75,30 @@ class SGFooterView: UIView {
     layoutIfNeeded()
   }
   
+  func addActiveBorder(sender: UIButton) {
+    sender.layer.borderWidth = CGFloat(2)
+    sender.layer.borderColor = UIColor.blueColor().CGColor
+  }
+  
   func layoutPlayerBtns(players: [Player]) {
     if (players.count != subviews.count) {
+      NSLog("player count \(players.count) and subviews \(subviews.count) count not match, remove and add")
       for btn in playerBtns {
         btn.removeFromSuperview()
       }
       
       addPlayerButtons(players, target: btnTarget, action: btnAction)
     } else {
+      NSLog("only change title")
       var idx = 0
 
       for btn in playerBtns {
         let player = players[idx]
-        NSLog("am here")
         
         btn.titleLabel!.text = player.label
-        //        btn.setTitle(labelFor(player), forState: UIControlState.Normal)
-
         btn.tag = player.hashValue
+        btn.sizeToFit()
+        
         idx++
       }
       
@@ -68,47 +106,57 @@ class SGFooterView: UIView {
     }
   }
   
-  private func getPlayerBtnSpacing(numPlayers: Int) -> CGFloat {
-    let space = frame.width - (pBtnSize.width * CGFloat(numPlayers))
-
-    return space / CGFloat(numPlayers + 1)
-  }
-  
-  private func getVerticalBtnSpacing(numBtns: Int) -> CGFloat {
-    let space = frame.height - (pBtnSize.height * CGFloat(numBtns))
-    
-    return space / CGFloat(numBtns + 1)
-  }
   
   private func makePlayerBtn(atOrigin: CGPoint) -> UIButton {
     return UIButton(frame: CGRect(origin: atOrigin, size: pBtnSize))
   }
   
   override func layoutSubviews() {
-    if (frame.width < frame.height) {
-      layoutVertically()
-    } else {
-      layoutHorizontally()
+    if (playerBtns.count > 0) {
+      if (frame.width < frame.height) {
+        setBtnSizeForVerticalLayout(playerBtns.count)
+        layoutVertically()
+      } else {
+        NSLog("\(pBtnSize) is pbtnsize and count is \(playerBtns.count)")
+        setBtnSizeForHorizontalLayout(playerBtns.count)
+        NSLog("\(pBtnSize) is pbtnsize")
+        layoutHorizontally()
+      }
     }
   }
   
   private func layoutHorizontally() {
-    let spacing = getPlayerBtnSpacing(subviews.count)
-    var origin = CGPoint(x: spacing, y: 0)
-
-    for btn in subviews {
-      btn.frame.origin = origin
-      origin.x = btn.frame.maxX + spacing
+    var origin = CGPointZero
+    
+    if (subviews.count == 1) {
+      let btn = subviews.first!
+      NSLog("laying out horizontally and pbtnsize is? \(pBtnSize)")
+      
+      btn.frame.size = pBtnSize
+      btn.frame.origin.x = self.bounds.midX - btn.bounds.midX
+    } else {
+      for btn in subviews {
+        btn.frame.origin = origin
+        btn.frame.size = pBtnSize
+        origin.x = btn.frame.maxX
+      }
     }
   }
   
   private func layoutVertically() {
-    let spacing = getVerticalBtnSpacing(subviews.count)
-    var origin = CGPoint(x: 0, y: spacing)
+    var origin = CGPointZero
 
-    for btn in subviews {
-      btn.frame.origin = origin
-      origin.y = btn.frame.maxY + spacing
+    if (subviews.count == 1) {
+      let btn = subviews.first!
+      
+      btn.frame.size = pBtnSize
+      btn.frame.origin.y = self.bounds.midY - btn.bounds.midY
+    } else {
+      for btn in subviews {
+        btn.frame.origin = origin
+        btn.frame.size = pBtnSize
+        origin.y = btn.frame.maxY
+      }
     }
   }
   

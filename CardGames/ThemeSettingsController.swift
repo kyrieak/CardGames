@@ -9,11 +9,18 @@
 import Foundation
 import UIKit
 
-class AppSettingsController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ThemeSettingsController: UIViewController, UITableViewDataSource, UITableViewDelegate, StyleGuideDelegate {
   let tableCellReuseId = "themeTableRow"
   let themes = Theme.all()
   var selectIdxPath: NSIndexPath?
+  
+  var style: StyleGuide {
+    return styleGuide
+  }
 
+  var themeID = styleGuide.themeID
+
+  @IBOutlet var headerView: UIView!
   @IBOutlet var newGameBtn: UIButton!
   @IBOutlet var backBtn: UIButton!
   @IBOutlet var themesTable: UITableView!
@@ -48,11 +55,41 @@ class AppSettingsController: UIViewController, UITableViewDataSource, UITableVie
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     let theme = themes[indexPath.item]
 
-    view.backgroundColor = theme.bgColor1
-    newGameBtn.backgroundColor = theme.bgColor2
-    backBtn.backgroundColor = theme.bgColor3
-
-    selectIdxPath = indexPath
     styleGuide.setTheme(theme)
+    
+    selectIdxPath = indexPath
+
+    applyStyleToViews()
   }
+
+  func viewsForLayerStyle(sel: ViewSelector) -> [UIView] {
+    switch(sel) {
+      case .MainContent:
+        return [self.view]
+      case .Header:
+        return [headerView, newGameBtn]
+      default:
+        return []
+    }
+  }
+  
+  func viewsForFontStyle(sel: ViewSelector) -> [UILabel] {
+    switch(sel) {
+      case .FooterUIBtn:
+        return [newGameBtn.titleLabel!]
+      default:
+        return []
+    }
+  }
+  
+  func applyStyleToViews() {
+    let selectors: [ViewSelector] = [.MainContent, .Header, .FooterUIBtn]
+
+    for sel in selectors {
+      styleGuide.applyLayerStyle(sel, views: viewsForLayerStyle(sel))
+    }
+    
+    styleGuide.applyFontStyle(.FooterUIBtn, views: viewsForFontStyle(.FooterUIBtn))
+  }
+
 }

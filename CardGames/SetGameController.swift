@@ -45,8 +45,6 @@ class SetGameController: UIViewController, StyleGuideDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    NSLog("\(game.players.count)")
-
     collectionView!.allowsMultipleSelection = true
   }
   
@@ -57,9 +55,8 @@ class SetGameController: UIViewController, StyleGuideDelegate {
     }
     
     collectionView.reloadData()
+
     applyStyleToViews()
-    
-    NSLog("\(footerView.subviews.first?.backgroundColor)")
   }
   
   
@@ -72,33 +69,41 @@ class SetGameController: UIViewController, StyleGuideDelegate {
   }
   
   
-//  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//    if (segue.identifier == "gameSettingsSegue") {
-//      let dvc = segue.destinationViewController as! GameSettingsController
-//      
-//      dvc.settings = game.settings
-//    }
-//    
-//    super.prepareForSegue(segue, sender: sender)
-//  }
-  
   // - MARK: - UIActions
   
   @IBAction func tapDeckAction(sender: UIButton) {
-    self.redealCards()
+    if (!game.isOver) {
+      self.redealCards()
+
+      if (game.deck.isEmpty()) {
+        sender.backgroundColor = UIColor.clearColor()
+        sender.setTitle("Empty", forState: UIControlState.Disabled)
+        sender.enabled = false
+      }
+    }
   }
 
   
   @IBAction func makeMoveAction(sender: UIButton) {
     sgDelegate.makeMove(collectionView, game: game, playerTag: sender.tag)
+
+    styleGuide.applyLayerStyle(.FooterUIBtn, views: [sender])
   }
   
   // - MARK: - Unwind Segue Functions
-  
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if (segue.identifier != nil) {
+      let sid = segue.identifier!
+      
+      if (sid == "gameSettingSegue") {
+        gameSettings.options = game.options
+      }
+    }
+  }
   
   @IBAction func prepareForNewGame(segue: UIStoryboardSegue) {
     startNewGame(gameSettings)
-    
+    sgDelegate.statusView?.clear()
     footerView.layoutPlayerBtns(gameSettings.players)
   }
   
@@ -113,11 +118,13 @@ class SetGameController: UIViewController, StyleGuideDelegate {
   // - MARK: - Private Functions
   
   private func startNewGame(settings: GameSettings) {
-    if (game.settings.numPlayers != settings.numPlayers) {
-    }
+    styleGuide.applyLayerStyle(.CardBack, views: [deckButton])
+    
     sgDataSource.game = SetGame(settings: settings)
+    sgDelegate.reset()
 
     collectionView.reloadData()
+    deckButton.enabled = true
   }
 
   
@@ -128,10 +135,9 @@ class SetGameController: UIViewController, StyleGuideDelegate {
   
   private func redealCards() {
     game.startNewRound(game.numberOfCardPositions())
+    sgDelegate.reset()
     
     collectionView!.reloadData()
-    
-    sgDelegate.selectIdxPaths = []
   }
   
   
@@ -143,8 +149,10 @@ class SetGameController: UIViewController, StyleGuideDelegate {
     switch(sel) {
       case .MainContent:
         return [collectionView]
-      case .Header, .Footer:
-        return [headerView, footerView]
+      case .Header:
+        return [headerView]
+      case .Footer:
+        return [footerView]
       case .Status:
         return (sgDelegate.statusView == nil) ? [] : [sgDelegate.statusView!]
       case .CardBack:
@@ -175,6 +183,12 @@ class SetGameController: UIViewController, StyleGuideDelegate {
     for elem in textSelectors {
       styleGuide.applyFontStyle(elem, views: viewsForFontStyle(elem))
     }
+    
+    if (game.deck.isEmpty()) {
+      deckButton.backgroundColor = UIColor.clearColor()
+    }
+    
+    styleGuide.applyBtnFontStyle(.FooterUIBtn, views: footerView.playerBtns)
   }
 }
 

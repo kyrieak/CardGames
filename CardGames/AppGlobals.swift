@@ -10,4 +10,4 @@ import Foundation
 import UIKit
 
 var styleGuide = SGStyleGuide(theme: Theme.green())
-var gameSettings = GameSettings(players: Player.makeNumberedPlayers(4))
+var gameSettings = GameSettings(players: Player.makeNumberedPlayers(1))

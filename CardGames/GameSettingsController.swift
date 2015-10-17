@@ -10,17 +10,14 @@ import Foundation
 import UIKit
 
 class GameSettingsController: UIViewController {
-  var settings = gameSettings
-
-  var options: GameOptions {
-    return settings.options
-  }
+  var options = gameSettings.options
 
   @IBOutlet var contentView: UIView!
   @IBOutlet var colorSwitch: UISwitch!
   @IBOutlet var shapeSwitch: UISwitch!
   @IBOutlet var shadingSwitch: UISwitch!
-  @IBOutlet var playerCountLabel: UILabel!
+  @IBOutlet var playerCtStepper: UIStepper!
+  @IBOutlet var playerCtLabel: UILabel!
 
   
   required init?(coder aDecoder: NSCoder) {
@@ -29,36 +26,46 @@ class GameSettingsController: UIViewController {
   
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    NSLog("segue prepared")
-    if ((sender as? SetGameController) != nil) {
-      let vc = sender as! SetGameController
+    if (segue.identifier == "playerSettingSegue") {
+      let dvc = segue.destinationViewController as! PlayerSettingController
+      let numPlayers = Int(playerCtStepper.value)
+    
+      if (gameSettings.numPlayers != numPlayers) {
+        dvc.players = Player.makeNumberedPlayers(numPlayers)
+      } else {
+        dvc.players = gameSettings.players
+      }
       
-      settings = vc.game.settings
+      dvc.playerInfo = dvc.players.map{(p: Player) -> (label: String, name: String) in
+        return (label: p.label, name: p.name)
+      }
+      
+      gameSettings.options = options
     }
   }
   
-  override func viewWillLayoutSubviews() {
+  override func viewDidLoad() {
     colorSwitch.setOn(options.colorsOn, animated: false)
     shapeSwitch.setOn(options.shapesOn, animated: false)
     shadingSwitch.setOn(options.shadingOn, animated: false)
+    playerCtLabel.text = "\(gameSettings.numPlayers)"
+    playerCtStepper.value = Double(gameSettings.numPlayers)
   }
   
   @IBAction func colorSwitchAction(sender: UISwitch) {
-    settings.options.colorsOn = sender.on
+    options.colorsOn = sender.on
   }
 
   @IBAction func shapeSwitchAction(sender: UISwitch) {
-    settings.options.shapesOn = sender.on
+    options.shapesOn = sender.on
   }
   
   @IBAction func patternSwitchAction(sender: UISwitch) {
-    settings.options.shadingOn = sender.on
+    options.shadingOn = sender.on
   }
   
   @IBAction func stepperTapAction(sender: UIStepper) {
-    let m = Int(sender.value)
-    
-    playerCountLabel.text = "\(m)"
+    playerCtLabel.text = "\(Int(sender.value))"
   }
   
   @IBAction func respondToTap(sender: UITapGestureRecognizer) {
@@ -67,13 +74,11 @@ class GameSettingsController: UIViewController {
     
     if ((pt.x < cFrame.minX) || (pt.x > cFrame.maxX) ||
         (pt.y < cFrame.minY) || (pt.y > cFrame.maxY)) {
-
       self.dismissViewControllerAnimated(true, completion: nil)
     }
   }
   
   @IBAction func prepareBackUnwind(segue: UIStoryboardSegue) {
-    NSLog("back to here")
+    NSLog("Game Settings Controller is prepareForBackUnwinding")
   }
-  
 }

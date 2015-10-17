@@ -42,7 +42,6 @@ class CardGameStatusView: UIView {
   func setMessage(text: String) {
     messageView.text = text
     messageView.frame.origin.x = leftOffsetForMessage()
-    NSLog("message view frame: \(messageView.frame)")
     messageView.setNeedsDisplay()
   }
   
@@ -99,8 +98,6 @@ class CardListView: UIView {
   override init(frame: CGRect) {
     super.init(frame: frame)
     
-    NSLog("card list view frame: \(frame)")
-    
     cardSize = CGSize(width: (frame.height * 0.72), height: frame.height)
   }
   
@@ -122,7 +119,6 @@ class CardListView: UIView {
   
   func addCardView(view: UIView) {
     view.frame = CGRect(origin: CGPoint(x: getContentWidth(), y: 0), size: cardSize)
-    NSLog("cardSize: \(cardSize)")
     numCards += 1
     
     addSubview(view)

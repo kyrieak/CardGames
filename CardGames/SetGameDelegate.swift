@@ -10,13 +10,8 @@ import Foundation
 import UIKit
 
 class SetGameDelegate: NSObject, UICollectionViewDelegate {
-  private var gameStatuses: [String] = []
-  private var waitingNextMove = true
-  
-  var statusView: SetGameStatusView?
-  var scoreLabel: UILabel?
-  var selectIdxPaths: [NSIndexPath] = []
-  
+  private(set) var statusView: SetGameStatusView?
+  private(set) var selectIdxPaths: [NSIndexPath] = []
   
   lazy var screen: UIScreen = {
     return UIScreen.mainScreen()
@@ -39,7 +34,6 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
       if (elementKind == UICollectionElementKindSectionFooter) {
         view.frame.origin.y = collectionView.frame.height - view.frame.height
         statusView = view.viewWithTag(1) as? SetGameStatusView
-        NSLog("\(statusView)")
       }
   }
   
@@ -87,12 +81,10 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
   func collectionView(collectionView: UICollectionView,
     shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
       let game = getGame(collectionView)
-      NSLog("I am here in should select indexpath delegate")
 
       if (selectIdxPaths.count > 2) {
         return false
       } else {
-        NSLog("selectIdxPaths count is < 3, so game.hasCardAt is \(game.hasCardAt(indexPath.item))")
         return game.hasCardAt(indexPath.item)
       }
   }
@@ -148,18 +140,9 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
   }
   
 
-  func getGameStatuses() -> [String] {
-    return gameStatuses
-  }
-
-  
-  func recordStatus(status: String) {
-    gameStatuses.append(status)
-  }
-
-  
-  func clearOldStatuses() {
-    gameStatuses = []
+  func reset() {
+    selectIdxPaths = []
+    statusView?.clear()
   }
   
   

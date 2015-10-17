@@ -14,7 +14,7 @@ class SetGame {
   private(set) var settings: GameSettings
   private var scores: [Player: Int]
 
-  private var deck: Deck<SetCard>     = SetGame.standardDeck()
+  private(set) var deck: Deck<SetCard>     = SetGame.standardDeck()
   private(set) var cardsInPlay: [SetCard?] = []
   private(set) var currentMove: SGMove
   
@@ -107,17 +107,31 @@ class SetGame {
   func startNewRound(numCards: Int) {
     cardsInPlay = []
     
-    if (deck.cards.count < 3) {
-      endGame()
-    } else if (numCards > deck.cards.count) {
+    if (numCards > deck.cards.count) {
       while (deck.cards.count > 0) {
         cardsInPlay.append(deck.removeTopCard())
+      }
+      
+      if (deck.cards.count < 3) {
+        endGame()
       }
     } else {
       for _ in 1...numCards {
         cardsInPlay.append(deck.removeTopCard())
       }
     }
+    
+//    if (deck.cards.count < 3) {
+//      endGame()
+//    } else if (numCards > deck.cards.count) {
+//      while (deck.cards.count > 0) {
+//        cardsInPlay.append(deck.removeTopCard())
+//      }
+//    } else {
+//      for _ in 1...numCards {
+//        cardsInPlay.append(deck.removeTopCard())
+//      }
+//    }
   }
   
   
@@ -136,7 +150,6 @@ class SetGame {
   
   func getPlayer(key: Int) -> Player? {
     for p in players {
-      NSLog("\(p.hashValue) hash and key \(key)")
       if (p.hashValue == key) {
         return p
       }
@@ -146,7 +159,6 @@ class SetGame {
   }
   
   func makeMove(cardIndexes: [Int], _player: Player) {
-    NSLog("here in make move for _player")
     var cardPositions = [Int: SetCard]()
     
     for index in cardIndexes {
@@ -266,7 +278,6 @@ class SGMove {
   }
 
   var done: Bool {
-    NSLog("cardPositions.count: \(cardPositions.count) cards")
     return cardPositions.count == 3
   }
 

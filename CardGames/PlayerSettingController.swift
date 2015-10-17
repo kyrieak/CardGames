@@ -18,20 +18,7 @@ class PlayerSettingController: UIViewController, UITableViewDataSource, UITableV
   @IBOutlet var saveBtn: UIButton!
 
   var playerInfo: [(label: String, name: String)] = []
-
-  var players: [Player] {
-    return gameSettings.players
-  }
-  
-  required init?(coder aDecoder: NSCoder) {
-    let players = gameSettings.players
-    
-    playerInfo = players.map{(p) -> (label: String, name: String) in
-      return (label: p.label, name: p.name)
-    }
-    
-    super.init(coder: aDecoder)
-  }
+  var players: [Player] = []
 
   @IBOutlet var playerTable: UITableView!
 
@@ -44,9 +31,6 @@ class PlayerSettingController: UIViewController, UITableViewDataSource, UITableV
     tableView.addConstraint(NSLayoutConstraint(item: tableView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.Height, multiplier: CGFloat(1), constant: computedHeight))
   }
   
-  override func viewWillAppear(animated: Bool) {
-    super.viewWillAppear(animated)
-  }
   
   override func viewDidLayoutSubviews() {
     tableView.frame.origin.y = calculateTableOriginY()
@@ -130,6 +114,8 @@ class PlayerSettingController: UIViewController, UITableViewDataSource, UITableV
   }
   
   func save() {
+    gameSettings.players = players
+    
     for (idx, info) in playerInfo.enumerate() {
       let player = players[idx]
 
@@ -139,8 +125,17 @@ class PlayerSettingController: UIViewController, UITableViewDataSource, UITableV
   }
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if (segue.identifier == "unwindToNewGame") {
-      self.save()
+    
+    NSLog("am here!!!!!!!")
+    if (segue.identifier != nil) {
+      let sid = segue.identifier!
+
+      switch(sid) {
+        case "unwindToNewGame":
+          self.save()
+        default:
+          super.prepareForSegue(segue, sender: sender)
+      }
     } else {
       super.prepareForSegue(segue, sender: sender)
     }
