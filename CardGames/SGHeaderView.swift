@@ -25,4 +25,18 @@ class SGHeaderView: UIView {
   lazy var gearButton: UIButton = {
     return self.viewWithTag(self.gearTag)! as! UIButton
   }()
+  
+  required init?(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+    
+    if (screenIsPortrait() && (minScreenDim > 376) && (minScreenDim < 415)) {
+      NSLog("heeeeeeeeeeeeeeeeeeeere")
+      for c in constraints {
+        NSLog("-- \(c.firstAttribute)")
+        if (c.firstAttribute == NSLayoutAttribute.Height) {
+          c.constant = CGFloat(132 + 50)
+        }
+      }
+    }
+  }
 }

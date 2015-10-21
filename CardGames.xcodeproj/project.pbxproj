@@ -25,6 +25,7 @@
 		348FF63F1AA1629C0041C5C6 /* SetGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348FF63E1AA1629C0041C5C6 /* SetGameController.swift */; };
 		348FF6411AA1658B0041C5C6 /* SetGameDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348FF6401AA1658B0041C5C6 /* SetGameDataSource.swift */; };
 		3498E71E1BC5BE6000842F5A /* ThemeSettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3498E71D1BC5BE6000842F5A /* ThemeSettingsController.swift */; settings = {ASSET_TAGS = (); }; };
+		3499D7F11BD4BFD5001AE54D /* ThemeTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3499D7F01BD4BFD5001AE54D /* ThemeTableDataSource.swift */; settings = {ASSET_TAGS = (); }; };
 		3499DAFB1B9F930200AD3466 /* SGHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3499DAFA1B9F930200AD3466 /* SGHeaderView.swift */; };
 		34A9233E1AA19C15009D0134 /* SetCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A9233D1AA19C15009D0134 /* SetCard.swift */; };
 		34AF52DD1AE57C2600971176 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AF52DC1AE57C2600971176 /* Geometry.swift */; };
@@ -71,6 +72,7 @@
 		348FF63E1AA1629C0041C5C6 /* SetGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetGameController.swift; sourceTree = "<group>"; };
 		348FF6401AA1658B0041C5C6 /* SetGameDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetGameDataSource.swift; sourceTree = "<group>"; };
 		3498E71D1BC5BE6000842F5A /* ThemeSettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeSettingsController.swift; sourceTree = "<group>"; };
+		3499D7F01BD4BFD5001AE54D /* ThemeTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeTableDataSource.swift; sourceTree = "<group>"; };
 		3499DAFA1B9F930200AD3466 /* SGHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SGHeaderView.swift; sourceTree = "<group>"; };
 		34A9233D1AA19C15009D0134 /* SetCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetCard.swift; sourceTree = "<group>"; };
 		34AF52DC1AE57C2600971176 /* Geometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 				34CC1E571ABCC844005B2CD1 /* Views */,
 				345695401A9FB4510076FD39 /* SetGameDelegate.swift */,
 				348FF6401AA1658B0041C5C6 /* SetGameDataSource.swift */,
+				3499D7F01BD4BFD5001AE54D /* ThemeTableDataSource.swift */,
 				341723751AFBFB5A002D8343 /* Geometry */,
 				34527F591A96FC7D0039C913 /* Images.xcassets */,
 				34005ED81A4FACDB00BDFD0F /* LaunchScreen.xib */,
@@ -348,6 +351,7 @@
 				341A2E431A8C92AE0091664E /* UIViewStyles.swift in Sources */,
 				345AE9C91BC9CBC2006E3A38 /* StyleGuideProtocols.swift in Sources */,
 				34EE0AA11BAFAD2D0002043D /* SGFooterView.swift in Sources */,
+				3499D7F11BD4BFD5001AE54D /* ThemeTableDataSource.swift in Sources */,
 				3498E71E1BC5BE6000842F5A /* ThemeSettingsController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

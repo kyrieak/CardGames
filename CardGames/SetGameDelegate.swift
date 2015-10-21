@@ -98,12 +98,15 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
   func collectionView(collectionView: UICollectionView,
     layout collectionViewLayout: UICollectionViewLayout,
     minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
-      switch (collectionView.frame.width) {
-        case let x where x > 599:
-          return CGFloat(50)
-        default:
-          return CGFloat(8)
-      }
+//      switch (collectionView.frame.width) {
+//        case let x where x > 599:
+//          return CGFloat(50)
+//        case let x where x > 400:
+//          return CGFloat(30)
+//        default:
+//          return CGFloat(8)
+//      }
+      return CGFloat(8)
   }
   
   func collectionView(collectionView: UICollectionView,
@@ -117,19 +120,25 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
           return UIEdgeInsets(tb: 10, lr: 8)
       }
   }
-  
+    
   func collectionView(collectionView: UICollectionView,
          layout collectionViewLayout: UICollectionViewLayout,
            sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
             var (w, h): (CGFloat, CGFloat)
+            NSLog("\(collectionView.contentSize)")
             
             switch (horizontalSizeClass) {
               case UIUserInterfaceSizeClass.Regular:
                 (w, h) = (166, 160)
-              case UIUserInterfaceSizeClass.Unspecified:
-                (w, h) = (88, 122)
+              case UIUserInterfaceSizeClass.Compact:
+                if (minScreenDim > 376) {
+                  (w, h) = (80, 105)
+                } else {
+                  (w, h) = (68, 94)
+                }
               default:
-                (w, h) = (68, 94)
+                // ...SizeClass.Unspecified
+              (w, h) = (88, 122)
             }
             
             if (verticalSizeClass == UIUserInterfaceSizeClass.Compact) {

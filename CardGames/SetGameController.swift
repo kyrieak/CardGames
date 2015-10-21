@@ -53,11 +53,16 @@ class SetGameController: UIViewController, StyleGuideDelegate {
     if (footerView.subviews.count < 1) {
       footerView.addPlayerButtons(game.players, target: self, action: Selector("makeMoveAction:"))
     }
+
+    if (minScreenDim > 376) && (minScreenDim < 415) {
+      adjustConstraintsForLargerScreen()
+    }
     
     collectionView.reloadData()
 
     applyStyleToViews()
   }
+  
   override func willTransitionToTraitCollection(newCollection: UITraitCollection, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
     NSLog("will transition to trait collection")
     super.willTransitionToTraitCollection(newCollection, withTransitionCoordinator: coordinator)
@@ -203,6 +208,23 @@ class SetGameController: UIViewController, StyleGuideDelegate {
     }
     
     styleGuide.applyBtnFontStyle(.FooterUIBtn, views: footerView.playerBtns)
+  }
+
+  
+  private func adjustConstraintsForLargerScreen() {
+    for c in headerView.constraints {
+      if (c.firstAttribute == NSLayoutAttribute.Height) {
+        c.constant = CGFloat(143)
+      }
+    }
+    
+    for c in deckButton.constraints {
+      if (c.firstAttribute == NSLayoutAttribute.Height) {
+        c.constant = CGFloat(105)
+      } else if (c.firstAttribute == NSLayoutAttribute.Width) {
+        c.constant = CGFloat(80)
+      }
+    }
   }
 }
 
