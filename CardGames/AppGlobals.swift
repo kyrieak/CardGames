@@ -9,14 +9,18 @@
 import Foundation
 import UIKit
 
-var styleGuide = SGStyleGuide(theme: Theme.green())
+var styleGuide = SGStyleGuide(theme: Theme.honeydew())
 var gameSettings = GameSettings(players: Player.makeNumberedPlayers(1))
 var minScreenDim = {(bounds: CGRect) -> CGFloat in
                       return min(bounds.width, bounds.height)
                    }(UIScreen.mainScreen().bounds)
 
-func screenIsPortrait() -> Bool {
+var screenIsPortrait: Bool {
   return {(bounds: CGRect) -> Bool in
     return (bounds.width < bounds.height)
   }(UIScreen.mainScreen().bounds)
 }
+
+let screenScale = UIScreen.mainScreen().scale
+
+let deviceIsMobile = (minScreenDim < 415)

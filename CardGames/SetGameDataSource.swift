@@ -76,9 +76,8 @@ class SetGameDataSource: NSObject, UICollectionViewDataSource {
   
   private func dequeFooterView(collectionView: UICollectionView, indexPath: NSIndexPath) -> UICollectionReusableView {
     let sectionFooter = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionFooter,
-      withReuseIdentifier: footerReuseId,
-      forIndexPath: indexPath) as UICollectionReusableView
-//    var label = sectionFooter.viewWithTag(1)! as! UILabel
+                                          withReuseIdentifier: footerReuseId,
+                                          forIndexPath: indexPath)
     
     styleGuide.applyLayerStyle(.Status, views: [sectionFooter])
 
@@ -88,8 +87,9 @@ class SetGameDataSource: NSObject, UICollectionViewDataSource {
   
   private func cellBgView(card: SetCard, withFrame: CGRect) -> SetCardView {
     let view = SetCardView(frame: withFrame, attrs: card.attributes())
-    
-    
+
+    view.accessibilityLabel = accessLabelFor(card)
+
     styleGuide.applyLayerStyle(.CardFront, views: [view])
 
     return view
@@ -103,5 +103,32 @@ class SetGameDataSource: NSObject, UICollectionViewDataSource {
     selectedView.layer.borderColor = UIColor.blueColor().CGColor
     
     return selectedView
+  }
+  
+  private func accessLabelFor(card: SetCard) -> String {
+    let opt = game.options
+    var text: String
+    
+    if (opt.colorsOn && opt.shadingOn && opt.shapesOn) {
+      text = card.attributes().toString()
+    } else {
+      text = "\(card.number)"
+      
+      if (opt.colorsOn) {
+        text += " \(card.color.toString)"
+      }
+      
+      if (opt.shadingOn) {
+        text += " \(card.shading.toString)"
+      }
+
+      text += " \(card.shape.toString)"
+
+      if (card.number > 1) {
+        text += "s"
+      }
+    }
+    
+    return text
   }
 }

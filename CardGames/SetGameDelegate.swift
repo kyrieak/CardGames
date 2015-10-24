@@ -10,8 +10,11 @@ import Foundation
 import UIKit
 
 class SetGameDelegate: NSObject, UICollectionViewDelegate {
-  private(set) var statusView: SetGameStatusView?
+  let statusViewTag: Int = 1
+
+  private(set) var statusView: SGStatusView?
   private(set) var selectIdxPaths: [NSIndexPath] = []
+  private(set) var cardSize: CGSize = CGSizeZero
   
   lazy var screen: UIScreen = {
     return UIScreen.mainScreen()
@@ -32,8 +35,14 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
     atIndexPath indexPath: NSIndexPath) {
       
       if (elementKind == UICollectionElementKindSectionFooter) {
+        statusView = view.viewWithTag(statusViewTag) as? SGStatusView
+        
+        if (!deviceIsMobile) {
+          view.frame.size.height = 70
+          statusView?.adjustHeight(70)
+        }
+        
         view.frame.origin.y = collectionView.frame.height - view.frame.height
-        statusView = view.viewWithTag(1) as? SetGameStatusView
       }
   }
   
@@ -58,22 +67,27 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
     if (selectIdxPaths.count == 3) {
       game.makeMove(selectedIndexes(), playerKey: playerTag)
 
-      if (game.currentMoveIsASet()) {
+      let isASet = game.currentMoveIsASet()
+
+      statusView!.updateStatus(game.currentMove, isASet: isASet)
+      updateSelectedCardCells(collectionView, isASet: isASet)
+      
+      game.endMove()
+    }
+  }
+  
+  
+  private func updateSelectedCardCells(collectionView: UICollectionView, isASet: Bool) {
+    if (selectIdxPaths.count == 3) {
+      if (isASet) {
         collectionView.reloadData()
       } else {
         for path in selectIdxPaths {
           collectionView.deselectItemAtIndexPath(path, animated: false)
         }
       }
-
+      
       selectIdxPaths = []
-
-      let status = getStatus(game)
-      let (cardListText, statusText) = status.msg
-      
-      statusView!.setMessage(cardListText, statusText: statusText)
-      
-      game.endMove()
     }
   }
   
@@ -98,15 +112,15 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
   func collectionView(collectionView: UICollectionView,
     layout collectionViewLayout: UICollectionViewLayout,
     minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
-//      switch (collectionView.frame.width) {
-//        case let x where x > 599:
-//          return CGFloat(50)
-//        case let x where x > 400:
-//          return CGFloat(30)
-//        default:
-//          return CGFloat(8)
-//      }
-      return CGFloat(8)
+      switch (collectionView.frame.width) {
+        case let x where x > 599:
+          return CGFloat(50)
+        case let x where x > 400:
+          return CGFloat(30)
+        default:
+          return CGFloat(8)
+      }
+//      return CGFloat(8)
   }
   
   func collectionView(collectionView: UICollectionView,
@@ -120,32 +134,21 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
           return UIEdgeInsets(tb: 10, lr: 8)
       }
   }
-    
+  
+  
   func collectionView(collectionView: UICollectionView,
          layout collectionViewLayout: UICollectionViewLayout,
            sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-            var (w, h): (CGFloat, CGFloat)
-            NSLog("\(collectionView.contentSize)")
-            
-            switch (horizontalSizeClass) {
-              case UIUserInterfaceSizeClass.Regular:
-                (w, h) = (166, 160)
-              case UIUserInterfaceSizeClass.Compact:
-                if (minScreenDim > 376) {
-                  (w, h) = (80, 105)
-                } else {
-                  (w, h) = (68, 94)
-                }
-              default:
-                // ...SizeClass.Unspecified
-              (w, h) = (88, 122)
-            }
-            
-            if (verticalSizeClass == UIUserInterfaceSizeClass.Compact) {
-              return CGSize(width: h, height: w)
-            } else {
-              return CGSize(width: w, height: h)
-            }
+
+             if (cardSize.width < 1) {
+               setCardSize()
+             }
+
+             if (screenIsPortrait) {
+               return cardSize
+             } else {
+               return CGSize(width: cardSize.height, height: cardSize.width)
+             }
   }
   
 
@@ -160,15 +163,17 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
   }
   
   
-  private func getStatus(game: SetGame) -> (isSet: Bool, msg: (String, String)) {
-    let statusMaker = SetGameStatus(cards: game.getSelectedCards())
-    
+  private func getStatus(game: SetGame) -> (isSet: Bool, msg: String) {
+    let cards = game.getSelectedCards()
+
+    let cardText = cards.map{(c: SetCard) -> String in
+      return c.attributes().toString(game.options)
+    }.joinWithSeparator(", ")
+
     if (!game.currentMove.done) {
-      return (false, (statusMaker.listCards(), ""))
-    } else if (game.currentMoveIsASet()) {
-      return (true, statusMaker.isSetMsg(5)) // arbit 5pts
+      return (false, cardText)
     } else {
-      return (false, statusMaker.notSetMsg(-1)) // arbit -1pts
+      return (isSet: game.currentMoveIsASet(), msg: game.status())
     }
   }
   
@@ -177,43 +182,18 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
       return path.item
     }
   }
-}
+  
+  private func setCardSize() {
+    var w, h: CGFloat
 
-struct SetGameStatus {
-  private var cardsStr: String
-  
-  init(cards: [SetCard]) {
-    cardsStr = cards.map({(sc: SetCard) -> String in
-      switch(sc.shape) {
-        case .Diamond:
-          return "Diamond"
-        case .Oval:
-          return "Oval"
-        case .Squiggle:
-          return "Squiggle"
-      }
-    }).joinWithSeparator(", ")
-    
-    if (cards.count > 0) {
-      cardsStr = "{ " + cardsStr + " }"
-    }
-  }
-  
-  func listCards() -> String {
-    return cardsStr
-  }
-  
-  func isSetMsg(matchVal: Int) -> (String, String) {
-    return (cardsStr, "is a set for \(matchVal) Points!")
-  }
-  
-  func notSetMsg(penaltyVal: Int) -> (String, String) {
-    let penalty = abs(penaltyVal)
-    
-    if (penalty > 0) {
-      return (cardsStr, "is not a set. \(penalty) point penalty.")
+    if (deviceIsMobile) {
+      w = minScreenDim * 0.193
+      h = minScreenDim * 0.254
     } else {
-      return (cardsStr, "is not a set")
+      w = minScreenDim * 0.156
+      h = minScreenDim * 0.208
     }
+    
+    cardSize = CGSize(width: w, height: h)
   }
 }

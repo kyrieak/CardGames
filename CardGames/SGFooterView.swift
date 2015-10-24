@@ -36,9 +36,7 @@ class SGFooterView: UIView {
     if (numPlayers > 1) {
       pBtnSize.width = (self.frame.width / CGFloat(numPlayers))
     } else {
-      NSLog("width is set to 88?")
       pBtnSize.width = 160
-      NSLog("checking pbtnwidth \(pBtnSize.width)")
     }
     
     pBtnSize.height = 44
@@ -82,14 +80,12 @@ class SGFooterView: UIView {
   
   func layoutPlayerBtns(players: [Player]) {
     if (players.count != subviews.count) {
-      NSLog("player count \(players.count) and subviews \(subviews.count) count not match, remove and add")
       for btn in playerBtns {
         btn.removeFromSuperview()
       }
       
       addPlayerButtons(players, target: btnTarget, action: btnAction)
     } else {
-      NSLog("only change title")
       var idx = 0
 
       for btn in playerBtns {
@@ -117,9 +113,7 @@ class SGFooterView: UIView {
         setBtnSizeForVerticalLayout(playerBtns.count)
         layoutVertically()
       } else {
-        NSLog("\(pBtnSize) is pbtnsize and count is \(playerBtns.count)")
         setBtnSizeForHorizontalLayout(playerBtns.count)
-        NSLog("\(pBtnSize) is pbtnsize")
         layoutHorizontally()
       }
     }
@@ -130,7 +124,6 @@ class SGFooterView: UIView {
     
     if (subviews.count == 1) {
       let btn = subviews.first!
-      NSLog("laying out horizontally and pbtnsize is? \(pBtnSize)")
       
       btn.frame.size = pBtnSize
       btn.frame.origin.x = self.bounds.midX - btn.bounds.midX

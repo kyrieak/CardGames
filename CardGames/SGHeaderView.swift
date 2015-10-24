@@ -29,10 +29,8 @@ class SGHeaderView: UIView {
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
     
-    if (screenIsPortrait() && (minScreenDim > 376) && (minScreenDim < 415)) {
-      NSLog("heeeeeeeeeeeeeeeeeeeere")
+    if (screenIsPortrait && (minScreenDim > 376) && (minScreenDim < 415)) {
       for c in constraints {
-        NSLog("-- \(c.firstAttribute)")
         if (c.firstAttribute == NSLayoutAttribute.Height) {
           c.constant = CGFloat(132 + 50)
         }

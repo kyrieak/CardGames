@@ -22,6 +22,7 @@ class SetCardView: UIView {
 
     super.init(frame: frame)
     
+    accessibilitySetup()
     backgroundColor = UIColor.whiteColor()
   }
   
@@ -34,8 +35,16 @@ class SetCardView: UIView {
     self.rgbColor = [0, 0, 0, 0]
     
     super.init(coder: aDecoder)
+    
+    accessibilitySetup()
     backgroundColor = UIColor.whiteColor()
   }
+  
+  func accessibilitySetup() {
+    isAccessibilityElement = true
+    accessibilityLabel = cardAttrs.toString()
+  }
+  
   
   // - MARK: - Public -
   

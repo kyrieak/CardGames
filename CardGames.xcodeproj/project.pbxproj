@@ -30,7 +30,7 @@
 		34A9233E1AA19C15009D0134 /* SetCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A9233D1AA19C15009D0134 /* SetCard.swift */; };
 		34AF52DD1AE57C2600971176 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AF52DC1AE57C2600971176 /* Geometry.swift */; };
 		34BB7CCE1BC8D602000C8461 /* GameSettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BB7CCD1BC8D602000C8461 /* GameSettingsController.swift */; settings = {ASSET_TAGS = (); }; };
-		34BCFC3F1AC50DD8005A4840 /* CardGameStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BCFC3E1AC50DD8005A4840 /* CardGameStatusView.swift */; };
+		34BCFC3F1AC50DD8005A4840 /* SGStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BCFC3E1AC50DD8005A4840 /* SGStatusView.swift */; };
 		34CC1E561ABCC83D005B2CD1 /* SetCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CC1E551ABCC83D005B2CD1 /* SetCardView.swift */; };
 		34D908351BCE174200ABDE7E /* PlayerSettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D908341BCE174200ABDE7E /* PlayerSettingController.swift */; settings = {ASSET_TAGS = (); }; };
 		34DCC26F1BCC9E270034A274 /* AppGlobals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34DCC26E1BCC9E270034A274 /* AppGlobals.swift */; settings = {ASSET_TAGS = (); }; };
@@ -77,7 +77,7 @@
 		34A9233D1AA19C15009D0134 /* SetCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetCard.swift; sourceTree = "<group>"; };
 		34AF52DC1AE57C2600971176 /* Geometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
 		34BB7CCD1BC8D602000C8461 /* GameSettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSettingsController.swift; sourceTree = "<group>"; };
-		34BCFC3E1AC50DD8005A4840 /* CardGameStatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardGameStatusView.swift; sourceTree = "<group>"; };
+		34BCFC3E1AC50DD8005A4840 /* SGStatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SGStatusView.swift; sourceTree = "<group>"; };
 		34CC1E551ABCC83D005B2CD1 /* SetCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetCardView.swift; sourceTree = "<group>"; };
 		34D908341BCE174200ABDE7E /* PlayerSettingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerSettingController.swift; sourceTree = "<group>"; };
 		34DCC26E1BCC9E270034A274 /* AppGlobals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppGlobals.swift; sourceTree = "<group>"; };
@@ -205,7 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				34CC1E551ABCC83D005B2CD1 /* SetCardView.swift */,
-				34BCFC3E1AC50DD8005A4840 /* CardGameStatusView.swift */,
+				34BCFC3E1AC50DD8005A4840 /* SGStatusView.swift */,
 				3499DAFA1B9F930200AD3466 /* SGHeaderView.swift */,
 				34EE0AA01BAFAD2D0002043D /* SGFooterView.swift */,
 				340720521BC4E47F00A2E466 /* SGCollectionViewLayout.swift */,
@@ -334,7 +334,7 @@
 				34DCC26F1BCC9E270034A274 /* AppGlobals.swift in Sources */,
 				34AF52DD1AE57C2600971176 /* Geometry.swift in Sources */,
 				34BB7CCE1BC8D602000C8461 /* GameSettingsController.swift in Sources */,
-				34BCFC3F1AC50DD8005A4840 /* CardGameStatusView.swift in Sources */,
+				34BCFC3F1AC50DD8005A4840 /* SGStatusView.swift in Sources */,
 				34D908351BCE174200ABDE7E /* PlayerSettingController.swift in Sources */,
 				34005EF51A4FC91500BDFD0F /* Card.swift in Sources */,
 				34DCC2731BCCB7B20034A274 /* Theme.swift in Sources */,

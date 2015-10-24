@@ -54,8 +54,8 @@ class SetGameController: UIViewController, StyleGuideDelegate {
       footerView.addPlayerButtons(game.players, target: self, action: Selector("makeMoveAction:"))
     }
 
-    if (minScreenDim > 376) && (minScreenDim < 415) {
-      adjustConstraintsForLargerScreen()
+    if (deviceIsMobile) {
+      adjustForMobileScreenSize()
     }
     
     collectionView.reloadData()
@@ -63,14 +63,9 @@ class SetGameController: UIViewController, StyleGuideDelegate {
     applyStyleToViews()
   }
   
-  override func willTransitionToTraitCollection(newCollection: UITraitCollection, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-    NSLog("will transition to trait collection")
-    super.willTransitionToTraitCollection(newCollection, withTransitionCoordinator: coordinator)
-  }
   
   override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
     super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
-    NSLog("here in transition")
     
     headerView.setNeedsLayout()
     wrapperView.setNeedsLayout()
@@ -211,18 +206,20 @@ class SetGameController: UIViewController, StyleGuideDelegate {
   }
 
   
-  private func adjustConstraintsForLargerScreen() {
-    for c in headerView.constraints {
-      if (c.firstAttribute == NSLayoutAttribute.Height) {
-        c.constant = CGFloat(143)
+  private func adjustForMobileScreenSize() {
+    if (minScreenDim > 376) {
+      for c in headerView.constraints {
+        if (c.firstAttribute == NSLayoutAttribute.Height) {
+          c.constant = CGFloat(143)
+        }
       }
-    }
-    
-    for c in deckButton.constraints {
-      if (c.firstAttribute == NSLayoutAttribute.Height) {
-        c.constant = CGFloat(105)
-      } else if (c.firstAttribute == NSLayoutAttribute.Width) {
-        c.constant = CGFloat(80)
+      
+      for c in deckButton.constraints {
+        if (c.firstAttribute == NSLayoutAttribute.Height) {
+          c.constant = CGFloat(105)
+        } else if (c.firstAttribute == NSLayoutAttribute.Width) {
+          c.constant = CGFloat(80)
+        }
       }
     }
   }

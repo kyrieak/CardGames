@@ -125,8 +125,6 @@ class PlayerSettingController: UIViewController, UITableViewDataSource, UITableV
   }
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    
-    NSLog("am here!!!!!!!")
     if (segue.identifier != nil) {
       let sid = segue.identifier!
 

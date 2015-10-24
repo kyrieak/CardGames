@@ -34,10 +34,10 @@ class SetCard: Card {
 }
 
 struct SetCardAttrs {
+  let number: Int
   let shape: SGShape
   let color: SGColor
   let shading: SGShading
-  let number: Int
 
   init(number: Int, shape: SGShape, shading: SGShading, color: SGColor) {
     self.number = number
@@ -52,6 +52,39 @@ struct SetCardAttrs {
     self.shading = card.shading
     self.color = card.color
   }
+  
+  func toString() -> String {
+    let str = "\(number) \(color.toString) \(shading.toString) \(shape.toString)"
+
+    return ((number > 1) ? (str + "s") : str)
+  }
+  
+  func toString(options: GameOptions) -> String{
+    let opt = options
+    var text: String
+    
+    if (opt.colorsOn && opt.shadingOn && opt.shapesOn) {
+      text = toString()
+    } else {
+      text = "\(number)"
+      
+      if (opt.colorsOn) {
+        text += " \(color.toString)"
+      }
+      
+      if (opt.shadingOn) {
+        text += " \(shading.toString)"
+      }
+      
+      text += " \(shape.toString)"
+      
+      if (number > 1) {
+        text += "s"
+      }
+    }
+    
+    return text
+  }
 }
 
 
@@ -60,16 +93,49 @@ enum SGColor {
   case Red
   case Green
   case Purple
+  
+  var toString: String {
+    switch(self) {
+      case .Red:
+        return "Red"
+      case .Green:
+        return "Green"
+      case .Purple:
+        return "Purple"
+    }
+  }
 }
 
 enum SGShading {
   case Open
   case Striped
   case Solid
+
+  var toString: String {
+    switch(self) {
+      case .Open:
+        return "Open"
+      case .Striped:
+        return "Striped"
+      case .Solid:
+        return "Solid"
+    }
+  }
 }
 
 enum SGShape {
   case Diamond
   case Oval
   case Squiggle
+
+  var toString: String {
+    switch(self) {
+      case .Diamond:
+        return "Diamond"
+      case .Oval:
+        return "Oval"
+      case .Squiggle:
+        return "Squiggle"
+    }
+  }
 }

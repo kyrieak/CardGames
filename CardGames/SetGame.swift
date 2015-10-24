@@ -18,6 +18,8 @@ class SetGame {
   private(set) var cardsInPlay: [SetCard?] = []
   private(set) var currentMove: SGMove
   
+  let pointsFor: (set: Int, penalty: Int) = (set: 5, penalty: -1)
+  
   var players: [Player] {
     return settings.players
   }
@@ -265,6 +267,28 @@ class SetGame {
     return cardsInPlay.count
   }
   
+  func status() -> String {
+    let cardsString = getSelectedCards().map{(c: SetCard) -> String in
+      return c.attributes().toString(options)
+    }.joinWithSeparator(", ")
+    
+    if (currentMove.done) {
+      if (currentMoveIsASet()) {
+        return cardsString + " is a set for \(pointsFor.set) points."
+      } else {
+        let penalty = abs(pointsFor.penalty)
+
+        if (penalty > 0) {
+          return cardsString + " is not a set. \(pointsFor.penalty) point penalty."
+        } else {
+          return cardsString + " is not a set."
+        }
+      }
+    } else {
+      return "selected cards: \(cardsString)"
+    }
+  }
+  
 }
 // =============================================================
 
@@ -380,6 +404,7 @@ struct GameOptions {
 class GameSettings {
   var players: [Player]
   var options: GameOptions
+  let pointsFor: (set: Int, penalty: Int)
   
   var numPlayers: Int {
     return players.count
@@ -388,6 +413,7 @@ class GameSettings {
   init(players: [Player], options: GameOptions) {
     self.players = players
     self.options = options
+    self.pointsFor = (set: 5, penalty: -1)
   }
   
   convenience init(players: [Player]) {

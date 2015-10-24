@@ -306,9 +306,7 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                         <state key="normal" title="Theme Settings"/>
                                         <connections>
-                                            <segue destination="luK-Cw-9qx" kind="popoverPresentation" popoverAnchorView="sDc-st-hQS" id="Uey-3Y-piQ">
-                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                            </segue>
+                                            <segue destination="luK-Cw-9qx" kind="presentation" id="Uey-3Y-piQ"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Shape" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t31-ZG-zIP">
@@ -334,9 +332,7 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                     <constraint firstItem="cpe-EJ-cvL" firstAttribute="top" secondItem="ggK-Ly-xCx" secondAttribute="bottom" constant="12.5" id="GNe-Dt-mmb"/>
                                     <constraint firstItem="34B-TH-jgu" firstAttribute="centerX" secondItem="6Qs-Ij-2cV" secondAttribute="centerX" id="IUD-Xi-wKE"/>
                                     <constraint firstItem="z5X-QY-FVc" firstAttribute="leading" secondItem="6Qs-Ij-2cV" secondAttribute="leading" constant="13" id="MFp-7O-raU"/>
-                                    <constraint firstAttribute="height" constant="246" id="Mjf-Pa-yW9">
-                                        <variation key="heightClass=regular-widthClass=compact" constant="294"/>
-                                    </constraint>
+                                    <constraint firstAttribute="height" constant="294" id="Mjf-Pa-yW9"/>
                                     <constraint firstItem="cNC-GU-T9O" firstAttribute="centerY" secondItem="Bgp-p8-qC8" secondAttribute="centerY" id="MzV-ep-cZn"/>
                                     <constraint firstAttribute="trailing" secondItem="ggK-Ly-xCx" secondAttribute="trailing" constant="8" id="N9e-R2-2ld"/>
                                     <constraint firstAttribute="trailing" secondItem="7vS-Mi-Jmm" secondAttribute="trailing" constant="8" id="ODI-CW-eeC"/>
@@ -353,66 +349,6 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                     <constraint firstItem="7vS-Mi-Jmm" firstAttribute="top" secondItem="cpe-EJ-cvL" secondAttribute="bottom" constant="12" id="oEr-Th-BrV"/>
                                     <constraint firstAttribute="trailing" secondItem="cNC-GU-T9O" secondAttribute="trailing" constant="8" id="qmP-ht-I0V"/>
                                 </constraints>
-                                <variation key="default">
-                                    <mask key="subviews">
-                                        <exclude reference="sDc-st-hQS"/>
-                                    </mask>
-                                    <mask key="constraints">
-                                        <exclude reference="Mjf-Pa-yW9"/>
-                                        <exclude reference="nSr-co-zEf"/>
-                                        <exclude reference="4fY-tx-rjl"/>
-                                        <exclude reference="QNs-4o-HFI"/>
-                                        <exclude reference="IUD-Xi-wKE"/>
-                                        <exclude reference="Obd-Re-5rJ"/>
-                                        <exclude reference="ODI-CW-eeC"/>
-                                        <exclude reference="oEr-Th-BrV"/>
-                                        <exclude reference="PZ4-j7-Z1O"/>
-                                        <exclude reference="N9e-R2-2ld"/>
-                                        <exclude reference="DQE-UN-sXh"/>
-                                        <exclude reference="kfs-wJ-GyA"/>
-                                        <exclude reference="CVb-fL-jli"/>
-                                        <exclude reference="dwH-y9-V2J"/>
-                                        <exclude reference="C6C-qx-i5e"/>
-                                        <exclude reference="fwZ-44-cHS"/>
-                                        <exclude reference="jae-G3-QB8"/>
-                                        <exclude reference="dHe-9t-gWm"/>
-                                        <exclude reference="db4-VY-uMn"/>
-                                        <exclude reference="AOw-el-x8v"/>
-                                        <exclude reference="MFp-7O-raU"/>
-                                        <exclude reference="MzV-ep-cZn"/>
-                                        <exclude reference="qmP-ht-I0V"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=compact">
-                                    <mask key="subviews">
-                                        <include reference="sDc-st-hQS"/>
-                                    </mask>
-                                    <mask key="constraints">
-                                        <include reference="Mjf-Pa-yW9"/>
-                                        <include reference="nSr-co-zEf"/>
-                                        <include reference="4fY-tx-rjl"/>
-                                        <include reference="QNs-4o-HFI"/>
-                                        <include reference="IUD-Xi-wKE"/>
-                                        <include reference="Obd-Re-5rJ"/>
-                                        <include reference="ODI-CW-eeC"/>
-                                        <include reference="oEr-Th-BrV"/>
-                                        <include reference="PZ4-j7-Z1O"/>
-                                        <include reference="N9e-R2-2ld"/>
-                                        <include reference="DQE-UN-sXh"/>
-                                        <include reference="kfs-wJ-GyA"/>
-                                        <include reference="CVb-fL-jli"/>
-                                        <include reference="dwH-y9-V2J"/>
-                                        <include reference="C6C-qx-i5e"/>
-                                        <include reference="fwZ-44-cHS"/>
-                                        <include reference="jae-G3-QB8"/>
-                                        <include reference="dHe-9t-gWm"/>
-                                        <include reference="db4-VY-uMn"/>
-                                        <include reference="AOw-el-x8v"/>
-                                        <include reference="MFp-7O-raU"/>
-                                        <include reference="MzV-ep-cZn"/>
-                                        <include reference="qmP-ht-I0V"/>
-                                    </mask>
-                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
@@ -423,18 +359,6 @@ With a keen eye, find as many sets as quickly as possible.</string>
                             </constraint>
                             <constraint firstItem="6Qs-Ij-2cV" firstAttribute="centerX" secondItem="btW-Po-G1M" secondAttribute="centerX" id="nW8-3R-pgz"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="lor-xi-Yua"/>
-                                <exclude reference="nW8-3R-pgz"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=regular-widthClass=compact">
-                            <mask key="constraints">
-                                <include reference="lor-xi-Yua"/>
-                                <include reference="nW8-3R-pgz"/>
-                            </mask>
-                        </variation>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="AtD-0e-e1d" appends="YES" id="8Wf-9a-E85"/>
                         </connections>
@@ -469,72 +393,6 @@ With a keen eye, find as many sets as quickly as possible.</string>
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" sectionIndexMinimumDisplayRowCount="4" rowHeight="54" sectionHeaderHeight="44" sectionFooterHeight="55" translatesAutoresizingMaskIntoConstraints="NO" id="EAR-6O-6w4">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="96" placeholder="YES" id="Lgx-ee-SOB"/>
-                                    <constraint firstAttribute="width" constant="300" id="SSs-EW-5go"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="52" id="nyg-Jq-MPg"/>
-                                </constraints>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationLevel="2" indentationWidth="10" reuseIdentifier="playerCell" id="Cys-qD-gR9">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Cys-qD-gR9" id="bUp-G4-Nzk">
-                                            <rect key="frame" x="0.0" y="0.0" width="240" height="53.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="P1" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YTl-4y-0wg">
-                                                    <rect key="frame" x="-25" y="-30" width="97" height="30"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                    <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                                        <rect key="frame" x="8" y="12" width="50" height="30"/>
-                                                    </variation>
-                                                    <connections>
-                                                        <outlet property="delegate" destination="qiB-VV-Czl" id="gf6-Az-MKk"/>
-                                                    </connections>
-                                                </textField>
-                                                <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Player 1" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tmF-Em-J8S">
-                                                    <rect key="frame" x="-25" y="-30" width="97" height="30"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                    <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                                        <rect key="frame" x="71" y="12" width="221" height="30"/>
-                                                    </variation>
-                                                    <connections>
-                                                        <outlet property="delegate" destination="qiB-VV-Czl" id="gVF-qc-Fja"/>
-                                                    </connections>
-                                                </textField>
-                                            </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <variation key="default">
-                                                <mask key="subviews">
-                                                    <exclude reference="YTl-4y-0wg"/>
-                                                    <exclude reference="tmF-Em-J8S"/>
-                                                </mask>
-                                            </variation>
-                                            <variation key="heightClass=regular-widthClass=compact">
-                                                <mask key="subviews">
-                                                    <include reference="YTl-4y-0wg"/>
-                                                    <include reference="tmF-Em-J8S"/>
-                                                </mask>
-                                            </variation>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                                <sections/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="nyg-Jq-MPg"/>
-                                    </mask>
-                                </variation>
-                                <connections>
-                                    <outlet property="dataSource" destination="qiB-VV-Czl" id="akH-3L-Ur0"/>
-                                    <outlet property="delegate" destination="qiB-VV-Czl" id="FrJ-fW-wBm"/>
-                                </connections>
-                            </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yvW-8I-zXc" userLabel="Footer View">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <subviews>
@@ -547,16 +405,6 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                         <state key="normal" title="Start!">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="bGt-tg-e9j"/>
-                                            </mask>
-                                        </variation>
-                                        <variation key="heightClass=regular-widthClass=compact">
-                                            <mask key="constraints">
-                                                <include reference="bGt-tg-e9j"/>
-                                            </mask>
-                                        </variation>
                                         <connections>
                                             <segue destination="KJp-Pz-q4g" kind="unwind" identifier="unwindToNewGame" unwindAction="prepareForNewGame:" id="QsB-SC-4OQ"/>
                                         </connections>
@@ -577,70 +425,92 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                     <constraint firstItem="FFa-d0-7Y6" firstAttribute="centerY" secondItem="yvW-8I-zXc" secondAttribute="centerY" id="JXt-lm-pPt"/>
                                     <constraint firstItem="n6y-lH-aGo" firstAttribute="centerX" secondItem="yvW-8I-zXc" secondAttribute="centerX" id="lsf-xO-yqX"/>
                                 </constraints>
-                                <variation key="default">
-                                    <mask key="subviews">
-                                        <exclude reference="n6y-lH-aGo"/>
-                                        <exclude reference="FFa-d0-7Y6"/>
-                                    </mask>
-                                    <mask key="constraints">
-                                        <exclude reference="J5S-eJ-3qU"/>
-                                        <exclude reference="Hd1-LX-txr"/>
-                                        <exclude reference="JXt-lm-pPt"/>
-                                        <exclude reference="8rv-pG-d2r"/>
-                                        <exclude reference="lsf-xO-yqX"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=compact">
-                                    <mask key="subviews">
-                                        <include reference="n6y-lH-aGo"/>
-                                        <include reference="FFa-d0-7Y6"/>
-                                    </mask>
-                                    <mask key="constraints">
-                                        <include reference="J5S-eJ-3qU"/>
-                                        <include reference="Hd1-LX-txr"/>
-                                        <include reference="JXt-lm-pPt"/>
-                                        <include reference="8rv-pG-d2r"/>
-                                        <include reference="lsf-xO-yqX"/>
-                                    </mask>
-                                </variation>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" sectionIndexMinimumDisplayRowCount="4" rowHeight="54" sectionHeaderHeight="44" sectionFooterHeight="55" translatesAutoresizingMaskIntoConstraints="NO" id="EAR-6O-6w4">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" placeholder="YES" id="Lgx-ee-SOB"/>
+                                    <constraint firstAttribute="width" constant="300" id="SSs-EW-5go"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="52" id="nyg-Jq-MPg"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationLevel="2" indentationWidth="10" reuseIdentifier="playerCell" id="Cys-qD-gR9">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Cys-qD-gR9" id="bUp-G4-Nzk">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="53.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Player 1" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tmF-Em-J8S">
+                                                    <rect key="frame" x="-25" y="-30" width="97" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                    <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                                        <rect key="frame" x="71" y="12" width="221" height="30"/>
+                                                    </variation>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="qiB-VV-Czl" id="gVF-qc-Fja"/>
+                                                    </connections>
+                                                </textField>
+                                                <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="P1" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YTl-4y-0wg">
+                                                    <rect key="frame" x="-25" y="-30" width="97" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                    <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                                        <rect key="frame" x="8" y="12" width="50" height="30"/>
+                                                    </variation>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="qiB-VV-Czl" id="gf6-Az-MKk"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="tmF-Em-J8S" secondAttribute="trailing" id="7cv-VH-uvV"/>
+                                                <constraint firstItem="YTl-4y-0wg" firstAttribute="centerY" secondItem="bUp-G4-Nzk" secondAttribute="centerY" id="PpZ-C6-r3b"/>
+                                                <constraint firstAttribute="leadingMargin" secondItem="YTl-4y-0wg" secondAttribute="leading" id="gh9-7b-LKt"/>
+                                                <constraint firstItem="tmF-Em-J8S" firstAttribute="centerY" secondItem="bUp-G4-Nzk" secondAttribute="centerY" id="oCA-ay-xyx"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="PpZ-C6-r3b"/>
+                                                    <exclude reference="gh9-7b-LKt"/>
+                                                    <exclude reference="7cv-VH-uvV"/>
+                                                    <exclude reference="oCA-ay-xyx"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="heightClass=regular-widthClass=regular">
+                                                <mask key="constraints">
+                                                    <include reference="PpZ-C6-r3b"/>
+                                                    <include reference="gh9-7b-LKt"/>
+                                                    <include reference="7cv-VH-uvV"/>
+                                                    <include reference="oCA-ay-xyx"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <sections/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="nyg-Jq-MPg"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <outlet property="dataSource" destination="qiB-VV-Czl" id="akH-3L-Ur0"/>
+                                    <outlet property="delegate" destination="qiB-VV-Czl" id="FrJ-fW-wBm"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="EAR-6O-6w4" firstAttribute="centerY" secondItem="nuO-RV-ZR4" secondAttribute="centerY" id="Gz5-vz-ktX">
-                                <variation key="heightClass=regular-widthClass=compact" constant="27"/>
-                            </constraint>
+                            <constraint firstItem="EAR-6O-6w4" firstAttribute="centerY" secondItem="nuO-RV-ZR4" secondAttribute="centerY" id="Gz5-vz-ktX"/>
                             <constraint firstItem="EAR-6O-6w4" firstAttribute="centerX" secondItem="nuO-RV-ZR4" secondAttribute="centerX" id="MTG-BL-enG"/>
                             <constraint firstItem="yvW-8I-zXc" firstAttribute="trailing" secondItem="EAR-6O-6w4" secondAttribute="trailing" id="fWc-Vj-BGT"/>
                             <constraint firstItem="yvW-8I-zXc" firstAttribute="top" secondItem="EAR-6O-6w4" secondAttribute="bottom" id="mZA-IB-zS1"/>
                             <constraint firstItem="yvW-8I-zXc" firstAttribute="leading" secondItem="EAR-6O-6w4" secondAttribute="leading" id="yKr-hi-gKL"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="EAR-6O-6w4"/>
-                                <exclude reference="yvW-8I-zXc"/>
-                            </mask>
-                            <mask key="constraints">
-                                <exclude reference="Gz5-vz-ktX"/>
-                                <exclude reference="MTG-BL-enG"/>
-                                <exclude reference="fWc-Vj-BGT"/>
-                                <exclude reference="mZA-IB-zS1"/>
-                                <exclude reference="yKr-hi-gKL"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=regular-widthClass=compact">
-                            <mask key="subviews">
-                                <include reference="EAR-6O-6w4"/>
-                                <include reference="yvW-8I-zXc"/>
-                            </mask>
-                            <mask key="constraints">
-                                <include reference="Gz5-vz-ktX"/>
-                                <include reference="MTG-BL-enG"/>
-                                <include reference="fWc-Vj-BGT"/>
-                                <include reference="mZA-IB-zS1"/>
-                                <include reference="yKr-hi-gKL"/>
-                            </mask>
-                        </variation>
                     </view>
                     <connections>
                         <outlet property="footerView" destination="yvW-8I-zXc" id="U1O-qE-ClC"/>
@@ -668,7 +538,7 @@ With a keen eye, find as many sets as quickly as possible.</string>
                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cOd-Sg-46z" customClass="SGHeaderView" customModule="CardGames" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="128"/>
                                 <subviews>
-                                    <button opaque="NO" tag="2" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Qa-ky-QRc">
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Qa-ky-QRc" userLabel="Deck">
                                         <rect key="frame" x="8" y="8" width="83" height="112"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="67.5" id="9n4-kJ-GID"/>
@@ -721,16 +591,6 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                         <state key="normal" title="⚙">
                                             <color key="titleColor" red="0.42745098039215684" green="0.32549019607843138" blue="0.27058823529411763" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="Od2-KF-MGb"/>
-                                            </mask>
-                                        </variation>
-                                        <variation key="heightClass=regular-widthClass=compact">
-                                            <mask key="constraints">
-                                                <include reference="Od2-KF-MGb"/>
-                                            </mask>
-                                        </variation>
                                         <connections>
                                             <segue destination="mh9-fz-JHF" kind="presentation" identifier="gameOptionsSegue" modalTransitionStyle="crossDissolve" id="vdb-JC-5Oz"/>
                                         </connections>
@@ -748,6 +608,7 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                 <color key="backgroundColor" red="0.80392156859999997" green="0.88235294119999996" blue="0.81568627449999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="109" id="1Sj-Sy-lHW"/>
+                                    <constraint firstAttribute="height" constant="198" id="2H0-9a-Wrq"/>
                                     <constraint firstItem="1bd-vb-ntq" firstAttribute="leading" secondItem="8Qa-ky-QRc" secondAttribute="trailing" constant="8" id="5Ds-GV-gO6"/>
                                     <constraint firstItem="8Qa-ky-QRc" firstAttribute="top" secondItem="cOd-Sg-46z" secondAttribute="top" constant="28" id="7Pk-Cz-aPW"/>
                                     <constraint firstItem="8Qa-ky-QRc" firstAttribute="leading" secondItem="cOd-Sg-46z" secondAttribute="leading" constant="50" id="7qV-Hh-G5L"/>
@@ -766,15 +627,11 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                     <constraint firstItem="1bd-vb-ntq" firstAttribute="top" secondItem="8Qa-ky-QRc" secondAttribute="top" id="w5m-69-txn"/>
                                 </constraints>
                                 <variation key="default">
-                                    <mask key="subviews">
-                                        <exclude reference="Z5e-6p-rcb"/>
-                                    </mask>
                                     <mask key="constraints">
                                         <exclude reference="1Sj-Sy-lHW"/>
+                                        <exclude reference="2H0-9a-Wrq"/>
                                         <exclude reference="Wh4-Z2-Dnk"/>
                                         <exclude reference="hZo-0U-sam"/>
-                                        <exclude reference="SZ0-1Y-bh8"/>
-                                        <exclude reference="gKm-zF-Ej9"/>
                                         <exclude reference="7Pk-Cz-aPW"/>
                                         <exclude reference="7qV-Hh-G5L"/>
                                         <exclude reference="LpS-Rs-Pbi"/>
@@ -819,14 +676,9 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact">
-                                    <mask key="subviews">
-                                        <include reference="Z5e-6p-rcb"/>
-                                    </mask>
                                     <mask key="constraints">
                                         <exclude reference="Wh4-Z2-Dnk"/>
                                         <include reference="hZo-0U-sam"/>
-                                        <include reference="SZ0-1Y-bh8"/>
-                                        <include reference="gKm-zF-Ej9"/>
                                         <include reference="IfM-83-1ad"/>
                                         <include reference="VLy-4n-5AR"/>
                                         <include reference="fM2-ly-ux7"/>
@@ -836,11 +688,11 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <mask key="constraints">
+                                        <include reference="2H0-9a-Wrq"/>
                                         <include reference="7qV-Hh-G5L"/>
                                         <include reference="IfM-83-1ad"/>
                                         <exclude reference="LpS-Rs-Pbi"/>
                                         <include reference="VLy-4n-5AR"/>
-                                        <include reference="fM2-ly-ux7"/>
                                         <include reference="duJ-8F-xml"/>
                                         <include reference="w5m-69-txn"/>
                                     </mask>
@@ -873,39 +725,18 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                             <rect key="frame" x="0.0" y="180" width="600" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view tag="1" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Mj-8v-r5v" customClass="SetGameStatusView" customModule="CardGames" customModuleProvider="target">
+                                                <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Mj-8v-r5v" userLabel="Status View" customClass="SGStatusView" customModule="CardGames" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
+                                                    <accessibility key="accessibilityConfiguration" label=""/>
                                                 </view>
                                             </subviews>
                                             <color key="backgroundColor" red="0.79607843140000001" green="0.76078431369999999" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
-                                                <constraint firstItem="8Mj-8v-r5v" firstAttribute="centerX" secondItem="K5x-CO-FQt" secondAttribute="centerX" id="J9V-lC-MTG"/>
-                                                <constraint firstItem="8Mj-8v-r5v" firstAttribute="height" secondItem="K5x-CO-FQt" secondAttribute="height" id="TD5-Pl-QHv"/>
-                                                <constraint firstItem="8Mj-8v-r5v" firstAttribute="centerY" secondItem="K5x-CO-FQt" secondAttribute="centerY" id="UmV-OG-PlT"/>
-                                                <constraint firstItem="8Mj-8v-r5v" firstAttribute="leading" secondItem="K5x-CO-FQt" secondAttribute="leadingMargin" constant="50" id="Zj0-QL-i4W"/>
+                                                <constraint firstItem="8Mj-8v-r5v" firstAttribute="top" secondItem="K5x-CO-FQt" secondAttribute="topMargin" constant="-8" id="51b-15-VbB"/>
+                                                <constraint firstItem="8Mj-8v-r5v" firstAttribute="leading" secondItem="K5x-CO-FQt" secondAttribute="leadingMargin" constant="-8" id="5Yk-X4-m1Y"/>
+                                                <constraint firstAttribute="height" secondItem="8Mj-8v-r5v" secondAttribute="height" id="TD5-Pl-QHv"/>
                                                 <constraint firstItem="8Mj-8v-r5v" firstAttribute="width" secondItem="K5x-CO-FQt" secondAttribute="width" id="gGe-Dx-UlM"/>
                                             </constraints>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="Zj0-QL-i4W"/>
-                                                    <exclude reference="gGe-Dx-UlM"/>
-                                                </mask>
-                                            </variation>
-                                            <variation key="heightClass=compact">
-                                                <mask key="constraints">
-                                                    <include reference="gGe-Dx-UlM"/>
-                                                </mask>
-                                            </variation>
-                                            <variation key="heightClass=regular-widthClass=compact">
-                                                <mask key="constraints">
-                                                    <include reference="gGe-Dx-UlM"/>
-                                                </mask>
-                                            </variation>
-                                            <variation key="heightClass=regular-widthClass=regular">
-                                                <mask key="constraints">
-                                                    <include reference="Zj0-QL-i4W"/>
-                                                </mask>
-                                            </variation>
                                         </collectionReusableView>
                                         <variation key="heightClass=regular" ambiguous="YES" misplaced="YES">
                                             <rect key="frame" x="0.0" y="128" width="600" height="544"/>
@@ -933,6 +764,7 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                     <constraint firstAttribute="width" constant="109" id="0gW-zS-3Ts"/>
                                     <constraint firstAttribute="width" secondItem="3Vs-ZC-WDI" secondAttribute="height" multiplier="8:1" id="1ub-b2-GPY"/>
                                     <constraint firstAttribute="width" secondItem="3Vs-ZC-WDI" secondAttribute="height" multiplier="109:400" id="MPP-UH-oKk"/>
+                                    <constraint firstAttribute="height" constant="96" id="P0p-B8-Rci"/>
                                     <constraint firstAttribute="width" secondItem="3Vs-ZC-WDI" secondAttribute="height" multiplier="6:1" id="xeZ-hY-GNn"/>
                                 </constraints>
                                 <variation key="default">
@@ -940,6 +772,7 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                         <exclude reference="0gW-zS-3Ts"/>
                                         <exclude reference="1ub-b2-GPY"/>
                                         <exclude reference="MPP-UH-oKk"/>
+                                        <exclude reference="P0p-B8-Rci"/>
                                         <exclude reference="xeZ-hY-GNn"/>
                                     </mask>
                                 </variation>
@@ -967,7 +800,8 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <mask key="constraints">
-                                        <include reference="1ub-b2-GPY"/>
+                                        <exclude reference="1ub-b2-GPY"/>
+                                        <include reference="P0p-B8-Rci"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -1112,16 +946,6 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="33"/>
                                         <state key="normal" title="🔙"/>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="kso-AB-3RX"/>
-                                            </mask>
-                                        </variation>
-                                        <variation key="heightClass=regular-widthClass=compact">
-                                            <mask key="constraints">
-                                                <include reference="kso-AB-3RX"/>
-                                            </mask>
-                                        </variation>
                                         <connections>
                                             <segue destination="6eC-z4-STj" kind="unwind" unwindAction="prepareBackUnwind:" id="l0I-Fs-Lup"/>
                                         </connections>
@@ -1133,162 +957,7 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                     <constraint firstAttribute="height" constant="132" id="u4j-Ki-d20"/>
                                     <constraint firstItem="twF-YV-CZ1" firstAttribute="centerY" secondItem="kaE-OT-hLF" secondAttribute="centerY" id="wQK-OK-UMg"/>
                                 </constraints>
-                                <variation key="default">
-                                    <mask key="subviews">
-                                        <exclude reference="twF-YV-CZ1"/>
-                                    </mask>
-                                    <mask key="constraints">
-                                        <exclude reference="u4j-Ki-d20"/>
-                                        <exclude reference="Zt4-0g-CTZ"/>
-                                        <exclude reference="wQK-OK-UMg"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=compact">
-                                    <mask key="subviews">
-                                        <include reference="twF-YV-CZ1"/>
-                                    </mask>
-                                    <mask key="constraints">
-                                        <include reference="u4j-Ki-d20"/>
-                                        <include reference="Zt4-0g-CTZ"/>
-                                        <include reference="wQK-OK-UMg"/>
-                                    </mask>
-                                </variation>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rcR-Nu-Vwb">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="u1d-ou-g8O"/>
-                                </constraints>
-                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="0.0" reuseIdentifier="themeTableRow" id="vqF-iR-Oaq">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="center" tableViewCell="vqF-iR-Oaq" id="DN7-eX-Ivw">
-                                            <rect key="frame" x="0.0" y="0.0" width="240" height="59.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aWW-Ie-sgw">
-                                                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                                    <color key="backgroundColor" red="0.80392156859999997" green="0.88235294119999996" blue="0.81568627449999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="36.5" id="Qft-A2-nLh">
-                                                            <variation key="heightClass=regular-widthClass=compact" constant="40"/>
-                                                        </constraint>
-                                                        <constraint firstAttribute="width" constant="60" id="Yke-m6-Jdk"/>
-                                                    </constraints>
-                                                    <variation key="default">
-                                                        <mask key="constraints">
-                                                            <exclude reference="Qft-A2-nLh"/>
-                                                            <exclude reference="Yke-m6-Jdk"/>
-                                                        </mask>
-                                                    </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
-                                                        <mask key="constraints">
-                                                            <include reference="Qft-A2-nLh"/>
-                                                            <include reference="Yke-m6-Jdk"/>
-                                                        </mask>
-                                                    </variation>
-                                                </view>
-                                                <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lzf-MN-OgM">
-                                                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                                    <color key="backgroundColor" red="0.79708167990000001" green="0.75889349230000003" blue="0.70999322939999998" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="14.5" id="HcO-Px-caV">
-                                                            <variation key="heightClass=regular-widthClass=compact" constant="20"/>
-                                                        </constraint>
-                                                    </constraints>
-                                                    <variation key="default">
-                                                        <mask key="constraints">
-                                                            <exclude reference="HcO-Px-caV"/>
-                                                        </mask>
-                                                    </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
-                                                        <mask key="constraints">
-                                                            <include reference="HcO-Px-caV"/>
-                                                        </mask>
-                                                    </variation>
-                                                </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Theme A" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZG8-nv-sgt">
-                                                    <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="44.5" id="ikR-y9-lJI"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <variation key="default">
-                                                        <mask key="constraints">
-                                                            <exclude reference="ikR-y9-lJI"/>
-                                                        </mask>
-                                                    </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
-                                                        <mask key="constraints">
-                                                            <include reference="ikR-y9-lJI"/>
-                                                        </mask>
-                                                    </variation>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" red="0.92941176469999998" green="0.96947297489999995" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <constraints>
-                                                <constraint firstItem="aWW-Ie-sgw" firstAttribute="leading" secondItem="DN7-eX-Ivw" secondAttribute="leadingMargin" constant="-8" id="1nK-td-Wp8"/>
-                                                <constraint firstItem="lzf-MN-OgM" firstAttribute="leading" secondItem="DN7-eX-Ivw" secondAttribute="leadingMargin" constant="-8" id="3pD-Xv-V4i"/>
-                                                <constraint firstItem="lzf-MN-OgM" firstAttribute="width" secondItem="aWW-Ie-sgw" secondAttribute="width" id="JHF-Eu-5mP"/>
-                                                <constraint firstItem="lzf-MN-OgM" firstAttribute="top" secondItem="aWW-Ie-sgw" secondAttribute="bottom" id="LQJ-zq-kdX">
-                                                    <variation key="heightClass=regular-widthClass=compact" constant="-0.5"/>
-                                                </constraint>
-                                                <constraint firstItem="ZG8-nv-sgt" firstAttribute="leading" secondItem="DN7-eX-Ivw" secondAttribute="leadingMargin" constant="82" id="eig-zE-pH4"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="ZG8-nv-sgt" secondAttribute="bottom" id="es4-27-wqZ"/>
-                                                <constraint firstItem="aWW-Ie-sgw" firstAttribute="top" secondItem="DN7-eX-Ivw" secondAttribute="topMargin" constant="-8" id="fqI-rl-NsC"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="ZG8-nv-sgt" secondAttribute="trailing" id="yRn-6a-SCq"/>
-                                            </constraints>
-                                            <variation key="default">
-                                                <mask key="subviews">
-                                                    <exclude reference="aWW-Ie-sgw"/>
-                                                    <exclude reference="lzf-MN-OgM"/>
-                                                    <exclude reference="ZG8-nv-sgt"/>
-                                                </mask>
-                                                <mask key="constraints">
-                                                    <exclude reference="eig-zE-pH4"/>
-                                                    <exclude reference="es4-27-wqZ"/>
-                                                    <exclude reference="yRn-6a-SCq"/>
-                                                    <exclude reference="1nK-td-Wp8"/>
-                                                    <exclude reference="fqI-rl-NsC"/>
-                                                    <exclude reference="3pD-Xv-V4i"/>
-                                                    <exclude reference="JHF-Eu-5mP"/>
-                                                    <exclude reference="LQJ-zq-kdX"/>
-                                                </mask>
-                                            </variation>
-                                            <variation key="heightClass=regular-widthClass=compact">
-                                                <mask key="subviews">
-                                                    <include reference="aWW-Ie-sgw"/>
-                                                    <include reference="lzf-MN-OgM"/>
-                                                    <include reference="ZG8-nv-sgt"/>
-                                                </mask>
-                                                <mask key="constraints">
-                                                    <include reference="eig-zE-pH4"/>
-                                                    <include reference="es4-27-wqZ"/>
-                                                    <include reference="yRn-6a-SCq"/>
-                                                    <include reference="1nK-td-Wp8"/>
-                                                    <include reference="fqI-rl-NsC"/>
-                                                    <include reference="3pD-Xv-V4i"/>
-                                                    <include reference="JHF-Eu-5mP"/>
-                                                    <include reference="LQJ-zq-kdX"/>
-                                                </mask>
-                                            </variation>
-                                        </tableViewCellContentView>
-                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                    </tableViewCell>
-                                </prototypes>
-                                <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
-                                    <rect key="frame" x="71" y="203" width="259" height="91"/>
-                                </variation>
-                                <connections>
-                                    <outlet property="dataSource" destination="zkv-GB-VjX" id="Ah2-01-ypU"/>
-                                    <outlet property="delegate" destination="luK-Cw-9qx" id="BIe-23-blZ"/>
-                                </connections>
-                            </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chW-hm-XIU" userLabel="Save Btn">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <color key="backgroundColor" red="0.80392156859999997" green="0.88235294119999996" blue="0.81568627449999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1299,22 +968,93 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                 <state key="normal" title="Save">
                                     <color key="titleColor" red="0.42706266529999998" green="0.32570422939999999" blue="0.2707932394" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="Rbj-rt-33B"/>
-                                        <exclude reference="ZfC-bK-IYC"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=compact">
-                                    <mask key="constraints">
-                                        <include reference="Rbj-rt-33B"/>
-                                        <include reference="ZfC-bK-IYC"/>
-                                    </mask>
-                                </variation>
                                 <connections>
                                     <segue destination="6eC-z4-STj" kind="unwind" unwindAction="prepareForThemeChange:" id="w9M-IE-ReU"/>
                                 </connections>
                             </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rcR-Nu-Vwb">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="360" id="7Hg-kO-WTC"/>
+                                    <constraint firstAttribute="height" constant="90" id="u1d-ou-g8O"/>
+                                </constraints>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="0.0" reuseIdentifier="themeTableRow" id="vqF-iR-Oaq">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="center" tableViewCell="vqF-iR-Oaq" id="DN7-eX-Ivw">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="59.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aWW-Ie-sgw" userLabel="thumb1">
+                                                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                                    <color key="backgroundColor" red="0.80392156859999997" green="0.88235294119999996" blue="0.81568627449999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="Qft-A2-nLh"/>
+                                                        <constraint firstAttribute="width" constant="60" id="Yke-m6-Jdk"/>
+                                                    </constraints>
+                                                </view>
+                                                <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lzf-MN-OgM" userLabel="thumb2">
+                                                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                                    <color key="backgroundColor" red="0.79708167990000001" green="0.75889349230000003" blue="0.70999322939999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="HcO-Px-caV"/>
+                                                    </constraints>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Theme A" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZG8-nv-sgt">
+                                                    <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="44.5" id="ikR-y9-lJI"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.92941176469999998" green="0.96947297489999995" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstItem="aWW-Ie-sgw" firstAttribute="leading" secondItem="DN7-eX-Ivw" secondAttribute="leadingMargin" constant="-8" id="1nK-td-Wp8"/>
+                                                <constraint firstItem="lzf-MN-OgM" firstAttribute="top" secondItem="aWW-Ie-sgw" secondAttribute="bottom" id="2Cd-yW-Pye"/>
+                                                <constraint firstItem="lzf-MN-OgM" firstAttribute="leading" secondItem="aWW-Ie-sgw" secondAttribute="leading" id="EWk-aI-5NI"/>
+                                                <constraint firstItem="ZG8-nv-sgt" firstAttribute="leading" secondItem="DN7-eX-Ivw" secondAttribute="leadingMargin" constant="82" id="eig-zE-pH4"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="ZG8-nv-sgt" secondAttribute="bottom" id="es4-27-wqZ"/>
+                                                <constraint firstItem="aWW-Ie-sgw" firstAttribute="top" secondItem="DN7-eX-Ivw" secondAttribute="topMargin" constant="-8" id="fqI-rl-NsC"/>
+                                                <constraint firstItem="lzf-MN-OgM" firstAttribute="width" secondItem="aWW-Ie-sgw" secondAttribute="width" id="sP1-9m-b5R"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="ZG8-nv-sgt" secondAttribute="trailing" id="yRn-6a-SCq"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="EWk-aI-5NI"/>
+                                                    <exclude reference="sP1-9m-b5R"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="heightClass=regular-widthClass=regular">
+                                                <mask key="constraints">
+                                                    <include reference="EWk-aI-5NI"/>
+                                                    <include reference="sP1-9m-b5R"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    </tableViewCell>
+                                </prototypes>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="7Hg-kO-WTC"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <mask key="constraints">
+                                        <include reference="7Hg-kO-WTC"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <outlet property="dataSource" destination="zkv-GB-VjX" id="Ah2-01-ypU"/>
+                                    <outlet property="delegate" destination="luK-Cw-9qx" id="BIe-23-blZ"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.92941176469999998" green="0.96947297489999995" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -1336,44 +1076,18 @@ With a keen eye, find as many sets as quickly as possible.</string>
                             </constraint>
                         </constraints>
                         <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="kaE-OT-hLF"/>
-                                <exclude reference="rcR-Nu-Vwb"/>
-                                <exclude reference="chW-hm-XIU"/>
-                            </mask>
                             <mask key="constraints">
-                                <exclude reference="Iwy-1h-UmX"/>
                                 <exclude reference="9cS-YF-Kcr"/>
-                                <exclude reference="DNG-tw-y8I"/>
-                                <exclude reference="1HG-qb-NO5"/>
-                                <exclude reference="VjW-OB-hgz"/>
-                                <exclude reference="rdC-nn-SvM"/>
                                 <exclude reference="4P1-bq-Z9D"/>
-                                <exclude reference="9qv-Dy-9gL"/>
-                                <exclude reference="GFA-Jc-Nbp"/>
                                 <exclude reference="sJx-As-yB9"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
-                            <mask key="subviews">
-                                <include reference="kaE-OT-hLF"/>
-                                <include reference="rcR-Nu-Vwb"/>
-                                <include reference="chW-hm-XIU"/>
-                            </mask>
                             <mask key="constraints">
-                                <include reference="Iwy-1h-UmX"/>
-                                <include reference="DNG-tw-y8I"/>
-                                <include reference="1HG-qb-NO5"/>
-                                <include reference="VjW-OB-hgz"/>
-                                <include reference="rdC-nn-SvM"/>
                                 <include reference="4P1-bq-Z9D"/>
-                                <include reference="9qv-Dy-9gL"/>
-                                <include reference="GFA-Jc-Nbp"/>
                             </mask>
                         </variation>
                     </view>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="400" height="800"/>
                     <connections>
                         <outlet property="backBtn" destination="twF-YV-CZ1" id="nSW-51-TPX"/>
                         <outlet property="headerView" destination="kaE-OT-hLF" id="i7G-hr-6gP"/>
@@ -1386,7 +1100,7 @@ With a keen eye, find as many sets as quickly as possible.</string>
                 <customObject id="zkv-GB-VjX" customClass="ThemeTableDataSource" customModule="CardGames" customModuleProvider="target"/>
                 <exit id="6eC-z4-STj" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1153.5" y="187.5"/>
+            <point key="canvasLocation" x="1259" y="496"/>
         </scene>
     </scenes>
 </document>
