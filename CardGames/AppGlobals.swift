@@ -24,3 +24,5 @@ var screenIsPortrait: Bool {
 let screenScale = UIScreen.mainScreen().scale
 
 let deviceIsMobile = (minScreenDim < 415)
+
+var gameIsActive = false

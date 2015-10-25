@@ -15,8 +15,8 @@ class SGHeaderView: UIView {
   let gearTag: Int   = 3
   
   lazy var titleLabel: UILabel = {
-    return self.viewWithTag(self.titleTag)! as! UILabel
-    }()
+    return (self.viewWithTag(self.titleTag)! as! UIButton).titleLabel!
+  }()
   
   lazy var deckButton: UIButton = {
     return self.viewWithTag(self.deckTag)! as! UIButton

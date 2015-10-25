@@ -45,6 +45,7 @@ class SetGameController: UIViewController, StyleGuideDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    gameIsActive = true
     collectionView!.allowsMultipleSelection = true
   }
   
@@ -79,6 +80,7 @@ class SetGameController: UIViewController, StyleGuideDelegate {
       
       if (sid == "gameSettingSegue") {
         gameSettings.options = game.options
+      } else if (sid == "logoSegue") {
       }
     }
   }

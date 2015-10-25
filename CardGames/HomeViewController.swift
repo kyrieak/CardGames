@@ -32,4 +32,13 @@ class HomeViewController: UIViewController {
   func applyStyleToViews() {
     //
   }
+  
+  
+  @IBAction func respondToSwipe(gesture: UISwipeGestureRecognizer) {
+    NSLog("responding to swipe")
+    
+    if (gameIsActive) {
+      dismissViewControllerAnimated(true, completion: nil)
+    }
+  }
 }
