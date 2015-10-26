@@ -76,9 +76,12 @@ struct Theme {
   static func sea() -> Theme {
     var theme = Theme(name: "Down by the Sea")
     
-    theme.bgColor1   = UIColor(red: 0.74, green: 0.95, blue: 0.93, alpha: 1.0)
-    theme.bgColor2   = theme.bgColor1.getShade(-0.1)
-    theme.bgColor3   = UIColor(red: 0.80, green: 0.76, blue: 0.73, alpha: 1.0)
+//    theme.bgColor1   = UIColor(red: 0.74, green: 0.95, blue: 0.93, alpha: 1.0)
+    theme.bgColor1   = UIColor(red: 0.79, green: 0.90, blue: 0.88, alpha: 1.0)
+    theme.bgColor2   = UIColor(red: 0.68, green: 0.80, blue: 0.80, alpha: 1.0)
+//    theme.bgColor2   = theme.bgColor1.getShade(-0.1)
+//    theme.bgColor3   = UIColor(red: 0.80, green: 0.76, blue: 0.73, alpha: 1.0)
+    theme.bgColor3   = UIColor(red: 0.98, green: 0.80, blue: 0.66, alpha: 1.0)
     theme.fontColor2 = theme.bgColor1.getShade(-0.4)
     
     return theme

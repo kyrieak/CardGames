@@ -13,6 +13,7 @@ class SGFooterView: UIView {
   var pBtnSize = CGSize(width: 88, height: 44)
   var btnTarget: SetGameController?
   var btnAction = Selector("makeMoveAction:")
+  var frameInset: CGFloat = 0
 
   var playerBtns: [UIButton] {
     return self.subviews as! [UIButton]
@@ -26,20 +27,33 @@ class SGFooterView: UIView {
   
   private func setBtnSize(numPlayers: Int) {
     if (self.frame.width > self.frame.height) {
+      frameInset = frame.height * 0.1
+      
       setBtnSizeForHorizontalLayout(numPlayers)
     } else {
+      frameInset = frame.width * 0.1
+
       setBtnSizeForVerticalLayout(numPlayers)
     }
   }
   
   private func setBtnSizeForHorizontalLayout(numPlayers: Int) {
+    pBtnSize.height = (frame.height * 0.8)
+    
     if (numPlayers > 1) {
-      pBtnSize.width = (self.frame.width / CGFloat(numPlayers))
+      let combinedWidth = self.frame.width - (CGFloat(numPlayers + 1) * frameInset)
+
+      pBtnSize.width = (combinedWidth / CGFloat(numPlayers))
     } else {
       pBtnSize.width = 160
     }
     
     pBtnSize.height = 44
+
+    if (minScreenDim > 500) {
+      NSLog("wat")
+      pBtnSize.height = (frame.height * 0.8)
+    }
   }
   
   private func setBtnSizeForVerticalLayout(numPlayers: Int) {
@@ -75,7 +89,8 @@ class SGFooterView: UIView {
   
   func addActiveBorder(sender: UIButton) {
     sender.layer.borderWidth = CGFloat(2)
-    sender.layer.borderColor = UIColor.blueColor().CGColor
+    sender.layer.borderColor = styleGuide.theme.bgColor2.getShade(-0.2).CGColor
+//    sender.layer.borderColor = UIColor.blueColor().CGColor
   }
   
   func layoutPlayerBtns(players: [Player]) {
@@ -120,18 +135,21 @@ class SGFooterView: UIView {
   }
   
   private func layoutHorizontally() {
-    var origin = CGPointZero
+    var origin = CGPoint(x: frameInset, y: frameInset)
     
     if (subviews.count == 1) {
       let btn = subviews.first!
       
       btn.frame.size = pBtnSize
+      btn.frame.origin.y = origin.y
       btn.frame.origin.x = self.bounds.midX - btn.bounds.midX
     } else {
+      let spacing = frameInset
+
       for btn in subviews {
         btn.frame.origin = origin
         btn.frame.size = pBtnSize
-        origin.x = btn.frame.maxX
+        origin.x = btn.frame.maxX + spacing
       }
     }
   }

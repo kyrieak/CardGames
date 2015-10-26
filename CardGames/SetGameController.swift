@@ -121,6 +121,11 @@ class SetGameController: UIViewController, StyleGuideDelegate {
   @IBAction func prepareForThemeChange(segue: UIStoryboardSegue) {
     if (themeID != styleGuide.themeID) {
       applyStyleToViews()
+      
+      for path in collectionView.indexPathsForVisibleItems() {
+        let cell = collectionView.cellForItemAtIndexPath(path)
+        cell?.selectedBackgroundView!.layer.borderColor = styleGuide.theme.bgColor3.CGColor
+      }
     }
   }
   

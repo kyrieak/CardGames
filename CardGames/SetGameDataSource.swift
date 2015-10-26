@@ -100,7 +100,8 @@ class SetGameDataSource: NSObject, UICollectionViewDataSource {
     let selectedView = cellBgView(card, withFrame: withFrame)
     
     selectedView.layer.borderWidth = 2
-    selectedView.layer.borderColor = styleGuide.theme.bgColor1.getShade(-0.15).CGColor
+    selectedView.layer.borderColor = styleGuide.theme.bgColor3.CGColor
+//    selectedView.layer.borderColor = styleGuide.theme.bgColor1.getShade(-0.15).CGColor
 //    selectedView.layer.borderColor = UIColor.blueColor().CGColor
     
     return selectedView

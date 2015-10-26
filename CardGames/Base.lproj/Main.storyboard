@@ -91,8 +91,11 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                         <fontDescription key="fontDescription" name="Palatino-BoldItalic" family="Palatino" pointSize="47"/>
                                         <color key="textColor" red="0.60784313729999995" green="0.73333333329999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" name="Palatino-BoldItalic" family="Palatino" pointSize="64"/>
+                                        </variation>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sBc-73-0vc">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sBc-73-0vc">
                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                         <fontDescription key="fontDescription" name="Palatino-BoldItalic" family="Palatino" pointSize="20"/>
                                         <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="4"/>
@@ -169,14 +172,13 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                 <constraints>
                                     <constraint firstItem="rmQ-fn-jjX" firstAttribute="centerX" secondItem="ACB-pd-VPL" secondAttribute="centerX" id="1eI-VX-FJz"/>
                                     <constraint firstItem="rmQ-fn-jjX" firstAttribute="top" secondItem="C0L-ll-zmJ" secondAttribute="bottom" constant="35" id="BcO-Cb-8cK"/>
-                                    <constraint firstAttribute="width" constant="336" id="CXQ-pG-KIx"/>
                                     <constraint firstItem="C0L-ll-zmJ" firstAttribute="top" secondItem="oE2-Gt-4Op" secondAttribute="bottom" constant="27" id="Gzd-vp-v3j"/>
                                     <constraint firstAttribute="bottom" secondItem="ELA-KI-XLG" secondAttribute="bottom" constant="19" id="HJZ-w9-7vh"/>
                                     <constraint firstItem="oE2-Gt-4Op" firstAttribute="top" secondItem="ACB-pd-VPL" secondAttribute="top" constant="38" id="Tdr-Dz-ul8"/>
                                     <constraint firstItem="oE2-Gt-4Op" firstAttribute="centerX" secondItem="ACB-pd-VPL" secondAttribute="centerX" id="Ybg-Ds-MYh"/>
                                     <constraint firstItem="C0L-ll-zmJ" firstAttribute="centerX" secondItem="ACB-pd-VPL" secondAttribute="centerX" id="g3h-3x-njN"/>
                                     <constraint firstItem="ELA-KI-XLG" firstAttribute="centerX" secondItem="ACB-pd-VPL" secondAttribute="centerX" id="gyt-wd-FqB"/>
-                                    <constraint firstAttribute="height" constant="340" id="pbG-aa-Ayq"/>
+                                    <constraint firstAttribute="width" secondItem="ACB-pd-VPL" secondAttribute="height" multiplier="11:12" id="hCe-6v-Hs4"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W8H-t9-iCb" userLabel="Footer">
@@ -202,14 +204,15 @@ With a keen eye, find as many sets as quickly as possible.</string>
                         <constraints>
                             <constraint firstItem="W8H-t9-iCb" firstAttribute="leading" secondItem="BSz-Ka-r9e" secondAttribute="leadingMargin" constant="-20" id="3va-qJ-lh5"/>
                             <constraint firstAttribute="trailingMargin" secondItem="yck-ie-QAp" secondAttribute="trailing" constant="-20" id="BK4-7U-sQZ"/>
-                            <constraint firstItem="W8H-t9-iCb" firstAttribute="top" secondItem="ACB-pd-VPL" secondAttribute="bottom" constant="110" id="DhL-oq-UXq"/>
+                            <constraint firstItem="ACB-pd-VPL" firstAttribute="height" secondItem="BSz-Ka-r9e" secondAttribute="height" multiplier="9:20" id="Jbh-pf-hWT"/>
                             <constraint firstItem="ACB-pd-VPL" firstAttribute="centerX" secondItem="BSz-Ka-r9e" secondAttribute="centerX" id="K4L-zu-6hV"/>
-                            <constraint firstItem="ACB-pd-VPL" firstAttribute="centerY" secondItem="BSz-Ka-r9e" secondAttribute="centerY" id="Oa4-7c-TfX"/>
                             <constraint firstAttribute="trailingMargin" secondItem="W8H-t9-iCb" secondAttribute="trailing" constant="-20" id="Zrv-m1-vaX"/>
                             <constraint firstItem="dkr-8o-1Sl" firstAttribute="top" secondItem="W8H-t9-iCb" secondAttribute="bottom" id="eAU-Mc-Aro"/>
                             <constraint firstItem="yck-ie-QAp" firstAttribute="leading" secondItem="BSz-Ka-r9e" secondAttribute="leadingMargin" constant="-20" id="fBM-dH-LyC"/>
                             <constraint firstItem="ACB-pd-VPL" firstAttribute="top" secondItem="yck-ie-QAp" secondAttribute="bottom" constant="60" id="hly-hd-XV6"/>
+                            <constraint firstItem="W8H-t9-iCb" firstAttribute="height" secondItem="BSz-Ka-r9e" secondAttribute="height" multiplier="1:8" id="nhr-ed-8HL"/>
                             <constraint firstItem="yck-ie-QAp" firstAttribute="top" secondItem="SnM-TY-aEw" secondAttribute="bottom" constant="-20" id="oNA-pv-udv"/>
+                            <constraint firstItem="yck-ie-QAp" firstAttribute="height" secondItem="BSz-Ka-r9e" secondAttribute="height" multiplier="1:5" id="qXT-iu-vcP"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="4BO-Li-LyG" appends="YES" id="wey-G1-7uc"/>
@@ -560,6 +563,9 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                         </variation>
                                         <variation key="heightClass=compact">
                                             <fontDescription key="fontDescription" name="Palatino-BoldItalic" family="Palatino" pointSize="38"/>
+                                        </variation>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" name="Palatino-BoldItalic" family="Palatino" pointSize="64"/>
                                         </variation>
                                         <connections>
                                             <segue destination="H5D-No-5o1" kind="presentation" identifier="logoSegue" modalTransitionStyle="flipHorizontal" id="D91-a5-HUU"/>
@@ -927,6 +933,9 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                                     <variation key="heightClass=compact" misplaced="YES">
                                                         <rect key="frame" x="88" y="7" width="144" height="44.5"/>
                                                     </variation>
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="88" y="7" width="144" height="44.5"/>
+                                                    </variation>
                                                     <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
                                                         <rect key="frame" x="90" y="7" width="142" height="44.5"/>
                                                     </variation>
@@ -984,7 +993,7 @@ With a keen eye, find as many sets as quickly as possible.</string>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="iJ9-8Q-Y9b"/>
         <segue reference="vdb-JC-5Oz"/>
+        <segue reference="iJ9-8Q-Y9b"/>
     </inferredMetricsTieBreakers>
 </document>

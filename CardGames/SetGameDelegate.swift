@@ -24,7 +24,7 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
       
       if (elementKind == UICollectionElementKindSectionFooter) {
         statusView = view.viewWithTag(statusViewTag) as? SGStatusView
-        
+        statusView?.adjustHeight(view.frame.height)
 //        if (!deviceIsMobile) {
 //          view.frame.size.height = 70
 //          statusView?.adjustHeight(70)
@@ -83,6 +83,8 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
   func collectionView(collectionView: UICollectionView,
     shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
       let game = getGame(collectionView)
+//      let cell = collectionView.cellForItemAtIndexPath(indexPath)
+//      cell?.selectedBackgroundView!.layer.borderColor = styleGuide.theme.bgColor3.CGColor
 
       if (selectIdxPaths.count > 2) {
         return false

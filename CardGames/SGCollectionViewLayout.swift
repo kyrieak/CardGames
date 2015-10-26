@@ -38,8 +38,8 @@ class SGCollectionViewLayout: UICollectionViewFlowLayout {
       w = minScreenDim * 0.193
       h = minScreenDim * 0.254
     } else {
-      w = minScreenDim * 0.156
-      h = minScreenDim * 0.208
+      w = minScreenDim * 0.15
+      h = minScreenDim * 0.2
     }
     
     self.itemSize = CGSize(width: w, height: h)
@@ -54,7 +54,7 @@ class SGCollectionViewLayout: UICollectionViewFlowLayout {
         self.sectionInset = UIEdgeInsets(tb: 10, lr: 8)
       }
     } else {
-      self.sectionInset = UIEdgeInsets(tb: 20, lr: 50)
+      self.sectionInset = UIEdgeInsets(tb: 15, lr: 50)
     }
   }
   
@@ -70,7 +70,7 @@ class SGCollectionViewLayout: UICollectionViewFlowLayout {
     if (deviceIsMobile) {
       self.minimumLineSpacing = ((minScreenDim < 400) ? 8 : 12)
     } else {
-      self.minimumLineSpacing = CGFloat(50)
+      self.minimumLineSpacing = CGFloat(10)
     }
   }
   
@@ -78,7 +78,7 @@ class SGCollectionViewLayout: UICollectionViewFlowLayout {
     if (deviceIsMobile) {
       self.footerReferenceSize.height = ((minScreenDim > 400) ? 50 : 40)
     } else {
-      self.footerReferenceSize.height = 70
+      self.footerReferenceSize.height = 60
     }
   }
 }
