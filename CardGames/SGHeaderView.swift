@@ -14,8 +14,9 @@ class SGHeaderView: UIView {
   let deckTag: Int   = 2
   let gearTag: Int   = 3
   
-  lazy var titleLabel: UILabel = {
-    return (self.viewWithTag(self.titleTag)! as! UIButton).titleLabel!
+  
+  lazy var logoButton: UIButton = {
+    return (self.viewWithTag(self.titleTag)! as! UIButton)
   }()
   
   lazy var deckButton: UIButton = {
@@ -24,17 +25,9 @@ class SGHeaderView: UIView {
   
   lazy var gearButton: UIButton = {
     return self.viewWithTag(self.gearTag)! as! UIButton
-  }()
-  
-  required init?(coder aDecoder: NSCoder) {
-    super.init(coder: aDecoder)
-    
-    if (screenIsPortrait && (minScreenDim > 376) && (minScreenDim < 415)) {
-      for c in constraints {
-        if (c.firstAttribute == NSLayoutAttribute.Height) {
-          c.constant = CGFloat(132 + 50)
-        }
-      }
-    }
+  }()  
+
+  var titleLabel: UILabel {
+    return logoButton.titleLabel!
   }
 }

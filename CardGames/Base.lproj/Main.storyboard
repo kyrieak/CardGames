@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -91,10 +92,25 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                         <color key="textColor" red="0.60784313729999995" green="0.73333333329999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sBc-73-0vc">
+                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                        <fontDescription key="fontDescription" name="Palatino-BoldItalic" family="Palatino" pointSize="20"/>
+                                        <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="4"/>
+                                        <size key="titleShadowOffset" width="0.5" height="0.5"/>
+                                        <state key="normal" title="Return to Game ➡︎">
+                                            <color key="titleColor" red="0.58039215690000001" green="0.70980392160000005" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" red="0.50980392156862742" green="0.63921568627450975" blue="0.49803921568627452" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="returnToGame" destination="H5D-No-5o1" eventType="touchUpInside" id="Cug-G7-9md"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.80392156859999997" green="0.88235294119999996" blue="0.81568627449999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="59A-Ld-fUc" firstAttribute="centerX" secondItem="yck-ie-QAp" secondAttribute="centerX" id="0aB-XA-Bac"/>
+                                    <constraint firstAttribute="bottom" secondItem="sBc-73-0vc" secondAttribute="bottom" constant="8" id="O9V-bf-dm3"/>
+                                    <constraint firstAttribute="trailing" secondItem="sBc-73-0vc" secondAttribute="trailing" constant="8" id="Rl3-Oh-ElI"/>
                                     <constraint firstItem="59A-Ld-fUc" firstAttribute="centerY" secondItem="yck-ie-QAp" secondAttribute="centerY" id="oBd-zb-cIJ"/>
                                 </constraints>
                             </view>
@@ -200,6 +216,7 @@ With a keen eye, find as many sets as quickly as possible.</string>
                         </connections>
                     </view>
                     <connections>
+                        <outlet property="backButton" destination="sBc-73-0vc" id="QaM-lZ-qKy"/>
                         <outlet property="playBtn" destination="ELA-KI-XLG" id="duH-s9-Cok"/>
                     </connections>
                 </viewController>
@@ -526,10 +543,32 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                             <action selector="tapDeckAction:" destination="kmm-mS-WAn" eventType="touchUpInside" id="kVK-Et-txa"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="right" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iPS-gP-Nre">
+                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="43" id="x4e-x7-NhR"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Palatino-BoldItalic" family="Palatino" pointSize="46"/>
+                                        <inset key="contentEdgeInsets" minX="0.0" minY="-5" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="Seta3">
+                                            <color key="titleColor" red="0.60784313729999995" green="0.73333333329999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="x4e-x7-NhR"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="heightClass=compact">
+                                            <fontDescription key="fontDescription" name="Palatino-BoldItalic" family="Palatino" pointSize="38"/>
+                                        </variation>
+                                        <connections>
+                                            <segue destination="H5D-No-5o1" kind="presentation" identifier="logoSegue" modalTransitionStyle="flipHorizontal" id="D91-a5-HUU"/>
+                                        </connections>
+                                    </button>
                                     <button opaque="NO" tag="3" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z5e-6p-rcb">
                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="35" id="Od2-KF-MGb"/>
+                                            <constraint firstAttribute="height" constant="26" id="Od2-KF-MGb"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="31"/>
                                         <state key="normal" title="⚙">
@@ -539,50 +578,43 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                             <segue destination="mh9-fz-JHF" kind="presentation" identifier="gameOptionsSegue" modalTransitionStyle="crossDissolve" id="vdb-JC-5Oz"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="1" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iPS-gP-Nre">
-                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="43" id="x4e-x7-NhR"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Palatino-BoldItalic" family="Palatino" pointSize="46"/>
-                                        <state key="normal" title="Seta3">
-                                            <color key="titleColor" red="0.60784313729999995" green="0.73333333329999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="H5D-No-5o1" kind="presentation" identifier="logoSegue" modalTransitionStyle="flipHorizontal" id="D91-a5-HUU"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.80392156859999997" green="0.88235294119999996" blue="0.81568627449999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="109" id="1Sj-Sy-lHW"/>
-                                    <constraint firstAttribute="trailing" secondItem="iPS-gP-Nre" secondAttribute="trailing" constant="16" id="9uR-a0-V3o"/>
+                                    <constraint firstAttribute="trailing" secondItem="iPS-gP-Nre" secondAttribute="trailing" constant="16" identifier="sectionInset" id="9uR-a0-V3o">
+                                        <variation key="heightClass=compact" constant="8"/>
+                                    </constraint>
                                     <constraint firstItem="iPS-gP-Nre" firstAttribute="top" secondItem="8Qa-ky-QRc" secondAttribute="top" id="JfJ-hh-LyV"/>
                                     <constraint firstAttribute="bottom" secondItem="8Qa-ky-QRc" secondAttribute="bottom" constant="8" id="VLy-4n-5AR"/>
                                     <constraint firstItem="Z5e-6p-rcb" firstAttribute="trailing" secondItem="iPS-gP-Nre" secondAttribute="trailing" id="ayY-QG-cjf"/>
-                                    <constraint firstItem="8Qa-ky-QRc" firstAttribute="leading" secondItem="cOd-Sg-46z" secondAttribute="leading" constant="8" id="fM2-ly-ux7">
-                                        <variation key="heightClass=regular-widthClass=compact" constant="16"/>
+                                    <constraint firstItem="8Qa-ky-QRc" firstAttribute="leading" secondItem="cOd-Sg-46z" secondAttribute="leading" constant="16" identifier="sectionInset" id="fM2-ly-ux7">
                                         <variation key="heightClass=regular-widthClass=regular" constant="50"/>
                                     </constraint>
                                     <constraint firstAttribute="bottom" secondItem="Z5e-6p-rcb" secondAttribute="bottom" constant="8" id="gKm-zF-Ej9"/>
                                     <constraint firstItem="8Qa-ky-QRc" firstAttribute="centerX" secondItem="cOd-Sg-46z" secondAttribute="centerX" id="gqM-3J-Aig"/>
-                                    <constraint firstAttribute="height" constant="130" id="hZo-0U-sam">
-                                        <variation key="heightClass=regular-widthClass=regular" constant="200"/>
-                                    </constraint>
+                                    <constraint firstAttribute="bottom" secondItem="iPS-gP-Nre" secondAttribute="bottom" constant="8" id="jTS-Ne-1PG"/>
+                                    <constraint firstItem="Z5e-6p-rcb" firstAttribute="leading" secondItem="iPS-gP-Nre" secondAttribute="leading" id="kWW-iR-oI7"/>
                                     <constraint firstItem="8Qa-ky-QRc" firstAttribute="top" secondItem="cOd-Sg-46z" secondAttribute="top" constant="12" id="nXk-hX-NIe">
                                         <variation key="heightClass=compact-widthClass=regular" constant="16"/>
                                     </constraint>
+                                    <constraint firstItem="iPS-gP-Nre" firstAttribute="centerX" secondItem="cOd-Sg-46z" secondAttribute="centerX" id="wWi-th-KwU"/>
+                                    <constraint firstItem="Z5e-6p-rcb" firstAttribute="top" secondItem="8Qa-ky-QRc" secondAttribute="bottom" constant="8" id="zrx-Lb-JVv"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="1Sj-Sy-lHW"/>
-                                        <exclude reference="hZo-0U-sam"/>
                                         <exclude reference="VLy-4n-5AR"/>
                                         <exclude reference="fM2-ly-ux7"/>
                                         <exclude reference="gqM-3J-Aig"/>
                                         <exclude reference="nXk-hX-NIe"/>
+                                        <exclude reference="ayY-QG-cjf"/>
                                         <exclude reference="gKm-zF-Ej9"/>
+                                        <exclude reference="kWW-iR-oI7"/>
+                                        <exclude reference="zrx-Lb-JVv"/>
                                         <exclude reference="JfJ-hh-LyV"/>
+                                        <exclude reference="jTS-Ne-1PG"/>
+                                        <exclude reference="wWi-th-KwU"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=compact">
@@ -590,11 +622,14 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                         <include reference="1Sj-Sy-lHW"/>
                                         <include reference="gqM-3J-Aig"/>
                                         <include reference="nXk-hX-NIe"/>
+                                        <include reference="kWW-iR-oI7"/>
+                                        <include reference="zrx-Lb-JVv"/>
+                                        <include reference="jTS-Ne-1PG"/>
+                                        <include reference="wWi-th-KwU"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular">
                                     <mask key="constraints">
-                                        <include reference="hZo-0U-sam"/>
                                         <include reference="VLy-4n-5AR"/>
                                         <include reference="fM2-ly-ux7"/>
                                         <include reference="ayY-QG-cjf"/>
@@ -636,6 +671,9 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                                 <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Mj-8v-r5v" userLabel="Status View" customClass="SGStatusView" customModule="CardGames" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
                                                     <accessibility key="accessibilityConfiguration" label=""/>
+                                                    <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="0.0" y="0.0" width="400" height="50"/>
+                                                    </variation>
                                                 </view>
                                             </subviews>
                                             <color key="backgroundColor" red="0.79607843140000001" green="0.76078431369999999" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
@@ -670,16 +708,12 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                 <color key="backgroundColor" red="0.80392156859999997" green="0.88235294119999996" blue="0.81568627449999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="109" id="0gW-zS-3Ts"/>
-                                    <constraint firstAttribute="width" secondItem="3Vs-ZC-WDI" secondAttribute="height" multiplier="8:1" id="1ub-b2-GPY"/>
-                                    <constraint firstAttribute="width" secondItem="3Vs-ZC-WDI" secondAttribute="height" multiplier="109:400" id="MPP-UH-oKk"/>
                                     <constraint firstAttribute="height" constant="96" id="P0p-B8-Rci"/>
                                     <constraint firstAttribute="width" secondItem="3Vs-ZC-WDI" secondAttribute="height" multiplier="6:1" id="xeZ-hY-GNn"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="0gW-zS-3Ts"/>
-                                        <exclude reference="1ub-b2-GPY"/>
-                                        <exclude reference="MPP-UH-oKk"/>
                                         <exclude reference="P0p-B8-Rci"/>
                                         <exclude reference="xeZ-hY-GNn"/>
                                     </mask>
@@ -687,7 +721,6 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                 <variation key="heightClass=compact">
                                     <mask key="constraints">
                                         <include reference="0gW-zS-3Ts"/>
-                                        <exclude reference="MPP-UH-oKk"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular" ambiguous="YES" misplaced="YES">
@@ -696,11 +729,6 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                 <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
                                     <rect key="frame" x="0.0" y="514" width="400" height="85.5"/>
                                 </variation>
-                                <variation key="heightClass=compact-widthClass=regular">
-                                    <mask key="constraints">
-                                        <include reference="0gW-zS-3Ts"/>
-                                    </mask>
-                                </variation>
                                 <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="xeZ-hY-GNn"/>
@@ -708,7 +736,6 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <mask key="constraints">
-                                        <exclude reference="1ub-b2-GPY"/>
                                         <include reference="P0p-B8-Rci"/>
                                     </mask>
                                 </variation>
@@ -724,6 +751,7 @@ With a keen eye, find as many sets as quickly as possible.</string>
                             <constraint firstItem="uce-8Y-d4b" firstAttribute="centerY" secondItem="Bjj-2N-brf" secondAttribute="centerY" id="94F-B0-adM"/>
                             <constraint firstAttribute="trailingMargin" secondItem="3Vs-ZC-WDI" secondAttribute="trailing" constant="-20" id="BlZ-oT-AMP"/>
                             <constraint firstItem="cOd-Sg-46z" firstAttribute="leading" secondItem="Bjj-2N-brf" secondAttribute="leadingMargin" constant="-20" id="C4E-Mf-Loz" userLabel="Header View.leading = super.leadingMargin - 20"/>
+                            <constraint firstItem="cOd-Sg-46z" firstAttribute="height" secondItem="Bjj-2N-brf" secondAttribute="height" multiplier="4:21" id="CCB-Mj-PPT"/>
                             <constraint firstItem="uce-8Y-d4b" firstAttribute="centerX" secondItem="Bjj-2N-brf" secondAttribute="centerX" id="DZA-W0-ZzX"/>
                             <constraint firstItem="cOd-Sg-46z" firstAttribute="centerX" secondItem="Bjj-2N-brf" secondAttribute="centerX" id="ECQ-aD-CIP"/>
                             <constraint firstItem="uce-8Y-d4b" firstAttribute="leading" secondItem="cOd-Sg-46z" secondAttribute="trailing" id="F70-VW-zjA"/>
@@ -738,6 +766,7 @@ With a keen eye, find as many sets as quickly as possible.</string>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="C4E-Mf-Loz"/>
+                                <exclude reference="CCB-Mj-PPT"/>
                                 <exclude reference="ECQ-aD-CIP"/>
                                 <exclude reference="n3B-Zr-W2K"/>
                                 <exclude reference="2ot-uS-lWA"/>
@@ -767,44 +796,9 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                 <include reference="1kn-TK-IJo"/>
                             </mask>
                         </variation>
-                        <variation key="heightClass=compact-widthClass=compact">
+                        <variation key="heightClass=regular">
                             <mask key="constraints">
-                                <include reference="C4E-Mf-Loz"/>
-                                <include reference="90K-rK-cUk"/>
-                                <include reference="94F-B0-adM"/>
-                                <include reference="F70-VW-zjA"/>
-                                <include reference="1Ja-bA-W3J"/>
-                                <include reference="BlZ-oT-AMP"/>
-                                <include reference="w9i-Ej-qJC"/>
-                                <include reference="1kn-TK-IJo"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=compact-widthClass=regular">
-                            <mask key="constraints">
-                                <include reference="C4E-Mf-Loz"/>
-                                <include reference="90K-rK-cUk"/>
-                                <include reference="94F-B0-adM"/>
-                                <include reference="F70-VW-zjA"/>
-                                <include reference="1Ja-bA-W3J"/>
-                                <include reference="BlZ-oT-AMP"/>
-                                <include reference="w9i-Ej-qJC"/>
-                                <include reference="1kn-TK-IJo"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=regular-widthClass=compact">
-                            <mask key="constraints">
-                                <include reference="ECQ-aD-CIP"/>
-                                <include reference="n3B-Zr-W2K"/>
-                                <include reference="2ot-uS-lWA"/>
-                                <include reference="DZA-W0-ZzX"/>
-                                <include reference="Uk6-3k-fe3"/>
-                                <include reference="RDp-sF-pQt"/>
-                                <include reference="ahG-o9-UDC"/>
-                                <include reference="zIR-Pk-3AG"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=regular-widthClass=regular">
-                            <mask key="constraints">
+                                <include reference="CCB-Mj-PPT"/>
                                 <include reference="ECQ-aD-CIP"/>
                                 <include reference="n3B-Zr-W2K"/>
                                 <include reference="2ot-uS-lWA"/>
@@ -829,7 +823,7 @@ With a keen eye, find as many sets as quickly as possible.</string>
                 <customObject id="9Vo-Po-MCU" customClass="SetGameDataSource" customModule="CardGames" customModuleProvider="target"/>
                 <customObject id="ju9-Y4-cHC" customClass="SetGameDelegate" customModule="CardGames" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="390" y="90"/>
+            <point key="canvasLocation" x="381" y="108"/>
         </scene>
         <!--Theme Settings Controller-->
         <scene sceneID="m3p-j9-aGn">
@@ -990,7 +984,7 @@ With a keen eye, find as many sets as quickly as possible.</string>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="vdb-JC-5Oz"/>
         <segue reference="iJ9-8Q-Y9b"/>
+        <segue reference="vdb-JC-5Oz"/>
     </inferredMetricsTieBreakers>
 </document>

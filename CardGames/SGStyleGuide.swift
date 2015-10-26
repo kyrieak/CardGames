@@ -190,6 +190,9 @@ class SGStyleGuide: StyleGuide {
   }
   
   private func titleFontStyle() -> UIFontStyle {
+    if (minScreenDim < 400) {
+      titleFS.baseSize = 40
+    }
     titleFS.color = theme.fontColor2
     
     return titleFS

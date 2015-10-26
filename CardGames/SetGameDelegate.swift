@@ -16,19 +16,7 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
   private(set) var selectIdxPaths: [NSIndexPath] = []
   private(set) var cardSize: CGSize = CGSizeZero
   
-  lazy var screen: UIScreen = {
-    return UIScreen.mainScreen()
-  }()
-  
-  var horizontalSizeClass: UIUserInterfaceSizeClass {
-    return screen.traitCollection.horizontalSizeClass
-  }
-  
-  var verticalSizeClass: UIUserInterfaceSizeClass {
-    return screen.traitCollection.verticalSizeClass
-  }
-  
-  
+
   func collectionView(collectionView: UICollectionView,
     willDisplaySupplementaryView view: UICollectionReusableView,
     forElementKind elementKind: String,
@@ -37,10 +25,10 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
       if (elementKind == UICollectionElementKindSectionFooter) {
         statusView = view.viewWithTag(statusViewTag) as? SGStatusView
         
-        if (!deviceIsMobile) {
-          view.frame.size.height = 70
-          statusView?.adjustHeight(70)
-        }
+//        if (!deviceIsMobile) {
+//          view.frame.size.height = 70
+//          statusView?.adjustHeight(70)
+//        }
         
         view.frame.origin.y = collectionView.frame.height - view.frame.height
       }
@@ -109,48 +97,6 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
     return false
   }
   
-  func collectionView(collectionView: UICollectionView,
-    layout collectionViewLayout: UICollectionViewLayout,
-    minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
-      switch (collectionView.frame.width) {
-        case let x where x > 599:
-          return CGFloat(50)
-        case let x where x > 400:
-          return CGFloat(30)
-        default:
-          return CGFloat(8)
-      }
-//      return CGFloat(8)
-  }
-  
-  func collectionView(collectionView: UICollectionView,
-    layout collectionViewLayout: UICollectionViewLayout,
-    insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-
-      switch (horizontalSizeClass) {
-        case UIUserInterfaceSizeClass.Regular:
-          return UIEdgeInsets(tb: 20, lr: 50)
-        default:
-          return UIEdgeInsets(tb: 10, lr: 8)
-      }
-  }
-  
-  
-  func collectionView(collectionView: UICollectionView,
-         layout collectionViewLayout: UICollectionViewLayout,
-           sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-
-             if (cardSize.width < 1) {
-               setCardSize()
-             }
-
-             if (screenIsPortrait) {
-               return cardSize
-             } else {
-               return CGSize(width: cardSize.height, height: cardSize.width)
-             }
-  }
-  
 
   func reset() {
     selectIdxPaths = []
@@ -181,19 +127,5 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
     return selectIdxPaths.map { (path: NSIndexPath) -> Int in
       return path.item
     }
-  }
-  
-  private func setCardSize() {
-    var w, h: CGFloat
-
-    if (deviceIsMobile) {
-      w = minScreenDim * 0.193
-      h = minScreenDim * 0.254
-    } else {
-      w = minScreenDim * 0.156
-      h = minScreenDim * 0.208
-    }
-    
-    cardSize = CGSize(width: w, height: h)
   }
 }

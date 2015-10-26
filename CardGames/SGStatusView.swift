@@ -20,8 +20,12 @@ class SGStatusView: UIView {
   func setupSubviews() {
     messageView.isAccessibilityElement = true
 
-    adjustHeight(frame.height)
+    if (minScreenDim < 400) {
+      frame.size.height = 40
+    }
 
+    adjustHeight(frame.height)
+    
     addSubview(cardListView)
     addSubview(messageView)
   }

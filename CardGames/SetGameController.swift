@@ -49,16 +49,18 @@ class SetGameController: UIViewController, StyleGuideDelegate {
     collectionView!.allowsMultipleSelection = true
   }
   
+  override func viewWillLayoutSubviews() {
+    if (minScreenDim < 400) {
+      adjustConstraintsForSmallScreen()
+    }
+  }
+  
   
   override func viewDidLayoutSubviews() {
     if (footerView.subviews.count < 1) {
       footerView.addPlayerButtons(game.players, target: self, action: Selector("makeMoveAction:"))
     }
 
-    if (deviceIsMobile) {
-      adjustForMobileScreenSize()
-    }
-    
     collectionView.reloadData()
 
     applyStyleToViews()
@@ -199,29 +201,40 @@ class SetGameController: UIViewController, StyleGuideDelegate {
     for elem in textSelectors {
       styleGuide.applyFontStyle(elem, views: viewsForFontStyle(elem))
     }
-    
+        
     if (game.deck.isEmpty()) {
       deckButton.backgroundColor = UIColor.clearColor()
     }
     
     styleGuide.applyBtnFontStyle(.FooterUIBtn, views: footerView.playerBtns)
-  }
 
-  
-  private func adjustForMobileScreenSize() {
-    if (minScreenDim > 376) {
-      for c in headerView.constraints {
-        if (c.firstAttribute == NSLayoutAttribute.Height) {
-          c.constant = CGFloat(143)
-        }
+    if (sgDelegate.selectIdxPaths.count > 0) {
+      collectionView.reloadItemsAtIndexPaths(sgDelegate.selectIdxPaths)
+
+      for idx in sgDelegate.selectIdxPaths {
+        collectionView.selectItemAtIndexPath(idx, animated: false, scrollPosition: UICollectionViewScrollPosition.None)
       }
-      
-      for c in deckButton.constraints {
-        if (c.firstAttribute == NSLayoutAttribute.Height) {
-          c.constant = CGFloat(105)
-        } else if (c.firstAttribute == NSLayoutAttribute.Width) {
-          c.constant = CGFloat(80)
-        }
+    }
+  }
+  
+  private func adjustConstraintsForSmallScreen() {
+    let layout = (collectionView.collectionViewLayout as! SGCollectionViewLayout)
+    let cardSize = layout.itemSize
+    
+    for c in headerView.constraints {
+      if (c.identifier == "sectionInset") {
+        c.constant = layout.sectionInset.left
+      }
+    }
+    
+    for c in deckButton.constraints {
+      switch (c.firstAttribute) {
+        case .Width:
+          c.constant = cardSize.width
+        case .Height:
+          c.constant = cardSize.height
+        default:
+          NSLog("attribute was \(c.firstAttribute)")
       }
     }
   }
