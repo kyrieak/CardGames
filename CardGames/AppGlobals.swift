@@ -11,9 +11,10 @@ import UIKit
 
 var styleGuide = SGStyleGuide(theme: Theme.honeydew())
 var gameSettings = GameSettings(players: Player.makeNumberedPlayers(1))
-var minScreenDim = {(bounds: CGRect) -> CGFloat in
-                      return min(bounds.width, bounds.height)
-                   }(UIScreen.mainScreen().bounds)
+
+var minScreenDim: CGFloat {
+  return styleGuide.minScreenDim
+}
 
 var screenIsPortrait: Bool {
   return {(bounds: CGRect) -> Bool in

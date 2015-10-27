@@ -14,11 +14,16 @@ import UIKit
 enum ViewSelector {
   case MainContent,
        Header,
-       Footer,
-       Status,
-       CardBack,
+       Footer
+
+  case HomeMenu,
+       HomeMenuItem
+  
+  case CardBack,
        CardFront,
-       HeadTitle,
+       Status
+  
+  case HeadTitle,
        FooterUIBtn,
        UIBtn
 }

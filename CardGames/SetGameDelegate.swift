@@ -25,10 +25,7 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
       if (elementKind == UICollectionElementKindSectionFooter) {
         statusView = view.viewWithTag(statusViewTag) as? SGStatusView
         statusView?.adjustHeight(view.frame.height)
-//        if (!deviceIsMobile) {
-//          view.frame.size.height = 70
-//          statusView?.adjustHeight(70)
-//        }
+        styleGuide.applyFontStyle(.Status, views: [statusView!.messageView])
         
         view.frame.origin.y = collectionView.frame.height - view.frame.height
       }

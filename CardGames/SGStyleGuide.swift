@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 class SGStyleGuide: StyleGuide {
+  let minScreenDim: CGFloat
   
   // - MARK: - Constants
   
@@ -21,20 +22,50 @@ class SGStyleGuide: StyleGuide {
   private(set) var themeID: Int
   private(set) var theme: Theme
   
-  private var titleFS = UIFontStyle(fontName: "Palatino-BoldItalic", baseSize: 48)
-  private var statusFS = UIFontStyle(fontName: "Arial", baseSize: 12)
-  
+  private var titleFS  = UIFontStyle(fontName: "Palatino-BoldItalic", baseSize: 48)
+  private var menuFS   = UIFontStyle(fontName: "Palatino", baseSize: 18)
+  private var statusFS = UIFontStyle(fontName: "Arial", baseSize: 18)
   
   // - MARK: - Initializers
   
-  
+
   required init(theme: Theme) {
     self.themeID = 1
     self.theme = theme
+    
+    self.minScreenDim = {(bounds: CGRect) -> CGFloat in
+                          return min(bounds.width, bounds.height)
+                        }(UIScreen.mainScreen().bounds)
+    setFontSizes(minScreenDim)
+  }
+  
+  
+  init(theme: Theme, minScreenDim: CGFloat) {
+    self.themeID = 1
+    self.theme = theme
+    self.minScreenDim = minScreenDim
   }
   
   
   // - MARK: - StyleGuide Protocol Functions
+  
+  
+  func setFontSizes(_minScreenDim: CGFloat) {
+    switch(minScreenDim) {
+      case _ where (minScreenDim < 350):
+        titleFS.baseSize  = 36
+        statusFS.baseSize = 12
+        menuFS.baseSize   = 20
+      case _ where (minScreenDim > 700):
+        titleFS.baseSize  = 64
+        statusFS.baseSize = 24
+        menuFS.baseSize   = 32
+      default:
+        titleFS.baseSize  = 48
+        statusFS.baseSize = 36
+        menuFS.baseSize   = 24
+    }
+  }
   
   
   func setTheme(theme: Theme) {
@@ -55,7 +86,7 @@ class SGStyleGuide: StyleGuide {
   
   func hasFontStyle(sel: ViewSelector) -> Bool {
     switch(sel) {
-    case .HeadTitle, .Status, .FooterUIBtn:
+    case .HeadTitle, .Status, .FooterUIBtn, .HomeMenuItem:
       return true
     default:
       return false
@@ -91,6 +122,8 @@ class SGStyleGuide: StyleGuide {
       return statusFontStyle()
     case .FooterUIBtn:
       return playerBtnFontStyle()
+    case .HomeMenuItem:
+      return menuFS
     default:
       return nil
     }
@@ -148,6 +181,14 @@ class SGStyleGuide: StyleGuide {
 //      borderColor: UIColor(white: 0.8, alpha: 1.0))
   }
   
+  
+//  private func homeMenuFont() -> UIFontStyle {
+//    return UIFontStyle(fontName: titleFS.fontName, baseSize: )
+//  }
+  
+  class func statusLayerStyle(inout style: UILayerStyle, theme: Theme) {
+    
+  }
   
   private func statusLayerStyle() -> UILayerStyle {
     return UILayerStyle(bgColor: theme.bgColor3,

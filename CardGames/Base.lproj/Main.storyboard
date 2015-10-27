@@ -52,7 +52,8 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                         <exclude reference="NSB-5E-snp"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact">
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="-15" y="61" width="348" height="444"/>
                                     <mask key="constraints">
                                         <include reference="2yA-V7-Xuw"/>
                                         <include reference="NSB-5E-snp"/>
@@ -83,14 +84,17 @@ With a keen eye, find as many sets as quickly as possible.</string>
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yck-ie-QAp" userLabel="Header">
+                            <view tag="1" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yck-ie-QAp" userLabel="Header">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Seta3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="59A-Ld-fUc">
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="10" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Seta3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="59A-Ld-fUc">
                                         <rect key="frame" x="135" y="20" width="336" height="108"/>
                                         <fontDescription key="fontDescription" name="Palatino-BoldItalic" family="Palatino" pointSize="47"/>
                                         <color key="textColor" red="0.60784313729999995" green="0.73333333329999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="142" y="53" width="115" height="52"/>
+                                        </variation>
                                         <variation key="heightClass=regular-widthClass=regular">
                                             <fontDescription key="fontDescription" name="Palatino-BoldItalic" family="Palatino" pointSize="64"/>
                                         </variation>
@@ -104,6 +108,9 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                             <color key="titleColor" red="0.58039215690000001" green="0.70980392160000005" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" red="0.50980392156862742" green="0.63921568627450975" blue="0.49803921568627452" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                            <rect key="frame" x="502" y="116" width="184" height="35"/>
+                                        </variation>
                                         <connections>
                                             <action selector="returnToGame" destination="H5D-No-5o1" eventType="touchUpInside" id="Cug-G7-9md"/>
                                         </connections>
@@ -117,52 +124,80 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                     <constraint firstItem="59A-Ld-fUc" firstAttribute="centerY" secondItem="yck-ie-QAp" secondAttribute="centerY" id="oBd-zb-cIJ"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ACB-pd-VPL" userLabel="Menu">
+                            <view tag="2" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ACB-pd-VPL" userLabel="Menu">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oE2-Gt-4Op">
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oE2-Gt-4Op">
                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                         <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="24"/>
                                         <size key="titleShadowOffset" width="2.2250738585072014e-308" height="2.2250738585072014e-308"/>
                                         <state key="normal" title="How to Play">
                                             <color key="titleColor" red="0.26046317819999998" green="0.18727949260000001" blue="0.1132443026" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="98" y="20" width="133" height="39"/>
+                                        </variation>
                                         <connections>
                                             <segue destination="h2T-4y-gWw" kind="presentation" id="mqQ-IO-y3k"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C0L-ll-zmJ">
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C0L-ll-zmJ">
                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                         <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="24"/>
                                         <state key="normal" title="Game Options">
                                             <color key="titleColor" red="0.26046317819999998" green="0.18727949260000001" blue="0.1132443026" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="87" y="74" width="155" height="39"/>
+                                        </variation>
                                         <connections>
                                             <segue destination="mh9-fz-JHF" kind="presentation" id="E5z-HD-Td0"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rmQ-fn-jjX">
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rmQ-fn-jjX">
                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                         <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="24"/>
                                         <state key="normal" title="Theme Settings">
                                             <color key="titleColor" red="0.26046317819999998" green="0.18727949260000001" blue="0.1132443026" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="77" y="128" width="164" height="39"/>
+                                        </variation>
                                         <connections>
                                             <segue destination="luK-Cw-9qx" kind="presentation" id="iJ9-8Q-Y9b"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ELA-KI-XLG">
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ELA-KI-XLG">
                                         <rect key="frame" x="202" y="485" width="181" height="38"/>
                                         <color key="backgroundColor" red="0.79708167990000001" green="0.75889349230000003" blue="0.70999322939999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
+                                            <constraint firstAttribute="width" constant="181" id="2Va-yu-6cW">
+                                                <variation key="heightClass=regular-widthClass=regular" constant="240"/>
+                                            </constraint>
                                             <constraint firstAttribute="width" secondItem="ELA-KI-XLG" secondAttribute="height" multiplier="181:38" id="SDs-IZ-nFu"/>
-                                            <constraint firstAttribute="height" constant="38" id="WdO-aC-Dxf"/>
+                                            <constraint firstAttribute="height" constant="38" id="WdO-aC-Dxf">
+                                                <variation key="heightClass=regular-widthClass=regular" constant="48"/>
+                                            </constraint>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="24"/>
                                         <state key="normal" title="Ready to Play">
                                             <color key="titleColor" red="0.25882352941176467" green="0.18823529411764706" blue="0.11372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="2Va-yu-6cW"/>
+                                                <exclude reference="SDs-IZ-nFu"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="74" y="342" width="181" height="38"/>
+                                        </variation>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <mask key="constraints">
+                                                <include reference="2Va-yu-6cW"/>
+                                            </mask>
+                                        </variation>
                                         <connections>
                                             <segue destination="kmm-mS-WAn" kind="show" id="ag2-lq-9bi"/>
                                         </connections>
@@ -171,17 +206,35 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                 <color key="backgroundColor" red="0.97254901960784312" green="1" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="rmQ-fn-jjX" firstAttribute="centerX" secondItem="ACB-pd-VPL" secondAttribute="centerX" id="1eI-VX-FJz"/>
-                                    <constraint firstItem="rmQ-fn-jjX" firstAttribute="top" secondItem="C0L-ll-zmJ" secondAttribute="bottom" constant="35" id="BcO-Cb-8cK"/>
-                                    <constraint firstItem="C0L-ll-zmJ" firstAttribute="top" secondItem="oE2-Gt-4Op" secondAttribute="bottom" constant="27" id="Gzd-vp-v3j"/>
-                                    <constraint firstAttribute="bottom" secondItem="ELA-KI-XLG" secondAttribute="bottom" constant="19" id="HJZ-w9-7vh"/>
-                                    <constraint firstItem="oE2-Gt-4Op" firstAttribute="top" secondItem="ACB-pd-VPL" secondAttribute="top" constant="38" id="Tdr-Dz-ul8"/>
+                                    <constraint firstItem="rmQ-fn-jjX" firstAttribute="top" secondItem="C0L-ll-zmJ" secondAttribute="bottom" constant="50" identifier="menuSpacing" id="BcO-Cb-8cK"/>
+                                    <constraint firstItem="C0L-ll-zmJ" firstAttribute="top" secondItem="oE2-Gt-4Op" secondAttribute="bottom" constant="15" identifier="menuSpacing" id="Gzd-vp-v3j">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="50"/>
+                                    </constraint>
+                                    <constraint firstAttribute="bottom" secondItem="ELA-KI-XLG" secondAttribute="bottom" constant="20" id="HJZ-w9-7vh">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="30"/>
+                                    </constraint>
                                     <constraint firstItem="oE2-Gt-4Op" firstAttribute="centerX" secondItem="ACB-pd-VPL" secondAttribute="centerX" id="Ybg-Ds-MYh"/>
+                                    <constraint firstItem="oE2-Gt-4Op" firstAttribute="top" secondItem="ACB-pd-VPL" secondAttribute="top" constant="20" id="fd4-0J-E3i">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="30"/>
+                                    </constraint>
                                     <constraint firstItem="C0L-ll-zmJ" firstAttribute="centerX" secondItem="ACB-pd-VPL" secondAttribute="centerX" id="g3h-3x-njN"/>
                                     <constraint firstItem="ELA-KI-XLG" firstAttribute="centerX" secondItem="ACB-pd-VPL" secondAttribute="centerX" id="gyt-wd-FqB"/>
-                                    <constraint firstAttribute="width" secondItem="ACB-pd-VPL" secondAttribute="height" multiplier="11:12" id="hCe-6v-Hs4"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="fd4-0J-E3i"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular">
+                                    <mask key="constraints">
+                                        <include reference="fd4-0J-E3i"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="39" y="219" width="320" height="400"/>
+                                </variation>
                             </view>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W8H-t9-iCb" userLabel="Footer">
+                            <view tag="3" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W8H-t9-iCb" userLabel="Footer">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="As4-aK-Euc">
@@ -204,8 +257,13 @@ With a keen eye, find as many sets as quickly as possible.</string>
                         <constraints>
                             <constraint firstItem="W8H-t9-iCb" firstAttribute="leading" secondItem="BSz-Ka-r9e" secondAttribute="leadingMargin" constant="-20" id="3va-qJ-lh5"/>
                             <constraint firstAttribute="trailingMargin" secondItem="yck-ie-QAp" secondAttribute="trailing" constant="-20" id="BK4-7U-sQZ"/>
-                            <constraint firstItem="ACB-pd-VPL" firstAttribute="height" secondItem="BSz-Ka-r9e" secondAttribute="height" multiplier="9:20" id="Jbh-pf-hWT"/>
+                            <constraint firstItem="ACB-pd-VPL" firstAttribute="height" secondItem="BSz-Ka-r9e" secondAttribute="height" multiplier="50:100" id="Jbh-pf-hWT"/>
+                            <constraint firstItem="ACB-pd-VPL" firstAttribute="centerY" secondItem="BSz-Ka-r9e" secondAttribute="centerY" multiplier="1.05" id="Jw8-F2-AdK"/>
                             <constraint firstItem="ACB-pd-VPL" firstAttribute="centerX" secondItem="BSz-Ka-r9e" secondAttribute="centerX" id="K4L-zu-6hV"/>
+                            <constraint firstItem="ACB-pd-VPL" firstAttribute="width" secondItem="BSz-Ka-r9e" secondAttribute="width" multiplier="80:100" id="L8f-c9-VzS">
+                                <variation key="heightClass=regular-widthClass=regular" constant="-200"/>
+                            </constraint>
+                            <constraint firstItem="ACB-pd-VPL" firstAttribute="centerY" secondItem="BSz-Ka-r9e" secondAttribute="centerY" id="O9u-Og-7im"/>
                             <constraint firstAttribute="trailingMargin" secondItem="W8H-t9-iCb" secondAttribute="trailing" constant="-20" id="Zrv-m1-vaX"/>
                             <constraint firstItem="dkr-8o-1Sl" firstAttribute="top" secondItem="W8H-t9-iCb" secondAttribute="bottom" id="eAU-Mc-Aro"/>
                             <constraint firstItem="yck-ie-QAp" firstAttribute="leading" secondItem="BSz-Ka-r9e" secondAttribute="leadingMargin" constant="-20" id="fBM-dH-LyC"/>
@@ -214,6 +272,23 @@ With a keen eye, find as many sets as quickly as possible.</string>
                             <constraint firstItem="yck-ie-QAp" firstAttribute="top" secondItem="SnM-TY-aEw" secondAttribute="bottom" constant="-20" id="oNA-pv-udv"/>
                             <constraint firstItem="yck-ie-QAp" firstAttribute="height" secondItem="BSz-Ka-r9e" secondAttribute="height" multiplier="1:5" id="qXT-iu-vcP"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Jw8-F2-AdK"/>
+                                <exclude reference="O9u-Og-7im"/>
+                                <exclude reference="hly-hd-XV6"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="constraints">
+                                <include reference="Jw8-F2-AdK"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=regular">
+                            <mask key="constraints">
+                                <include reference="O9u-Og-7im"/>
+                            </mask>
+                        </variation>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="4BO-Li-LyG" appends="YES" id="wey-G1-7uc"/>
                         </connections>
@@ -460,6 +535,9 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                                     <rect key="frame" x="-25" y="-30" width="97" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="121" y="10" width="111" height="30"/>
+                                                    </variation>
                                                     <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
                                                         <rect key="frame" x="121" y="12" width="111" height="30"/>
                                                     </variation>
@@ -533,10 +611,10 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                         <color key="backgroundColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="77" id="9n4-kJ-GID">
-                                                <variation key="heightClass=regular-widthClass=regular" constant="116"/>
+                                                <variation key="heightClass=regular-widthClass=regular" constant="90"/>
                                             </constraint>
                                             <constraint firstAttribute="height" constant="102" id="c0o-Rc-fR9">
-                                                <variation key="heightClass=regular-widthClass=regular" constant="160"/>
+                                                <variation key="heightClass=regular-widthClass=regular" constant="120"/>
                                             </constraint>
                                         </constraints>
                                         <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
@@ -696,6 +774,9 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                         <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
                                             <rect key="frame" x="0.0" y="85" width="400" height="429"/>
                                         </variation>
+                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="527"/>
+                                        </variation>
                                         <connections>
                                             <outlet property="dataSource" destination="9Vo-Po-MCU" id="jWh-b0-Ymp"/>
                                             <outlet property="delegate" destination="ju9-Y4-cHC" id="2ro-jB-qIW"/>
@@ -708,6 +789,9 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                     <constraint firstItem="GBL-hM-gRm" firstAttribute="top" secondItem="uce-8Y-d4b" secondAttribute="top" constant="0.5" id="R3k-EK-26I"/>
                                     <constraint firstAttribute="trailing" secondItem="GBL-hM-gRm" secondAttribute="trailing" id="wUV-8k-OIp"/>
                                 </constraints>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="151" width="400" height="527.5"/>
+                                </variation>
                             </view>
                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Vs-ZC-WDI" customClass="SGFooterView" customModule="CardGames" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="472" width="600" height="128"/>
@@ -735,7 +819,8 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                 <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
                                     <rect key="frame" x="0.0" y="514" width="400" height="85.5"/>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact">
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="666" width="400" height="66.5"/>
                                     <mask key="constraints">
                                         <include reference="xeZ-hY-GNn"/>
                                     </mask>
@@ -843,10 +928,10 @@ With a keen eye, find as many sets as quickly as possible.</string>
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kaE-OT-hLF">
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kaE-OT-hLF" customClass="SGHeaderView" customModule="CardGames" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="twF-YV-CZ1">
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="twF-YV-CZ1">
                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                         <color key="backgroundColor" red="0.79708167990000001" green="0.75889349230000003" blue="0.70999322939999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -854,9 +939,38 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="33"/>
                                         <state key="normal" title="🔙"/>
+                                        <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
+                                            <rect key="frame" x="25" y="39" width="52" height="52"/>
+                                        </variation>
+                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                            <rect key="frame" x="25" y="74" width="52" height="52"/>
+                                        </variation>
                                         <connections>
                                             <segue destination="6eC-z4-STj" kind="unwind" unwindAction="prepareBackUnwind:" id="l0I-Fs-Lup"/>
                                         </connections>
+                                    </button>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MrU-ch-G5N">
+                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="43" id="m6S-bn-aFf"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Palatino-BoldItalic" family="Palatino" pointSize="46"/>
+                                        <inset key="contentEdgeInsets" minX="0.0" minY="-5" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="Seta3">
+                                            <color key="titleColor" red="0.60784313729999995" green="0.73333333329999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="m6S-bn-aFf"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="heightClass=compact">
+                                            <fontDescription key="fontDescription" name="Palatino-BoldItalic" family="Palatino" pointSize="38"/>
+                                        </variation>
+                                        <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
+                                            <fontDescription key="fontDescription" name="Palatino-BoldItalic" family="Palatino" pointSize="64"/>
+                                            <rect key="frame" x="630" y="29" width="157" height="66"/>
+                                        </variation>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.80392156859999997" green="0.88235294119999996" blue="0.81568627449999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -867,6 +981,22 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                     </constraint>
                                     <constraint firstItem="twF-YV-CZ1" firstAttribute="centerY" secondItem="kaE-OT-hLF" secondAttribute="centerY" id="wQK-OK-UMg"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="MrU-ch-G5N"/>
+                                    </mask>
+                                    <mask key="constraints">
+                                        <exclude reference="u4j-Ki-d20"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="130"/>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <mask key="subviews">
+                                        <include reference="MrU-ch-G5N"/>
+                                    </mask>
+                                </variation>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chW-hm-XIU" userLabel="Save Btn">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -881,11 +1011,14 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                 <state key="normal" title="Save">
                                     <color key="titleColor" red="0.42706266529999998" green="0.32570422939999999" blue="0.2707932394" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="99" y="715" width="120" height="45"/>
+                                </variation>
                                 <connections>
                                     <segue destination="6eC-z4-STj" kind="unwind" unwindAction="prepareForThemeChange:" id="w9M-IE-ReU"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rcR-Nu-Vwb">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rcR-Nu-Vwb">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -958,6 +1091,12 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
                                 </prototypes>
+                                <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="9" y="210" width="300" height="90"/>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                    <rect key="frame" x="160" y="280" width="480" height="90"/>
+                                </variation>
                                 <connections>
                                     <outlet property="dataSource" destination="zkv-GB-VjX" id="Ah2-01-ypU"/>
                                     <outlet property="delegate" destination="luK-Cw-9qx" id="BIe-23-blZ"/>
@@ -973,9 +1112,20 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                 <variation key="heightClass=regular-widthClass=regular" constant="80"/>
                             </constraint>
                             <constraint firstItem="kaE-OT-hLF" firstAttribute="top" secondItem="cVH-Ss-12W" secondAttribute="bottom" constant="-20" id="VjW-OB-hgz"/>
+                            <constraint firstItem="kaE-OT-hLF" firstAttribute="height" secondItem="Un4-EJ-X0I" secondAttribute="height" multiplier="4:21" id="jUP-Oh-NWD"/>
                             <constraint firstAttribute="trailingMargin" secondItem="kaE-OT-hLF" secondAttribute="trailing" constant="-20" id="pIh-6P-8Eq"/>
                             <constraint firstItem="kaE-OT-hLF" firstAttribute="leading" secondItem="Un4-EJ-X0I" secondAttribute="leadingMargin" constant="-20" id="wzv-EM-vkc"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="jUP-Oh-NWD"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=regular">
+                            <mask key="constraints">
+                                <include reference="jUP-Oh-NWD"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="backBtn" destination="twF-YV-CZ1" id="nSW-51-TPX"/>
@@ -993,7 +1143,7 @@ With a keen eye, find as many sets as quickly as possible.</string>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="vdb-JC-5Oz"/>
         <segue reference="iJ9-8Q-Y9b"/>
+        <segue reference="E5z-HD-Td0"/>
     </inferredMetricsTieBreakers>
 </document>

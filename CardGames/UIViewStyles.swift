@@ -49,7 +49,9 @@ struct UIFontStyle {
   var color: UIColor
   
   var font: UIFont {
-    return UIFont(name: self.fontName, size: self.baseSize)!
+    return {(font: UIFont?) -> UIFont in
+              return ((font == nil) ? UIFont.systemFontOfSize(self.baseSize) : font!)
+           }(UIFont(name: self.fontName, size: self.baseSize))
   }
   
   // - MARK: - Initializers
@@ -65,5 +67,11 @@ struct UIFontStyle {
     self.fontName = fontName
     self.baseSize = baseSize
     self.color    = UIColor.blackColor()
+  }
+
+  init(fontName: String) {
+    self.fontName = fontName
+    self.baseSize = 12
+    self.color = UIColor.blackColor()
   }
 }
