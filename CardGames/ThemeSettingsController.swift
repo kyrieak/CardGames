@@ -18,6 +18,10 @@ class ThemeSettingsController: UIViewController, UITableViewDelegate, StyleGuide
   
   var styleGuide: SGStyleGuide = appGlobals.styleGuide
   var themeID: Int             = appGlobals.styleGuide.themeID
+  
+//  var headerView: UIView = UIView()
+//  var saveBtn: UIButton  = UIButton()
+//  var backBtn: UIButton  = themesTable
 
   @IBOutlet var headerView: UIView!
   @IBOutlet var saveBtn: UIButton!
@@ -48,6 +52,7 @@ class ThemeSettingsController: UIViewController, UITableViewDelegate, StyleGuide
   
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    NSLog("\(indexPath.item)")
     let theme = themeDataSource.themeAt(indexPath)!
 
     styleGuide.setTheme(theme)

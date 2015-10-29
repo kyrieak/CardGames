@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 
 class SGHeaderView: UIView {
-  let titleTag: Int  = 1
-  let deckTag: Int   = 2
-  let gearTag: Int   = 3
+  let titleTag: Int  = 11
+  let deckTag: Int   = 12
+  let gearTag: Int   = 13
   
   
   lazy var logoButton: UIButton = {

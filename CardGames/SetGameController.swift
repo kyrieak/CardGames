@@ -11,26 +11,24 @@ import UIKit
 
 class SetGameController: UIViewController, StyleGuideDelegate {
   typealias sg = SGStyleGuide
+  
+  let tags = SetGameController.sectionTags()
 
   // - MARK: - CollectionView
   
   @IBOutlet var sgDataSource: SetGameDataSource!
   @IBOutlet var sgDelegate: SetGameDelegate!
   
-  var game: SetGame {
-    return sgDataSource.game
-  }
+  var game: SetGame { return sgDataSource.game }
   
   // - MARK: Subviews
   
-  @IBOutlet var headerView: SGHeaderView!
-  @IBOutlet var footerView: SGFooterView!
-  @IBOutlet var wrapperView: UIView!
-  @IBOutlet var collectionView: UICollectionView!
+  lazy var headerView: SGHeaderView          = { return self.view.viewWithTag(1)! as! SGHeaderView }()
+  lazy var wrapperView: UIView               = { return self.view.viewWithTag(2)! }()
+  lazy var footerView: SGFooterView          = { return self.view.viewWithTag(3)! as! SGFooterView }()
+  lazy var collectionView: UICollectionView? = { return self.view.viewWithTag(20) as? UICollectionView }()
   
-  var deckButton: UIButton {
-    return headerView.deckButton
-  }
+  var deckButton: UIButton { return headerView.deckButton }
   
   // - MARK: Private Properties
   
@@ -38,14 +36,14 @@ class SetGameController: UIViewController, StyleGuideDelegate {
   private(set) var themeID: Int = appGlobals.styleGuide.themeID
 
   private var layerSelectors: [ViewSelector] = SetGameController.selectorsForViewLayers()
-  private var textSelectors: [ViewSelector] = SetGameController.selectorsForViewText()
+  private var textSelectors: [ViewSelector]  = SetGameController.selectorsForViewText()
   
   // - MARK: - Override Functions
 
   
   override func viewDidLoad() {
     super.viewDidLoad()
-
+    
     appGlobals.gameIsActive = true
     collectionView!.allowsMultipleSelection = true
   }
@@ -62,7 +60,7 @@ class SetGameController: UIViewController, StyleGuideDelegate {
       footerView.addPlayerButtons(game.players, target: self, action: Selector("makeMoveAction:"))
     }
 
-    collectionView.reloadData()
+    collectionView!.reloadData()
 
     applyStyleToViews()
   }
@@ -82,7 +80,7 @@ class SetGameController: UIViewController, StyleGuideDelegate {
       let sid = segue.identifier!
       
       if (sid == "gameSettingSegue") {
-        appGlobals.gameSettings.options = game.options
+        appGlobals.setOptions(game.options)
       } else if (sid == "logoSegue") {
       }
     }
@@ -104,7 +102,7 @@ class SetGameController: UIViewController, StyleGuideDelegate {
 
   
   @IBAction func makeMoveAction(sender: UIButton) {
-    sgDelegate.makeMove(collectionView, game: game, playerTag: sender.tag)
+    sgDelegate.makeMove(collectionView!, game: game, playerTag: sender.tag)
 
     styleGuide.applyLayerStyle(.FooterUIBtn, views: [sender])
   }
@@ -123,8 +121,8 @@ class SetGameController: UIViewController, StyleGuideDelegate {
     if (themeID != styleGuide.themeID) {
       applyStyleToViews()
       
-      for path in collectionView.indexPathsForVisibleItems() {
-        let cell = collectionView.cellForItemAtIndexPath(path)
+      for path in collectionView!.indexPathsForVisibleItems() {
+        let cell = collectionView!.cellForItemAtIndexPath(path)
         cell?.selectedBackgroundView!.layer.borderColor = styleGuide.theme.bgColor3.CGColor
       }
     }
@@ -139,7 +137,7 @@ class SetGameController: UIViewController, StyleGuideDelegate {
     sgDataSource.game = SetGame(settings: settings)
     sgDelegate.reset()
 
-    collectionView.reloadData()
+    collectionView!.reloadData()
     deckButton.enabled = true
   }
 
@@ -164,7 +162,7 @@ class SetGameController: UIViewController, StyleGuideDelegate {
   func viewsForLayerStyle(sel: ViewSelector) -> [UIView] {
     switch(sel) {
       case .MainContent:
-        return [collectionView]
+        return [collectionView!]
       case .Header:
         return [headerView]
       case .Footer:
@@ -181,14 +179,26 @@ class SetGameController: UIViewController, StyleGuideDelegate {
   }
   
   func viewsForFontStyle(sel: ViewSelector) -> [UILabel] {
+    return []
+  }
+  
+  func btnsForFontStyle(sel: ViewSelector) -> [UIButton] {
     switch(sel) {
       case .HeadTitle:
-        return [headerView.titleLabel]
+        return [headerView.logoButton]
       case .FooterUIBtn:
-        return footerView.playerBtnLabels
+        return footerView.playerBtns
       default:
         return []
     }
+  }
+  
+  func getHeaderView() -> SGHeaderView {
+    return self.view.viewWithTag(1)! as! SGHeaderView
+  }
+  
+  class func sectionTags() -> (header: Int, wrapper: Int, footer: Int) {
+    return (header: 1, wrapper: 2, footer: 3)
   }
   
   class func selectorsForViewLayers() -> [ViewSelector] {
@@ -200,31 +210,29 @@ class SetGameController: UIViewController, StyleGuideDelegate {
   }
   
   func applyStyleToViews() {
-    for elem in layerSelectors {
-      styleGuide.applyLayerStyle(elem, views: viewsForLayerStyle(elem))
+    for sel in layerSelectors {
+      styleGuide.applyLayerStyle(sel, views: viewsForLayerStyle(sel))
     }
     
-    for elem in textSelectors {
-      styleGuide.applyFontStyle(elem, views: viewsForFontStyle(elem))
+    for sel in textSelectors {
+      styleGuide.applyBtnFontStyle(sel, views: btnsForFontStyle(sel))
     }
         
     if (game.deck.isEmpty()) {
       deckButton.backgroundColor = UIColor.clearColor()
     }
     
-    styleGuide.applyBtnFontStyle(.FooterUIBtn, views: footerView.playerBtns)
-
     if (sgDelegate.selectIdxPaths.count > 0) {
-      collectionView.reloadItemsAtIndexPaths(sgDelegate.selectIdxPaths)
+      collectionView!.reloadItemsAtIndexPaths(sgDelegate.selectIdxPaths)
 
       for idx in sgDelegate.selectIdxPaths {
-        collectionView.selectItemAtIndexPath(idx, animated: false, scrollPosition: UICollectionViewScrollPosition.None)
+        collectionView!.selectItemAtIndexPath(idx, animated: false, scrollPosition: UICollectionViewScrollPosition.None)
       }
     }
   }
   
   private func adjustConstraintsForSmallScreen() {
-    let layout = (collectionView.collectionViewLayout as! SGCollectionViewLayout)
+    let layout = (collectionView!.collectionViewLayout as! SGCollectionViewLayout)
     let cardSize = layout.itemSize
     
     for c in headerView.constraints {

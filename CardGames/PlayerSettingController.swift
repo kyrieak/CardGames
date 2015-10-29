@@ -124,6 +124,17 @@ class PlayerSettingController: UIViewController, UITableViewDataSource, UITableV
     }
   }
   
+  @IBAction func respondToTap(sender: UITapGestureRecognizer) {
+    let pt = sender.locationInView(nil)
+
+    let insideTable = CGRectContainsPoint(tableView.frame, pt)
+    let insideFooter = CGRectContainsPoint(footerView.frame, pt)
+    
+    if (!(insideTable || insideFooter)) {
+      self.dismissViewControllerAnimated(true, completion: nil)
+    }
+  }
+  
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if (segue.identifier != nil) {
       let sid = segue.identifier!

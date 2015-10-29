@@ -12,13 +12,20 @@ import UIKit
 class GameSettingsController: UIViewController {
   var options = appGlobals.gameOptions
 
+  lazy var contentView:     UIView    = { return self.view.viewWithTag(1)! }()
+  lazy var colorSwitch:     UISwitch  = { return self.view.viewWithTag(11)! as! UISwitch }()
+  lazy var shapeSwitch:     UISwitch  = { return self.view.viewWithTag(12)! as! UISwitch }()
+  lazy var shadingSwitch:   UISwitch  = { return self.view.viewWithTag(13)! as! UISwitch }()
+  lazy var playerCtStepper: UIStepper = { return self.view.viewWithTag(14)! as! UIStepper }()
+  lazy var playerCtLabel :  UILabel   = { return self.view.viewWithTag(15)! as! UILabel }()
+  /*
   @IBOutlet var contentView: UIView!
   @IBOutlet var colorSwitch: UISwitch!
   @IBOutlet var shapeSwitch: UISwitch!
   @IBOutlet var shadingSwitch: UISwitch!
   @IBOutlet var playerCtStepper: UIStepper!
   @IBOutlet var playerCtLabel: UILabel!
-
+*/
   
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
@@ -48,7 +55,8 @@ class GameSettingsController: UIViewController {
     colorSwitch.setOn(options.colorsOn, animated: false)
     shapeSwitch.setOn(options.shapesOn, animated: false)
     shadingSwitch.setOn(options.shadingOn, animated: false)
-    playerCtLabel.text = "\(appGlobals.numPlayers)"
+    
+    playerCtLabel.text    = "\(appGlobals.numPlayers)"
     playerCtStepper.value = Double(appGlobals.numPlayers)
   }
   
@@ -70,12 +78,15 @@ class GameSettingsController: UIViewController {
   
   @IBAction func respondToTap(sender: UITapGestureRecognizer) {
     let pt = sender.locationInView(nil)
-    let cFrame = contentView.frame
     
-    if ((pt.x < cFrame.minX) || (pt.x > cFrame.maxX) ||
-        (pt.y < cFrame.minY) || (pt.y > cFrame.maxY)) {
+    if (!CGRectContainsPoint(contentView.frame, pt)) {
       self.dismissViewControllerAnimated(true, completion: nil)
     }
+    
+//    if ((pt.x < cFrame.minX) || (pt.x > cFrame.maxX) ||
+//        (pt.y < cFrame.minY) || (pt.y > cFrame.maxY)) {
+//      self.dismissViewControllerAnimated(true, completion: nil)
+//    }
   }
   
   @IBAction func prepareBackUnwind(segue: UIStoryboardSegue) {

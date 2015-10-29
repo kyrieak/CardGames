@@ -157,7 +157,7 @@ class SGStyleGuide: StyleGuide {
       }
     }
   }
-  
+    
   func applyBtnFontStyle(sel: ViewSelector, views: [UIButton]) {
     if (hasFontStyle(sel)) {
       let style = fontStyle(sel)!

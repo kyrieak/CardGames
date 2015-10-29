@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-struct Theme {
+class Theme {
   var name: String?
   // - MARK: - Properties
 
@@ -30,7 +30,7 @@ struct Theme {
     fontColor4 = fontColor2
   }
   
-  init(name: String) {
+  convenience init(name: String) {
     self.init()
     
     self.name = name
@@ -46,8 +46,8 @@ struct Theme {
   // - MARK: - Static Functions
 
   
-  static func grayscale() -> Theme {
-    var theme = Theme(name: "Grayscale")
+  class func grayscale() -> Theme {
+    let theme = Theme(name: "Grayscale")
 
     theme.bgColor1   = UIColor(white: 0.7, alpha: 1.0)
     theme.bgColor2   = UIColor(white: 0.9, alpha: 1.0)
@@ -60,8 +60,8 @@ struct Theme {
     return theme
   }
   
-  static func honeydew() -> Theme {
-    var theme = Theme(name: "Honeydew Green")
+  class func honeydew() -> Theme {
+    let theme = Theme(name: "Honeydew Green")
     
     theme.bgColor1   = UIColor(red: 0.93, green: 0.97, blue: 0.93, alpha: 1.0)
     theme.bgColor2   = UIColor(red: 0.80, green: 0.88, blue: 0.82, alpha: 1.0)
@@ -77,8 +77,8 @@ struct Theme {
   }
 
   
-  static func sea() -> Theme {
-    var theme = Theme(name: "Down by the Sea")
+  class func sea() -> Theme {
+    let theme = Theme(name: "Down by the Sea")
     
 //    theme.bgColor1   = UIColor(red: 0.74, green: 0.95, blue: 0.93, alpha: 1.0)
     theme.bgColor1   = UIColor(red: 0.79, green: 0.90, blue: 0.88, alpha: 1.0)

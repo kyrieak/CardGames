@@ -12,40 +12,27 @@ import UIKit
 class HomeViewController: UIViewController, StyleGuideDelegate {
   typealias sg = SGStyleGuide
   
-  let tags = HomeViewController.sectionTags()
-  
-  @IBOutlet var playBtn: UIButton!
-  @IBOutlet var backButton: UIButton!
-
-  var headerView: UIView! {
-    return self.view.viewWithTag(tags.header)
-  }
-  
-  var menuView: UIView! {
-    return self.view.viewWithTag(tags.menu)
-  }
-  
-  var footerView: UIView! {
-    return self.view.viewWithTag(tags.footer)
-  }
+  lazy var headerView: UIView = { return self.view.viewWithTag(1)! }()
+  lazy var menuView:   UIView = { return self.view.viewWithTag(2)! }()
+  lazy var footerView: UIView = { return self.view.viewWithTag(3)! }()
+  lazy var backBtn:  UIButton = { return self.view.viewWithTag(12)! as! UIButton }()
+  lazy var playBtn:  UIButton = { return self.view.viewWithTag(24)! as! UIButton }()
 
   var styleGuide: SGStyleGuide = appGlobals.styleGuide
-  var themeID: Int      = appGlobals.styleGuide.themeID
+  var themeID: Int = appGlobals.styleGuide.themeID
 
   
-  override func viewWillLayoutSubviews() {
-  }
-  
   override func viewDidLayoutSubviews() {
-//    backButton.hidden = !gameIsActive
-    backButton.layer.cornerRadius = 16
-    backButton.layer.borderWidth = 2
-    backButton.layer.borderColor = styleGuide.theme.bgColor2.getShade(0.05).CGColor
     applyStyleToViews()
+
+    backBtn.layer.cornerRadius = 16
+    backBtn.layer.borderWidth = 2
+    backBtn.layer.borderColor = styleGuide.theme.bgColor2.getShade(0.05).CGColor
+    backBtn.hidden = !appGlobals.gameIsActive
   }
   
   func setBtnBorder(sender: UIButton) {
-    backButton.layer.borderColor = styleGuide.theme.bgColor2.getShade(0.05).CGColor
+    backBtn.layer.borderColor = styleGuide.theme.bgColor2.getShade(0.05).CGColor
   }
   
   func viewsForLayerStyle(sel: ViewSelector) -> [UIView] {
@@ -64,7 +51,7 @@ class HomeViewController: UIViewController, StyleGuideDelegate {
   }
   
   func viewsForFontStyle(sel: ViewSelector) -> [UILabel] {
-    let titleTag = 10
+    let titleTag = 11
     
     switch(sel) {
       case .HeadTitle:
@@ -112,9 +99,5 @@ class HomeViewController: UIViewController, StyleGuideDelegate {
     if (appGlobals.gameIsActive) {
       dismissViewControllerAnimated(true, completion: nil)
     }
-  }
-  
-  class func sectionTags() -> (header: Int, menu: Int, footer: Int) {
-    return (header: 1, menu: 2, footer: 3)
   }
 }
