@@ -2,8 +2,14 @@ import Foundation
 import UIKit
 
 class SGStatusView: UIView {
+  let screenDims = deviceInfo.screenDims
+  
   var cardListView = CardListView(frame: CGRectZero)
   var messageView  = UILabel(frame: CGRectZero)
+  
+  var pointsFor: (set: Int, penalty: Int) {
+    return appGlobals.gameSettings.pointsFor
+  }
 
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -20,7 +26,7 @@ class SGStatusView: UIView {
   func setupSubviews() {
     messageView.isAccessibilityElement = true
 
-    if (minScreenDim < 400) {
+    if (screenDims.min < 400) {
       frame.size.height = 40
     }
 
@@ -55,9 +61,9 @@ class SGStatusView: UIView {
     
     if (move.done) {
       if (isASet) {
-        messageView.text = "is a set for \(gameSettings.pointsFor.set)."
+        messageView.text = "is a set for \(pointsFor.set)."
       } else {
-        let penalty = abs(gameSettings.pointsFor.penalty)
+        let penalty = abs(pointsFor.penalty)
         
         if (penalty > 0) {
           messageView.text = "is not a set. \(penalty) point penalty."
@@ -79,7 +85,7 @@ class SGStatusView: UIView {
   
   
   func cardsToString(cards: [SetCard]) -> String {
-    let opts = gameSettings.options
+    let opts = appGlobals.gameOptions
     
     return cards.map{ (c: SetCard) -> String in
       return c.attributes().toString(opts)
@@ -173,11 +179,11 @@ class CardListView: UIView {
   
   private func updateLabel(attr: SetCardAttrs) {
     if (numCards == 1) {
-      self.accessibilityLabel = "Selected Cards: \(attr.toString(gameSettings.options))"
+      self.accessibilityLabel = "Selected Cards: \(attr.toString(appGlobals.gameOptions))"
     } else if (numCards > 1) {
-      self.accessibilityLabel! += ", \(attr.toString(gameSettings.options))"
+      self.accessibilityLabel! += ", \(attr.toString(appGlobals.gameOptions))"
     } else {
-      self.accessibilityLabel = "\(attr.toString(gameSettings.options))"
+      self.accessibilityLabel = "\(attr.toString(appGlobals.gameOptions))"
     }
   }
   

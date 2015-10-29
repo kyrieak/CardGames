@@ -50,8 +50,7 @@ class SGFooterView: UIView {
     
     pBtnSize.height = 44
 
-    if (minScreenDim > 500) {
-      NSLog("wat")
+    if (frame.height > 55) {
       pBtnSize.height = (frame.height * 0.8)
     }
   }
@@ -89,7 +88,7 @@ class SGFooterView: UIView {
   
   func addActiveBorder(sender: UIButton) {
     sender.layer.borderWidth = CGFloat(2)
-    sender.layer.borderColor = styleGuide.theme.bgColor2.getShade(-0.2).CGColor
+    sender.layer.borderColor = appGlobals.styleGuide.theme.bgColor2.getShade(-0.2).CGColor
 //    sender.layer.borderColor = UIColor.blueColor().CGColor
   }
   

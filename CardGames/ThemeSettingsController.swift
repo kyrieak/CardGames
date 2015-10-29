@@ -10,15 +10,14 @@ import Foundation
 import UIKit
 
 class ThemeSettingsController: UIViewController, UITableViewDelegate, StyleGuideDelegate {
+  typealias sg = SGStyleGuide
+  
   @IBOutlet var themeDataSource: ThemeTableDataSource!
   
   var selectIdxPath: NSIndexPath?
   
-  var style: StyleGuide {
-    return styleGuide
-  }
-
-  var themeID = styleGuide.themeID
+  var styleGuide: SGStyleGuide = appGlobals.styleGuide
+  var themeID: Int             = appGlobals.styleGuide.themeID
 
   @IBOutlet var headerView: UIView!
   @IBOutlet var saveBtn: UIButton!
@@ -26,12 +25,24 @@ class ThemeSettingsController: UIViewController, UITableViewDelegate, StyleGuide
   @IBOutlet var themesTable: UITableView!
 
   
-  override func viewDidLayoutSubviews() {
+  override func viewWillLayoutSubviews() {
     let computedHeight = themesTable.rowHeight * CGFloat(themeDataSource.themes.count)
     let maxHeight = saveBtn.frame.minY - themesTable.frame.minY - 60
+
+    for c in themesTable.constraints {
+      if (c.firstAttribute == NSLayoutAttribute.Height) {
+        c.constant = min(computedHeight, maxHeight)
+      }
+    }
+//    themesTable.addConstraint(NSLayoutConstraint(item: themesTable, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.Height, multiplier: CGFloat(1), constant: min(computedHeight, maxHeight)))
+  }
+  
+  override func viewDidLayoutSubviews() {
+//    let computedHeight = themesTable.rowHeight * CGFloat(themeDataSource.themes.count)
+//    let maxHeight = saveBtn.frame.minY - themesTable.frame.minY - 60
     themesTable.layer.borderWidth = CGFloat(1)
 
-    themesTable.addConstraint(NSLayoutConstraint(item: themesTable, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.Height, multiplier: CGFloat(1), constant: min(computedHeight, maxHeight)))
+//    themesTable.addConstraint(NSLayoutConstraint(item: themesTable, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.Height, multiplier: CGFloat(1), constant: min(computedHeight, maxHeight)))
     applyStyleToViews()
   }
   

@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class GameSettingsController: UIViewController {
-  var options = gameSettings.options
+  var options = appGlobals.gameOptions
 
   @IBOutlet var contentView: UIView!
   @IBOutlet var colorSwitch: UISwitch!
@@ -30,17 +30,17 @@ class GameSettingsController: UIViewController {
       let dvc = segue.destinationViewController as! PlayerSettingController
       let numPlayers = Int(playerCtStepper.value)
     
-      if (gameSettings.numPlayers != numPlayers) {
+      if (appGlobals.gameSettings.numPlayers != numPlayers) {
         dvc.players = Player.makeNumberedPlayers(numPlayers)
       } else {
-        dvc.players = gameSettings.players
+        dvc.players = appGlobals.gameSettings.players
       }
       
       dvc.playerInfo = dvc.players.map{(p: Player) -> (label: String, name: String) in
         return (label: p.label, name: p.name)
       }
-      
-      gameSettings.options = options
+
+      appGlobals.setOptions(options)
     }
   }
   
@@ -48,8 +48,8 @@ class GameSettingsController: UIViewController {
     colorSwitch.setOn(options.colorsOn, animated: false)
     shapeSwitch.setOn(options.shapesOn, animated: false)
     shadingSwitch.setOn(options.shadingOn, animated: false)
-    playerCtLabel.text = "\(gameSettings.numPlayers)"
-    playerCtStepper.value = Double(gameSettings.numPlayers)
+    playerCtLabel.text = "\(appGlobals.numPlayers)"
+    playerCtStepper.value = Double(appGlobals.numPlayers)
   }
   
   @IBAction func colorSwitchAction(sender: UISwitch) {

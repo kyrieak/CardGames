@@ -114,7 +114,7 @@ class PlayerSettingController: UIViewController, UITableViewDataSource, UITableV
   }
   
   func save() {
-    gameSettings.players = players
+    appGlobals.gameSettings.players = players
     
     for (idx, info) in playerInfo.enumerate() {
       let player = players[idx]

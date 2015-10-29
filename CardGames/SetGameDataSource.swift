@@ -28,7 +28,7 @@ class SetGameDataSource: NSObject, UICollectionViewDataSource {
   }
   
   convenience override init() {
-    self.init(settings: gameSettings)
+    self.init(settings: appGlobals.gameSettings)
   }
   
   // - MARK: - DataSource Functions ------------------------------------
@@ -79,7 +79,7 @@ class SetGameDataSource: NSObject, UICollectionViewDataSource {
                                           withReuseIdentifier: footerReuseId,
                                           forIndexPath: indexPath)
     
-    styleGuide.applyLayerStyle(.Status, views: [sectionFooter])
+    appGlobals.styleGuide.applyLayerStyle(.Status, views: [sectionFooter])
 
     return sectionFooter
   }
@@ -90,7 +90,7 @@ class SetGameDataSource: NSObject, UICollectionViewDataSource {
 
     view.accessibilityLabel = accessLabelFor(card)
 
-    styleGuide.applyLayerStyle(.CardFront, views: [view])
+    appGlobals.styleGuide.applyLayerStyle(.CardFront, views: [view])
 
     return view
   }
@@ -100,7 +100,7 @@ class SetGameDataSource: NSObject, UICollectionViewDataSource {
     let selectedView = cellBgView(card, withFrame: withFrame)
     
     selectedView.layer.borderWidth = 2
-    selectedView.layer.borderColor = styleGuide.theme.bgColor3.CGColor
+    selectedView.layer.borderColor = appGlobals.styleGuide.theme.bgColor3.CGColor
 //    selectedView.layer.borderColor = styleGuide.theme.bgColor1.getShade(-0.15).CGColor
 //    selectedView.layer.borderColor = UIColor.blueColor().CGColor
     

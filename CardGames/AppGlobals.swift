@@ -9,21 +9,42 @@
 import Foundation
 import UIKit
 
-var styleGuide = SGStyleGuide(theme: Theme.honeydew())
-var gameSettings = GameSettings(players: Player.makeNumberedPlayers(1))
 
-var minScreenDim: CGFloat {
-  return styleGuide.minScreenDim
+struct AppGlobals {
+  let styleGuide = SGStyleGuide(theme: Theme.sea())
+  
+  var gameSettings = GameSettings(players: Player.makeNumberedPlayers(1))
+  var gameIsActive = false
+  
+  var gameOptions: GameOptions {
+    return self.gameSettings.options
+  }
+  
+  var numPlayers: Int {
+    return self.gameSettings.numPlayers
+  }
+  
+  mutating func setOptions(options: GameOptions) {
+    self.gameSettings.options = options
+  }
 }
 
-var screenIsPortrait: Bool {
-  return {(bounds: CGRect) -> Bool in
-    return (bounds.width < bounds.height)
-  }(UIScreen.mainScreen().bounds)
+
+struct DeviceInfo {
+  let screenDims: (min: CGFloat, max: CGFloat)
+  let isMobile: Bool
+
+  init() {
+    screenDims = UIScreen.mainScreen().bounds.getMinMaxDims()
+    isMobile = screenDims.min < 415
+  }
+  
+  func screenIsPortrait() -> Bool {
+    return {(bounds: CGRect) -> Bool in
+              return (bounds.width < bounds.height)
+            }(UIScreen.mainScreen().bounds)
+  }
 }
 
-let screenScale = UIScreen.mainScreen().scale
-
-let deviceIsMobile = (minScreenDim < 415)
-
-var gameIsActive = false
+var appGlobals = AppGlobals()
+let deviceInfo = DeviceInfo()

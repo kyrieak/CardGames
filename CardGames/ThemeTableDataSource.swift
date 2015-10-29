@@ -40,7 +40,7 @@ class ThemeTableDataSource: NSObject, UITableViewDataSource {
     let themeLabel = contentView.viewWithTag(4)! as! UILabel
     
     themeLabel.text = theme.name
-    themeLabel.font = UIFont(name: styleGuide.fontStyle(.HeadTitle)!.fontName, size: CGFloat(18))
+    themeLabel.font = UIFont(name: appGlobals.styleGuide.fontStyle(.HeadTitle)!.fontName, size: CGFloat(18))
     themeLabel.textColor = theme.fontColor2
 
     return row

@@ -10,7 +10,8 @@ import Foundation
 import UIKit
 
 class SetGameController: UIViewController, StyleGuideDelegate {
-  
+  typealias sg = SGStyleGuide
+
   // - MARK: - CollectionView
   
   @IBOutlet var sgDataSource: SetGameDataSource!
@@ -33,8 +34,8 @@ class SetGameController: UIViewController, StyleGuideDelegate {
   
   // - MARK: Private Properties
   
-  private(set) var style: StyleGuide = styleGuide
-  private(set) var themeID: Int = styleGuide.themeID
+  private(set) var styleGuide: SGStyleGuide = appGlobals.styleGuide
+  private(set) var themeID: Int = appGlobals.styleGuide.themeID
 
   private var layerSelectors: [ViewSelector] = SetGameController.selectorsForViewLayers()
   private var textSelectors: [ViewSelector] = SetGameController.selectorsForViewText()
@@ -45,12 +46,12 @@ class SetGameController: UIViewController, StyleGuideDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    gameIsActive = true
+    appGlobals.gameIsActive = true
     collectionView!.allowsMultipleSelection = true
   }
   
   override func viewWillLayoutSubviews() {
-    if (minScreenDim < 400) {
+    if (deviceInfo.screenDims.min < 400) {
       adjustConstraintsForSmallScreen()
     }
   }
@@ -81,7 +82,7 @@ class SetGameController: UIViewController, StyleGuideDelegate {
       let sid = segue.identifier!
       
       if (sid == "gameSettingSegue") {
-        gameSettings.options = game.options
+        appGlobals.gameSettings.options = game.options
       } else if (sid == "logoSegue") {
       }
     }
@@ -112,9 +113,9 @@ class SetGameController: UIViewController, StyleGuideDelegate {
   // - MARK: - Unwind Segue Functions
   
   @IBAction func prepareForNewGame(segue: UIStoryboardSegue) {
-    startNewGame(gameSettings)
+    startNewGame(appGlobals.gameSettings)
     sgDelegate.statusView?.clear()
-    footerView.layoutPlayerBtns(gameSettings.players)
+    footerView.layoutPlayerBtns(appGlobals.gameSettings.players)
   }
   
   

@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "clubs.png"
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "cb_4x2.png",
       "scale" : "2x"
     },
     {

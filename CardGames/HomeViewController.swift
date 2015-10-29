@@ -10,9 +10,10 @@ import Foundation
 import UIKit
 
 class HomeViewController: UIViewController, StyleGuideDelegate {
+  typealias sg = SGStyleGuide
+  
   let tags = HomeViewController.sectionTags()
   
-  @IBOutlet var numPlayersLabel: UILabel!
   @IBOutlet var playBtn: UIButton!
   @IBOutlet var backButton: UIButton!
 
@@ -28,8 +29,8 @@ class HomeViewController: UIViewController, StyleGuideDelegate {
     return self.view.viewWithTag(tags.footer)
   }
 
-  var style: StyleGuide = styleGuide
-  var themeID = styleGuide.themeID
+  var styleGuide: SGStyleGuide = appGlobals.styleGuide
+  var themeID: Int      = appGlobals.styleGuide.themeID
 
   
   override func viewWillLayoutSubviews() {
@@ -39,12 +40,12 @@ class HomeViewController: UIViewController, StyleGuideDelegate {
 //    backButton.hidden = !gameIsActive
     backButton.layer.cornerRadius = 16
     backButton.layer.borderWidth = 2
-    backButton.layer.borderColor = style.theme.bgColor2.getShade(0.05).CGColor
+    backButton.layer.borderColor = styleGuide.theme.bgColor2.getShade(0.05).CGColor
     applyStyleToViews()
   }
   
   func setBtnBorder(sender: UIButton) {
-    backButton.layer.borderColor = style.theme.bgColor2.getShade(0.05).CGColor
+    backButton.layer.borderColor = styleGuide.theme.bgColor2.getShade(0.05).CGColor
   }
   
   func viewsForLayerStyle(sel: ViewSelector) -> [UIView] {
@@ -108,7 +109,7 @@ class HomeViewController: UIViewController, StyleGuideDelegate {
   }
   
   @IBAction func returnToGame() {
-    if (gameIsActive) {
+    if (appGlobals.gameIsActive) {
       dismissViewControllerAnimated(true, completion: nil)
     }
   }

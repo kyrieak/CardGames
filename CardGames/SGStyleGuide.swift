@@ -10,7 +10,10 @@ import Foundation
 import UIKit
 
 class SGStyleGuide: StyleGuide {
-  let minScreenDim: CGFloat
+  let screenDims: (min: CGFloat, max: CGFloat)
+//  let minScreenDim: CGFloat
+//  let maxScreenDim: CGFloat
+//  let screenSize: CGSize
   
   // - MARK: - Constants
   
@@ -32,18 +35,16 @@ class SGStyleGuide: StyleGuide {
   required init(theme: Theme) {
     self.themeID = 1
     self.theme = theme
-    
-    self.minScreenDim = {(bounds: CGRect) -> CGFloat in
-                          return min(bounds.width, bounds.height)
-                        }(UIScreen.mainScreen().bounds)
-    setFontSizes(minScreenDim)
+    self.screenDims = deviceInfo.screenDims
+
+    setFontSizes(screenDims.min)
   }
   
   
-  init(theme: Theme, minScreenDim: CGFloat) {
+  init(theme: Theme, screenSize: CGSize) {
     self.themeID = 1
     self.theme = theme
-    self.minScreenDim = minScreenDim
+    self.screenDims = screenSize.getMinMaxDims()
   }
   
   
@@ -51,12 +52,12 @@ class SGStyleGuide: StyleGuide {
   
   
   func setFontSizes(_minScreenDim: CGFloat) {
-    switch(minScreenDim) {
-      case _ where (minScreenDim < 350):
+    switch(_minScreenDim) {
+      case _ where (_minScreenDim < 350):
         titleFS.baseSize  = 36
         statusFS.baseSize = 12
         menuFS.baseSize   = 20
-      case _ where (minScreenDim > 700):
+      case _ where (_minScreenDim > 700):
         titleFS.baseSize  = 64
         statusFS.baseSize = 24
         menuFS.baseSize   = 32
@@ -202,10 +203,24 @@ class SGStyleGuide: StyleGuide {
   }
   
   
+//  private func cardBackLayerStyle() -> UILayerStyle {
+//    return UILayerStyle(bgColor: cardBackPattern,
+//      borderWidth: CGFloat(1),
+//      borderColor: UIColor(white: 0.4, alpha: 0.2))
+//  }
+  
   private func cardBackLayerStyle() -> UILayerStyle {
-    return UILayerStyle(bgColor: cardBackPattern,
-      borderWidth: CGFloat(1),
-      borderColor: UIColor(white: 0.4, alpha: 0.2))
+    var color = cardBackPattern
+    
+    if (theme.patternImgName != nil) {
+      var img = UIImage(named: theme.patternImgName!)
+      NSLog("\(img!.scale)")
+      color = UIColor(patternImage: UIImage(named: theme.patternImgName!)!)
+    }
+    
+    return UILayerStyle(bgColor: color,
+                          borderWidth: CGFloat(1),
+                            borderColor: UIColor(white: 0.4, alpha: 0.2))
   }
   
   
@@ -231,9 +246,9 @@ class SGStyleGuide: StyleGuide {
   }
   
   private func titleFontStyle() -> UIFontStyle {
-    if (minScreenDim < 400) {
+    if (screenDims.min < 400) {
       titleFS.baseSize = 40
-    } else if (minScreenDim > 500) {
+    } else if (screenDims.min > 500) {
       titleFS.baseSize = 64
     }
     titleFS.color = theme.fontColor2

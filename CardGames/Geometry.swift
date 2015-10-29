@@ -62,6 +62,16 @@ extension CGRect {
     
     self.init(origin: origin, size: size)
   }
+  
+  func getMinMaxDims() -> (min: CGFloat, max: CGFloat) {
+    return size.getMinMaxDims()
+  }
+}
+
+extension CGSize {
+  func getMinMaxDims() -> (min: CGFloat, max: CGFloat) {
+    return (min: min(width, height), max: max(width, height))
+  }
 }
 
 extension UIEdgeInsets {

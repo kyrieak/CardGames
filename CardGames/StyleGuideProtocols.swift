@@ -52,7 +52,9 @@ protocol StyleGuide {
 // - MARK: - StyleGuideDelegate Protocol
 
 protocol StyleGuideDelegate {
-  var style: StyleGuide { get }
+  typealias sg: StyleGuide
+  
+  var styleGuide: sg { get }
   var themeID: Int { get }
   
   func viewsForLayerStyle(sel: ViewSelector) -> [UIView]

@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "spades.png"
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "cb_2x2.jpg",
       "scale" : "2x"
     },
     {

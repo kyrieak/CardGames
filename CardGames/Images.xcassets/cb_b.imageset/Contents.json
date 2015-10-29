@@ -2,11 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "royal.png"
+      "filename" : "cb_2 copy.jpg",
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "cb_2.jpg",
       "scale" : "2x"
     },
     {
