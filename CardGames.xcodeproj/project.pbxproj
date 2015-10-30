@@ -14,6 +14,7 @@
 		34005EF31A4FC8F500BDFD0F /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34005EF21A4FC8F500BDFD0F /* Deck.swift */; };
 		34005EF51A4FC91500BDFD0F /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34005EF41A4FC91500BDFD0F /* Card.swift */; };
 		340720531BC4E47F00A2E466 /* SGCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340720521BC4E47F00A2E466 /* SGCollectionViewLayout.swift */; settings = {ASSET_TAGS = (); }; };
+		340E514F1BE32A940010FE2E /* InstructionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340E514E1BE32A940010FE2E /* InstructionsViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		341723741AFBFAED002D8343 /* Squiggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341723731AFBFAED002D8343 /* Squiggle.swift */; };
 		341A2E431A8C92AE0091664E /* UIViewStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341A2E421A8C92AE0091664E /* UIViewStyles.swift */; };
 		34527F5A1A96FC7D0039C913 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34527F591A96FC7D0039C913 /* Images.xcassets */; };
@@ -61,6 +62,7 @@
 		34005EF21A4FC8F500BDFD0F /* Deck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 		34005EF41A4FC91500BDFD0F /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		340720521BC4E47F00A2E466 /* SGCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SGCollectionViewLayout.swift; sourceTree = "<group>"; };
+		340E514E1BE32A940010FE2E /* InstructionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionsViewController.swift; sourceTree = "<group>"; };
 		341723731AFBFAED002D8343 /* Squiggle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Squiggle.swift; sourceTree = "<group>"; };
 		341A2E421A8C92AE0091664E /* UIViewStyles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewStyles.swift; sourceTree = "<group>"; };
 		34527F591A96FC7D0039C913 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				345A74D61B952715003C27AE /* HomeViewController.swift */,
+				340E514E1BE32A940010FE2E /* InstructionsViewController.swift */,
 				348FF63E1AA1629C0041C5C6 /* SetGameController.swift */,
 				34BB7CCD1BC8D602000C8461 /* GameSettingsController.swift */,
 				3498E71D1BC5BE6000842F5A /* ThemeSettingsController.swift */,
@@ -330,6 +333,7 @@
 				341723741AFBFAED002D8343 /* Squiggle.swift in Sources */,
 				34005EF31A4FC8F500BDFD0F /* Deck.swift in Sources */,
 				345A74D71B952715003C27AE /* HomeViewController.swift in Sources */,
+				340E514F1BE32A940010FE2E /* InstructionsViewController.swift in Sources */,
 				34DCC2711BCC9E8A0034A274 /* SGStyleGuide.swift in Sources */,
 				34DCC26F1BCC9E270034A274 /* AppGlobals.swift in Sources */,
 				34AF52DD1AE57C2600971176 /* Geometry.swift in Sources */,

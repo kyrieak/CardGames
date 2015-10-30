@@ -19,11 +19,17 @@ class HomeViewController: UIViewController, StyleGuideDelegate {
   lazy var playBtn:  UIButton = { return self.view.viewWithTag(24)! as! UIButton }()
 
   var styleGuide: SGStyleGuide = appGlobals.styleGuide
-  var themeID: Int = appGlobals.styleGuide.themeID
+  var themeID: Int?
 
   
   override func viewDidLayoutSubviews() {
-    applyStyleToViews()
+    NSLog("did layout homeveiw")
+
+    if (themeID != styleGuide.themeID) {
+      applyStyleToViews()
+      themeID = styleGuide.themeID
+    }
+//    applyStyleToViews()
 
     backBtn.layer.cornerRadius = 16
     backBtn.layer.borderWidth = 2

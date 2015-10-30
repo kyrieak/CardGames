@@ -8,10 +8,10 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Instructions Controller-->
         <scene sceneID="xW7-7S-3qO">
             <objects>
-                <viewController id="h2T-4y-gWw" sceneMemberID="viewController">
+                <viewController title="Instructions Controller" id="h2T-4y-gWw" customClass="InstructionsViewController" customModule="CardGames" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8t7-Vk-Kok"/>
                         <viewControllerLayoutGuide type="bottom" id="7yV-ab-oBc"/>
@@ -20,57 +20,182 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" showsHorizontalScrollIndicator="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sXE-7z-GBQ">
-                                <rect key="frame" x="20" y="460" width="286" height="120"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zKc-in-B3Q">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lj6-Wi-Z5y" userLabel="What is a Set?">
+                                        <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="92" id="1c0-F2-hJM"/>
+                                        </constraints>
+                                        <string key="text">What is a Set?
+
+Three cards make a set if all of the following statements are true:</string>
+                                        <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="18"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cFl-SH-gNa" userLabel="Number Sets">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="• The number of shapes either all match, or are all different" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a2w-RA-IzE" userLabel="Number">
+                                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="18"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="a2w-RA-IzE" firstAttribute="top" secondItem="cFl-SH-gNa" secondAttribute="top" id="NLc-65-5kN"/>
+                                            <constraint firstAttribute="height" constant="112" id="NrV-GU-Gvt">
+                                                <variation key="heightClass=regular-widthClass=regular" constant="140"/>
+                                            </constraint>
+                                            <constraint firstAttribute="trailing" secondItem="a2w-RA-IzE" secondAttribute="trailing" id="RgP-LS-0zD"/>
+                                            <constraint firstItem="a2w-RA-IzE" firstAttribute="leading" secondItem="cFl-SH-gNa" secondAttribute="leading" id="hpB-g9-9Su"/>
+                                        </constraints>
+                                    </view>
+                                    <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="veb-WA-Yfp" userLabel="Shape Sets">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="• The shapes either all match, or are all different" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r2A-pO-yA9" userLabel="Shape">
+                                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="7ad-Bn-vNE"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="18"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                                <variation key="heightClass=regular-widthClass=compact">
+                                                    <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="18"/>
+                                                </variation>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="r2A-pO-yA9" firstAttribute="leading" secondItem="veb-WA-Yfp" secondAttribute="leading" id="3iH-ae-ozQ"/>
+                                            <constraint firstAttribute="trailing" secondItem="r2A-pO-yA9" secondAttribute="trailing" id="Ou0-a9-Cl9"/>
+                                            <constraint firstItem="r2A-pO-yA9" firstAttribute="top" secondItem="veb-WA-Yfp" secondAttribute="top" id="eS0-EC-aVr"/>
+                                            <constraint firstAttribute="height" constant="112" id="kDJ-MT-wr0">
+                                                <variation key="heightClass=regular-widthClass=regular" constant="140"/>
+                                            </constraint>
+                                        </constraints>
+                                    </view>
+                                    <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gxG-ru-bW7" userLabel="Shading Sets">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="• The shadings either all match, or are all different" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PQf-pt-AZZ" userLabel="Shading">
+                                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="bSi-i4-RUb"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="18"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="PQf-pt-AZZ" firstAttribute="top" secondItem="gxG-ru-bW7" secondAttribute="top" id="3RH-u8-tm7"/>
+                                            <constraint firstAttribute="height" constant="112" id="C4L-Zo-fOX">
+                                                <variation key="heightClass=regular-widthClass=regular" constant="140"/>
+                                            </constraint>
+                                            <constraint firstItem="PQf-pt-AZZ" firstAttribute="leading" secondItem="gxG-ru-bW7" secondAttribute="leading" id="DPi-2y-iro"/>
+                                            <constraint firstAttribute="trailing" secondItem="PQf-pt-AZZ" secondAttribute="trailing" id="WH2-kI-OPn"/>
+                                        </constraints>
+                                    </view>
+                                    <view tag="4" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nEK-X8-nIL" userLabel="Color Sets">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="• The colors either all match, or are all different" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2xL-hQ-2IL" userLabel="Color">
+                                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="yg9-na-cBW"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="18"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="2xL-hQ-2IL" secondAttribute="trailing" id="2Kb-oB-kl5"/>
+                                            <constraint firstAttribute="height" constant="112" id="Yhc-Ry-MKK">
+                                                <variation key="heightClass=regular-widthClass=regular" constant="140"/>
+                                            </constraint>
+                                            <constraint firstItem="2xL-hQ-2IL" firstAttribute="leading" secondItem="nEK-X8-nIL" secondAttribute="leading" id="gfq-f9-Yyx"/>
+                                            <constraint firstItem="2xL-hQ-2IL" firstAttribute="top" secondItem="nEK-X8-nIL" secondAttribute="top" id="hIu-Lr-jWR"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="13" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ka7-iE-r2g" userLabel="The Challenge">
+                                        <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="240" id="Zsl-aJ-FuV"/>
+                                        </constraints>
+                                        <string key="text">The Challenge?
+
+With a keen eye, find as many sets as quickly as possible.
+
+Game Options
+
+If you go to Game Option, you can customize your game by choosing which Set attributes you'd like to play with. You can turn off the shape, shading, or color attributes to your preference.</string>
+                                        <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="18"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" red="0.97254901959999995" green="1" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="444" id="2yA-V7-Xuw"/>
-                                    <constraint firstAttribute="width" constant="348" id="NSB-5E-snp"/>
+                                    <constraint firstItem="gxG-ru-bW7" firstAttribute="top" secondItem="veb-WA-Yfp" secondAttribute="bottom" constant="40" id="1vO-lS-mvC"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ka7-iE-r2g" secondAttribute="trailing" constant="8" id="9sJ-ag-7xM"/>
+                                    <constraint firstItem="gxG-ru-bW7" firstAttribute="trailing" secondItem="cFl-SH-gNa" secondAttribute="trailing" id="B0K-Ll-aeT"/>
+                                    <constraint firstItem="Ka7-iE-r2g" firstAttribute="leading" secondItem="zKc-in-B3Q" secondAttribute="leading" constant="8" id="DNu-6i-S5Y"/>
+                                    <constraint firstAttribute="trailing" secondItem="cFl-SH-gNa" secondAttribute="trailing" constant="8" id="DsQ-dK-mMs"/>
+                                    <constraint firstItem="gxG-ru-bW7" firstAttribute="leading" secondItem="cFl-SH-gNa" secondAttribute="leading" id="FfY-M6-1qp"/>
+                                    <constraint firstItem="veb-WA-Yfp" firstAttribute="top" secondItem="cFl-SH-gNa" secondAttribute="bottom" constant="40" id="HdB-IA-QVT"/>
+                                    <constraint firstItem="nEK-X8-nIL" firstAttribute="leading" secondItem="cFl-SH-gNa" secondAttribute="leading" id="LZQ-3x-lr7"/>
+                                    <constraint firstItem="veb-WA-Yfp" firstAttribute="leading" secondItem="cFl-SH-gNa" secondAttribute="leading" id="MDU-9D-2zW"/>
+                                    <constraint firstItem="cFl-SH-gNa" firstAttribute="leading" secondItem="zKc-in-B3Q" secondAttribute="leading" constant="8" id="MjJ-jk-jv6"/>
+                                    <constraint firstAttribute="trailing" secondItem="Lj6-Wi-Z5y" secondAttribute="trailing" constant="8" id="UeL-Zu-w9o"/>
+                                    <constraint firstItem="nEK-X8-nIL" firstAttribute="trailing" secondItem="cFl-SH-gNa" secondAttribute="trailing" id="Uhm-LU-aC2"/>
+                                    <constraint firstItem="veb-WA-Yfp" firstAttribute="trailing" secondItem="cFl-SH-gNa" secondAttribute="trailing" id="afs-Y3-d9b"/>
+                                    <constraint firstItem="cFl-SH-gNa" firstAttribute="top" secondItem="Lj6-Wi-Z5y" secondAttribute="bottom" constant="40" id="bbV-Qt-SWl"/>
+                                    <constraint firstItem="Lj6-Wi-Z5y" firstAttribute="leading" secondItem="zKc-in-B3Q" secondAttribute="leading" constant="8" id="d0N-62-gdB"/>
+                                    <constraint firstItem="Lj6-Wi-Z5y" firstAttribute="width" secondItem="zKc-in-B3Q" secondAttribute="width" constant="-16" id="eb7-X2-ZpV"/>
+                                    <constraint firstItem="Lj6-Wi-Z5y" firstAttribute="top" secondItem="zKc-in-B3Q" secondAttribute="top" constant="8" id="jnJ-WK-a1V"/>
+                                    <constraint firstAttribute="bottom" secondItem="Ka7-iE-r2g" secondAttribute="bottom" constant="8" id="rLQ-iN-jFI"/>
+                                    <constraint firstItem="nEK-X8-nIL" firstAttribute="top" secondItem="gxG-ru-bW7" secondAttribute="bottom" constant="40" id="sdA-4i-rEx"/>
+                                    <constraint firstItem="Ka7-iE-r2g" firstAttribute="top" secondItem="nEK-X8-nIL" secondAttribute="bottom" constant="40" id="wfa-dU-gC6"/>
                                 </constraints>
-                                <string key="text">What is a Set?
-
-Three cards that make a set must follow all of these rules:
-
-• The number of shapes...
-
-• The shapes either all match, or are all different
-
-• The colors either all match, or are all different
-
-• The pattern or filling all match, or are all different
-
-
-The Challenge?
-
-With a keen eye, find as many sets as quickly as possible.</string>
-                                <color key="textColor" red="0.26046317819999998" green="0.18727949260000001" blue="0.1132443026" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="18"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="2yA-V7-Xuw"/>
-                                        <exclude reference="NSB-5E-snp"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="-15" y="61" width="348" height="444"/>
-                                    <mask key="constraints">
-                                        <include reference="2yA-V7-Xuw"/>
-                                        <include reference="NSB-5E-snp"/>
-                                    </mask>
-                                </variation>
-                            </textView>
+                            </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jdb-zr-t8g">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <color key="backgroundColor" red="0.79708167990000001" green="0.75889349230000003" blue="0.70999322939999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="24"/>
+                                <inset key="contentEdgeInsets" minX="20" minY="5" maxX="20" maxY="5"/>
+                                <state key="normal" title="Done">
+                                    <color key="titleColor" red="0.26046317819999998" green="0.18727949260000001" blue="0.1132443026" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.92941176469999998" green="0.96947297489999995" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="sXE-7z-GBQ" firstAttribute="centerY" secondItem="KBt-JO-SJX" secondAttribute="centerY" id="Lu9-yl-Smh"/>
-                            <constraint firstItem="sXE-7z-GBQ" firstAttribute="centerX" secondItem="KBt-JO-SJX" secondAttribute="centerX" id="sIY-Av-0Lb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="zKc-in-B3Q" secondAttribute="trailing" id="6qu-Uw-Lom"/>
+                            <constraint firstItem="zKc-in-B3Q" firstAttribute="leading" secondItem="KBt-JO-SJX" secondAttribute="leadingMargin" id="DVX-3p-jNj"/>
+                            <constraint firstItem="7yV-ab-oBc" firstAttribute="top" secondItem="jdb-zr-t8g" secondAttribute="bottom" constant="8" id="Q9b-hQ-AIP"/>
+                            <constraint firstItem="7yV-ab-oBc" firstAttribute="top" secondItem="zKc-in-B3Q" secondAttribute="bottom" constant="56" id="ZKM-Vn-ar0"/>
+                            <constraint firstItem="jdb-zr-t8g" firstAttribute="centerX" secondItem="KBt-JO-SJX" secondAttribute="centerX" id="dcE-B7-Yl1"/>
+                            <constraint firstItem="zKc-in-B3Q" firstAttribute="top" secondItem="8t7-Vk-Kok" secondAttribute="bottom" id="nQw-0I-l2V"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K05-Tt-VAi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-356.25" y="842.25"/>
+            <point key="canvasLocation" x="-438" y="843"/>
         </scene>
         <!--Home Controller-->
         <scene sceneID="5RX-5w-uKy">
@@ -1008,7 +1133,7 @@ With a keen eye, find as many sets as quickly as possible.</string>
                                     <color key="titleColor" red="0.42706266529999998" green="0.32570422939999999" blue="0.2707932394" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="6eC-z4-STj" kind="unwind" unwindAction="prepareForThemeChange:" id="w9M-IE-ReU"/>
+                                    <action selector="respondToSaveAction:" destination="luK-Cw-9qx" eventType="touchUpInside" id="7k3-rT-qES"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" tag="2" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rcR-Nu-Vwb">
@@ -1114,9 +1239,9 @@ With a keen eye, find as many sets as quickly as possible.</string>
                     <connections>
                         <outlet property="backBtn" destination="twF-YV-CZ1" id="nSW-51-TPX"/>
                         <outlet property="headerView" destination="kaE-OT-hLF" id="i7G-hr-6gP"/>
-                        <outlet property="saveBtn" destination="chW-hm-XIU" id="cPQ-WT-ANI"/>
                         <outlet property="themeDataSource" destination="zkv-GB-VjX" id="y1y-Vj-pmE"/>
                         <outlet property="themesTable" destination="rcR-Nu-Vwb" id="tQl-xJ-p4w"/>
+                        <segue destination="6eC-z4-STj" kind="unwind" identifier="unwindToSetGame" unwindAction="prepareForThemeChange:" id="2Sv-z1-Mqt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rS2-xy-8Be" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1127,7 +1252,7 @@ With a keen eye, find as many sets as quickly as possible.</string>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="iJ9-8Q-Y9b"/>
         <segue reference="E5z-HD-Td0"/>
-        <segue reference="Uey-3Y-piQ"/>
     </inferredMetricsTieBreakers>
 </document>

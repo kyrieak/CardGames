@@ -33,7 +33,7 @@ class SetGameController: UIViewController, StyleGuideDelegate {
   // - MARK: Private Properties
   
   private(set) var styleGuide: SGStyleGuide = appGlobals.styleGuide
-  private(set) var themeID: Int = appGlobals.styleGuide.themeID
+  private(set) var themeID: Int?
 
   private var layerSelectors: [ViewSelector] = SetGameController.selectorsForViewLayers()
   private var textSelectors: [ViewSelector]  = SetGameController.selectorsForViewText()
@@ -61,8 +61,12 @@ class SetGameController: UIViewController, StyleGuideDelegate {
     }
 
     collectionView!.reloadData()
-
-    applyStyleToViews()
+NSLog("did layout")
+    if (themeID != styleGuide.themeID) {
+      applyStyleToViews()
+      themeID = styleGuide.themeID
+    }
+//    applyStyleToViews()
   }
   
   
@@ -112,19 +116,25 @@ class SetGameController: UIViewController, StyleGuideDelegate {
   
   @IBAction func prepareForNewGame(segue: UIStoryboardSegue) {
     startNewGame(appGlobals.gameSettings)
-    sgDelegate.statusView?.clear()
+    sgDelegate.statusView.clear()
     footerView.layoutPlayerBtns(appGlobals.gameSettings.players)
   }
   
   
   @IBAction func prepareForThemeChange(segue: UIStoryboardSegue) {
+    NSLog("prepare theme change")
+    NSLog("\(themeID) and \(styleGuide.themeID)")
     if (themeID != styleGuide.themeID) {
+      themeID = styleGuide.themeID
+      NSLog("prepare theme id changed, applying style")
       applyStyleToViews()
       
       for path in collectionView!.indexPathsForVisibleItems() {
         let cell = collectionView!.cellForItemAtIndexPath(path)
         cell?.selectedBackgroundView!.layer.borderColor = styleGuide.theme.bgColor3.CGColor
       }
+    } else {
+      NSLog("theme id not changed")
     }
   }
   
@@ -168,7 +178,7 @@ class SetGameController: UIViewController, StyleGuideDelegate {
       case .Footer:
         return [footerView]
       case .Status:
-        return (sgDelegate.statusView == nil) ? [] : [sgDelegate.statusView!]
+        return [sgDelegate.statusView]
       case .CardBack:
         return [deckButton]
       case .FooterUIBtn:

@@ -31,7 +31,7 @@ enum ViewSelector {
 // - MARK: - StyleGuide Protocol
 
 protocol StyleGuide {
-  var themeID: Int { get }
+  var themeID: Int? { get }
   var theme: Theme { get }
   
   init(theme: Theme)
@@ -55,7 +55,7 @@ protocol StyleGuideDelegate {
   typealias sg: StyleGuide
   
   var styleGuide: sg { get }
-  var themeID: Int { get }
+  var themeID: Int? { get }
   
   func viewsForLayerStyle(sel: ViewSelector) -> [UIView]
   func viewsForFontStyle(sel: ViewSelector) -> [UILabel]

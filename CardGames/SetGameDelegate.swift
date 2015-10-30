@@ -12,7 +12,7 @@ import UIKit
 class SetGameDelegate: NSObject, UICollectionViewDelegate {
   let statusViewTag: Int = 1
 
-  private(set) var statusView: SGStatusView?
+  private(set) var statusView: SGStatusView = SGStatusView()
   private(set) var selectIdxPaths: [NSIndexPath] = []
   private(set) var cardSize: CGSize = CGSizeZero
   
@@ -23,9 +23,9 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
     atIndexPath indexPath: NSIndexPath) {
       
       if (elementKind == UICollectionElementKindSectionFooter) {
-        statusView = view.viewWithTag(statusViewTag) as? SGStatusView
-        statusView?.adjustHeight(view.frame.height)
-        appGlobals.styleGuide.applyFontStyle(.Status, views: [statusView!.messageView])
+        statusView = view.viewWithTag(statusViewTag) as! SGStatusView
+        statusView.adjustHeight(view.frame.height)
+        appGlobals.styleGuide.applyFontStyle(.Status, views: [statusView.messageView])
         
         view.frame.origin.y = collectionView.frame.height - view.frame.height
       }
@@ -35,7 +35,7 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
   func collectionView(collectionView: UICollectionView,
     didSelectItemAtIndexPath indexPath: NSIndexPath) {
       if (selectIdxPaths.count == 0) {
-        statusView!.clear()
+        statusView.clear()
       }
       
       selectIdxPaths.append(indexPath)
@@ -43,8 +43,8 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
       let game = getGame(collectionView)
       let card = game.getCardAt(indexPath.item)!
 
-      statusView!.addCardToListView(card.attributes())
-      statusView!.setNeedsDisplay()
+      statusView.addCardToListView(card.attributes())
+      statusView.setNeedsDisplay()
   }
   
   
@@ -54,7 +54,7 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
 
       let isASet = game.currentMoveIsASet()
 
-      statusView!.updateStatus(game.currentMove, isASet: isASet)
+      statusView.updateStatus(game.currentMove, isASet: isASet)
       updateSelectedCardCells(collectionView, isASet: isASet)
       
       game.endMove()
@@ -99,7 +99,7 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
 
   func reset() {
     selectIdxPaths = []
-    statusView?.clear()
+    statusView.clear()
   }
   
   

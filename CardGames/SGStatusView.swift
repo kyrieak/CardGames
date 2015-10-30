@@ -46,7 +46,7 @@ class SGStatusView: UIView {
   
   
   func addCardToListView(attrs: SetCardAttrs) {
-    cardListView.addCardToList(attrs)
+    cardListView.addCardWith(attrs)
   }
   
   
@@ -105,8 +105,8 @@ class SGStatusView: UIView {
 
 
 class CardListView: UIView {
-  private var cardSize = CGSizeZero
-  private var numCards = 0
+  private(set) var cardSize = CGSizeZero
+  private(set) var numCards = 0
   
   var cornerRight: CGPoint {
     return CGPoint(x: bounds.maxX, y: bounds.minY)
@@ -115,6 +115,7 @@ class CardListView: UIView {
   override init(frame: CGRect) {
     super.init(frame: frame)
     
+    cardSize = CGSize(width: (frame.height * 0.72), height: frame.height)
     setupAccessibility()
   }
 
@@ -139,7 +140,7 @@ class CardListView: UIView {
   }
   
   
-  func addCardToList(attrs: SetCardAttrs) {
+  func addCardWith(attrs: SetCardAttrs) {
     addSubview(makeCardView(attrs))
     
     numCards++

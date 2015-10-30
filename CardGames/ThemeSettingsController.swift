@@ -14,54 +14,54 @@ class ThemeSettingsController: UIViewController, UITableViewDelegate, StyleGuide
   
   @IBOutlet var themeDataSource: ThemeTableDataSource!
   
-  var selectIdxPath: NSIndexPath?
+  var styleGuide: sg = appGlobals.styleGuide
+  var themeID: Int?  = appGlobals.styleGuide.themeID
   
-  var styleGuide: SGStyleGuide = appGlobals.styleGuide
-  var themeID: Int             = appGlobals.styleGuide.themeID
+  lazy var headerView:  UIView      = { return self.view.viewWithTag(1)! }()
+  lazy var themesTable: UITableView = { return self.view.viewWithTag(2)! as! UITableView }()
+  lazy var saveBtn:     UIButton    = { return self.view.viewWithTag(3)! as! UIButton }()
+  lazy var backBtn:     UIButton    = { return self.view.viewWithTag(12)! as! UIButton }()
   
-//  var headerView: UIView = UIView()
-//  var saveBtn: UIButton  = UIButton()
-//  var backBtn: UIButton  = themesTable
-
-  @IBOutlet var headerView: UIView!
-  @IBOutlet var saveBtn: UIButton!
-  @IBOutlet var backBtn: UIButton!
-  @IBOutlet var themesTable: UITableView!
-
   
   override func viewWillLayoutSubviews() {
-    let computedHeight = themesTable.rowHeight * CGFloat(themeDataSource.themes.count)
-    let maxHeight = saveBtn.frame.minY - themesTable.frame.minY - 60
-
     for c in themesTable.constraints {
       if (c.firstAttribute == NSLayoutAttribute.Height) {
-        c.constant = min(computedHeight, maxHeight)
+        c.constant = min(computedTableHeight(), maxTableHeight())
       }
     }
-//    themesTable.addConstraint(NSLayoutConstraint(item: themesTable, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.Height, multiplier: CGFloat(1), constant: min(computedHeight, maxHeight)))
   }
+
   
   override func viewDidLayoutSubviews() {
-//    let computedHeight = themesTable.rowHeight * CGFloat(themeDataSource.themes.count)
-//    let maxHeight = saveBtn.frame.minY - themesTable.frame.minY - 60
     themesTable.layer.borderWidth = CGFloat(1)
 
-//    themesTable.addConstraint(NSLayoutConstraint(item: themesTable, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.Height, multiplier: CGFloat(1), constant: min(computedHeight, maxHeight)))
     applyStyleToViews()
   }
   
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    NSLog("\(indexPath.item)")
     let theme = themeDataSource.themeAt(indexPath)!
 
     styleGuide.setTheme(theme)
-    
-    selectIdxPath = indexPath
+    themeID = theme.id
 
     applyStyleToViews()
   }
 
+  
+  @IBAction func respondToSaveAction(sender: UIButton) {
+    NSLog("\(self.presentingViewController?.description)")
+    if (self.presentingViewController != nil) {
+      let pvc = self.presentingViewController as? GameSettingsController
+      
+      if (pvc != nil) {
+        self.performSegueWithIdentifier("unwindToSetGame", sender: self)
+      } else {
+        self.dismissViewControllerAnimated(true, completion: nil)
+      }
+    }
+  }
+  
   func viewsForLayerStyle(sel: ViewSelector) -> [UIView] {
     switch(sel) {
       case .MainContent:
@@ -73,6 +73,7 @@ class ThemeSettingsController: UIViewController, UITableViewDelegate, StyleGuide
     }
   }
   
+  
   func viewsForFontStyle(sel: ViewSelector) -> [UILabel] {
     switch(sel) {
       case .FooterUIBtn:
@@ -81,6 +82,7 @@ class ThemeSettingsController: UIViewController, UITableViewDelegate, StyleGuide
         return []
     }
   }
+  
   
   func applyStyleToViews() {
     let selectors: [ViewSelector] = [.MainContent, .Header, .FooterUIBtn]
@@ -93,4 +95,13 @@ class ThemeSettingsController: UIViewController, UITableViewDelegate, StyleGuide
     styleGuide.applyFontStyle(.FooterUIBtn, views: viewsForFontStyle(.FooterUIBtn))
   }
 
+  
+  private func computedTableHeight() -> CGFloat {
+    return (themesTable.rowHeight * CGFloat(themeDataSource.themes.count))
+  }
+  
+  
+  private func maxTableHeight() -> CGFloat {
+    return (saveBtn.frame.minY - themesTable.frame.minY - 60)
+  }
 }

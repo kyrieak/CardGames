@@ -10,19 +10,16 @@ import Foundation
 import UIKit
 
 class SGStyleGuide: StyleGuide {
-  let screenDims: (min: CGFloat, max: CGFloat)
-//  let minScreenDim: CGFloat
-//  let maxScreenDim: CGFloat
-//  let screenSize: CGSize
-  
   // - MARK: - Constants
   
+  let screenDims: (min: CGFloat, max: CGFloat)
   let cardBackImage = UIImage(named: "card_back")!
   let cardBackPattern = UIColor(patternImage: UIImage(named: "card_back")!)
   
   // - MARK: - Properties
 
-  private(set) var themeID: Int
+  var themeID: Int? { return self.theme.id }
+  
   private(set) var theme: Theme
   
   private var titleFS  = UIFontStyle(fontName: "Palatino-BoldItalic", baseSize: 48)
@@ -33,7 +30,6 @@ class SGStyleGuide: StyleGuide {
   
 
   required init(theme: Theme) {
-    self.themeID = 1
     self.theme = theme
     self.screenDims = deviceInfo.screenDims
 
@@ -42,7 +38,6 @@ class SGStyleGuide: StyleGuide {
   
   
   init(theme: Theme, screenSize: CGSize) {
-    self.themeID = 1
     self.theme = theme
     self.screenDims = screenSize.getMinMaxDims()
   }
@@ -71,7 +66,6 @@ class SGStyleGuide: StyleGuide {
   
   func setTheme(theme: Theme) {
     self.theme = theme
-    self.themeID += 1
   }
   
   
@@ -203,31 +197,19 @@ class SGStyleGuide: StyleGuide {
   }
   
   
-//  private func cardBackLayerStyle() -> UILayerStyle {
-//    return UILayerStyle(bgColor: cardBackPattern,
-//      borderWidth: CGFloat(1),
-//      borderColor: UIColor(white: 0.4, alpha: 0.2))
-//  }
-  
   private func cardBackLayerStyle() -> UILayerStyle {
-    var color = cardBackPattern
+    let cardBg: UIColor = ((theme.patternColor == nil) ? cardBackPattern : theme.patternColor!)
     
-    if (theme.patternImgName != nil) {
-      var img = UIImage(named: theme.patternImgName!)
-      NSLog("\(img!.scale)")
-      color = UIColor(patternImage: UIImage(named: theme.patternImgName!)!)
-    }
-    
-    return UILayerStyle(bgColor: color,
+    return UILayerStyle(bgColor: cardBg,
                           borderWidth: CGFloat(1),
                             borderColor: UIColor(white: 0.4, alpha: 0.2))
   }
-  
+
   
   private func cardFrontLayerStyle() -> UILayerStyle {
     return UILayerStyle(bgColor: UIColor.whiteColor(),
-      borderWidth: CGFloat(1),
-      borderColor: UIColor(white: 0.9, alpha: 1.0))
+                        borderWidth: CGFloat(1),
+                        borderColor: UIColor(white: 0.9, alpha: 1.0))
   }
   
   
