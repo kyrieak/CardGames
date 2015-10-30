@@ -180,6 +180,9 @@ If you go to Game Option, you can customize your game by choosing which Set attr
                                 <state key="normal" title="Done">
                                     <color key="titleColor" red="0.26046317819999998" green="0.18727949260000001" blue="0.1132443026" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="doneAction:" destination="h2T-4y-gWw" eventType="touchUpInside" id="WgP-Ge-MgY"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.92941176469999998" green="0.96947297489999995" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

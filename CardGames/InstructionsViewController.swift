@@ -128,6 +128,7 @@ class InstructionsViewController: UIViewController {
     }
   }
 
-
-
+  @IBAction func doneAction(sender: UIButton) {
+    self.dismissViewControllerAnimated(true, completion: nil)
+  }
 }
