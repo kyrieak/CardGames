@@ -54,10 +54,10 @@ class ThemeSettingsController: UIViewController, UITableViewDelegate, StyleGuide
     if (self.presentingViewController != nil) {
       let pvc = self.presentingViewController as? GameSettingsController
       
-      if (pvc != nil) {
+      if (pvc != nil) && (appGlobals.gameIsActive) {
         self.performSegueWithIdentifier("unwindToSetGame", sender: self)
       } else {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.performSegueWithIdentifier("saveSegueToHome", sender: self)
       }
     }
   }

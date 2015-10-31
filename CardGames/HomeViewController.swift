@@ -22,14 +22,22 @@ class HomeViewController: UIViewController, StyleGuideDelegate {
   var themeID: Int?
 
   
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    super.prepareForSegue(segue, sender: sender)
+
+    if (segue.identifier == "saveSegueToHome") {
+      if (themeID != styleGuide.themeID) {
+        applyStyleToViews()
+      }
+    }
+  }
+  
   override func viewDidLayoutSubviews() {
     NSLog("did layout homeveiw")
 
     if (themeID != styleGuide.themeID) {
       applyStyleToViews()
-      themeID = styleGuide.themeID
     }
-//    applyStyleToViews()
 
     backBtn.layer.cornerRadius = 16
     backBtn.layer.borderWidth = 2
@@ -80,8 +88,9 @@ class HomeViewController: UIViewController, StyleGuideDelegate {
   }
   
   
+  
   func applyStyleToViews() {
-    let layerSelectors: [ViewSelector] = [.Header, .Footer, .Status]
+    let layerSelectors: [ViewSelector] = [.MainContent, .Header, .Footer, .Status]
     let textSelectors: [ViewSelector] = [.HomeMenuItem, .HeadTitle]
     
     for sel in textSelectors {
@@ -91,7 +100,9 @@ class HomeViewController: UIViewController, StyleGuideDelegate {
     for sel in layerSelectors {
       styleGuide.applyLayerStyle(sel, views: viewsForLayerStyle(sel))
     }
-    //
+    
+    menuView.backgroundColor = styleGuide.theme.bgLight
+    themeID = styleGuide.themeID
   }
   
   

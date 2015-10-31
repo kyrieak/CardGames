@@ -18,6 +18,7 @@ class Theme {
   
   var bgColor1, bgColor2, bgColor3, bgColor4: UIColor
   var fontColor2, fontColor3, fontColor4: UIColor
+  var bgLight: UIColor = UIColor.whiteColor()
   
   private(set) var patternColor: UIColor?
 
@@ -75,6 +76,7 @@ class Theme {
     theme.fontColor3 = UIColor(red: 0.26, green: 0.19, blue: 0.11, alpha: 1.0)
     theme.fontColor4 = UIColor(red: 0.43, green: 0.33, blue: 0.27, alpha: 1.0)
 
+    theme.bgLight = UIColor(red: 0.97, green: 1.0, blue: 0.97, alpha: 1.0)
     theme.setPattern("cb_1")
     
     return theme
@@ -86,12 +88,14 @@ class Theme {
     
     theme.setUniqueID(2)
 
-    theme.bgColor1   = UIColor(white: 0.7, alpha: 1.0)
-    theme.bgColor2   = UIColor(white: 0.9, alpha: 1.0)
-    theme.bgColor3   = UIColor(white: 0.8, alpha: 1.0)
+    theme.bgColor1   = UIColor(white: 0.95, alpha: 1.0)
+    theme.bgColor2   = UIColor(white: 0.85, alpha: 1.0)
+    //    theme.bgColor2   = UIColor(white: 0.9, alpha: 1.0)
+    theme.bgColor3   = UIColor(white: 0.75, alpha: 1.0)
     theme.bgColor4   = UIColor(white: 0.4, alpha: 1.0)
     theme.fontColor2 = UIColor(white: 0.2, alpha: 1.0)
 
+    theme.bgLight    = UIColor(white: 0.98, alpha: 1.0)
     theme.setPattern("card_back")
     
     return theme
@@ -108,6 +112,7 @@ class Theme {
     theme.bgColor3   = UIColor(red: 0.98, green: 0.80, blue: 0.66, alpha: 1.0)
     theme.fontColor2 = theme.bgColor1.getShade(-0.4)
     
+    theme.bgLight = UIColor(red: 0.916, green: 0.96, blue: 0.952, alpha: 1.0)
     theme.setPattern("cb_2")
     
     return theme

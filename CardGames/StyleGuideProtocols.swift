@@ -80,5 +80,19 @@ extension UIColor {
     return UIColor(red: values.r + delta,
                      green: values.g + delta,
                        blue: values.b + delta, alpha: 1.0)
-  }  
+  }
+  
+  func withWhiteOverlay(alpha: CGFloat) -> UIColor {
+    var values = self.getRGB()
+    let colorPer = (1 - alpha)
+    
+    values.r *= colorPer
+    values.g *= colorPer
+    values.b *= colorPer
+
+    return UIColor(red: (values.r + alpha),
+                     green: (values.g + alpha),
+                       blue: (values.b + alpha),
+                         alpha: 1.0)
+  }
 }

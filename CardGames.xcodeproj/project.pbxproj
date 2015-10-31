@@ -23,6 +23,7 @@
 		345695451A9FD7E10076FD39 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345695441A9FD7E10076FD39 /* Player.swift */; };
 		345A74D71B952715003C27AE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345A74D61B952715003C27AE /* HomeViewController.swift */; };
 		345AE9C91BC9CBC2006E3A38 /* StyleGuideProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345AE9C81BC9CBC2006E3A38 /* StyleGuideProtocols.swift */; settings = {ASSET_TAGS = (); }; };
+		3471C0471BE411CF0002A6A3 /* SetExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3471C0461BE411CF0002A6A3 /* SetExampleView.swift */; settings = {ASSET_TAGS = (); }; };
 		348FF63F1AA1629C0041C5C6 /* SetGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348FF63E1AA1629C0041C5C6 /* SetGameController.swift */; };
 		348FF6411AA1658B0041C5C6 /* SetGameDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348FF6401AA1658B0041C5C6 /* SetGameDataSource.swift */; };
 		3498E71E1BC5BE6000842F5A /* ThemeSettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3498E71D1BC5BE6000842F5A /* ThemeSettingsController.swift */; settings = {ASSET_TAGS = (); }; };
@@ -71,6 +72,7 @@
 		345695441A9FD7E10076FD39 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		345A74D61B952715003C27AE /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		345AE9C81BC9CBC2006E3A38 /* StyleGuideProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleGuideProtocols.swift; sourceTree = "<group>"; };
+		3471C0461BE411CF0002A6A3 /* SetExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetExampleView.swift; sourceTree = "<group>"; };
 		348FF63E1AA1629C0041C5C6 /* SetGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetGameController.swift; sourceTree = "<group>"; };
 		348FF6401AA1658B0041C5C6 /* SetGameDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetGameDataSource.swift; sourceTree = "<group>"; };
 		3498E71D1BC5BE6000842F5A /* ThemeSettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeSettingsController.swift; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 			children = (
 				34CC1E551ABCC83D005B2CD1 /* SetCardView.swift */,
 				34BCFC3E1AC50DD8005A4840 /* SGStatusView.swift */,
+				3471C0461BE411CF0002A6A3 /* SetExampleView.swift */,
 				3499DAFA1B9F930200AD3466 /* SGHeaderView.swift */,
 				34EE0AA01BAFAD2D0002043D /* SGFooterView.swift */,
 				340720521BC4E47F00A2E466 /* SGCollectionViewLayout.swift */,
@@ -348,6 +351,7 @@
 				345695411A9FB4510076FD39 /* SetGameDelegate.swift in Sources */,
 				345695431A9FBDC50076FD39 /* SetGame.swift in Sources */,
 				3499DAFB1B9F930200AD3466 /* SGHeaderView.swift in Sources */,
+				3471C0471BE411CF0002A6A3 /* SetExampleView.swift in Sources */,
 				340720531BC4E47F00A2E466 /* SGCollectionViewLayout.swift in Sources */,
 				34A9233E1AA19C15009D0134 /* SetCard.swift in Sources */,
 				34CC1E561ABCC83D005B2CD1 /* SetCardView.swift in Sources */,

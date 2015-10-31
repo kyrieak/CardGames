@@ -23,126 +23,76 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zKc-in-B3Q">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lj6-Wi-Z5y" userLabel="What is a Set?">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="What is a Set?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lj6-Wi-Z5y" userLabel="What is a Set?">
                                         <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" staticText="YES" header="YES"/>
+                                        </accessibility>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="92" id="1c0-F2-hJM"/>
+                                            <constraint firstAttribute="height" constant="50" id="1c0-F2-hJM"/>
                                         </constraints>
-                                        <string key="text">What is a Set?
-
-Three cards make a set if all of the following statements are true:</string>
-                                        <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="18"/>
+                                        <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="24"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cFl-SH-gNa" userLabel="Number Sets">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Three cards make a set if all of the following statements are true:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="18A-ac-pHV" userLabel="Text: What is a Set">
+                                        <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="18"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sqd-uJ-OSp" userLabel="Examples Container">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="• The number of shapes either all match, or are all different" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a2w-RA-IzE" userLabel="Number">
-                                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="18"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstItem="a2w-RA-IzE" firstAttribute="top" secondItem="cFl-SH-gNa" secondAttribute="top" id="NLc-65-5kN"/>
-                                            <constraint firstAttribute="height" constant="112" id="NrV-GU-Gvt">
-                                                <variation key="heightClass=regular-widthClass=regular" constant="140"/>
-                                            </constraint>
-                                            <constraint firstAttribute="trailing" secondItem="a2w-RA-IzE" secondAttribute="trailing" id="RgP-LS-0zD"/>
-                                            <constraint firstItem="a2w-RA-IzE" firstAttribute="leading" secondItem="cFl-SH-gNa" secondAttribute="leading" id="hpB-g9-9Su"/>
-                                        </constraints>
-                                    </view>
-                                    <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="veb-WA-Yfp" userLabel="Shape Sets">
-                                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="• The shapes either all match, or are all different" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r2A-pO-yA9" userLabel="Shape">
-                                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="40" id="7ad-Bn-vNE"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="18"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                                <variation key="heightClass=regular-widthClass=compact">
-                                                    <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="18"/>
-                                                </variation>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstItem="r2A-pO-yA9" firstAttribute="leading" secondItem="veb-WA-Yfp" secondAttribute="leading" id="3iH-ae-ozQ"/>
-                                            <constraint firstAttribute="trailing" secondItem="r2A-pO-yA9" secondAttribute="trailing" id="Ou0-a9-Cl9"/>
-                                            <constraint firstItem="r2A-pO-yA9" firstAttribute="top" secondItem="veb-WA-Yfp" secondAttribute="top" id="eS0-EC-aVr"/>
-                                            <constraint firstAttribute="height" constant="112" id="kDJ-MT-wr0">
-                                                <variation key="heightClass=regular-widthClass=regular" constant="140"/>
+                                            <constraint firstAttribute="height" constant="568" id="IvS-MG-7oh">
+                                                <variation key="heightClass=regular-widthClass=regular" constant="680"/>
                                             </constraint>
                                         </constraints>
-                                    </view>
-                                    <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gxG-ru-bW7" userLabel="Shading Sets">
-                                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="• The shadings either all match, or are all different" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PQf-pt-AZZ" userLabel="Shading">
-                                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="40" id="bSi-i4-RUb"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="18"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <segue destination="chA-s7-VEf" kind="embed" id="jcn-Ed-pHK"/>
+                                        </connections>
+                                    </containerView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Challenge?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="poG-OX-UZi">
+                                        <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" staticText="YES" header="YES"/>
+                                        </accessibility>
                                         <constraints>
-                                            <constraint firstItem="PQf-pt-AZZ" firstAttribute="top" secondItem="gxG-ru-bW7" secondAttribute="top" id="3RH-u8-tm7"/>
-                                            <constraint firstAttribute="height" constant="112" id="C4L-Zo-fOX">
-                                                <variation key="heightClass=regular-widthClass=regular" constant="140"/>
-                                            </constraint>
-                                            <constraint firstItem="PQf-pt-AZZ" firstAttribute="leading" secondItem="gxG-ru-bW7" secondAttribute="leading" id="DPi-2y-iro"/>
-                                            <constraint firstAttribute="trailing" secondItem="PQf-pt-AZZ" secondAttribute="trailing" id="WH2-kI-OPn"/>
+                                            <constraint firstAttribute="height" constant="50" id="Ven-Vw-XNt"/>
                                         </constraints>
-                                    </view>
-                                    <view tag="4" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nEK-X8-nIL" userLabel="Color Sets">
-                                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="• The colors either all match, or are all different" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2xL-hQ-2IL" userLabel="Color">
-                                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="40" id="yg9-na-cBW"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="18"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="24"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="With a keen eye, find as many sets as quickly as possible." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="may-Ae-ihX" userLabel="Text: The Challenge">
+                                        <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="18"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Options" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zUf-FO-Rms">
+                                        <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" staticText="YES" header="YES"/>
+                                        </accessibility>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="2xL-hQ-2IL" secondAttribute="trailing" id="2Kb-oB-kl5"/>
-                                            <constraint firstAttribute="height" constant="112" id="Yhc-Ry-MKK">
-                                                <variation key="heightClass=regular-widthClass=regular" constant="140"/>
-                                            </constraint>
-                                            <constraint firstItem="2xL-hQ-2IL" firstAttribute="leading" secondItem="nEK-X8-nIL" secondAttribute="leading" id="gfq-f9-Yyx"/>
-                                            <constraint firstItem="2xL-hQ-2IL" firstAttribute="top" secondItem="nEK-X8-nIL" secondAttribute="top" id="hIu-Lr-jWR"/>
+                                            <constraint firstAttribute="height" constant="50" id="LKe-Td-Dc8"/>
                                         </constraints>
-                                    </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="13" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ka7-iE-r2g" userLabel="The Challenge">
+                                        <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="24"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="13" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ka7-iE-r2g" userLabel="Text: Game Options">
                                         <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="240" id="Zsl-aJ-FuV"/>
                                         </constraints>
-                                        <string key="text">The Challenge?
+                                        <mutableString key="text">You can navigate to the Game Option settings by:
 
-With a keen eye, find as many sets as quickly as possible.
+• Selecting the menu item in the home screen
+• Pressing the ⚙ (Gear) Icon from the in-game screen.
 
-Game Options
-
-If you go to Game Option, you can customize your game by choosing which Set attributes you'd like to play with. You can turn off the shape, shading, or color attributes to your preference.</string>
+From there, you can customize your game by choosing which Set attributes you'd like to play with. You can turn off the shape, shading, or color attributes to your preference.</mutableString>
                                         <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="18"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -150,29 +100,36 @@ If you go to Game Option, you can customize your game by choosing which Set attr
                                 </subviews>
                                 <color key="backgroundColor" red="0.97254901959999995" green="1" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="gxG-ru-bW7" firstAttribute="top" secondItem="veb-WA-Yfp" secondAttribute="bottom" constant="40" id="1vO-lS-mvC"/>
+                                    <constraint firstAttribute="trailing" secondItem="18A-ac-pHV" secondAttribute="trailing" constant="8" id="2rn-B3-sKV"/>
+                                    <constraint firstItem="zUf-FO-Rms" firstAttribute="width" secondItem="zKc-in-B3Q" secondAttribute="width" constant="-16" id="9ju-Tv-ZGk"/>
+                                    <constraint firstItem="18A-ac-pHV" firstAttribute="leading" secondItem="zKc-in-B3Q" secondAttribute="leading" constant="8" id="9mT-qX-VNg"/>
                                     <constraint firstAttribute="trailing" secondItem="Ka7-iE-r2g" secondAttribute="trailing" constant="8" id="9sJ-ag-7xM"/>
-                                    <constraint firstItem="gxG-ru-bW7" firstAttribute="trailing" secondItem="cFl-SH-gNa" secondAttribute="trailing" id="B0K-Ll-aeT"/>
                                     <constraint firstItem="Ka7-iE-r2g" firstAttribute="leading" secondItem="zKc-in-B3Q" secondAttribute="leading" constant="8" id="DNu-6i-S5Y"/>
-                                    <constraint firstAttribute="trailing" secondItem="cFl-SH-gNa" secondAttribute="trailing" constant="8" id="DsQ-dK-mMs"/>
-                                    <constraint firstItem="gxG-ru-bW7" firstAttribute="leading" secondItem="cFl-SH-gNa" secondAttribute="leading" id="FfY-M6-1qp"/>
-                                    <constraint firstItem="veb-WA-Yfp" firstAttribute="top" secondItem="cFl-SH-gNa" secondAttribute="bottom" constant="40" id="HdB-IA-QVT"/>
-                                    <constraint firstItem="nEK-X8-nIL" firstAttribute="leading" secondItem="cFl-SH-gNa" secondAttribute="leading" id="LZQ-3x-lr7"/>
-                                    <constraint firstItem="veb-WA-Yfp" firstAttribute="leading" secondItem="cFl-SH-gNa" secondAttribute="leading" id="MDU-9D-2zW"/>
-                                    <constraint firstItem="cFl-SH-gNa" firstAttribute="leading" secondItem="zKc-in-B3Q" secondAttribute="leading" constant="8" id="MjJ-jk-jv6"/>
+                                    <constraint firstItem="zUf-FO-Rms" firstAttribute="leading" secondItem="zKc-in-B3Q" secondAttribute="leading" constant="8" id="Im3-qR-zKX"/>
+                                    <constraint firstAttribute="trailing" secondItem="zUf-FO-Rms" secondAttribute="trailing" constant="8" id="QeT-j6-lXx"/>
+                                    <constraint firstItem="poG-OX-UZi" firstAttribute="top" secondItem="Sqd-uJ-OSp" secondAttribute="bottom" constant="8" id="Ucr-rG-eje"/>
                                     <constraint firstAttribute="trailing" secondItem="Lj6-Wi-Z5y" secondAttribute="trailing" constant="8" id="UeL-Zu-w9o"/>
-                                    <constraint firstItem="nEK-X8-nIL" firstAttribute="trailing" secondItem="cFl-SH-gNa" secondAttribute="trailing" id="Uhm-LU-aC2"/>
-                                    <constraint firstItem="veb-WA-Yfp" firstAttribute="trailing" secondItem="cFl-SH-gNa" secondAttribute="trailing" id="afs-Y3-d9b"/>
-                                    <constraint firstItem="cFl-SH-gNa" firstAttribute="top" secondItem="Lj6-Wi-Z5y" secondAttribute="bottom" constant="40" id="bbV-Qt-SWl"/>
+                                    <constraint firstItem="poG-OX-UZi" firstAttribute="width" secondItem="zKc-in-B3Q" secondAttribute="width" constant="-16" id="Wqp-TO-0BF"/>
+                                    <constraint firstItem="poG-OX-UZi" firstAttribute="leading" secondItem="zKc-in-B3Q" secondAttribute="leading" constant="8" id="XJV-Zd-lEZ"/>
+                                    <constraint firstItem="Sqd-uJ-OSp" firstAttribute="leading" secondItem="zKc-in-B3Q" secondAttribute="leading" constant="8" id="a4v-rF-hja"/>
                                     <constraint firstItem="Lj6-Wi-Z5y" firstAttribute="leading" secondItem="zKc-in-B3Q" secondAttribute="leading" constant="8" id="d0N-62-gdB"/>
+                                    <constraint firstItem="may-Ae-ihX" firstAttribute="leading" secondItem="zKc-in-B3Q" secondAttribute="leading" constant="8" id="d3J-bX-mdU"/>
                                     <constraint firstItem="Lj6-Wi-Z5y" firstAttribute="width" secondItem="zKc-in-B3Q" secondAttribute="width" constant="-16" id="eb7-X2-ZpV"/>
+                                    <constraint firstItem="may-Ae-ihX" firstAttribute="top" secondItem="poG-OX-UZi" secondAttribute="bottom" constant="8" id="f6c-Eq-cEP"/>
+                                    <constraint firstItem="Ka7-iE-r2g" firstAttribute="top" secondItem="zUf-FO-Rms" secondAttribute="bottom" constant="8" id="hIh-sD-PRj"/>
+                                    <constraint firstItem="may-Ae-ihX" firstAttribute="width" secondItem="zKc-in-B3Q" secondAttribute="width" constant="-16" id="jNZ-LL-6r0"/>
                                     <constraint firstItem="Lj6-Wi-Z5y" firstAttribute="top" secondItem="zKc-in-B3Q" secondAttribute="top" constant="8" id="jnJ-WK-a1V"/>
+                                    <constraint firstItem="zUf-FO-Rms" firstAttribute="top" secondItem="may-Ae-ihX" secondAttribute="bottom" constant="8" id="o31-0I-OAw"/>
                                     <constraint firstAttribute="bottom" secondItem="Ka7-iE-r2g" secondAttribute="bottom" constant="8" id="rLQ-iN-jFI"/>
-                                    <constraint firstItem="nEK-X8-nIL" firstAttribute="top" secondItem="gxG-ru-bW7" secondAttribute="bottom" constant="40" id="sdA-4i-rEx"/>
-                                    <constraint firstItem="Ka7-iE-r2g" firstAttribute="top" secondItem="nEK-X8-nIL" secondAttribute="bottom" constant="40" id="wfa-dU-gC6"/>
+                                    <constraint firstItem="Sqd-uJ-OSp" firstAttribute="top" secondItem="18A-ac-pHV" secondAttribute="bottom" constant="20" id="ra3-qP-qfA"/>
+                                    <constraint firstItem="18A-ac-pHV" firstAttribute="width" secondItem="zKc-in-B3Q" secondAttribute="width" constant="-16" id="s5w-zJ-86p"/>
+                                    <constraint firstAttribute="trailing" secondItem="poG-OX-UZi" secondAttribute="trailing" constant="8" id="wC8-lc-iUV"/>
+                                    <constraint firstItem="18A-ac-pHV" firstAttribute="top" secondItem="Lj6-Wi-Z5y" secondAttribute="bottom" constant="8" id="wVB-yT-3WU"/>
+                                    <constraint firstAttribute="trailing" secondItem="Sqd-uJ-OSp" secondAttribute="trailing" constant="8" id="wlw-qd-AoC"/>
+                                    <constraint firstAttribute="trailing" secondItem="may-Ae-ihX" secondAttribute="trailing" constant="8" id="zA3-Kq-JIt"/>
                                 </constraints>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jdb-zr-t8g">
+                            <button opaque="NO" tag="20" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jdb-zr-t8g">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <color key="backgroundColor" red="0.79708167990000001" green="0.75889349230000003" blue="0.70999322939999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="24"/>
@@ -181,7 +138,7 @@ If you go to Game Option, you can customize your game by choosing which Set attr
                                     <color key="titleColor" red="0.26046317819999998" green="0.18727949260000001" blue="0.1132443026" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="doneAction:" destination="h2T-4y-gWw" eventType="touchUpInside" id="WgP-Ge-MgY"/>
+                                    <segue destination="H5D-No-5o1" kind="show" id="yuN-5A-nhK"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -198,7 +155,7 @@ If you go to Game Option, you can customize your game by choosing which Set attr
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K05-Tt-VAi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-438" y="843"/>
+            <point key="canvasLocation" x="-438" y="975.75"/>
         </scene>
         <!--Home Controller-->
         <scene sceneID="5RX-5w-uKy">
@@ -331,7 +288,7 @@ If you go to Game Option, you can customize your game by choosing which Set attr
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.97254901960784312" green="1" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.97254901959999995" green="1" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="rmQ-fn-jjX" firstAttribute="centerX" secondItem="ACB-pd-VPL" secondAttribute="centerX" id="1eI-VX-FJz"/>
                                     <constraint firstItem="rmQ-fn-jjX" firstAttribute="top" secondItem="C0L-ll-zmJ" secondAttribute="bottom" constant="50" identifier="menuSpacing" id="BcO-Cb-8cK"/>
@@ -378,6 +335,9 @@ If you go to Game Option, you can customize your game by choosing which Set attr
                                     <constraint firstItem="As4-aK-Euc" firstAttribute="top" secondItem="W8H-t9-iCb" secondAttribute="top" constant="8" id="OSU-9e-5KK"/>
                                     <constraint firstItem="As4-aK-Euc" firstAttribute="centerX" secondItem="W8H-t9-iCb" secondAttribute="centerX" id="tDq-1k-SmO"/>
                                 </constraints>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="699" width="400" height="100"/>
+                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.92941176469999998" green="0.96947297489999995" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1245,6 +1205,7 @@ If you go to Game Option, you can customize your game by choosing which Set attr
                         <outlet property="themeDataSource" destination="zkv-GB-VjX" id="y1y-Vj-pmE"/>
                         <outlet property="themesTable" destination="rcR-Nu-Vwb" id="tQl-xJ-p4w"/>
                         <segue destination="6eC-z4-STj" kind="unwind" identifier="unwindToSetGame" unwindAction="prepareForThemeChange:" id="2Sv-z1-Mqt"/>
+                        <segue destination="H5D-No-5o1" kind="show" identifier="saveSegueToHome" id="6b5-vQ-kOh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rS2-xy-8Be" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1253,9 +1214,136 @@ If you go to Game Option, you can customize your game by choosing which Set attr
             </objects>
             <point key="canvasLocation" x="1259" y="496"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="G8b-9Y-hjZ">
+            <objects>
+                <viewController id="chA-s7-VEf" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tfJ-Eg-ez5">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view tag="1" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CZh-U9-s8p" userLabel="Number Sets" customClass="SetExampleView" customModule="CardGames" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="• The number of shapes either all match or are all different" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gSf-zg-CwO" userLabel="Number">
+                                        <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="18"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="112" id="1mk-8D-F8T">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="140"/>
+                                    </constraint>
+                                    <constraint firstItem="gSf-zg-CwO" firstAttribute="top" secondItem="CZh-U9-s8p" secondAttribute="top" id="UNJ-Qm-HvF"/>
+                                    <constraint firstItem="gSf-zg-CwO" firstAttribute="leading" secondItem="CZh-U9-s8p" secondAttribute="leading" id="cuF-6n-v60"/>
+                                    <constraint firstAttribute="trailing" secondItem="gSf-zg-CwO" secondAttribute="trailing" id="vES-9t-Qrs"/>
+                                </constraints>
+                            </view>
+                            <view tag="2" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sXl-kO-5y7" userLabel="Shape Sets" customClass="SetExampleView" customModule="CardGames" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="• The shapes either all match or are all different" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I6V-fc-CSC" userLabel="Shape">
+                                        <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="tMu-Lf-AqG"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="18"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular-widthClass=compact">
+                                            <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="18"/>
+                                        </variation>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="112" id="3L3-Gy-SIy">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="140"/>
+                                    </constraint>
+                                    <constraint firstItem="I6V-fc-CSC" firstAttribute="leading" secondItem="sXl-kO-5y7" secondAttribute="leading" id="LVe-fD-P9H"/>
+                                    <constraint firstAttribute="trailing" secondItem="I6V-fc-CSC" secondAttribute="trailing" id="Qe6-q1-LUu"/>
+                                    <constraint firstItem="I6V-fc-CSC" firstAttribute="top" secondItem="sXl-kO-5y7" secondAttribute="top" id="Z9p-Re-DmV"/>
+                                </constraints>
+                            </view>
+                            <view tag="3" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9gS-Us-05t" userLabel="Shading Sets" customClass="SetExampleView" customModule="CardGames" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="• The shadings either all match or are all different" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f5i-hA-MUa" userLabel="Shading">
+                                        <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="BXa-ha-11q"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="18"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="f5i-hA-MUa" firstAttribute="leading" secondItem="9gS-Us-05t" secondAttribute="leading" id="2eu-rV-JVh"/>
+                                    <constraint firstAttribute="trailing" secondItem="f5i-hA-MUa" secondAttribute="trailing" id="6fv-X3-itA"/>
+                                    <constraint firstItem="f5i-hA-MUa" firstAttribute="top" secondItem="9gS-Us-05t" secondAttribute="top" id="C0M-CY-iuo"/>
+                                    <constraint firstAttribute="height" constant="112" id="I8A-cw-s6i">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="140"/>
+                                    </constraint>
+                                </constraints>
+                            </view>
+                            <view tag="4" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hLn-P4-DRx" userLabel="Color Sets" customClass="SetExampleView" customModule="CardGames" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="• The colors either all match or are all different" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qhz-r5-lJd" userLabel="Color">
+                                        <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="K1a-rk-hsv"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="18"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="Qhz-r5-lJd" firstAttribute="leading" secondItem="hLn-P4-DRx" secondAttribute="leading" id="5XL-bM-EDs"/>
+                                    <constraint firstAttribute="height" constant="112" id="eKO-Tz-oV9">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="140"/>
+                                    </constraint>
+                                    <constraint firstItem="Qhz-r5-lJd" firstAttribute="top" secondItem="hLn-P4-DRx" secondAttribute="top" id="hH9-LV-Cls"/>
+                                    <constraint firstAttribute="trailing" secondItem="Qhz-r5-lJd" secondAttribute="trailing" id="m5E-eM-al5"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="hLn-P4-DRx" secondAttribute="trailing" id="2ov-9D-nkh"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="CZh-U9-s8p" secondAttribute="trailing" id="6qS-ka-VW3"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="9gS-Us-05t" secondAttribute="trailing" id="Pg4-mi-UeV"/>
+                            <constraint firstItem="sXl-kO-5y7" firstAttribute="trailing" secondItem="CZh-U9-s8p" secondAttribute="trailing" id="RlV-q1-t3P"/>
+                            <constraint firstItem="sXl-kO-5y7" firstAttribute="top" secondItem="CZh-U9-s8p" secondAttribute="bottom" constant="40" id="W7k-4G-UBt"/>
+                            <constraint firstItem="CZh-U9-s8p" firstAttribute="leading" secondItem="tfJ-Eg-ez5" secondAttribute="leadingMargin" id="c5v-ta-r9z"/>
+                            <constraint firstAttribute="topMargin" secondItem="CZh-U9-s8p" secondAttribute="top" id="kMi-qy-RQ4"/>
+                            <constraint firstItem="hLn-P4-DRx" firstAttribute="leading" secondItem="tfJ-Eg-ez5" secondAttribute="leadingMargin" id="msB-hw-u2U"/>
+                            <constraint firstItem="9gS-Us-05t" firstAttribute="top" secondItem="sXl-kO-5y7" secondAttribute="bottom" constant="40" id="q3y-dK-cOh"/>
+                            <constraint firstItem="sXl-kO-5y7" firstAttribute="leading" secondItem="tfJ-Eg-ez5" secondAttribute="leadingMargin" id="rVr-Tb-ITX"/>
+                            <constraint firstItem="hLn-P4-DRx" firstAttribute="top" secondItem="9gS-Us-05t" secondAttribute="bottom" constant="40" id="rnN-Wf-Yab"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="sXl-kO-5y7" secondAttribute="trailing" id="sTC-NH-Dd4"/>
+                            <constraint firstItem="9gS-Us-05t" firstAttribute="leading" secondItem="tfJ-Eg-ez5" secondAttribute="leadingMargin" id="zfv-rU-FAB"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="29s-5t-raY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1045.5" y="975.75"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="iJ9-8Q-Y9b"/>
         <segue reference="E5z-HD-Td0"/>
+        <segue reference="6b5-vQ-kOh"/>
+        <segue reference="iJ9-8Q-Y9b"/>
     </inferredMetricsTieBreakers>
 </document>
