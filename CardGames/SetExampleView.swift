@@ -68,7 +68,7 @@ class SetExampleView: UIView {
   
   func applyCardStyle(cardView: UIView) {
     cardView.backgroundColor = UIColor.whiteColor()
-    cardView.layer.borderColor = appGlobals.styleGuide.theme.bgColor1.getShade(-0.15).CGColor
+    cardView.layer.borderColor = appGlobals.styleGuide.theme.bgBase.getShade(-0.15).CGColor
     cardView.layer.borderWidth = 1.0
   }
   

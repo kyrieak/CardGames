@@ -67,7 +67,8 @@ class ThemeSettingsController: UIViewController, UITableViewDelegate, StyleGuide
       case .MainContent:
         return [self.view]
       case .Header:
-        return [headerView, saveBtn]
+        return [headerView]
+      
       default:
         return []
     }
@@ -75,24 +76,34 @@ class ThemeSettingsController: UIViewController, UITableViewDelegate, StyleGuide
   
   
   func viewsForFontStyle(sel: ViewSelector) -> [UILabel] {
+    return [headerView.viewWithTag(11)! as! UILabel]
+  }
+  
+  func viewsForBtnStyle(sel: ViewSelector) -> [UIButton] {
     switch(sel) {
-      case .FooterUIBtn:
-        return [saveBtn.titleLabel!]
-      default:
-        return []
+    case .HeadTitle:
+      return [headerView.viewWithTag(11)! as! UIButton]
+    case .Header:
+      return [saveBtn]
+    default:
+      return []
     }
   }
   
   
   func applyStyleToViews() {
     let selectors: [ViewSelector] = [.MainContent, .Header, .FooterUIBtn]
+    let btnSelectors: [ViewSelector] = [.HeadTitle, .Header]
 
     for sel in selectors {
       styleGuide.applyLayerStyle(sel, views: viewsForLayerStyle(sel))
     }
     
-    themesTable.layer.borderColor = styleGuide.theme.bgColor1.getShade(-0.15).CGColor
-    styleGuide.applyFontStyle(.FooterUIBtn, views: viewsForFontStyle(.FooterUIBtn))
+    for sel in btnSelectors {
+      styleGuide.applyBtnStyle(sel, views: viewsForBtnStyle(sel))
+    }
+    
+    themesTable.layer.borderColor = styleGuide.theme.bgBase.getShade(-0.15).CGColor
   }
 
   

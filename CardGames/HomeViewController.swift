@@ -79,6 +79,11 @@ class HomeViewController: UIViewController, StyleGuideDelegate {
   }
   
   
+  func viewsForBtnStyle(sel: ViewSelector) -> [UIButton] {
+    return []
+  }
+  
+  
   func getMenuItems() -> [UIButton] {
     return menuView.subviews as! [UIButton]
   }

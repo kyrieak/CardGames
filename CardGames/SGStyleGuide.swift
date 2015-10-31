@@ -50,16 +50,16 @@ class SGStyleGuide: StyleGuide {
     switch(_minScreenDim) {
       case _ where (_minScreenDim < 350):
         titleFS.baseSize  = 36
-        statusFS.baseSize = 12
         menuFS.baseSize   = 20
+        statusFS.baseSize = 12
       case _ where (_minScreenDim > 700):
         titleFS.baseSize  = 64
-        statusFS.baseSize = 24
         menuFS.baseSize   = 32
+        statusFS.baseSize = 24
       default:
         titleFS.baseSize  = 48
-        statusFS.baseSize = 36
         menuFS.baseSize   = 24
+        statusFS.baseSize = 18
     }
   }
   
@@ -71,20 +71,20 @@ class SGStyleGuide: StyleGuide {
   
   func hasLayerStyle(sel: ViewSelector) -> Bool {
     switch(sel) {
-    case .Header, .Footer, .CardFront, .CardBack, .MainContent, .Status, .FooterUIBtn:
-      return true
-    default:
-      return false
+      case .Header, .Footer, .CardFront, .CardBack, .MainContent, .Status, .FooterUIBtn:
+        return true
+      default:
+        return false
     }
   }
   
   
   func hasFontStyle(sel: ViewSelector) -> Bool {
     switch(sel) {
-    case .HeadTitle, .Status, .FooterUIBtn, .HomeMenuItem:
-      return true
-    default:
-      return false
+      case .HeadTitle, .Status, .FooterUIBtn, .HomeMenuItem:
+        return true
+      default:
+        return false
     }
   }
   
@@ -146,20 +146,22 @@ class SGStyleGuide: StyleGuide {
       let style = fontStyle(sel)!
       
       for v in views {
-        v.font = style.font
+        NSLog("here in apply font")
+        v.font      = style.font
         v.textColor = style.color
       }
     }
   }
     
-  func applyBtnFontStyle(sel: ViewSelector, views: [UIButton]) {
+  func applyBtnStyle(sel: ViewSelector, views: [UIButton]) {
+    applyLayerStyle(sel, views: views)
+    
     if (hasFontStyle(sel)) {
       let style = fontStyle(sel)!
-      
+
       for btn in views {
         btn.titleLabel?.font = style.font
         btn.setTitleColor(style.color, forState: UIControlState.Normal)
-//        btn.setTitleColor(UIColor.blackColor(), forState: UIControlState.Highlighted)
       }
     }
   }
@@ -171,19 +173,8 @@ class SGStyleGuide: StyleGuide {
     return UILayerStyle(bgColor: theme.bgColor2,
                           borderWidth: CGFloat(1),
                             borderColor: theme.bgColor2.getShade(-0.15))
-//    return UILayerStyle(bgColor: theme.bgColor2,
-//      borderWidth: CGFloat(1),
-//      borderColor: UIColor(white: 0.8, alpha: 1.0))
   }
   
-  
-//  private func homeMenuFont() -> UIFontStyle {
-//    return UIFontStyle(fontName: titleFS.fontName, baseSize: )
-//  }
-  
-  class func statusLayerStyle(inout style: UILayerStyle, theme: Theme) {
-    
-  }
   
   private func statusLayerStyle() -> UILayerStyle {
     return UILayerStyle(bgColor: theme.bgColor3,
@@ -193,7 +184,7 @@ class SGStyleGuide: StyleGuide {
   
   
   private func contentLayerStyle() -> UILayerStyle {
-    return UILayerStyle(bgColor: theme.bgColor1)
+    return UILayerStyle(bgColor: theme.bgBase)
   }
   
   
@@ -214,25 +205,21 @@ class SGStyleGuide: StyleGuide {
   
   
   private func playerBtnLayerStyle() -> UILayerStyle {
-    return UILayerStyle(bgColor: theme.bgColor1,
-      borderWidth: CGFloat(1), borderColor: theme.bgColor1.getShade(-0.15))
+    return UILayerStyle(bgColor: theme.bgBase,
+                        borderWidth: CGFloat(1),
+                        borderColor: theme.bgBase.getShade(-0.15))
   }
 
   private func playerBtnFontStyle() -> UIFontStyle {
     var fs = statusFS
     
-    fs.color = theme.fontColor4
+    fs.color = theme.fontColor3
     fs.baseSize = 22
     
     return fs
   }
   
   private func titleFontStyle() -> UIFontStyle {
-    if (screenDims.min < 400) {
-      titleFS.baseSize = 40
-    } else if (screenDims.min > 500) {
-      titleFS.baseSize = 64
-    }
     titleFS.color = theme.fontColor2
     
     return titleFS

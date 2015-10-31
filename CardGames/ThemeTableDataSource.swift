@@ -33,7 +33,7 @@ class ThemeTableDataSource: NSObject, UITableViewDataSource {
     row.layoutMargins = UIEdgeInsetsZero
     let contentView = row.contentView
     
-    contentView.backgroundColor                    = theme.bgColor1
+    contentView.backgroundColor                    = theme.bgBase
     contentView.viewWithTag(2)!.backgroundColor    = theme.bgColor2
     contentView.viewWithTag(3)!.backgroundColor    = theme.bgColor3
     

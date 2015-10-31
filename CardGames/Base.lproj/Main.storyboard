@@ -35,13 +35,13 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Three cards make a set if all of the following statements are true:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="18A-ac-pHV" userLabel="Text: What is a Set">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Three cards make a set if all of the following statements are true:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="18A-ac-pHV" userLabel="Text: What is a Set">
                                         <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                         <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="18"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sqd-uJ-OSp" userLabel="Examples Container">
+                                    <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sqd-uJ-OSp" userLabel="Examples Container">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="568" id="IvS-MG-7oh">
@@ -52,7 +52,7 @@
                                             <segue destination="chA-s7-VEf" kind="embed" id="jcn-Ed-pHK"/>
                                         </connections>
                                     </containerView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Challenge?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="poG-OX-UZi">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="The Challenge?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="poG-OX-UZi">
                                         <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                         <accessibility key="accessibilityConfiguration">
                                             <accessibilityTraits key="traits" staticText="YES" header="YES"/>
@@ -61,16 +61,16 @@
                                             <constraint firstAttribute="height" constant="50" id="Ven-Vw-XNt"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="24"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="With a keen eye, find as many sets as quickly as possible." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="may-Ae-ihX" userLabel="Text: The Challenge">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="With a keen eye, find as many sets as quickly as possible." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="may-Ae-ihX" userLabel="Text: The Challenge">
                                         <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                         <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="18"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Options" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zUf-FO-Rms">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Game Options" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zUf-FO-Rms">
                                         <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                         <accessibility key="accessibilityConfiguration">
                                             <accessibilityTraits key="traits" staticText="YES" header="YES"/>
@@ -79,7 +79,7 @@
                                             <constraint firstAttribute="height" constant="50" id="LKe-Td-Dc8"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="24"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="13" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ka7-iE-r2g" userLabel="Text: Game Options">
@@ -87,12 +87,12 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="240" id="Zsl-aJ-FuV"/>
                                         </constraints>
-                                        <mutableString key="text">You can navigate to the Game Option settings by:
+                                        <string key="text">You can navigate to the Game Option settings by:
 
 • Selecting the menu item in the home screen
 • Pressing the ⚙ (Gear) Icon from the in-game screen.
 
-From there, you can customize your game by choosing which Set attributes you'd like to play with. You can turn off the shape, shading, or color attributes to your preference.</mutableString>
+From there, you can customize your game by choosing which Set attributes you'd like to play with. You can turn off the shape, shading, or color attributes to your preference.</string>
                                         <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="18"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -1218,7 +1218,12 @@ From there, you can customize your game by choosing which Set attributes you'd l
         <scene sceneID="G8b-9Y-hjZ">
             <objects>
                 <viewController id="chA-s7-VEf" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xr7-SU-sgo"/>
+                        <viewControllerLayoutGuide type="bottom" id="8Fu-iI-1hd"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="tfJ-Eg-ez5">
+                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view tag="1" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CZh-U9-s8p" userLabel="Number Sets" customClass="SetExampleView" customModule="CardGames" customModuleProvider="target">

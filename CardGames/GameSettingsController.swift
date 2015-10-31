@@ -82,11 +82,6 @@ class GameSettingsController: UIViewController {
     if (!CGRectContainsPoint(contentView.frame, pt)) {
       self.dismissViewControllerAnimated(true, completion: nil)
     }
-    
-//    if ((pt.x < cFrame.minX) || (pt.x > cFrame.maxX) ||
-//        (pt.y < cFrame.minY) || (pt.y > cFrame.maxY)) {
-//      self.dismissViewControllerAnimated(true, completion: nil)
-//    }
   }
   
   @IBAction func prepareBackUnwind(segue: UIStoryboardSegue) {

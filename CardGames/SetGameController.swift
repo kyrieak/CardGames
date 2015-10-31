@@ -36,7 +36,7 @@ class SetGameController: UIViewController, StyleGuideDelegate {
   private(set) var themeID: Int?
 
   private var layerSelectors: [ViewSelector] = SetGameController.selectorsForViewLayers()
-  private var textSelectors: [ViewSelector]  = SetGameController.selectorsForViewText()
+  private var btnSelectors: [ViewSelector]   = SetGameController.selectorsForBtns()
   
   // - MARK: - Override Functions
 
@@ -118,6 +118,7 @@ NSLog("did layout")
     startNewGame(appGlobals.gameSettings)
     sgDelegate.statusView.clear()
     footerView.layoutPlayerBtns(appGlobals.gameSettings.players)
+    styleGuide.applyBtnStyle(.FooterUIBtn, views: footerView.playerBtns)
   }
   
   
@@ -181,27 +182,31 @@ NSLog("did layout")
         return [sgDelegate.statusView]
       case .CardBack:
         return [deckButton]
-      case .FooterUIBtn:
-        return footerView.subviews
       default:
         return []
     }
   }
   
   func viewsForFontStyle(sel: ViewSelector) -> [UILabel] {
-    return []
-  }
-  
-  func btnsForFontStyle(sel: ViewSelector) -> [UIButton] {
-    switch(sel) {
-      case .HeadTitle:
-        return [headerView.logoButton]
-      case .FooterUIBtn:
-        return footerView.playerBtns
-      default:
-        return []
+    if (sel == .Status) {
+      return [sgDelegate.statusView.messageView]
+    } else {
+      return []
     }
   }
+  
+  
+  func viewsForBtnStyle(sel: ViewSelector) -> [UIButton] {
+    switch(sel) {
+    case .HeadTitle:
+      return [headerView.logoButton]
+    case .FooterUIBtn:
+      return footerView.playerBtns
+    default:
+      return []
+    }
+  }
+  
   
   func getHeaderView() -> SGHeaderView {
     return self.view.viewWithTag(1)! as! SGHeaderView
@@ -212,10 +217,10 @@ NSLog("did layout")
   }
   
   class func selectorsForViewLayers() -> [ViewSelector] {
-    return [.MainContent, .Header, .Footer, .Status, .CardBack, .FooterUIBtn]
+    return [.MainContent, .Header, .Footer, .Status, .CardBack]
   }
   
-  class func selectorsForViewText() -> [ViewSelector] {
+  class func selectorsForBtns() -> [ViewSelector] {
     return [.HeadTitle, .FooterUIBtn]
   }
   
@@ -224,10 +229,13 @@ NSLog("did layout")
       styleGuide.applyLayerStyle(sel, views: viewsForLayerStyle(sel))
     }
     
-    for sel in textSelectors {
-      styleGuide.applyBtnFontStyle(sel, views: btnsForFontStyle(sel))
+    for sel in btnSelectors {
+      styleGuide.applyBtnStyle(sel, views: viewsForBtnStyle(sel))
     }
-        
+    
+    styleGuide.applyFontStyle(.Status, views: viewsForFontStyle(.Status))
+    NSLog("\(styleGuide.fontStyle(.Status))")
+    
     if (game.deck.isEmpty()) {
       deckButton.backgroundColor = UIColor.clearColor()
     }
