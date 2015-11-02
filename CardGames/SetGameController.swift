@@ -24,8 +24,9 @@ class SetGameController: UIViewController, StyleGuideDelegate {
   // - MARK: Subviews
   
   lazy var headerView: SGHeaderView          = { return self.view.viewWithTag(1)! as! SGHeaderView }()
-  lazy var wrapperView: UIView               = { return self.view.viewWithTag(2)! }()
   lazy var footerView: SGFooterView          = { return self.view.viewWithTag(3)! as! SGFooterView }()
+
+  lazy var wrapperView: UIView               = { return self.view.viewWithTag(2)! }()
   lazy var collectionView: UICollectionView? = { return self.view.viewWithTag(20) as? UICollectionView }()
   
   var deckButton: UIButton { return headerView.deckButton }
@@ -36,7 +37,7 @@ class SetGameController: UIViewController, StyleGuideDelegate {
   private(set) var themeID: Int?
 
   private var layerSelectors: [ViewSelector] = SetGameController.selectorsForViewLayers()
-  private var btnSelectors: [ViewSelector]   = SetGameController.selectorsForBtns()
+  private var btnSelectors:   [ViewSelector] = SetGameController.selectorsForBtns()
   
   // - MARK: - Override Functions
 
@@ -59,14 +60,10 @@ class SetGameController: UIViewController, StyleGuideDelegate {
     if (footerView.subviews.count < 1) {
       footerView.addPlayerButtons(game.players, target: self, action: Selector("makeMoveAction:"))
     }
-
-    collectionView!.reloadData()
-NSLog("did layout")
+    
     if (themeID != styleGuide.themeID) {
       applyStyleToViews()
-      themeID = styleGuide.themeID
     }
-//    applyStyleToViews()
   }
   
   
@@ -90,7 +87,19 @@ NSLog("did layout")
     }
   }
   
+  
+  func themeDidChange() -> Bool {
+    return (themeID != styleGuide.themeID)
+  }
+  
   // - MARK: - UIActions
+  
+  @IBAction func tapLogoAction(sender: UIButton) {
+    let vc = storyboard!.instantiateViewControllerWithIdentifier("homeViewController")
+    
+    self.presentViewController(vc, animated: true, completion: nil)
+  }
+  
   
   @IBAction func tapDeckAction(sender: UIButton) {
     if (!game.isOver) {
@@ -102,6 +111,13 @@ NSLog("did layout")
         sender.enabled = false
       }
     }
+  }
+  
+  
+  @IBAction func tapGearAction(sender: UIButton) {
+    let vc = storyboard!.instantiateViewControllerWithIdentifier("gameSettingController")
+
+    self.presentViewController(vc, animated: true, completion: nil)
   }
 
   
@@ -123,19 +139,10 @@ NSLog("did layout")
   
   
   @IBAction func prepareForThemeChange(segue: UIStoryboardSegue) {
-    NSLog("prepare theme change")
-    NSLog("\(themeID) and \(styleGuide.themeID)")
     if (themeID != styleGuide.themeID) {
-      themeID = styleGuide.themeID
-      NSLog("prepare theme id changed, applying style")
       applyStyleToViews()
       
-      for path in collectionView!.indexPathsForVisibleItems() {
-        let cell = collectionView!.cellForItemAtIndexPath(path)
-        cell?.selectedBackgroundView!.layer.borderColor = styleGuide.theme.bgColor3.CGColor
-      }
-    } else {
-      NSLog("theme id not changed")
+      themeID = styleGuide.themeID
     }
   }
   
@@ -234,18 +241,22 @@ NSLog("did layout")
     }
     
     styleGuide.applyFontStyle(.Status, views: viewsForFontStyle(.Status))
-    NSLog("\(styleGuide.fontStyle(.Status))")
     
     if (game.deck.isEmpty()) {
       deckButton.backgroundColor = UIColor.clearColor()
     }
     
-    if (sgDelegate.selectIdxPaths.count > 0) {
-      collectionView!.reloadItemsAtIndexPaths(sgDelegate.selectIdxPaths)
+    updateCollectionViewStyle()
+    themeID = styleGuide.themeID
+  }
+  
+  func updateCollectionViewStyle() {
+    for path in collectionView!.indexPathsForVisibleItems() {
+      let cell = collectionView!.cellForItemAtIndexPath(path)!
 
-      for idx in sgDelegate.selectIdxPaths {
-        collectionView!.selectItemAtIndexPath(idx, animated: false, scrollPosition: UICollectionViewScrollPosition.None)
-      }
+      cell.selectedBackgroundView!.layer.borderColor = styleGuide.theme.bgColor3.CGColor
+
+      if (cell.selected) { cell.setNeedsDisplay() }
     }
   }
   

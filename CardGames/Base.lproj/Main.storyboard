@@ -20,7 +20,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zKc-in-B3Q">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" directionalLockEnabled="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zKc-in-B3Q">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="What is a Set?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lj6-Wi-Z5y" userLabel="What is a Set?">
@@ -138,7 +138,7 @@ From there, you can customize your game by choosing which Set attributes you'd l
                                     <color key="titleColor" red="0.26046317819999998" green="0.18727949260000001" blue="0.1132443026" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="H5D-No-5o1" kind="show" id="yuN-5A-nhK"/>
+                                    <action selector="doneAction:" destination="h2T-4y-gWw" eventType="touchUpInside" id="t4D-Rb-g4k"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -151,16 +151,30 @@ From there, you can customize your game by choosing which Set attributes you'd l
                             <constraint firstItem="jdb-zr-t8g" firstAttribute="centerX" secondItem="KBt-JO-SJX" secondAttribute="centerX" id="dcE-B7-Yl1"/>
                             <constraint firstItem="zKc-in-B3Q" firstAttribute="top" secondItem="8t7-Vk-Kok" secondAttribute="bottom" id="nQw-0I-l2V"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="L98-lI-8gg" appends="YES" id="u9A-gh-jrv"/>
+                            <outletCollection property="gestureRecognizers" destination="fCO-b4-dQD" appends="YES" id="PpC-gD-BuI"/>
+                        </connections>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K05-Tt-VAi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="L98-lI-8gg">
+                    <connections>
+                        <action selector="respondToHorizontalSwipe:" destination="h2T-4y-gWw" id="0NN-WB-Ex9"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="left" id="fCO-b4-dQD">
+                    <connections>
+                        <action selector="respondToHorizontalSwipe:" destination="h2T-4y-gWw" id="cBC-Sm-1Sn"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-438" y="975.75"/>
+            <point key="canvasLocation" x="-1066.5" y="700.5"/>
         </scene>
         <!--Home Controller-->
         <scene sceneID="5RX-5w-uKy">
             <objects>
-                <viewController title="Home Controller" id="H5D-No-5o1" customClass="HomeViewController" customModule="CardGames" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="homeViewController" title="Home Controller" id="H5D-No-5o1" customClass="HomeViewController" customModule="CardGames" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SnM-TY-aEw"/>
                         <viewControllerLayoutGuide type="bottom" id="dkr-8o-1Sl"/>
@@ -189,15 +203,18 @@ From there, you can customize your game by choosing which Set attributes you'd l
                                         <fontDescription key="fontDescription" name="Palatino-BoldItalic" family="Palatino" pointSize="20"/>
                                         <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="4"/>
                                         <size key="titleShadowOffset" width="0.5" height="0.5"/>
-                                        <state key="normal" title="Return to Game ➡︎">
+                                        <state key="normal" title="Back to Game ➡︎">
                                             <color key="titleColor" red="0.58039215690000001" green="0.70980392160000005" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" red="0.50980392156862742" green="0.63921568627450975" blue="0.49803921568627452" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="219" y="117" width="173" height="35"/>
+                                        </variation>
                                         <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
                                             <rect key="frame" x="502" y="116" width="184" height="35"/>
                                         </variation>
                                         <connections>
-                                            <action selector="returnToGame" destination="H5D-No-5o1" eventType="touchUpInside" id="Cug-G7-9md"/>
+                                            <segue destination="ybI-AH-8cG" kind="unwind" identifier="unwindBack" unwindAction="prepareForThemeChange:" id="wA4-dR-Fu9"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -223,7 +240,7 @@ From there, you can customize your game by choosing which Set attributes you'd l
                                             <rect key="frame" x="98" y="20" width="133" height="39"/>
                                         </variation>
                                         <connections>
-                                            <segue destination="h2T-4y-gWw" kind="presentation" id="mqQ-IO-y3k"/>
+                                            <segue destination="h2T-4y-gWw" kind="presentation" identifier="modalHowToPlay" modalTransitionStyle="crossDissolve" id="mqQ-IO-y3k"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C0L-ll-zmJ">
@@ -236,7 +253,7 @@ From there, you can customize your game by choosing which Set attributes you'd l
                                             <rect key="frame" x="87" y="74" width="155" height="39"/>
                                         </variation>
                                         <connections>
-                                            <segue destination="mh9-fz-JHF" kind="presentation" id="E5z-HD-Td0"/>
+                                            <segue destination="mh9-fz-JHF" kind="presentation" identifier="modalGameOptions" modalTransitionStyle="crossDissolve" id="E5z-HD-Td0"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rmQ-fn-jjX">
@@ -249,7 +266,7 @@ From there, you can customize your game by choosing which Set attributes you'd l
                                             <rect key="frame" x="77" y="128" width="164" height="39"/>
                                         </variation>
                                         <connections>
-                                            <segue destination="luK-Cw-9qx" kind="presentation" id="iJ9-8Q-Y9b"/>
+                                            <segue destination="luK-Cw-9qx" kind="presentation" identifier="modalThemeSettings" id="iJ9-8Q-Y9b"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="24" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ELA-KI-XLG">
@@ -284,7 +301,7 @@ From there, you can customize your game by choosing which Set attributes you'd l
                                             </mask>
                                         </variation>
                                         <connections>
-                                            <segue destination="kmm-mS-WAn" kind="show" id="ag2-lq-9bi"/>
+                                            <segue destination="kmm-mS-WAn" kind="show" identifier="segueToNewGame" id="ag2-lq-9bi"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -383,13 +400,14 @@ From there, you can customize your game by choosing which Set attributes you'd l
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Rp-YX-EIU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="ybI-AH-8cG" userLabel="Exit" sceneMemberID="exit"/>
                 <swipeGestureRecognizer direction="left" id="4BO-Li-LyG">
                     <connections>
                         <action selector="respondToSwipe:" destination="H5D-No-5o1" id="QQe-xr-IXq"/>
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-438" y="90"/>
+            <point key="canvasLocation" x="-378" y="-12"/>
         </scene>
         <!--Game Settings Controller-->
         <scene sceneID="8x6-S5-PQn">
@@ -409,19 +427,19 @@ From there, you can customize your game by choosing which Set attributes you'd l
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Players:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bgp-p8-qC8">
                                         <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Color" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RhG-Vg-mgK">
                                         <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Pattern" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z5X-QY-FVc">
                                         <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ggK-Ly-xCx">
@@ -458,7 +476,8 @@ From there, you can customize your game by choosing which Set attributes you'd l
                                                 <variation key="heightClass=regular-widthClass=compact" constant="96"/>
                                             </constraint>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <inset key="contentEdgeInsets" minX="8" minY="4" maxX="8" maxY="4"/>
                                         <state key="normal" title="New Game">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -469,24 +488,24 @@ From there, you can customize your game by choosing which Set attributes you'd l
                                         </variation>
                                         <variation key="heightClass=regular-widthClass=compact">
                                             <mask key="constraints">
-                                                <include reference="6pC-nh-hMJ"/>
+                                                <exclude reference="6pC-nh-hMJ"/>
                                             </mask>
                                         </variation>
                                         <connections>
-                                            <segue destination="qiB-VV-Czl" kind="show" identifier="playerSettingSegue" id="MnZ-WU-7KX"/>
+                                            <segue destination="qiB-VV-Czl" kind="presentation" identifier="modalToPlayers" modalTransitionStyle="crossDissolve" id="MnZ-WU-7KX"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sDc-st-hQS">
                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                         <state key="normal" title="Theme Settings"/>
                                         <connections>
-                                            <segue destination="luK-Cw-9qx" kind="presentation" id="Uey-3Y-piQ"/>
+                                            <segue destination="luK-Cw-9qx" kind="presentation" identifier="modalThemeSettings" modalTransitionStyle="crossDissolve" id="Uey-3Y-piQ"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Shape" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t31-ZG-zIP">
                                         <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7vS-Mi-Jmm">
@@ -510,7 +529,7 @@ From there, you can customize your game by choosing which Set attributes you'd l
                                     <constraint firstItem="cNC-GU-T9O" firstAttribute="centerY" secondItem="Bgp-p8-qC8" secondAttribute="centerY" id="MzV-ep-cZn"/>
                                     <constraint firstAttribute="trailing" secondItem="ggK-Ly-xCx" secondAttribute="trailing" constant="8" id="N9e-R2-2ld"/>
                                     <constraint firstAttribute="trailing" secondItem="7vS-Mi-Jmm" secondAttribute="trailing" constant="8" id="ODI-CW-eeC"/>
-                                    <constraint firstAttribute="bottom" secondItem="34B-TH-jgu" secondAttribute="bottom" constant="20" id="Obd-Re-5rJ"/>
+                                    <constraint firstAttribute="bottom" secondItem="34B-TH-jgu" secondAttribute="bottom" constant="14" id="Obd-Re-5rJ"/>
                                     <constraint firstAttribute="trailing" secondItem="cpe-EJ-cvL" secondAttribute="trailing" constant="8" id="PZ4-j7-Z1O"/>
                                     <constraint firstAttribute="trailing" secondItem="sDc-st-hQS" secondAttribute="trailing" constant="8" id="QNs-4o-HFI"/>
                                     <constraint firstItem="t31-ZG-zIP" firstAttribute="leading" secondItem="6Qs-Ij-2cV" secondAttribute="leading" constant="13" id="dHe-9t-gWm"/>
@@ -553,7 +572,7 @@ From there, you can customize your game by choosing which Set attributes you'd l
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1086" y="-544.5"/>
+            <point key="canvasLocation" x="391.5" y="-78"/>
         </scene>
         <!--Player Setting Controller-->
         <scene sceneID="2bm-zD-vuk">
@@ -567,40 +586,7 @@ From there, you can customize your game by choosing which Set attributes you'd l
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yvW-8I-zXc" userLabel="Footer View">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n6y-lH-aGo">
-                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                        <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="63" id="bGt-tg-e9j"/>
-                                        </constraints>
-                                        <state key="normal" title="Start!">
-                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="KJp-Pz-q4g" kind="unwind" identifier="unwindToNewGame" unwindAction="prepareForNewGame:" id="QsB-SC-4OQ"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FFa-d0-7Y6">
-                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                        <state key="normal" title="&lt; Back"/>
-                                        <connections>
-                                            <segue destination="KJp-Pz-q4g" kind="unwind" unwindAction="prepareBackUnwind:" id="T4N-Ib-Rnx"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="n6y-lH-aGo" firstAttribute="centerY" secondItem="yvW-8I-zXc" secondAttribute="centerY" id="8rv-pG-d2r"/>
-                                    <constraint firstItem="FFa-d0-7Y6" firstAttribute="leading" secondItem="yvW-8I-zXc" secondAttribute="leading" constant="8" id="Hd1-LX-txr"/>
-                                    <constraint firstAttribute="height" constant="44" id="J5S-eJ-3qU"/>
-                                    <constraint firstItem="FFa-d0-7Y6" firstAttribute="centerY" secondItem="yvW-8I-zXc" secondAttribute="centerY" id="JXt-lm-pPt"/>
-                                    <constraint firstItem="n6y-lH-aGo" firstAttribute="centerX" secondItem="yvW-8I-zXc" secondAttribute="centerX" id="lsf-xO-yqX"/>
-                                </constraints>
-                            </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" sectionIndexMinimumDisplayRowCount="4" rowHeight="50" sectionHeaderHeight="40" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="EAR-6O-6w4">
+                            <tableView clipsSubviews="YES" tag="1" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" sectionIndexMinimumDisplayRowCount="4" rowHeight="50" sectionHeaderHeight="40" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="EAR-6O-6w4">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -615,26 +601,23 @@ From there, you can customize your game by choosing which Set attributes you'd l
                                             <rect key="frame" x="0.0" y="0.0" width="240" height="49.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Player 1" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tmF-Em-J8S">
-                                                    <rect key="frame" x="-25" y="-30" width="97" height="30"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="121" y="10" width="111" height="30"/>
-                                                    </variation>
-                                                    <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                                        <rect key="frame" x="121" y="12" width="111" height="30"/>
-                                                    </variation>
-                                                    <connections>
-                                                        <outlet property="delegate" destination="qiB-VV-Czl" id="gVF-qc-Fja"/>
-                                                    </connections>
-                                                </textField>
                                                 <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="P1" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YTl-4y-0wg">
                                                     <rect key="frame" x="-25" y="-30" width="97" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
-                                                        <outlet property="delegate" destination="qiB-VV-Czl" id="gf6-Az-MKk"/>
+                                                        <outlet property="delegate" destination="qiB-VV-Czl" id="vXk-dm-Hfv"/>
+                                                    </connections>
+                                                </textField>
+                                                <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Player 1" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tmF-Em-J8S">
+                                                    <rect key="frame" x="-25" y="-30" width="97" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                    <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                                        <rect key="frame" x="121" y="12" width="111" height="30"/>
+                                                    </variation>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="qiB-VV-Czl" id="QdV-RT-BaL"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -654,6 +637,46 @@ From there, you can customize your game by choosing which Set attributes you'd l
                                     <outlet property="delegate" destination="qiB-VV-Czl" id="FrJ-fW-wBm"/>
                                 </connections>
                             </tableView>
+                            <view tag="2" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yvW-8I-zXc" userLabel="Footer View">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <subviews>
+                                    <button opaque="NO" tag="21" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n6y-lH-aGo">
+                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                        <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="63" id="bGt-tg-e9j"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <inset key="contentEdgeInsets" minX="8" minY="4" maxX="8" maxY="4"/>
+                                        <state key="normal" title="Start!">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="bGt-tg-e9j"/>
+                                            </mask>
+                                        </variation>
+                                        <connections>
+                                            <action selector="startNewGame:" destination="qiB-VV-Czl" eventType="touchUpInside" id="Gu1-IX-GRI"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="22" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FFa-d0-7Y6">
+                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                        <state key="normal" title="&lt; Back"/>
+                                        <connections>
+                                            <segue destination="KJp-Pz-q4g" kind="unwind" identifier="unwindBack" unwindAction="prepareBackUnwind:" id="T4N-Ib-Rnx"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="n6y-lH-aGo" firstAttribute="centerY" secondItem="yvW-8I-zXc" secondAttribute="centerY" id="8rv-pG-d2r"/>
+                                    <constraint firstItem="FFa-d0-7Y6" firstAttribute="leading" secondItem="yvW-8I-zXc" secondAttribute="leading" constant="8" id="Hd1-LX-txr"/>
+                                    <constraint firstAttribute="height" constant="44" id="J5S-eJ-3qU"/>
+                                    <constraint firstItem="FFa-d0-7Y6" firstAttribute="centerY" secondItem="yvW-8I-zXc" secondAttribute="centerY" id="JXt-lm-pPt"/>
+                                    <constraint firstItem="n6y-lH-aGo" firstAttribute="centerX" secondItem="yvW-8I-zXc" secondAttribute="centerX" id="lsf-xO-yqX"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
@@ -669,9 +692,8 @@ From there, you can customize your game by choosing which Set attributes you'd l
                         </connections>
                     </view>
                     <connections>
-                        <outlet property="footerView" destination="yvW-8I-zXc" id="U1O-qE-ClC"/>
-                        <outlet property="saveBtn" destination="n6y-lH-aGo" id="7Fg-HY-Hy3"/>
-                        <outlet property="tableView" destination="EAR-6O-6w4" id="toy-oH-MCH"/>
+                        <segue destination="kmm-mS-WAn" kind="show" identifier="segueToNewGame" id="aPc-Vh-dtX"/>
+                        <segue destination="KJp-Pz-q4g" kind="unwind" identifier="unwindToNewGame" unwindAction="prepareForNewGame:" id="uOp-sd-tJu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ilp-os-LHg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -682,12 +704,12 @@ From there, you can customize your game by choosing which Set attributes you'd l
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1741.5" y="-544.5"/>
+            <point key="canvasLocation" x="1183.5" y="-78"/>
         </scene>
-        <!--SetGame Controller-->
+        <!--Set Game Controller-->
         <scene sceneID="qmm-UM-vLP">
             <objects>
-                <viewController title="SetGame Controller" id="kmm-mS-WAn" customClass="SetGameController" customModule="CardGames" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Set Game Controller" id="kmm-mS-WAn" customClass="SetGameController" customModule="CardGames" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7Wn-ch-2wN"/>
                         <viewControllerLayoutGuide type="bottom" id="EcK-cy-hl4"/>
@@ -739,7 +761,7 @@ From there, you can customize your game by choosing which Set attributes you'd l
                                             <fontDescription key="fontDescription" name="Palatino-BoldItalic" family="Palatino" pointSize="64"/>
                                         </variation>
                                         <connections>
-                                            <segue destination="H5D-No-5o1" kind="presentation" identifier="logoSegue" modalTransitionStyle="flipHorizontal" id="D91-a5-HUU"/>
+                                            <action selector="tapLogoAction:" destination="kmm-mS-WAn" eventType="touchUpInside" id="JZx-Xj-FAT"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="13" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z5e-6p-rcb">
@@ -752,7 +774,7 @@ From there, you can customize your game by choosing which Set attributes you'd l
                                             <color key="titleColor" red="0.42745098039215684" green="0.32549019607843138" blue="0.27058823529411763" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="mh9-fz-JHF" kind="presentation" identifier="gameOptionsSegue" modalTransitionStyle="crossDissolve" id="vdb-JC-5Oz"/>
+                                            <action selector="tapGearAction:" destination="kmm-mS-WAn" eventType="touchUpInside" id="sNC-Vc-5tO"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1007,12 +1029,12 @@ From there, you can customize your game by choosing which Set attributes you'd l
                 <customObject id="9Vo-Po-MCU" customClass="SetGameDataSource" customModule="CardGames" customModuleProvider="target"/>
                 <customObject id="ju9-Y4-cHC" customClass="SetGameDelegate" customModule="CardGames" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="381" y="108"/>
+            <point key="canvasLocation" x="1951.5" y="-12"/>
         </scene>
         <!--Theme Settings Controller-->
         <scene sceneID="m3p-j9-aGn">
             <objects>
-                <viewController id="luK-Cw-9qx" customClass="ThemeSettingsController" customModule="CardGames" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Theme Settings Controller" id="luK-Cw-9qx" customClass="ThemeSettingsController" customModule="CardGames" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cVH-Ss-12W"/>
                         <viewControllerLayoutGuide type="bottom" id="okh-BM-Hss"/>
@@ -1024,18 +1046,6 @@ From there, you can customize your game by choosing which Set attributes you'd l
                             <view tag="1" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kaE-OT-hLF" customClass="SGHeaderView" customModule="CardGames" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <subviews>
-                                    <button opaque="NO" tag="12" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="twF-YV-CZ1">
-                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                        <color key="backgroundColor" red="0.79708167990000001" green="0.75889349230000003" blue="0.70999322939999998" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="twF-YV-CZ1" secondAttribute="height" multiplier="1:1" id="kso-AB-3RX"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="33"/>
-                                        <state key="normal" title="🔙"/>
-                                        <connections>
-                                            <segue destination="6eC-z4-STj" kind="unwind" unwindAction="prepareBackUnwind:" id="l0I-Fs-Lup"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" tag="11" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="right" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MrU-ch-G5N">
                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                         <constraints>
@@ -1043,6 +1053,7 @@ From there, you can customize your game by choosing which Set attributes you'd l
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Palatino-BoldItalic" family="Palatino" pointSize="46"/>
                                         <inset key="contentEdgeInsets" minX="0.0" minY="-5" maxX="0.0" maxY="0.0"/>
+                                        <size key="titleShadowOffset" width="2.2250738585072014e-308" height="2.2250738585072014e-308"/>
                                         <state key="normal" title="Seta3">
                                             <color key="titleColor" red="0.60784313729999995" green="0.73333333329999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -1060,6 +1071,31 @@ From there, you can customize your game by choosing which Set attributes you'd l
                                                 <exclude reference="m6S-bn-aFf"/>
                                             </mask>
                                         </variation>
+                                        <connections>
+                                            <action selector="logoTapAction:" destination="luK-Cw-9qx" eventType="touchUpInside" id="Ssx-pX-CCJ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="12" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="twF-YV-CZ1">
+                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="twF-YV-CZ1" secondAttribute="height" multiplier="1:1" id="kso-AB-3RX"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="20"/>
+                                        <inset key="contentEdgeInsets" minX="8" minY="4" maxX="8" maxY="4"/>
+                                        <size key="titleShadowOffset" width="0.5" height="0.5"/>
+                                        <state key="normal" title="☚ Back">
+                                            <color key="titleColor" red="0.58039215690000001" green="0.70980392160000005" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" red="0.49803921580314636" green="0.49803921580314636" blue="0.49803921580314636" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="kso-AB-3RX"/>
+                                            </mask>
+                                        </variation>
+                                        <connections>
+                                            <action selector="backAction:" destination="luK-Cw-9qx" eventType="touchUpInside" id="pXp-WL-ytz"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.80392156859999997" green="0.88235294119999996" blue="0.81568627449999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1067,7 +1103,8 @@ From there, you can customize your game by choosing which Set attributes you'd l
                                     <constraint firstItem="MrU-ch-G5N" firstAttribute="top" secondItem="kaE-OT-hLF" secondAttribute="top" constant="29" id="LKj-ap-4iC">
                                         <variation key="heightClass=regular-widthClass=regular" constant="29"/>
                                     </constraint>
-                                    <constraint firstItem="twF-YV-CZ1" firstAttribute="leading" secondItem="kaE-OT-hLF" secondAttribute="leading" constant="25" id="Zt4-0g-CTZ"/>
+                                    <constraint firstItem="twF-YV-CZ1" firstAttribute="leading" secondItem="kaE-OT-hLF" secondAttribute="leading" constant="8" id="Zt4-0g-CTZ"/>
+                                    <constraint firstAttribute="bottom" secondItem="twF-YV-CZ1" secondAttribute="bottom" constant="8.5" id="aeq-J1-Yx0"/>
                                     <constraint firstAttribute="trailing" secondItem="MrU-ch-G5N" secondAttribute="trailing" constant="13" id="bd0-kp-lru">
                                         <variation key="heightClass=regular-widthClass=regular" constant="13"/>
                                     </constraint>
@@ -1079,6 +1116,13 @@ From there, you can customize your game by choosing which Set attributes you'd l
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="u4j-Ki-d20"/>
+                                        <exclude reference="aeq-J1-Yx0"/>
+                                        <exclude reference="wQK-OK-UMg"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="aeq-J1-Yx0"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -1096,10 +1140,10 @@ From there, you can customize your game by choosing which Set attributes you'd l
                                     <color key="titleColor" red="0.42706266529999998" green="0.32570422939999999" blue="0.2707932394" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="respondToSaveAction:" destination="luK-Cw-9qx" eventType="touchUpInside" id="7k3-rT-qES"/>
+                                    <segue destination="6eC-z4-STj" kind="unwind" identifier="unwindFromSave" unwindAction="prepareForThemeChange:" id="PZn-rN-yUn"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" tag="2" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rcR-Nu-Vwb">
+                            <tableView clipsSubviews="YES" tag="2" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="26" sectionFooterHeight="26" translatesAutoresizingMaskIntoConstraints="NO" id="rcR-Nu-Vwb">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -1111,7 +1155,7 @@ From there, you can customize your game by choosing which Set attributes you'd l
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="0.0" reuseIdentifier="themeTableRow" id="vqF-iR-Oaq">
-                                        <rect key="frame" x="0.0" y="28" width="240" height="60"/>
+                                        <rect key="frame" x="0.0" y="26" width="240" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="center" tableViewCell="vqF-iR-Oaq" id="DN7-eX-Ivw">
                                             <rect key="frame" x="0.0" y="0.0" width="240" height="59.5"/>
@@ -1147,9 +1191,6 @@ From there, you can customize your game by choosing which Set attributes you'd l
                                                     <variation key="heightClass=compact" misplaced="YES">
                                                         <rect key="frame" x="88" y="7" width="144" height="44.5"/>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="88" y="7" width="144" height="44.5"/>
-                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <color key="backgroundColor" red="0.92941176469999998" green="0.96947297489999995" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1174,11 +1215,18 @@ From there, you can customize your game by choosing which Set attributes you'd l
                                     <outlet property="delegate" destination="luK-Cw-9qx" id="BIe-23-blZ"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Theme Selection" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hHy-nV-Y41">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="20"/>
+                                <color key="textColor" red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.92941176469999998" green="0.96947297489999995" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="rcR-Nu-Vwb" firstAttribute="centerX" secondItem="Un4-EJ-X0I" secondAttribute="centerX" id="9qv-Dy-9gL"/>
                             <constraint firstItem="chW-hm-XIU" firstAttribute="centerX" secondItem="Un4-EJ-X0I" secondAttribute="centerX" id="DNG-tw-y8I"/>
+                            <constraint firstItem="hHy-nV-Y41" firstAttribute="leading" secondItem="rcR-Nu-Vwb" secondAttribute="leading" id="FE6-Ph-Lxc"/>
                             <constraint firstItem="rcR-Nu-Vwb" firstAttribute="top" secondItem="kaE-OT-hLF" secondAttribute="bottom" constant="80" id="GFA-Jc-Nbp"/>
                             <constraint firstItem="okh-BM-Hss" firstAttribute="top" secondItem="chW-hm-XIU" secondAttribute="bottom" constant="40" id="Iwy-1h-UmX">
                                 <variation key="heightClass=regular-widthClass=regular" constant="80"/>
@@ -1186,16 +1234,25 @@ From there, you can customize your game by choosing which Set attributes you'd l
                             <constraint firstItem="kaE-OT-hLF" firstAttribute="top" secondItem="cVH-Ss-12W" secondAttribute="bottom" constant="-20" id="VjW-OB-hgz"/>
                             <constraint firstItem="kaE-OT-hLF" firstAttribute="height" secondItem="Un4-EJ-X0I" secondAttribute="height" multiplier="4:21" id="jUP-Oh-NWD"/>
                             <constraint firstAttribute="trailingMargin" secondItem="kaE-OT-hLF" secondAttribute="trailing" constant="-20" id="pIh-6P-8Eq"/>
+                            <constraint firstItem="rcR-Nu-Vwb" firstAttribute="top" secondItem="hHy-nV-Y41" secondAttribute="bottom" constant="8.5" id="pRe-HE-Q1G"/>
                             <constraint firstItem="kaE-OT-hLF" firstAttribute="leading" secondItem="Un4-EJ-X0I" secondAttribute="leadingMargin" constant="-20" id="wzv-EM-vkc"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="jUP-Oh-NWD"/>
+                                <exclude reference="pRe-HE-Q1G"/>
+                                <exclude reference="FE6-Ph-Lxc"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular">
                             <mask key="constraints">
                                 <include reference="jUP-Oh-NWD"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="constraints">
+                                <include reference="pRe-HE-Q1G"/>
+                                <include reference="FE6-Ph-Lxc"/>
                             </mask>
                         </variation>
                     </view>
@@ -1204,20 +1261,18 @@ From there, you can customize your game by choosing which Set attributes you'd l
                         <outlet property="headerView" destination="kaE-OT-hLF" id="i7G-hr-6gP"/>
                         <outlet property="themeDataSource" destination="zkv-GB-VjX" id="y1y-Vj-pmE"/>
                         <outlet property="themesTable" destination="rcR-Nu-Vwb" id="tQl-xJ-p4w"/>
-                        <segue destination="6eC-z4-STj" kind="unwind" identifier="unwindToSetGame" unwindAction="prepareForThemeChange:" id="2Sv-z1-Mqt"/>
-                        <segue destination="H5D-No-5o1" kind="show" identifier="saveSegueToHome" id="6b5-vQ-kOh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rS2-xy-8Be" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <customObject id="zkv-GB-VjX" customClass="ThemeTableDataSource" customModule="CardGames" customModuleProvider="target"/>
                 <exit id="6eC-z4-STj" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1259" y="496"/>
+            <point key="canvasLocation" x="391.5" y="700.5"/>
         </scene>
-        <!--View Controller-->
+        <!--ContainerVC-->
         <scene sceneID="G8b-9Y-hjZ">
             <objects>
-                <viewController id="chA-s7-VEf" sceneMemberID="viewController">
+                <viewController title="ContainerVC" id="chA-s7-VEf" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xr7-SU-sgo"/>
                         <viewControllerLayoutGuide type="bottom" id="8Fu-iI-1hd"/>
@@ -1343,12 +1398,11 @@ From there, you can customize your game by choosing which Set attributes you'd l
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="29s-5t-raY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1045.5" y="975.75"/>
+            <point key="canvasLocation" x="-378" y="700.5"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="E5z-HD-Td0"/>
-        <segue reference="6b5-vQ-kOh"/>
-        <segue reference="iJ9-8Q-Y9b"/>
+        <segue reference="Uey-3Y-piQ"/>
+        <segue reference="aPc-Vh-dtX"/>
     </inferredMetricsTieBreakers>
 </document>

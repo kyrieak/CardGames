@@ -73,8 +73,8 @@ class SGFooterView: UIView {
     
     for p in players {
       let btn = makePlayerBtn(CGPointZero)
-      
-      btn.setTitle(labelFor(p), forState: UIControlState.Normal)
+
+      btn.setTitle(p.label, forState: UIControlState.Normal)
       btn.addTarget(self, action: Selector("addActiveBorder:"), forControlEvents: UIControlEvents.TouchDown)
       btn.addTarget(target, action: action, forControlEvents: UIControlEvents.TouchUpInside)
       
@@ -104,8 +104,7 @@ class SGFooterView: UIView {
 
       for btn in playerBtns {
         let player = players[idx]
-        
-        btn.titleLabel!.text = player.label
+        btn.setTitle(player.label, forState: .Normal)
         btn.tag = player.hashValue
         btn.sizeToFit()
         
@@ -167,16 +166,6 @@ class SGFooterView: UIView {
         btn.frame.size = pBtnSize
         origin.y = btn.frame.maxY
       }
-    }
-  }
-  
-  private func labelFor(player: Player) -> String {
-    let name = player.name
-    
-    if (name.characters.count < 3) {
-      return name
-    } else {
-      return name.substringToIndex(name.startIndex.successor().successor())
     }
   }
 }

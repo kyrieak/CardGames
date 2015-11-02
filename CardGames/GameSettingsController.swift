@@ -33,21 +33,16 @@ class GameSettingsController: UIViewController {
   
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if (segue.identifier == "playerSettingSegue") {
+    if (segue.identifier == "modalToPlayers") {
       let dvc = segue.destinationViewController as! PlayerSettingController
       let numPlayers = Int(playerCtStepper.value)
     
       if (appGlobals.gameSettings.numPlayers != numPlayers) {
-        dvc.players = Player.makeNumberedPlayers(numPlayers)
-      } else {
-        dvc.players = appGlobals.gameSettings.players
+        NSLog("did get here \(numPlayers)")
+        dvc.newGameSettings.players = Player.makeNumberedPlayers(numPlayers)
       }
       
-      dvc.playerInfo = dvc.players.map{(p: Player) -> (label: String, name: String) in
-        return (label: p.label, name: p.name)
-      }
-
-      appGlobals.setOptions(options)
+      dvc.newGameSettings.options = options
     }
   }
   

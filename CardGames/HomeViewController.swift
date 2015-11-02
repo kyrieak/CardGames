@@ -22,15 +22,12 @@ class HomeViewController: UIViewController, StyleGuideDelegate {
   var themeID: Int?
 
   
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    super.prepareForSegue(segue, sender: sender)
-
-    if (segue.identifier == "saveSegueToHome") {
-      if (themeID != styleGuide.themeID) {
-        applyStyleToViews()
-      }
+  @IBAction func prepareForThemeChange(segue: UIStoryboardSegue) {
+    if (themeID != styleGuide.themeID) {
+      applyStyleToViews()
     }
   }
+  
   
   override func viewDidLayoutSubviews() {
     NSLog("did layout homeveiw")

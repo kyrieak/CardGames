@@ -21,7 +21,6 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
     willDisplaySupplementaryView view: UICollectionReusableView,
     forElementKind elementKind: String,
     atIndexPath indexPath: NSIndexPath) {
-      
       if (elementKind == UICollectionElementKindSectionFooter) {
         statusView = view.viewWithTag(statusViewTag) as! SGStatusView
         statusView.adjustHeight(view.frame.height)

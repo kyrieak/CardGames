@@ -22,9 +22,9 @@ class SGStyleGuide: StyleGuide {
   
   private(set) var theme: Theme
   
-  private var titleFS  = UIFontStyle(fontName: "Palatino-BoldItalic", baseSize: 48)
-  private var menuFS   = UIFontStyle(fontName: "Palatino", baseSize: 18)
-  private var statusFS = UIFontStyle(fontName: "Arial", baseSize: 18)
+  private var titleFS  = UIFontStyle(fontName: "Palatino-BoldItalic")
+  private var menuFS   = UIFontStyle(fontName: "Palatino")
+  private var statusFS = UIFontStyle(fontName: "Arial")
   
   // - MARK: - Initializers
   
@@ -32,42 +32,44 @@ class SGStyleGuide: StyleGuide {
   required init(theme: Theme) {
     self.theme = theme
     self.screenDims = deviceInfo.screenDims
-
+    
     setFontSizes(screenDims.min)
   }
   
   
   init(theme: Theme, screenSize: CGSize) {
-    self.theme = theme
+    self.theme      = theme
     self.screenDims = screenSize.getMinMaxDims()
+
+    setFontSizes(screenDims.min)
   }
   
   
   // - MARK: - StyleGuide Protocol Functions
   
   
-  func setFontSizes(_minScreenDim: CGFloat) {
-    switch(_minScreenDim) {
-      case _ where (_minScreenDim < 350):
-        titleFS.baseSize  = 36
-        menuFS.baseSize   = 20
-        statusFS.baseSize = 12
-      case _ where (_minScreenDim > 700):
-        titleFS.baseSize  = 64
-        menuFS.baseSize   = 32
-        statusFS.baseSize = 24
-      default:
-        titleFS.baseSize  = 48
-        menuFS.baseSize   = 24
-        statusFS.baseSize = 18
-    }
-  }
-  
-  
   func setTheme(theme: Theme) {
     self.theme = theme
   }
   
+  
+  private func setFontSizes(minScreenDim: CGFloat) {
+    let fontSize = {(dim: CGFloat) -> (CGFloat, CGFloat, CGFloat) in
+      switch(dim) {
+      case _ where (dim < 350):
+        return (35, 20, 12)
+      case _ where (dim > 700):
+        return (64, 32, 24)
+      default:
+        return (48, 24, 18)
+      }
+      }(minScreenDim)
+    
+    titleFS.size  = fontSize.0
+    menuFS.size   = fontSize.1
+    statusFS.size = fontSize.2
+  }
+
   
   func hasLayerStyle(sel: ViewSelector) -> Bool {
     switch(sel) {
@@ -214,7 +216,7 @@ class SGStyleGuide: StyleGuide {
     var fs = statusFS
     
     fs.color = theme.fontColor3
-    fs.baseSize = 22
+    fs.size  = 22
     
     return fs
   }

@@ -13,18 +13,22 @@ class PlayerSettingController: UIViewController, UITableViewDataSource, UITableV
   let labelTag: Int = 1
   let nameTag: Int  = 2
   
-  @IBOutlet var tableView: UITableView!
-  @IBOutlet var footerView: UIView!
-  @IBOutlet var saveBtn: UIButton!
+  var newGameSettings = GameSettings(players: appGlobals.gameSettings.players)
+  
+  lazy var tableView:  UITableView! = { return self.view.viewWithTag(1)! as! UITableView }()
+  lazy var footerView: UIView!      = { return self.view.viewWithTag(2)! }()
+  lazy var saveBtn:    UIButton!    = { return self.view.viewWithTag(21)! as! UIButton }()
 
+  var players: [Player] { return newGameSettings.players }
   var playerInfo: [(label: String, name: String)] = []
-  var players: [Player] = []
-
-  @IBOutlet var playerTable: UITableView!
-
+  
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    playerInfo = players.map{(p: Player) -> (label: String, name: String) in
+      return (label: p.label, name: p.name)
+    }
 
     let computedHeight = tableView.rowHeight * CGFloat(players.count)
 
@@ -102,10 +106,13 @@ class PlayerSettingController: UIViewController, UITableViewDataSource, UITableV
   }
   
   func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    NSLog("chekcing should change \(textField)")
     if (textField.text != nil) {
       if (textField.tag == labelTag) {
+        NSLog("is label")
         return ((range.location + string.characters.count) < 3)
       } else if (textField.tag == nameTag) {
+        NSLog("is name")
         return ((range.location + string.characters.count) < 15)
       }
     }
@@ -113,8 +120,8 @@ class PlayerSettingController: UIViewController, UITableViewDataSource, UITableV
     return true
   }
   
-  func save() {
-    appGlobals.gameSettings.players = players
+  func saveSettings() {
+    appGlobals.gameSettings = newGameSettings
     
     for (idx, info) in playerInfo.enumerate() {
       let player = players[idx]
@@ -135,19 +142,13 @@ class PlayerSettingController: UIViewController, UITableViewDataSource, UITableV
     }
   }
   
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if (segue.identifier != nil) {
-      let sid = segue.identifier!
+  @IBAction func startNewGame(sender: UIButton) {
+    self.saveSettings()
 
-      switch(sid) {
-        case "unwindToNewGame":
-          self.save()
-        default:
-          super.prepareForSegue(segue, sender: sender)
-      }
+    if (appGlobals.gameIsActive) {
+      self.performSegueWithIdentifier("unwindToNewGame", sender: self)
     } else {
-      super.prepareForSegue(segue, sender: sender)
+      self.performSegueWithIdentifier("segueToNewGame", sender: self)
     }
   }
-  
 }

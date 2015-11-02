@@ -40,6 +40,16 @@ class InstructionsViewController: UIViewController {
     
     sg.applyLayerStyle(.Status, views: [doneBtn])
   }
+  
+  
+  @IBAction func respondToHorizontalSwipe(sender: UISwipeGestureRecognizer) {
+    self.dismissViewControllerAnimated(true, completion: nil)
+  }
+  
+  
+  @IBAction func doneAction(sender: UIButton) {
+    self.dismissViewControllerAnimated(true, completion: nil)
+  }
 //
 //  @IBAction func doneAction(sender: UIButton) {
 //    self.dismissViewControllerAnimated(true, completion: nil)

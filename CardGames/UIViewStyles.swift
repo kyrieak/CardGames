@@ -45,33 +45,33 @@ struct UIFontStyle {
   // - MARK: - Attributes
   
   var fontName: String
-  var baseSize: CGFloat
+  var size: CGFloat
   var color: UIColor
   
   var font: UIFont {
     return {(font: UIFont?) -> UIFont in
-              return ((font == nil) ? UIFont.systemFontOfSize(self.baseSize) : font!)
-           }(UIFont(name: self.fontName, size: self.baseSize))
+              return ((font == nil) ? UIFont.systemFontOfSize(self.size) : font!)
+           }(UIFont(name: self.fontName, size: self.size))
   }
   
   // - MARK: - Initializers
 
   
-  init(fontName: String, baseSize: CGFloat, color: UIColor) {
+  init(fontName: String, size: CGFloat, color: UIColor) {
     self.fontName = fontName
-    self.baseSize = baseSize
+    self.size     = size
     self.color    = color
   }
   
-  init(fontName: String, baseSize: CGFloat) {
+  init(fontName: String, size: CGFloat) {
     self.fontName = fontName
-    self.baseSize = baseSize
+    self.size     = size
     self.color    = UIColor.blackColor()
   }
 
   init(fontName: String) {
     self.fontName = fontName
-    self.baseSize = 12
-    self.color = UIColor.blackColor()
+    self.size     = 12
+    self.color    = UIColor.blackColor()
   }
 }

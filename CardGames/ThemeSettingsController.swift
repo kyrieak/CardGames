@@ -49,18 +49,19 @@ class ThemeSettingsController: UIViewController, UITableViewDelegate, StyleGuide
   }
 
   
-  @IBAction func respondToSaveAction(sender: UIButton) {
-    NSLog("\(self.presentingViewController?.description)")
-    if (self.presentingViewController != nil) {
-      let pvc = self.presentingViewController as? GameSettingsController
-      
-      if (pvc != nil) && (appGlobals.gameIsActive) {
-        self.performSegueWithIdentifier("unwindToSetGame", sender: self)
-      } else {
-        self.performSegueWithIdentifier("saveSegueToHome", sender: self)
-      }
-    }
+  @IBAction func logoTapAction(sender: UIButton) {
+    let vc = storyboard!.instantiateViewControllerWithIdentifier("homeViewController")
+    
+    self.presentViewController(vc, animated: true, completion: nil)
   }
+
+  
+  
+  @IBAction func backAction(sender: UIButton) {
+    self.dismissViewControllerAnimated(true, completion: nil)
+  }
+  
+  
   
   func viewsForLayerStyle(sel: ViewSelector) -> [UIView] {
     switch(sel) {
@@ -102,6 +103,8 @@ class ThemeSettingsController: UIViewController, UITableViewDelegate, StyleGuide
     for sel in btnSelectors {
       styleGuide.applyBtnStyle(sel, views: viewsForBtnStyle(sel))
     }
+    
+    backBtn.setTitleColor(styleGuide.fontStyle(.HeadTitle)!.color, forState: .Normal)
     
     themesTable.layer.borderColor = styleGuide.theme.bgBase.getShade(-0.15).CGColor
   }
