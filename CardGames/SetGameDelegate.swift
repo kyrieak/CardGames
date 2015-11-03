@@ -90,9 +90,25 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
   }
   
   
+  
   func collectionView(collectionView: UICollectionView,
     shouldDeselectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
     return false
+  }
+  
+  
+  func flipFaceDown(collectionView: UICollectionView, indexPath: NSIndexPath) {
+    let cell = collectionView.cellForItemAtIndexPath(indexPath)
+
+    cell?.backgroundView?.hidden = true
+    cell?.selectedBackgroundView?.hidden = true
+  }
+  
+  func flipFaceUp(collectionView: UICollectionView, indexPath: NSIndexPath) {
+    let cell = collectionView.cellForItemAtIndexPath(indexPath)
+    
+    cell?.backgroundView?.hidden = false
+    cell?.selectedBackgroundView?.hidden = false
   }
   
 

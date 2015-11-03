@@ -62,6 +62,7 @@ class SetGameDataSource: NSObject, UICollectionViewDataSource {
                                                               forIndexPath: indexPath)
       
       if (card != nil) {
+        cell.backgroundColor = appGlobals.styleGuide.theme.patternColor
         cell.backgroundView = cellBgView(card!, withFrame: cell.frame)
         cell.selectedBackgroundView = cellSelectedView(card!, withFrame: cell.frame)
       }

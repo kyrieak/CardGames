@@ -14,6 +14,7 @@
 		34005EF31A4FC8F500BDFD0F /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34005EF21A4FC8F500BDFD0F /* Deck.swift */; };
 		34005EF51A4FC91500BDFD0F /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34005EF41A4FC91500BDFD0F /* Card.swift */; };
 		340720531BC4E47F00A2E466 /* SGCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340720521BC4E47F00A2E466 /* SGCollectionViewLayout.swift */; settings = {ASSET_TAGS = (); }; };
+		340897931BE8376300A0A038 /* ScoresController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340897921BE8376300A0A038 /* ScoresController.swift */; settings = {ASSET_TAGS = (); }; };
 		340E514F1BE32A940010FE2E /* InstructionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340E514E1BE32A940010FE2E /* InstructionsViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		341723741AFBFAED002D8343 /* Squiggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341723731AFBFAED002D8343 /* Squiggle.swift */; };
 		341A2E431A8C92AE0091664E /* UIViewStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341A2E421A8C92AE0091664E /* UIViewStyles.swift */; };
@@ -63,6 +64,7 @@
 		34005EF21A4FC8F500BDFD0F /* Deck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 		34005EF41A4FC91500BDFD0F /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		340720521BC4E47F00A2E466 /* SGCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SGCollectionViewLayout.swift; sourceTree = "<group>"; };
+		340897921BE8376300A0A038 /* ScoresController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoresController.swift; sourceTree = "<group>"; };
 		340E514E1BE32A940010FE2E /* InstructionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionsViewController.swift; sourceTree = "<group>"; };
 		341723731AFBFAED002D8343 /* Squiggle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Squiggle.swift; sourceTree = "<group>"; };
 		341A2E421A8C92AE0091664E /* UIViewStyles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewStyles.swift; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				345A74D61B952715003C27AE /* HomeViewController.swift */,
+				340897921BE8376300A0A038 /* ScoresController.swift */,
 				340E514E1BE32A940010FE2E /* InstructionsViewController.swift */,
 				348FF63E1AA1629C0041C5C6 /* SetGameController.swift */,
 				34BB7CCD1BC8D602000C8461 /* GameSettingsController.swift */,
@@ -351,6 +354,7 @@
 				345695411A9FB4510076FD39 /* SetGameDelegate.swift in Sources */,
 				345695431A9FBDC50076FD39 /* SetGame.swift in Sources */,
 				3499DAFB1B9F930200AD3466 /* SGHeaderView.swift in Sources */,
+				340897931BE8376300A0A038 /* ScoresController.swift in Sources */,
 				3471C0471BE411CF0002A6A3 /* SetExampleView.swift in Sources */,
 				340720531BC4E47F00A2E466 /* SGCollectionViewLayout.swift in Sources */,
 				34A9233E1AA19C15009D0134 /* SetCard.swift in Sources */,

@@ -22,7 +22,7 @@ class HomeViewController: UIViewController, StyleGuideDelegate {
   var themeID: Int?
 
   
-  @IBAction func prepareForThemeChange(segue: UIStoryboardSegue) {
+  @IBAction func prepareUnwind(segue: UIStoryboardSegue) {
     if (themeID != styleGuide.themeID) {
       applyStyleToViews()
     }

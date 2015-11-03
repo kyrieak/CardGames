@@ -30,7 +30,7 @@ class PlayerSettingController: UIViewController, UITableViewDataSource, UITableV
       return (label: p.label, name: p.name)
     }
 
-    let computedHeight = tableView.rowHeight * CGFloat(players.count)
+    let computedHeight = tableView.rowHeight * CGFloat(players.count) + 44
 
     tableView.addConstraint(NSLayoutConstraint(item: tableView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.Height, multiplier: CGFloat(1), constant: computedHeight))
   }
@@ -66,6 +66,23 @@ class PlayerSettingController: UIViewController, UITableViewDataSource, UITableV
     labelField.addTarget(self, action: Selector("updateInput:"), forControlEvents: UIControlEvents.EditingChanged)
     nameField.addTarget(self, action: Selector("validateInput:"), forControlEvents: UIControlEvents.EditingDidEnd)
     nameField.addTarget(self, action: Selector("updateInput:"), forControlEvents: UIControlEvents.EditingChanged)
+  }
+  
+  
+  func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    return "Edit Player Names Here:"
+  }
+  
+  
+  func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+    let header = view as! UITableViewHeaderFooterView
+    
+    header.textLabel?.textColor = UIColor(white: 0.3, alpha: 1.0)
+    header.textLabel?.font = UIFont.systemFontOfSize(18)
+    
+    view.backgroundColor   = UIColor(white: 0.9, alpha: 1.0)
+    view.layer.borderColor = UIColor(white: 0.8, alpha: 1.0).CGColor
+    view.layer.borderWidth = 1
   }
   
   

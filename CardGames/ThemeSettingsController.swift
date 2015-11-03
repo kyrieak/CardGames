@@ -14,6 +14,7 @@ class ThemeSettingsController: UIViewController, UITableViewDelegate, StyleGuide
   
   @IBOutlet var themeDataSource: ThemeTableDataSource!
   
+  var previousTheme: Theme = appGlobals.styleGuide.theme
   var styleGuide: sg = appGlobals.styleGuide
   var themeID: Int?  = appGlobals.styleGuide.themeID
   
@@ -58,6 +59,8 @@ class ThemeSettingsController: UIViewController, UITableViewDelegate, StyleGuide
   
   
   @IBAction func backAction(sender: UIButton) {
+    styleGuide.setTheme(previousTheme)
+    
     self.dismissViewControllerAnimated(true, completion: nil)
   }
   

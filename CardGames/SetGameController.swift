@@ -13,6 +13,7 @@ class SetGameController: UIViewController, StyleGuideDelegate {
   typealias sg = SGStyleGuide
   
   let tags = SetGameController.sectionTags()
+  private(set) var paused: Bool = false
 
   // - MARK: - CollectionView
   
@@ -77,12 +78,17 @@ class SetGameController: UIViewController, StyleGuideDelegate {
   
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    super.prepareForSegue(segue, sender: sender)
+    
+    setPause()
+    
     if (segue.identifier != nil) {
       let sid = segue.identifier!
       
-      if (sid == "gameSettingSegue") {
-        appGlobals.setOptions(game.options)
-      } else if (sid == "logoSegue") {
+      if (sid == "modalToScores") {
+        let dvc = segue.destinationViewController as! ScoresController
+        
+        dvc.stats = game.stats
       }
     }
   }
@@ -115,8 +121,10 @@ class SetGameController: UIViewController, StyleGuideDelegate {
   
   
   @IBAction func tapGearAction(sender: UIButton) {
-    let vc = storyboard!.instantiateViewControllerWithIdentifier("gameSettingController")
+    setPause()
 
+    let vc = storyboard!.instantiateViewControllerWithIdentifier("gameSettingController")
+    
     self.presentViewController(vc, animated: true, completion: nil)
   }
 
@@ -130,33 +138,43 @@ class SetGameController: UIViewController, StyleGuideDelegate {
   
   // - MARK: - Unwind Segue Functions
   
-  @IBAction func prepareForNewGame(segue: UIStoryboardSegue) {
-    startNewGame(appGlobals.gameSettings)
-    sgDelegate.statusView.clear()
-    footerView.layoutPlayerBtns(appGlobals.gameSettings.players)
-    styleGuide.applyBtnStyle(.FooterUIBtn, views: footerView.playerBtns)
+  @IBAction func prepareUnwind(segue: UIStoryboardSegue) {
+    unpause()
+
+    prepareForThemeChange()
+    
+    if (segue.identifier == "unwindToNewGame") {
+      startNewGame(appGlobals.gameSettings)
+    }
   }
   
   
-  @IBAction func prepareForThemeChange(segue: UIStoryboardSegue) {
+  @IBAction func prepareUnwindToGame(segue: UIStoryboardSegue) {
+    prepareUnwind(segue)
+  }
+  
+  
+  func prepareForThemeChange() {
     if (themeID != styleGuide.themeID) {
       applyStyleToViews()
       
       themeID = styleGuide.themeID
     }
   }
-  
+
   
   // - MARK: - Private Functions
   
   private func startNewGame(settings: GameSettings) {
-    styleGuide.applyLayerStyle(.CardBack, views: [deckButton])
-    
     sgDataSource.game = SetGame(settings: settings)
-    sgDelegate.reset()
-
     collectionView!.reloadData()
+
+    sgDelegate.reset()
     deckButton.enabled = true
+    footerView.layoutPlayerBtns(appGlobals.gameSettings.players)
+
+    styleGuide.applyLayerStyle(.CardBack, views: [deckButton])
+    styleGuide.applyBtnStyle(.FooterUIBtn, views: footerView.playerBtns)
   }
 
   
@@ -254,9 +272,43 @@ class SetGameController: UIViewController, StyleGuideDelegate {
     for path in collectionView!.indexPathsForVisibleItems() {
       let cell = collectionView!.cellForItemAtIndexPath(path)!
 
+      cell.backgroundColor = styleGuide.theme.patternColor
+      NSLog(styleGuide.theme.patternColor!.description)
       cell.selectedBackgroundView!.layer.borderColor = styleGuide.theme.bgColor3.CGColor
 
       if (cell.selected) { cell.setNeedsDisplay() }
+    }
+  }
+  
+  func setPause() {
+    paused = true
+    
+    for path in collectionView!.indexPathsForVisibleItems() {
+      sgDelegate.flipFaceDown(collectionView!, indexPath: path)
+    }
+  }
+  
+  func unpause() {
+    paused = false
+    
+    for path in collectionView!.indexPathsForVisibleItems() {
+      sgDelegate.flipFaceUp(collectionView!, indexPath: path)
+    }
+  }
+  
+  func setAllCardsFaceUp() {
+    paused = false
+
+    for path in collectionView!.indexPathsForVisibleItems() {
+      sgDelegate.flipFaceUp(collectionView!, indexPath: path)
+    }
+  }
+  
+  func setAllCardsFaceDown() {
+    paused = true
+
+    for path in collectionView!.indexPathsForVisibleItems() {
+      sgDelegate.flipFaceDown(collectionView!, indexPath: path)
     }
   }
   

@@ -12,7 +12,8 @@ import UIKit
 class SetGame {
   var isOver: Bool = false
   private(set) var settings: GameSettings
-  private var scores: [Player: Int]
+//  private var scores: [Player: Int]
+  private(set) var stats = [Player: (set: Int, miss: Int, score: Int)]()
 
   private(set) var deck: Deck<SetCard>     = SetGame.standardDeck()
   private(set) var cardsInPlay: [SetCard?] = []
@@ -32,7 +33,7 @@ class SetGame {
   required init(settings: GameSettings) {
     self.settings    = settings
     self.deck        = SetGame.customDeck(settings.options)
-    self.scores      = SetGame.startingScores(settings.players)
+    self.stats       = SetGame.startingStats(settings.players)
     self.currentMove = SGMove()
     
     startNewRound(16)
@@ -61,15 +62,16 @@ class SetGame {
   }
   
   
-  class func startingScores(_players: [Player]) -> [Player: Int] {
-    var _scores = [Player: Int]()
-    
-    for player in _players {
-      _scores[player] = 0
+  class func startingStats(players: [Player]) -> [Player: (set: Int, miss: Int, score: Int)] {
+    var stats = [Player: (set: Int, miss: Int, score: Int)]()
+
+    for p in players {
+      stats[p] = (set: 0, miss: 0, score: 0)
     }
     
-    return _scores
+    return stats
   }
+  
   
   class func standardDeck() -> Deck<SetCard> {
     let deck = Deck<SetCard>()
@@ -172,7 +174,7 @@ class SetGame {
     currentMove.setCardPositions(cardPositions)
     
     if (currentMove.done) {
-      updateScore(_player)
+      updateStats(_player)
     }
   }
   
@@ -207,11 +209,13 @@ class SetGame {
   }
   
   
-  private func updateScore(_player: Player) {
+  private func updateStats(_player: Player) {
     if (moveIsASet(currentMove)) {
-        scores[_player]! += 5 // arbit
+      stats[_player]!.set++
+      stats[_player]!.score += 5 // arbit
     } else {
-        scores[_player]! -= 1 // arbit
+      stats[_player]!.miss++
+      stats[_player]!.score -= 1 // arbit
     }
   }
   
@@ -244,11 +248,7 @@ class SetGame {
     return !isSinglePlayer()
   }
   
-  
-  func getScoreForPlayer(p: Player) -> Int {
-    return scores[p]!
-  }
-  
+    
   func getCardAt(idx: Int) -> SetCard? {
     return cardsInPlay[idx]
   }
