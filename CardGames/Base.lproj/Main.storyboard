@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="H5D-No-5o1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="H5D-No-5o1">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -83,20 +83,42 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="13" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ka7-iE-r2g" userLabel="Text: Game Options">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="13" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ka7-iE-r2g" userLabel="Text: Game Options">
                                         <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="240" id="Zsl-aJ-FuV"/>
                                         </constraints>
-                                        <string key="text">You can navigate to the Game Option settings by:
+                                        <attributedString key="attributedText">
+                                            <fragment>
+                                                <string key="content">You can navigate to the Game Option settings by:
 
 • Selecting the menu item in the home screen
-• Pressing the ⚙ (Gear) Icon from the in-game screen.
+• Pressing the </string>
+                                                <attributes>
+                                                    <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <font key="NSFont" size="18" name="Palatino-Roman"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content="⚙">
+                                                <attributes>
+                                                    <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <font key="NSFont" size="18" name="Menlo-Regular"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment>
+                                                <string key="content"> (Gear) Icon from the in-game screen.
 
 From there, you can customize your game by choosing which Set attributes you'd like to play with. You can turn off the shape, shading, or color attributes to your preference.</string>
-                                        <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="18"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <attributes>
+                                                    <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <font key="NSFont" size="18" name="Palatino-Roman"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
                                         <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular-widthClass=compact">
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        </variation>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.97254901959999995" green="1" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -170,7 +192,210 @@ From there, you can customize your game by choosing which Set attributes you'd l
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-1066.5" y="700.5"/>
+            <point key="canvasLocation" x="-1057.5" y="724.5"/>
+        </scene>
+        <!--Acknowledgements Controller-->
+        <scene sceneID="OSF-Dq-niZ">
+            <objects>
+                <viewController storyboardIdentifier="resourceListController" title="Acknowledgements Controller" id="GJj-vz-XsU" customClass="AcknowledgementsController" customModule="CardGames" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ZVf-aw-WeM"/>
+                        <viewControllerLayoutGuide type="bottom" id="C4Y-Cr-93z"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4Mc-94-QKI">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Acknowledgements" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Da-H8-Yku">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q5p-Vm-51F">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <segue destination="aq5-Ok-bVa" kind="unwind" unwindAction="prepareUnwind:" id="rwb-4s-JJp"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" tag="10" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="115.5" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8ar-fD-W97">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="360" id="F5D-k5-J6I"/>
+                                    <constraint firstAttribute="height" constant="555" id="M8N-rk-9QJ"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="imageSourceRow" id="3tk-qN-sLf">
+                                        <rect key="frame" x="0.0" y="28" width="240" height="115.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3tk-qN-sLf" id="KL2-5S-s3X">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="115"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="koW-Vg-zNj">
+                                                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="koW-Vg-zNj" secondAttribute="height" multiplier="1:1" id="2XI-IL-V90"/>
+                                                        <constraint firstAttribute="width" constant="99" id="Tc2-t2-00O"/>
+                                                    </constraints>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="2XI-IL-V90"/>
+                                                            <exclude reference="Tc2-t2-00O"/>
+                                                        </mask>
+                                                    </variation>
+                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                        <mask key="constraints">
+                                                            <include reference="2XI-IL-V90"/>
+                                                            <include reference="Tc2-t2-00O"/>
+                                                        </mask>
+                                                    </variation>
+                                                </imageView>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="2" contentMode="scaleToFill" ambiguous="YES" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="deC-Vw-Ers">
+                                                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="tintColor" red="0.29803922772407532" green="0.29803922772407532" blue="0.29803922772407532" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="33" id="LvL-Ab-X82"/>
+                                                    </constraints>
+                                                    <attributedString key="attributedText">
+                                                        <fragment content="Link">
+                                                            <attributes>
+                                                                <font key="NSFont" size="18" name="HelveticaNeue"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" maximumLineHeight="11"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                        <fragment>
+                                                            <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                                                            <attributes>
+                                                                <font key="NSFont" size="14" name="HelveticaNeue"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" maximumLineHeight="11"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                        <fragment content="by">
+                                                            <attributes>
+                                                                <font key="NSFont" size="14" name="Palatino-Italic"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1.5"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                        <fragment>
+                                                            <string key="content"> Link
+</string>
+                                                            <attributes>
+                                                                <font key="NSFont" size="14" name="HelveticaNeue"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1.5"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                        <fragment content="via">
+                                                            <attributes>
+                                                                <font key="NSFont" size="14" name="Palatino-Italic"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1.5"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                        <fragment content=" Link">
+                                                            <attributes>
+                                                                <font key="NSFont" size="14" name="HelveticaNeue"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1.5"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="LvL-Ab-X82"/>
+                                                        </mask>
+                                                    </variation>
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <rect key="frame" x="115" y="8" width="117" height="99"/>
+                                                        <mask key="constraints">
+                                                            <exclude reference="LvL-Ab-X82"/>
+                                                        </mask>
+                                                    </variation>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="GJj-vz-XsU" id="CFW-rS-7Mk"/>
+                                                    </connections>
+                                                </textView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="deC-Vw-Ers" firstAttribute="leading" secondItem="koW-Vg-zNj" secondAttribute="trailing" constant="8" id="E2n-2Z-UIL"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="deC-Vw-Ers" secondAttribute="bottom" id="LkN-It-CPR"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="deC-Vw-Ers" secondAttribute="trailing" id="PDN-Ge-fEK"/>
+                                                <constraint firstAttribute="topMargin" secondItem="deC-Vw-Ers" secondAttribute="top" id="Pul-um-rCr"/>
+                                                <constraint firstAttribute="topMargin" secondItem="koW-Vg-zNj" secondAttribute="top" id="U1k-za-so5"/>
+                                                <constraint firstAttribute="leadingMargin" secondItem="koW-Vg-zNj" secondAttribute="leading" id="ab8-Dq-qdv"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="subviews">
+                                                    <exclude reference="koW-Vg-zNj"/>
+                                                </mask>
+                                                <mask key="constraints">
+                                                    <exclude reference="U1k-za-so5"/>
+                                                    <exclude reference="ab8-Dq-qdv"/>
+                                                    <exclude reference="E2n-2Z-UIL"/>
+                                                    <exclude reference="LkN-It-CPR"/>
+                                                    <exclude reference="PDN-Ge-fEK"/>
+                                                    <exclude reference="Pul-um-rCr"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="heightClass=regular-widthClass=compact">
+                                                <mask key="subviews">
+                                                    <include reference="koW-Vg-zNj"/>
+                                                </mask>
+                                                <mask key="constraints">
+                                                    <include reference="U1k-za-so5"/>
+                                                    <include reference="ab8-Dq-qdv"/>
+                                                    <include reference="E2n-2Z-UIL"/>
+                                                    <include reference="LkN-It-CPR"/>
+                                                    <include reference="PDN-Ge-fEK"/>
+                                                    <include reference="Pul-um-rCr"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Afn-Pc-TsL" id="zY4-Bb-rlg"/>
+                                    <outlet property="delegate" destination="GJj-vz-XsU" id="OTZ-uf-hee"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4Da-H8-Yku" firstAttribute="top" secondItem="ZVf-aw-WeM" secondAttribute="bottom" constant="8" id="1vL-pH-LmC"/>
+                            <constraint firstItem="8ar-fD-W97" firstAttribute="top" secondItem="Q5p-Vm-51F" secondAttribute="bottom" constant="21" id="7ND-fy-HVL"/>
+                            <constraint firstItem="4Da-H8-Yku" firstAttribute="centerX" secondItem="4Mc-94-QKI" secondAttribute="centerX" id="Dpn-51-Gbb"/>
+                            <constraint firstItem="8ar-fD-W97" firstAttribute="centerX" secondItem="4Mc-94-QKI" secondAttribute="centerX" id="Er6-hb-QQc"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Q5p-Vm-51F" secondAttribute="trailing" constant="6" id="FzQ-P8-MtR"/>
+                            <constraint firstItem="8ar-fD-W97" firstAttribute="top" secondItem="ZVf-aw-WeM" secondAttribute="bottom" constant="114" id="MrK-g8-IiU"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="4Da-H8-Yku"/>
+                                <exclude reference="Q5p-Vm-51F"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="4Da-H8-Yku"/>
+                                <include reference="Q5p-Vm-51F"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="tableDataSource" destination="Afn-Pc-TsL" id="Erm-Ge-5tp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f5d-9n-moG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="Afn-Pc-TsL" customClass="ResourceListDataSource" customModule="CardGames" customModuleProvider="target"/>
+                <exit id="aq5-Ok-bVa" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="-250.5" y="-830.25"/>
         </scene>
         <!--Home Controller-->
         <scene sceneID="5RX-5w-uKy">
@@ -192,38 +417,14 @@ From there, you can customize your game by choosing which Set attributes you'd l
                                         <fontDescription key="fontDescription" name="Palatino-BoldItalic" family="Palatino" pointSize="47"/>
                                         <color key="textColor" red="0.60784313729999995" green="0.73333333329999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
-                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="142" y="53" width="115" height="52"/>
-                                        </variation>
                                         <variation key="heightClass=regular-widthClass=regular">
                                             <fontDescription key="fontDescription" name="Palatino-BoldItalic" family="Palatino" pointSize="64"/>
                                         </variation>
                                     </label>
-                                    <button opaque="NO" tag="12" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sBc-73-0vc">
-                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                        <fontDescription key="fontDescription" name="Palatino-BoldItalic" family="Palatino" pointSize="20"/>
-                                        <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="4"/>
-                                        <size key="titleShadowOffset" width="0.5" height="0.5"/>
-                                        <state key="normal" title="Back to Game ➡︎">
-                                            <color key="titleColor" red="0.58039215690000001" green="0.70980392160000005" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" red="0.50980392156862742" green="0.63921568627450975" blue="0.49803921568627452" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="219" y="117" width="173" height="35"/>
-                                        </variation>
-                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                            <rect key="frame" x="502" y="116" width="184" height="35"/>
-                                        </variation>
-                                        <connections>
-                                            <segue destination="ybI-AH-8cG" kind="unwind" unwindAction="prepareUnwindToGame:" id="kQT-F3-gHK"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.80392156859999997" green="0.88235294119999996" blue="0.81568627449999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="59A-Ld-fUc" firstAttribute="centerX" secondItem="yck-ie-QAp" secondAttribute="centerX" id="0aB-XA-Bac"/>
-                                    <constraint firstAttribute="bottom" secondItem="sBc-73-0vc" secondAttribute="bottom" constant="8" id="O9V-bf-dm3"/>
-                                    <constraint firstAttribute="trailing" secondItem="sBc-73-0vc" secondAttribute="trailing" constant="8" id="Rl3-Oh-ElI"/>
                                     <constraint firstItem="59A-Ld-fUc" firstAttribute="centerY" secondItem="yck-ie-QAp" secondAttribute="centerY" id="oBd-zb-cIJ"/>
                                 </constraints>
                             </view>
@@ -237,9 +438,6 @@ From there, you can customize your game by choosing which Set attributes you'd l
                                         <state key="normal" title="How to Play">
                                             <color key="titleColor" red="0.26046317819999998" green="0.18727949260000001" blue="0.1132443026" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
-                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="98" y="20" width="133" height="39"/>
-                                        </variation>
                                         <connections>
                                             <segue destination="h2T-4y-gWw" kind="presentation" identifier="modalHowToPlay" modalTransitionStyle="crossDissolve" id="mqQ-IO-y3k"/>
                                         </connections>
@@ -250,9 +448,6 @@ From there, you can customize your game by choosing which Set attributes you'd l
                                         <state key="normal" title="Game Options">
                                             <color key="titleColor" red="0.26046317819999998" green="0.18727949260000001" blue="0.1132443026" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
-                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="87" y="74" width="155" height="39"/>
-                                        </variation>
                                         <connections>
                                             <segue destination="mh9-fz-JHF" kind="presentation" identifier="modalGameOptions" modalTransitionStyle="crossDissolve" id="E5z-HD-Td0"/>
                                         </connections>
@@ -263,9 +458,6 @@ From there, you can customize your game by choosing which Set attributes you'd l
                                         <state key="normal" title="Theme Settings">
                                             <color key="titleColor" red="0.26046317819999998" green="0.18727949260000001" blue="0.1132443026" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
-                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="77" y="128" width="164" height="39"/>
-                                        </variation>
                                         <connections>
                                             <segue destination="luK-Cw-9qx" kind="presentation" identifier="modalThemeSettings" id="iJ9-8Q-Y9b"/>
                                         </connections>
@@ -283,6 +475,7 @@ From there, you can customize your game by choosing which Set attributes you'd l
                                             </constraint>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="24"/>
+                                        <inset key="contentEdgeInsets" minX="10" minY="4" maxX="10" maxY="4"/>
                                         <state key="normal" title="Ready to Play">
                                             <color key="titleColor" red="0.25882352941176467" green="0.18823529411764706" blue="0.11372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -292,9 +485,6 @@ From there, you can customize your game by choosing which Set attributes you'd l
                                                 <exclude reference="2Va-yu-6cW"/>
                                                 <exclude reference="SDs-IZ-nFu"/>
                                             </mask>
-                                        </variation>
-                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="74" y="342" width="181" height="38"/>
                                         </variation>
                                         <variation key="heightClass=regular-widthClass=regular">
                                             <mask key="constraints">
@@ -309,7 +499,9 @@ From there, you can customize your game by choosing which Set attributes you'd l
                                 <color key="backgroundColor" red="0.97254901959999995" green="1" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="rmQ-fn-jjX" firstAttribute="centerX" secondItem="ACB-pd-VPL" secondAttribute="centerX" id="1eI-VX-FJz"/>
-                                    <constraint firstItem="rmQ-fn-jjX" firstAttribute="top" secondItem="C0L-ll-zmJ" secondAttribute="bottom" constant="50" identifier="menuSpacing" id="BcO-Cb-8cK"/>
+                                    <constraint firstItem="rmQ-fn-jjX" firstAttribute="top" secondItem="C0L-ll-zmJ" secondAttribute="bottom" constant="15" identifier="menuSpacing" id="BcO-Cb-8cK">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="50"/>
+                                    </constraint>
                                     <constraint firstItem="C0L-ll-zmJ" firstAttribute="top" secondItem="oE2-Gt-4Op" secondAttribute="bottom" constant="15" identifier="menuSpacing" id="Gzd-vp-v3j">
                                         <variation key="heightClass=regular-widthClass=regular" constant="50"/>
                                     </constraint>
@@ -333,9 +525,6 @@ From there, you can customize your game by choosing which Set attributes you'd l
                                         <include reference="fd4-0J-E3i"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="39" y="219" width="320" height="400"/>
-                                </variation>
                             </view>
                             <view tag="3" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W8H-t9-iCb" userLabel="Footer">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
@@ -346,6 +535,9 @@ From there, you can customize your game by choosing which Set attributes you'd l
                                         <state key="normal" title="Acknowledgements">
                                             <color key="titleColor" red="0.26046317819999998" green="0.18727949260000001" blue="0.1132443026" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="GJj-vz-XsU" kind="show" identifier="acknowSegue" id="MHn-B7-GMf"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.80392156859999997" green="0.88235294119999996" blue="0.81568627449999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -353,10 +545,20 @@ From there, you can customize your game by choosing which Set attributes you'd l
                                     <constraint firstItem="As4-aK-Euc" firstAttribute="top" secondItem="W8H-t9-iCb" secondAttribute="top" constant="8" id="OSU-9e-5KK"/>
                                     <constraint firstItem="As4-aK-Euc" firstAttribute="centerX" secondItem="W8H-t9-iCb" secondAttribute="centerX" id="tDq-1k-SmO"/>
                                 </constraints>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="0.0" y="699" width="400" height="100"/>
-                                </variation>
                             </view>
+                            <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sBc-73-0vc">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <fontDescription key="fontDescription" name="Palatino-BoldItalic" family="Palatino" pointSize="20"/>
+                                <inset key="contentEdgeInsets" minX="16" minY="4" maxX="8" maxY="4"/>
+                                <size key="titleShadowOffset" width="0.5" height="0.5"/>
+                                <state key="normal" title="Back to Game ☛">
+                                    <color key="titleColor" red="0.60784313729999995" green="0.73333333329999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" red="0.50980392156862742" green="0.63921568627450975" blue="0.49803921568627452" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="ybI-AH-8cG" kind="unwind" unwindAction="prepareUnwindToGame:" id="kQT-F3-gHK"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.92941176469999998" green="0.96947297489999995" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
@@ -377,17 +579,29 @@ From there, you can customize your game by choosing which Set attributes you'd l
                             <constraint firstItem="W8H-t9-iCb" firstAttribute="height" secondItem="BSz-Ka-r9e" secondAttribute="height" multiplier="1:8" id="nhr-ed-8HL"/>
                             <constraint firstItem="yck-ie-QAp" firstAttribute="top" secondItem="SnM-TY-aEw" secondAttribute="bottom" constant="-20" id="oNA-pv-udv"/>
                             <constraint firstItem="yck-ie-QAp" firstAttribute="height" secondItem="BSz-Ka-r9e" secondAttribute="height" multiplier="1:5" id="qXT-iu-vcP"/>
+                            <constraint firstItem="sBc-73-0vc" firstAttribute="top" secondItem="yck-ie-QAp" secondAttribute="bottom" constant="4" id="seR-Tn-XdY"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="sBc-73-0vc" secondAttribute="trailing" constant="-20" id="v6i-SC-qwf"/>
                         </constraints>
                         <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="sBc-73-0vc"/>
+                            </mask>
                             <mask key="constraints">
                                 <exclude reference="Jw8-F2-AdK"/>
                                 <exclude reference="O9u-Og-7im"/>
                                 <exclude reference="hly-hd-XV6"/>
+                                <exclude reference="seR-Tn-XdY"/>
+                                <exclude reference="v6i-SC-qwf"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="sBc-73-0vc"/>
+                            </mask>
                             <mask key="constraints">
                                 <include reference="Jw8-F2-AdK"/>
+                                <include reference="seR-Tn-XdY"/>
+                                <include reference="v6i-SC-qwf"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
@@ -615,9 +829,6 @@ From there, you can customize your game by choosing which Set attributes you'd l
                                                     <rect key="frame" x="-25" y="-30" width="97" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                                     <textInputTraits key="textInputTraits"/>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="121" y="10" width="111" height="30"/>
-                                                    </variation>
                                                     <connections>
                                                         <outlet property="delegate" destination="qiB-VV-Czl" id="QdV-RT-BaL"/>
                                                     </connections>
@@ -770,7 +981,7 @@ From there, you can customize your game by choosing which Set attributes you'd l
                                         <constraints>
                                             <constraint firstAttribute="height" constant="26" id="Od2-KF-MGb"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="31"/>
+                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="42"/>
                                         <size key="titleShadowOffset" width="1" height="1"/>
                                         <state key="normal" title="⚙">
                                             <color key="titleColor" red="0.42745098039215684" green="0.32549019607843138" blue="0.27058823529411763" alpha="1" colorSpace="calibratedRGB"/>
@@ -875,7 +1086,7 @@ From there, you can customize your game by choosing which Set attributes you'd l
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cuS-Qz-qvU">
                                                             <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                                            <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="60"/>
                                                             <size key="titleShadowOffset" width="1" height="1"/>
                                                             <state key="normal" title="✍">
                                                                 <color key="titleColor" red="0.42706266529999998" green="0.32570422939999999" blue="0.2707932394" alpha="1" colorSpace="calibratedRGB"/>
@@ -889,6 +1100,7 @@ From there, you can customize your game by choosing which Set attributes you'd l
                                                     <accessibility key="accessibilityConfiguration" label=""/>
                                                     <constraints>
                                                         <constraint firstAttribute="trailing" secondItem="cuS-Qz-qvU" secondAttribute="trailing" constant="8" id="OpO-gu-Ipd"/>
+                                                        <constraint firstItem="cuS-Qz-qvU" firstAttribute="height" secondItem="8Mj-8v-r5v" secondAttribute="height" id="XsL-qJ-GGV"/>
                                                         <constraint firstItem="cuS-Qz-qvU" firstAttribute="centerY" secondItem="8Mj-8v-r5v" secondAttribute="centerY" id="ifh-2c-qsd"/>
                                                     </constraints>
                                                     <variation key="default">
@@ -897,6 +1109,7 @@ From there, you can customize your game by choosing which Set attributes you'd l
                                                         </mask>
                                                         <mask key="constraints">
                                                             <exclude reference="OpO-gu-Ipd"/>
+                                                            <exclude reference="XsL-qJ-GGV"/>
                                                             <exclude reference="ifh-2c-qsd"/>
                                                         </mask>
                                                     </variation>
@@ -909,6 +1122,7 @@ From there, you can customize your game by choosing which Set attributes you'd l
                                                         </mask>
                                                         <mask key="constraints">
                                                             <include reference="OpO-gu-Ipd"/>
+                                                            <include reference="XsL-qJ-GGV"/>
                                                             <include reference="ifh-2c-qsd"/>
                                                         </mask>
                                                     </variation>
@@ -1082,6 +1296,111 @@ From there, you can customize your game by choosing which Set attributes you'd l
                                     <constraint firstAttribute="height" constant="200" placeholder="YES" id="7p7-qQ-TS3"/>
                                 </constraints>
                                 <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="scoreHeader" rowHeight="28" id="Eqg-MK-Hf8">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Eqg-MK-Hf8" id="IBr-KM-gaJ">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="27.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zDG-Qi-c1F">
+                                                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="136" y="8" width="96" height="11.5"/>
+                                                    </variation>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="ID" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ri8-Gt-FqU">
+                                                    <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="44" id="Fbs-Bs-zub"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UzA-2R-f99">
+                                                    <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="68" y="8" width="60" height="11.5"/>
+                                                    </variation>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sets" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H5p-jH-eWx" userLabel="Sets">
+                                                    <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="136" y="8" width="24" height="11.5"/>
+                                                    </variation>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Misses" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dEQ-7R-Pq9" userLabel="Misses">
+                                                    <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="160" y="8" width="24" height="11.5"/>
+                                                    </variation>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QfY-qk-URD" userLabel="Score">
+                                                    <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="184" y="8" width="48" height="11.5"/>
+                                                    </variation>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="zDG-Qi-c1F" firstAttribute="leading" secondItem="UzA-2R-f99" secondAttribute="trailing" constant="8" id="0DO-IV-Ne5"/>
+                                                <constraint firstItem="H5p-jH-eWx" firstAttribute="top" secondItem="zDG-Qi-c1F" secondAttribute="top" id="5GW-af-xTY"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="UzA-2R-f99" secondAttribute="bottom" id="6wM-zg-n9B"/>
+                                                <constraint firstItem="dEQ-7R-Pq9" firstAttribute="height" secondItem="zDG-Qi-c1F" secondAttribute="height" id="8tA-6U-Zpb"/>
+                                                <constraint firstItem="dEQ-7R-Pq9" firstAttribute="leading" secondItem="H5p-jH-eWx" secondAttribute="trailing" id="91i-Gf-vfe"/>
+                                                <constraint firstItem="QfY-qk-URD" firstAttribute="leading" secondItem="dEQ-7R-Pq9" secondAttribute="trailing" id="DfY-NB-mA3"/>
+                                                <constraint firstItem="UzA-2R-f99" firstAttribute="leading" secondItem="ri8-Gt-FqU" secondAttribute="trailing" constant="16" id="PZW-5d-ghQ"/>
+                                                <constraint firstItem="zDG-Qi-c1F" firstAttribute="top" secondItem="IBr-KM-gaJ" secondAttribute="topMargin" id="Rne-ns-aV4"/>
+                                                <constraint firstItem="QfY-qk-URD" firstAttribute="height" secondItem="zDG-Qi-c1F" secondAttribute="height" id="SyO-Lg-tcH"/>
+                                                <constraint firstAttribute="topMargin" secondItem="UzA-2R-f99" secondAttribute="top" id="TEw-1u-FjC"/>
+                                                <constraint firstItem="QfY-qk-URD" firstAttribute="top" secondItem="zDG-Qi-c1F" secondAttribute="top" id="V8m-vL-Fcf"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="zDG-Qi-c1F" secondAttribute="trailing" id="XdH-JP-EZE"/>
+                                                <constraint firstItem="zDG-Qi-c1F" firstAttribute="width" secondItem="IBr-KM-gaJ" secondAttribute="width" multiplier="10:25" id="Yr4-Fh-CJ9"/>
+                                                <constraint firstAttribute="topMargin" secondItem="ri8-Gt-FqU" secondAttribute="top" id="c6o-cU-B0x"/>
+                                                <constraint firstItem="H5p-jH-eWx" firstAttribute="height" secondItem="zDG-Qi-c1F" secondAttribute="height" id="ccI-pF-vB5"/>
+                                                <constraint firstAttribute="leadingMargin" secondItem="ri8-Gt-FqU" secondAttribute="leading" id="dWF-6y-Hr2"/>
+                                                <constraint firstItem="zDG-Qi-c1F" firstAttribute="centerY" secondItem="IBr-KM-gaJ" secondAttribute="centerY" id="fLW-3o-bWC"/>
+                                                <constraint firstItem="H5p-jH-eWx" firstAttribute="leading" secondItem="zDG-Qi-c1F" secondAttribute="leading" id="n0q-Xt-4cC"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="ri8-Gt-FqU" secondAttribute="bottom" id="qUh-uW-rZ8"/>
+                                                <constraint firstItem="dEQ-7R-Pq9" firstAttribute="top" secondItem="zDG-Qi-c1F" secondAttribute="top" id="t7h-Jy-liv"/>
+                                                <constraint firstItem="H5p-jH-eWx" firstAttribute="width" secondItem="zDG-Qi-c1F" secondAttribute="width" multiplier="1:4" id="th9-y2-RtJ"/>
+                                                <constraint firstItem="dEQ-7R-Pq9" firstAttribute="width" secondItem="zDG-Qi-c1F" secondAttribute="width" multiplier="1:4" id="xjg-v8-b3l"/>
+                                                <constraint firstItem="QfY-qk-URD" firstAttribute="trailing" secondItem="zDG-Qi-c1F" secondAttribute="trailing" id="yQ2-rO-K3N"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="subviews">
+                                                    <exclude reference="zDG-Qi-c1F"/>
+                                                    <exclude reference="UzA-2R-f99"/>
+                                                    <exclude reference="H5p-jH-eWx"/>
+                                                    <exclude reference="dEQ-7R-Pq9"/>
+                                                    <exclude reference="QfY-qk-URD"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="heightClass=regular-widthClass=compact">
+                                                <mask key="subviews">
+                                                    <include reference="zDG-Qi-c1F"/>
+                                                    <include reference="UzA-2R-f99"/>
+                                                    <include reference="H5p-jH-eWx"/>
+                                                    <include reference="dEQ-7R-Pq9"/>
+                                                    <include reference="QfY-qk-URD"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="scoreRow" id="xKs-0W-vWt">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
@@ -1101,22 +1420,22 @@ From there, you can customize your game by choosing which Set attributes you'd l
                                                         <constraint firstAttribute="width" secondItem="wWE-61-TMl" secondAttribute="height" multiplier="1:1" id="e50-GR-UGM"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ep-nh-OVV">
                                                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="67" y="8" width="60" height="43.5"/>
+                                                        <rect key="frame" x="67" y="8" width="60.5" height="43.5"/>
                                                     </variation>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bVb-A7-ok8" userLabel="Sets">
                                                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
                                                         <rect key="frame" x="136" y="8" width="24" height="43.5"/>
@@ -1125,7 +1444,7 @@ From there, you can customize your game by choosing which Set attributes you'd l
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y9i-8f-pb3" userLabel="Misses">
                                                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
                                                         <rect key="frame" x="160" y="8" width="24" height="43.5"/>
@@ -1134,7 +1453,7 @@ From there, you can customize your game by choosing which Set attributes you'd l
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dzx-6i-99a" userLabel="Score">
                                                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
                                                         <rect key="frame" x="184" y="8" width="48" height="43.5"/>
@@ -1187,111 +1506,6 @@ From there, you can customize your game by choosing which Set attributes you'd l
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="scoreHeader" rowHeight="28" id="Eqg-MK-Hf8">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Eqg-MK-Hf8" id="IBr-KM-gaJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="240" height="27.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zDG-Qi-c1F">
-                                                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="136" y="8" width="96" height="11.5"/>
-                                                    </variation>
-                                                </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="ID" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ri8-Gt-FqU">
-                                                    <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="44" id="Fbs-Bs-zub"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UzA-2R-f99">
-                                                    <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="68" y="8" width="60" height="11.5"/>
-                                                    </variation>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sets" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H5p-jH-eWx" userLabel="Sets">
-                                                    <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="136" y="8" width="24" height="11.5"/>
-                                                    </variation>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Misses" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dEQ-7R-Pq9" userLabel="Misses">
-                                                    <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="160" y="8" width="24" height="11.5"/>
-                                                    </variation>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QfY-qk-URD" userLabel="Score">
-                                                    <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="184" y="8" width="48" height="11.5"/>
-                                                    </variation>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="zDG-Qi-c1F" firstAttribute="leading" secondItem="UzA-2R-f99" secondAttribute="trailing" constant="8" id="0DO-IV-Ne5"/>
-                                                <constraint firstItem="H5p-jH-eWx" firstAttribute="top" secondItem="zDG-Qi-c1F" secondAttribute="top" id="5GW-af-xTY"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="UzA-2R-f99" secondAttribute="bottom" id="6wM-zg-n9B"/>
-                                                <constraint firstItem="dEQ-7R-Pq9" firstAttribute="height" secondItem="zDG-Qi-c1F" secondAttribute="height" id="8tA-6U-Zpb"/>
-                                                <constraint firstItem="dEQ-7R-Pq9" firstAttribute="leading" secondItem="H5p-jH-eWx" secondAttribute="trailing" id="91i-Gf-vfe"/>
-                                                <constraint firstItem="QfY-qk-URD" firstAttribute="leading" secondItem="dEQ-7R-Pq9" secondAttribute="trailing" id="DfY-NB-mA3"/>
-                                                <constraint firstItem="UzA-2R-f99" firstAttribute="leading" secondItem="ri8-Gt-FqU" secondAttribute="trailing" constant="16" id="PZW-5d-ghQ"/>
-                                                <constraint firstItem="zDG-Qi-c1F" firstAttribute="top" secondItem="IBr-KM-gaJ" secondAttribute="topMargin" id="Rne-ns-aV4"/>
-                                                <constraint firstItem="QfY-qk-URD" firstAttribute="height" secondItem="zDG-Qi-c1F" secondAttribute="height" id="SyO-Lg-tcH"/>
-                                                <constraint firstAttribute="topMargin" secondItem="UzA-2R-f99" secondAttribute="top" id="TEw-1u-FjC"/>
-                                                <constraint firstItem="QfY-qk-URD" firstAttribute="top" secondItem="zDG-Qi-c1F" secondAttribute="top" id="V8m-vL-Fcf"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="zDG-Qi-c1F" secondAttribute="trailing" id="XdH-JP-EZE"/>
-                                                <constraint firstItem="zDG-Qi-c1F" firstAttribute="width" secondItem="IBr-KM-gaJ" secondAttribute="width" multiplier="10:25" id="Yr4-Fh-CJ9"/>
-                                                <constraint firstAttribute="topMargin" secondItem="ri8-Gt-FqU" secondAttribute="top" id="c6o-cU-B0x"/>
-                                                <constraint firstItem="H5p-jH-eWx" firstAttribute="height" secondItem="zDG-Qi-c1F" secondAttribute="height" id="ccI-pF-vB5"/>
-                                                <constraint firstAttribute="leadingMargin" secondItem="ri8-Gt-FqU" secondAttribute="leading" id="dWF-6y-Hr2"/>
-                                                <constraint firstItem="zDG-Qi-c1F" firstAttribute="centerY" secondItem="IBr-KM-gaJ" secondAttribute="centerY" id="fLW-3o-bWC"/>
-                                                <constraint firstItem="H5p-jH-eWx" firstAttribute="leading" secondItem="zDG-Qi-c1F" secondAttribute="leading" id="n0q-Xt-4cC"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="ri8-Gt-FqU" secondAttribute="bottom" id="qUh-uW-rZ8"/>
-                                                <constraint firstItem="dEQ-7R-Pq9" firstAttribute="top" secondItem="zDG-Qi-c1F" secondAttribute="top" id="t7h-Jy-liv"/>
-                                                <constraint firstItem="H5p-jH-eWx" firstAttribute="width" secondItem="zDG-Qi-c1F" secondAttribute="width" multiplier="1:4" id="th9-y2-RtJ"/>
-                                                <constraint firstItem="dEQ-7R-Pq9" firstAttribute="width" secondItem="zDG-Qi-c1F" secondAttribute="width" multiplier="1:4" id="xjg-v8-b3l"/>
-                                                <constraint firstItem="QfY-qk-URD" firstAttribute="trailing" secondItem="zDG-Qi-c1F" secondAttribute="trailing" id="yQ2-rO-K3N"/>
-                                            </constraints>
-                                            <variation key="default">
-                                                <mask key="subviews">
-                                                    <exclude reference="zDG-Qi-c1F"/>
-                                                    <exclude reference="UzA-2R-f99"/>
-                                                    <exclude reference="H5p-jH-eWx"/>
-                                                    <exclude reference="dEQ-7R-Pq9"/>
-                                                    <exclude reference="QfY-qk-URD"/>
-                                                </mask>
-                                            </variation>
-                                            <variation key="heightClass=regular-widthClass=compact">
-                                                <mask key="subviews">
-                                                    <include reference="zDG-Qi-c1F"/>
-                                                    <include reference="UzA-2R-f99"/>
-                                                    <include reference="H5p-jH-eWx"/>
-                                                    <include reference="dEQ-7R-Pq9"/>
-                                                    <include reference="QfY-qk-URD"/>
-                                                </mask>
-                                            </variation>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -1383,9 +1597,6 @@ From there, you can customize your game by choosing which Set attributes you'd l
                                     <button opaque="NO" tag="12" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="twF-YV-CZ1">
                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="twF-YV-CZ1" secondAttribute="height" multiplier="1:1" id="kso-AB-3RX"/>
-                                        </constraints>
                                         <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="20"/>
                                         <inset key="contentEdgeInsets" minX="8" minY="4" maxX="8" maxY="4"/>
                                         <size key="titleShadowOffset" width="0.5" height="0.5"/>
@@ -1393,10 +1604,8 @@ From there, you can customize your game by choosing which Set attributes you'd l
                                             <color key="titleColor" red="0.58039215690000001" green="0.70980392160000005" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" red="0.49803921580314636" green="0.49803921580314636" blue="0.49803921580314636" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="kso-AB-3RX"/>
-                                            </mask>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="24"/>
                                         </variation>
                                         <connections>
                                             <action selector="backAction:" destination="luK-Cw-9qx" eventType="touchUpInside" id="pXp-WL-ytz"/>
@@ -1413,23 +1622,7 @@ From there, you can customize your game by choosing which Set attributes you'd l
                                     <constraint firstAttribute="trailing" secondItem="MrU-ch-G5N" secondAttribute="trailing" constant="13" id="bd0-kp-lru">
                                         <variation key="heightClass=regular-widthClass=regular" constant="13"/>
                                     </constraint>
-                                    <constraint firstAttribute="height" constant="130" id="u4j-Ki-d20">
-                                        <variation key="heightClass=regular-widthClass=regular" constant="200"/>
-                                    </constraint>
-                                    <constraint firstItem="twF-YV-CZ1" firstAttribute="centerY" secondItem="kaE-OT-hLF" secondAttribute="centerY" id="wQK-OK-UMg"/>
                                 </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="u4j-Ki-d20"/>
-                                        <exclude reference="aeq-J1-Yx0"/>
-                                        <exclude reference="wQK-OK-UMg"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=compact">
-                                    <mask key="constraints">
-                                        <include reference="aeq-J1-Yx0"/>
-                                    </mask>
-                                </variation>
                             </view>
                             <button opaque="NO" tag="3" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chW-hm-XIU" userLabel="Save Btn">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -1496,12 +1689,6 @@ From there, you can customize your game by choosing which Set attributes you'd l
                                                     <variation key="heightClass=compact" misplaced="YES">
                                                         <rect key="frame" x="88" y="7" width="144" height="44.5"/>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="88" y="7" width="144" height="44.5"/>
-                                                    </variation>
-                                                    <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                                        <rect key="frame" x="108" y="7" width="124" height="44.5"/>
-                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <color key="backgroundColor" red="0.92941176469999998" green="0.96947297489999995" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1551,19 +1738,11 @@ From there, you can customize your game by choosing which Set attributes you'd l
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="jUP-Oh-NWD"/>
-                                <exclude reference="pRe-HE-Q1G"/>
-                                <exclude reference="FE6-Ph-Lxc"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular">
                             <mask key="constraints">
                                 <include reference="jUP-Oh-NWD"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=regular-widthClass=compact">
-                            <mask key="constraints">
-                                <include reference="pRe-HE-Q1G"/>
-                                <include reference="FE6-Ph-Lxc"/>
                             </mask>
                         </variation>
                     </view>
@@ -1577,7 +1756,7 @@ From there, you can customize your game by choosing which Set attributes you'd l
                 <customObject id="zkv-GB-VjX" customClass="ThemeTableDataSource" customModule="CardGames" customModuleProvider="target"/>
                 <exit id="6eC-z4-STj" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="391.5" y="700.5"/>
+            <point key="canvasLocation" x="357" y="724.5"/>
         </scene>
         <!--ContainerVC-->
         <scene sceneID="G8b-9Y-hjZ">
@@ -1693,20 +1872,39 @@ From there, you can customize your game by choosing which Set attributes you'd l
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="hLn-P4-DRx" secondAttribute="trailing" id="2ov-9D-nkh"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="CZh-U9-s8p" secondAttribute="trailing" id="6qS-ka-VW3"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="9gS-Us-05t" secondAttribute="trailing" id="Pg4-mi-UeV"/>
-                            <constraint firstItem="sXl-kO-5y7" firstAttribute="trailing" secondItem="CZh-U9-s8p" secondAttribute="trailing" id="RlV-q1-t3P"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="hLn-P4-DRx" secondAttribute="trailing" constant="-16" id="2ov-9D-nkh"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="CZh-U9-s8p" secondAttribute="trailing" constant="-16" id="6qS-ka-VW3"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="9gS-Us-05t" secondAttribute="trailing" constant="-16" id="Pg4-mi-UeV"/>
+                            <constraint firstItem="9gS-Us-05t" firstAttribute="width" secondItem="tfJ-Eg-ez5" secondAttribute="width" id="TY6-88-Q5Y"/>
                             <constraint firstItem="sXl-kO-5y7" firstAttribute="top" secondItem="CZh-U9-s8p" secondAttribute="bottom" constant="40" id="W7k-4G-UBt"/>
-                            <constraint firstItem="CZh-U9-s8p" firstAttribute="leading" secondItem="tfJ-Eg-ez5" secondAttribute="leadingMargin" id="c5v-ta-r9z"/>
+                            <constraint firstItem="CZh-U9-s8p" firstAttribute="leading" secondItem="tfJ-Eg-ez5" secondAttribute="leadingMargin" constant="-16" id="c5v-ta-r9z"/>
+                            <constraint firstItem="hLn-P4-DRx" firstAttribute="width" secondItem="tfJ-Eg-ez5" secondAttribute="width" id="c6n-Bj-oG7"/>
                             <constraint firstAttribute="topMargin" secondItem="CZh-U9-s8p" secondAttribute="top" id="kMi-qy-RQ4"/>
-                            <constraint firstItem="hLn-P4-DRx" firstAttribute="leading" secondItem="tfJ-Eg-ez5" secondAttribute="leadingMargin" id="msB-hw-u2U"/>
+                            <constraint firstItem="hLn-P4-DRx" firstAttribute="leading" secondItem="tfJ-Eg-ez5" secondAttribute="leadingMargin" constant="-16" id="msB-hw-u2U"/>
                             <constraint firstItem="9gS-Us-05t" firstAttribute="top" secondItem="sXl-kO-5y7" secondAttribute="bottom" constant="40" id="q3y-dK-cOh"/>
-                            <constraint firstItem="sXl-kO-5y7" firstAttribute="leading" secondItem="tfJ-Eg-ez5" secondAttribute="leadingMargin" id="rVr-Tb-ITX"/>
+                            <constraint firstItem="sXl-kO-5y7" firstAttribute="leading" secondItem="tfJ-Eg-ez5" secondAttribute="leadingMargin" constant="-16" id="rVr-Tb-ITX"/>
                             <constraint firstItem="hLn-P4-DRx" firstAttribute="top" secondItem="9gS-Us-05t" secondAttribute="bottom" constant="40" id="rnN-Wf-Yab"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="sXl-kO-5y7" secondAttribute="trailing" id="sTC-NH-Dd4"/>
-                            <constraint firstItem="9gS-Us-05t" firstAttribute="leading" secondItem="tfJ-Eg-ez5" secondAttribute="leadingMargin" id="zfv-rU-FAB"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="sXl-kO-5y7" secondAttribute="trailing" constant="-16" id="sTC-NH-Dd4"/>
+                            <constraint firstItem="CZh-U9-s8p" firstAttribute="width" secondItem="tfJ-Eg-ez5" secondAttribute="width" id="u5p-uD-5WE"/>
+                            <constraint firstItem="sXl-kO-5y7" firstAttribute="width" secondItem="tfJ-Eg-ez5" secondAttribute="width" id="ywv-VK-Qb3"/>
+                            <constraint firstItem="9gS-Us-05t" firstAttribute="leading" secondItem="tfJ-Eg-ez5" secondAttribute="leadingMargin" constant="-16" id="zfv-rU-FAB"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="TY6-88-Q5Y"/>
+                                <exclude reference="u5p-uD-5WE"/>
+                                <exclude reference="c6n-Bj-oG7"/>
+                                <exclude reference="ywv-VK-Qb3"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="constraints">
+                                <include reference="TY6-88-Q5Y"/>
+                                <include reference="u5p-uD-5WE"/>
+                                <include reference="c6n-Bj-oG7"/>
+                                <include reference="ywv-VK-Qb3"/>
+                            </mask>
+                        </variation>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="29s-5t-raY" userLabel="First Responder" sceneMemberID="firstResponder"/>

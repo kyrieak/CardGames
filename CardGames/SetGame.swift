@@ -12,14 +12,13 @@ import UIKit
 class SetGame {
   var isOver: Bool = false
   private(set) var settings: GameSettings
-//  private var scores: [Player: Int]
   private(set) var stats = [Player: (set: Int, miss: Int, score: Int)]()
 
   private(set) var deck: Deck<SetCard>     = SetGame.standardDeck()
   private(set) var cardsInPlay: [SetCard?] = []
   private(set) var currentMove: SGMove
   
-  let pointsFor: (set: Int, penalty: Int) = (set: 5, penalty: -1)
+  let pointsFor: (set: Int, penalty: Int) = (set: 3, penalty: -1)
   
   var players: [Player] {
     return settings.players
@@ -212,10 +211,10 @@ class SetGame {
   private func updateStats(_player: Player) {
     if (moveIsASet(currentMove)) {
       stats[_player]!.set++
-      stats[_player]!.score += 5 // arbit
+      stats[_player]!.score += pointsFor.set
     } else {
       stats[_player]!.miss++
-      stats[_player]!.score -= 1 // arbit
+      stats[_player]!.score -= abs(pointsFor.penalty)
     }
   }
   
@@ -413,7 +412,7 @@ class GameSettings {
   init(players: [Player], options: GameOptions) {
     self.players = players
     self.options = options
-    self.pointsFor = (set: 5, penalty: -1)
+    self.pointsFor = (set: 3, penalty: -1)
   }
   
   convenience init(players: [Player]) {

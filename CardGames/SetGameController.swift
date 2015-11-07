@@ -273,7 +273,6 @@ class SetGameController: UIViewController, StyleGuideDelegate {
       let cell = collectionView!.cellForItemAtIndexPath(path)!
 
       cell.backgroundColor = styleGuide.theme.patternColor
-      NSLog(styleGuide.theme.patternColor!.description)
       cell.selectedBackgroundView!.layer.borderColor = styleGuide.theme.bgColor3.CGColor
 
       if (cell.selected) { cell.setNeedsDisplay() }

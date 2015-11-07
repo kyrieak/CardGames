@@ -23,6 +23,8 @@ class HomeViewController: UIViewController, StyleGuideDelegate {
 
   
   @IBAction func prepareUnwind(segue: UIStoryboardSegue) {
+    backBtn.hidden = !appGlobals.gameIsActive
+
     if (themeID != styleGuide.themeID) {
       applyStyleToViews()
     }
@@ -35,11 +37,13 @@ class HomeViewController: UIViewController, StyleGuideDelegate {
     if (themeID != styleGuide.themeID) {
       applyStyleToViews()
     }
-
-    backBtn.layer.cornerRadius = 16
-    backBtn.layer.borderWidth = 2
-    backBtn.layer.borderColor = styleGuide.theme.bgColor2.getShade(0.05).CGColor
-    backBtn.hidden = !appGlobals.gameIsActive
+    
+    if (!backBtn.hidden) {
+      backBtn.layer.cornerRadius = 16
+      backBtn.layer.borderWidth = 2
+      backBtn.layer.borderColor = styleGuide.theme.bgColor2.getShade(0.05).CGColor
+      backBtn.hidden = !appGlobals.gameIsActive
+    }
   }
   
   func setBtnBorder(sender: UIButton) {

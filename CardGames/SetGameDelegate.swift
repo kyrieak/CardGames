@@ -100,6 +100,9 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
   func flipFaceDown(collectionView: UICollectionView, indexPath: NSIndexPath) {
     let cell = collectionView.cellForItemAtIndexPath(indexPath)
 
+    cell?.layer.borderWidth = 1
+    cell?.layer.borderColor = UIColor(white: 0.4, alpha: 0.2).CGColor
+    
     cell?.backgroundView?.hidden = true
     cell?.selectedBackgroundView?.hidden = true
   }
@@ -107,6 +110,7 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
   func flipFaceUp(collectionView: UICollectionView, indexPath: NSIndexPath) {
     let cell = collectionView.cellForItemAtIndexPath(indexPath)
     
+    cell?.layer.borderWidth = CGFloat(0)
     cell?.backgroundView?.hidden = false
     cell?.selectedBackgroundView?.hidden = false
   }
@@ -121,21 +125,7 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
   private func getGame(collectionView: UICollectionView) -> SetGame {
     return (collectionView.dataSource! as! SetGameDataSource).game
   }
-  
-  
-  private func getStatus(game: SetGame) -> (isSet: Bool, msg: String) {
-    let cards = game.getSelectedCards()
-
-    let cardText = cards.map{(c: SetCard) -> String in
-      return c.attributes().toString(game.options)
-    }.joinWithSeparator(", ")
-
-    if (!game.currentMove.done) {
-      return (false, cardText)
-    } else {
-      return (isSet: game.currentMoveIsASet(), msg: game.status())
-    }
-  }
+    
   
   private func selectedIndexes() -> [Int] {
     return selectIdxPaths.map { (path: NSIndexPath) -> Int in

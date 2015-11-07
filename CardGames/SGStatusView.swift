@@ -61,7 +61,7 @@ class SGStatusView: UIView {
     
     if (move.done) {
       if (isASet) {
-        messageView.text = "is a set for \(pointsFor.set)."
+        messageView.text = "is a set for \(pointsFor.set) points."
       } else {
         let penalty = abs(pointsFor.penalty)
         

@@ -29,6 +29,7 @@ class GameSettingsController: UIViewController {
   
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
+    
     self.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
   }
 
@@ -83,16 +84,16 @@ class GameSettingsController: UIViewController {
   }
   
   func setBorderAttributes() {
-//    playerStepper.layer.cornerRadius = 4
-
     contentView.layer.borderWidth   = 0.8
-    header.layer.borderWidth        = 1
-    playerStepper.layer.borderWidth = 1
-    saveBtn.layer.borderWidth       = 1
-    
     contentView.layer.borderColor   = UIColor(white: 0.8, alpha: 1.0).CGColor
+
+    header.layer.borderWidth        = 1
     header.layer.borderColor        = contentView.layer.borderColor
+
+    playerStepper.layer.borderWidth = 1
     playerStepper.layer.borderColor = UIColor(white: 0.7, alpha: 1.0).CGColor
+
+    saveBtn.layer.borderWidth       = 1
     saveBtn.layer.borderColor       = UIColor(red: 0.3, green: 0.7, blue: 0.9, alpha: 1.0).CGColor
   }
   
