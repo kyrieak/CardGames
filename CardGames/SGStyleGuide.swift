@@ -200,7 +200,7 @@ class SGStyleGuide: StyleGuide {
 
   
   private func cardFrontLayerStyle() -> UILayerStyle {
-    return UILayerStyle(bgColor: UIColor.whiteColor(),
+    return UILayerStyle(bgColor: UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0),
                         borderWidth: CGFloat(1),
                         borderColor: UIColor(white: 0.9, alpha: 1.0))
   }

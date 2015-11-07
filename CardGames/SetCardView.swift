@@ -69,16 +69,16 @@ class SetCardView: UIView {
       _rect.size.height = rect.width
     }
     
-    var insetX = _rect.width * 0.2
+    var insetX = ((cardAttrs.number < 2) ? (_rect.width * 0.2) : (_rect.width * 0.15))
     var insetY = insetX
     var dist: CGFloat = 0
 
     let innerBounds = CGRectInset(_rect, insetX, insetY)
     let shapeSize = calcShapeSize(innerBounds.size)
-
-    if (shapeSize.width < innerBounds.width) {
-      insetX += ((innerBounds.width - shapeSize.width) / 2)
-    }
+//
+//    if (shapeSize.width < innerBounds.width) {
+//      insetX += ((innerBounds.width - shapeSize.width) / 2)
+//    }
     
     if (number == 1) {
       insetY += ((innerBounds.height - shapeSize.height) / 2)
@@ -92,7 +92,17 @@ class SetCardView: UIView {
     
     for i in 1...number {
       if (i > 1) {
-        CGContextTranslateCTM(context, 0, dist)
+        var dx: CGFloat = 0
+
+        if (cardAttrs.shape != .Diamond) {
+          dx = innerBounds.width - shapeSize.height
+        }
+        
+        if (i == 2) {
+          CGContextTranslateCTM(context, dx, dist)
+        } else {
+          CGContextTranslateCTM(context, -dx, dist)
+        }
       }
 
       drawShape(context!, size: shapeSize)
@@ -106,12 +116,12 @@ class SetCardView: UIView {
   // - MARK: - Private -
   
   private func calcShapeSize(bounds: CGSize) -> CGSize {
-    let dividedHeight = bounds.height / CGFloat(cardAttrs.number)
-    let maxHeight = dividedHeight * 0.7
+    let dividedHeightMin = bounds.height / CGFloat(2)
+    let dividedHeight = max((bounds.height / CGFloat(cardAttrs.number)), dividedHeightMin)
     
     var w, h: CGFloat
     
-    h = min((bounds.width * 0.5), maxHeight)
+    h = dividedHeight * 0.7
     w = min((h * 2), bounds.width)
     
     return CGSizeMake(w, h)
@@ -125,10 +135,15 @@ class SetCardView: UIView {
       case .Diamond:
         drawDiamond(size)
       case .Oval:
-        drawOval(size)
+//        drawOval(size)
+        let d = min(size.width, size.height)
+        drawSun(CGSize(width: d, height: d))
       case .Squiggle:
-        CGContextSetLineCap(context, CGLineCap.Round)
-        drawSquiggle(size)
+        let d = min(size.width, size.height)
+
+        drawMoon(CGSize(width: d, height: d))
+//        CGContextSetLineCap(context, CGLineCap.Round)
+//        drawSquiggle(size)
     }
     
     CGContextRestoreGState(context) // --- Context Restored ---
@@ -172,6 +187,104 @@ class SetCardView: UIView {
     } else if (shading == .Striped) {
       drawStripes(size)
     }
+  }
+  
+  private func drawRays(size: CGSize) {
+    let shading = cardAttrs.shading
+
+    let rayAnchor = CGRect(origin: CGPoint(x: size.width / 3, y: size.height / 3),
+      size: CGSize(width: size.width / 3, height: size.width / 3))
+    let rayPath = UIBezierPath()
+    let p = ((size.height / 2 - 2) * 0.113)
+    
+    rayPath.moveToPoint(CGPoint(x: rayAnchor.minX, y: rayAnchor.minY))
+    rayPath.addLineToPoint(CGPoint(x: rayAnchor.midX, y: -p))
+    rayPath.addLineToPoint(CGPoint(x: rayAnchor.maxX, y: rayAnchor.minY))
+    rayPath.addLineToPoint(CGPoint(x: size.width + p, y: rayAnchor.midY))
+    rayPath.addLineToPoint(CGPoint(x: rayAnchor.maxX, y: rayAnchor.maxY))
+    rayPath.addLineToPoint(CGPoint(x: rayAnchor.midX, y: size.height + p))
+    rayPath.addLineToPoint(CGPoint(x: rayAnchor.minX, y: rayAnchor.maxY))
+    rayPath.addLineToPoint(CGPoint(x: -p, y: rayAnchor.midY))
+    rayPath.addLineToPoint(CGPoint(x: rayAnchor.minX, y: rayAnchor.minY))
+    
+    rayPath.closePath()
+    rayPath.stroke()
+
+    if (shading == .Solid) {
+      rayPath.fill()
+    }
+  }
+  
+  private func drawMoon(size: CGSize) {
+    let circlePath = UIBezierPath()
+    let r = size.width / 2
+    var center = CGPoint(x: r, y: r)
+    
+    circlePath.addArcWithCenter(center, radius: r, startAngle: CGFloat(M_PI_4 * 6), endAngle: CGFloat(M_PI_4 * 3), clockwise: true)
+//    circlePath.stroke()
+//    center = CGPoint(x: r / 2, y: r / 2)
+//    circlePath.addArcWithCenter(center, radius: r, startAngle: CGFloat(M_PI_4 * 7), endAngle: CGFloat(M_PI_4 * 3), clockwise: true)
+    let sp = CGPoint(x: r, y: 0)
+    let ep = CGPoint(x: r - r * cos(CGFloat(M_PI_4)), y: r + r * sin(CGFloat(M_PI_4)))
+    let cp1 = CGPoint(x: sp.x + r / 1.5, y: r / 1.5)
+    let cp2 = CGPoint(x: ep.x + r / 1.5, y: ep.y)
+
+//    circlePath.moveToPoint(sp)
+    circlePath.addCurveToPoint(sp, controlPoint1: cp2, controlPoint2: cp1)
+    circlePath.closePath()
+//    circlePath.addCurveToPoint(ep, controlPoint1: cp1, controlPoint2: cp2)
+//    circlePath.closePath()
+    circlePath.stroke()
+
+    if (cardAttrs.shading == .Solid) {
+      circlePath.fill()
+    } else if (cardAttrs.shading == .Striped) {
+      circlePath.addClip()
+      drawStripes(size)
+    }
+  }
+  
+  private func drawSun(size: CGSize) {
+    let shading = cardAttrs.shading
+    
+    drawRays(size)
+    
+    let context = UIGraphicsGetCurrentContext()
+
+    CGContextSaveGState(context)
+    CGContextTranslateCTM(context, size.width / 2, -size.height / 4)
+    CGContextRotateCTM(context, CGFloat(M_PI_4))
+    drawRays(size)
+    
+    CGContextRestoreGState(context)
+    
+    let center = CGPoint(x: size.width / 2, y: size.height / 2)
+    let r = size.height / 2.5
+    let circlePath = UIBezierPath()
+    
+    circlePath.addArcWithCenter(center, radius: r, startAngle: 0, endAngle: CGFloat(M_PI * 2), clockwise: true)
+    circlePath.stroke()
+    
+    
+    if (shading != .Solid) {
+      CGContextSaveGState(context)
+      CGContextSetFillColor(context, [1.0, 1.0, 1.0, 1.0])
+      circlePath.fill()
+      CGContextRestoreGState(context)
+
+      if (shading == .Striped) {
+        circlePath.addClip()
+        drawStripes(size)
+      }
+    } else {
+      circlePath.fill()
+    }
+//
+//    if (shading == .Solid) {
+//      path.fill()
+//    } else if (shading == .Striped) {
+//      drawStripes(size)
+//    }
   }
   
   private func circlePoint(point: CGPoint, r: CGFloat) {
@@ -232,11 +345,14 @@ class SetCardView: UIView {
   class func rgbColor(color: SGColor) -> [CGFloat] {
     switch(color) {
       case .Green:
-        return [0.102, 0.694, 0.365, 1.0]
+        return [1.0, 0.2, 0.2, 1.0]
+//        return [0.102, 0.694, 0.365, 1.0]
       case .Purple:
-        return [0.286, 0.2, 0.565, 1.0]
+        return [0.3, 0.5, 1.0, 1.0]
+//        return [0.286, 0.2, 0.565, 1.0]
       case .Red:
-        return [0.875, 0.259, 0.302, 1.0]
+        return [1.0, 0.5, 0.0, 1.0]
+//        return [0.875, 0.259, 0.302, 1.0]
     }
   }
 }
