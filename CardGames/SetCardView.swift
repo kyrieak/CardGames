@@ -329,7 +329,30 @@ class SetCardView: UIView {
   }
   
   
+  private func drawSpots(size: CGSize) {
+    var xi: CGFloat = -0.5
+    var yi: CGFloat = -0.5
+        
+    var spot = CGRect(origin: CGPoint(x: xi, y: yi), size: CGSize(width: 1, height: 1))
+    var path = UIBezierPath(roundedRect: spot, cornerRadius: 0.5)
+
+    while (xi < size.width) {
+      while(yi < size.height) {
+        path = UIBezierPath(roundedRect: spot, cornerRadius: 0.5)
+        path.fill()
+        yi += 2
+
+        spot = CGRect(origin: CGPoint(x: xi, y: yi), size: spot.size)
+      }
+      yi = -0.5
+      xi += 2
+    }
+  }
+  
+  
   private func drawStripes(size: CGSize) {
+    drawSpots(size)
+  /*
     let path = UIBezierPath()
     var xi: CGFloat = 1
     
@@ -339,7 +362,7 @@ class SetCardView: UIView {
       xi += 3
     }
     
-    path.stroke()
+    path.stroke()*/
   }
   
   class func rgbColor(color: SGColor) -> [CGFloat] {
