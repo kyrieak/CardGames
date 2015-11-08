@@ -59,6 +59,15 @@ class SetCardView: UIView {
     CGContextSetFillColor(context, rgbColor)
     CGContextSaveGState(context) // --- Context Saved ---
 
+//    if (rect.height > 60) {
+//      CGContextSetStrokeColor(context, [0.8, 0.8, 0.8, 1.0])
+//      let borderPath = UIBezierPath(rect: rect.insetBy(dx: 3, dy: 3))
+//      
+//      borderPath.stroke()
+//      
+//      CGContextSetStrokeColor(context, rgbColor)
+//    }
+
     var _rect = rect
     
     if (rect.width > rect.height) {
@@ -69,16 +78,12 @@ class SetCardView: UIView {
       _rect.size.height = rect.width
     }
     
-    var insetX = ((cardAttrs.number < 2) ? (_rect.width * 0.2) : (_rect.width * 0.15))
+    let insetX = ((cardAttrs.number < 2) ? (_rect.width * 0.2) : (_rect.width * 0.15))
     var insetY = insetX
     var dist: CGFloat = 0
 
     let innerBounds = CGRectInset(_rect, insetX, insetY)
     let shapeSize = calcShapeSize(innerBounds.size)
-//
-//    if (shapeSize.width < innerBounds.width) {
-//      insetX += ((innerBounds.width - shapeSize.width) / 2)
-//    }
     
     if (number == 1) {
       insetY += ((innerBounds.height - shapeSize.height) / 2)
@@ -92,16 +97,12 @@ class SetCardView: UIView {
     
     for i in 1...number {
       if (i > 1) {
-        var dx: CGFloat = 0
-
-        if (cardAttrs.shape != .Diamond) {
-          dx = innerBounds.width - shapeSize.height
-        }
+        let dx = innerBounds.width - shapeSize.width
         
         if (i == 2) {
           CGContextTranslateCTM(context, dx, dist)
         } else {
-          CGContextTranslateCTM(context, -dx, dist)
+          CGContextTranslateCTM(context, -1 * dx, dist)
         }
       }
 
@@ -122,7 +123,15 @@ class SetCardView: UIView {
     var w, h: CGFloat
     
     h = dividedHeight * 0.7
-    w = min((h * 2), bounds.width)
+    if (cardAttrs.shape == .Diamond) {
+      if (cardAttrs.number > 1) {
+        w = bounds.width * 0.66
+      } else {
+        w = bounds.width
+      }
+    } else {
+      w = h
+    }
     
     return CGSizeMake(w, h)
   }
@@ -133,7 +142,8 @@ class SetCardView: UIView {
     
     switch(cardAttrs.shape) {
       case .Diamond:
-        drawDiamond(size)
+        drawCloud(size)
+//        drawDiamond(size)
       case .Oval:
 //        drawOval(size)
         let d = min(size.width, size.height)
@@ -287,6 +297,45 @@ class SetCardView: UIView {
 //    }
   }
   
+  private func drawCloud(size: CGSize) {
+    let r = size.width / 6
+    let rcosT = r * cos(CGFloat(M_PI_4))
+    let rsinT = r * sin(CGFloat(M_PI_4))
+    
+    var center = CGPoint(x: r, y: size.height / 2)
+
+    var sp = CGPoint(x: r + rcosT, y: center.y - rsinT)
+    var ep = CGPoint(x: size.width - r - rcosT, y: center.y - rsinT)
+    var cp1 = CGPoint(x: sp.x + r, y: center.y - 1.5 * r)
+    var cp2 = CGPoint(x: ep.x - r, y: center.y - 1.5 * r)
+
+    let path = UIBezierPath()
+
+    path.addArcWithCenter(center, radius: r, startAngle: CGFloat(M_PI_4), endAngle: CGFloat(M_PI_4 * -1), clockwise: true)
+    path.addCurveToPoint(ep, controlPoint1: cp1, controlPoint2: cp2)
+
+    center.x = size.width - r
+    path.addArcWithCenter(center, radius: r, startAngle: CGFloat(M_PI_4 * 5), endAngle: CGFloat(M_PI_4 * 3), clockwise: true)
+
+    sp.x = ep.x
+    sp.y = center.y + rsinT
+    ep.x = r + rcosT
+    ep.y = sp.y
+    
+    cp1 = CGPoint(x: cp2.x, y: center.y + 1.5 * r)
+    cp2 = CGPoint(x: r + r + rcosT, y: cp1.y)
+
+    path.addCurveToPoint(ep, controlPoint1: cp1, controlPoint2: cp2)
+    path.stroke()
+    
+    if (cardAttrs.shading == .Solid) {
+      path.fill()
+    } else if (cardAttrs.shading == .Striped) {
+      path.addClip()
+      drawSpots(size)
+    }
+  }
+  
   private func circlePoint(point: CGPoint, r: CGFloat) {
     let context = UIGraphicsGetCurrentContext()
     
@@ -332,7 +381,7 @@ class SetCardView: UIView {
   private func drawSpots(size: CGSize) {
     var xi: CGFloat = -0.5
     var yi: CGFloat = -0.5
-        
+    
     var spot = CGRect(origin: CGPoint(x: xi, y: yi), size: CGSize(width: 1, height: 1))
     var path = UIBezierPath(roundedRect: spot, cornerRadius: 0.5)
 
@@ -374,7 +423,7 @@ class SetCardView: UIView {
         return [0.3, 0.5, 1.0, 1.0]
 //        return [0.286, 0.2, 0.565, 1.0]
       case .Red:
-        return [1.0, 0.5, 0.0, 1.0]
+        return [1.0, 0.7, 0.0, 1.0]
 //        return [0.875, 0.259, 0.302, 1.0]
     }
   }
