@@ -19,6 +19,7 @@ class Theme {
   var bgBase, bgColor2, bgColor3: UIColor
   var fontColor, fontColor2, fontColor3: UIColor
   var bgLight: UIColor = UIColor.whiteColor()
+  var fontColor1: UIColor?
   
   private(set) var patternColor: UIColor?
 
@@ -114,6 +115,24 @@ class Theme {
     theme.setPattern("cb_2")
     
     return theme
-  }  
+  }
+  
+  class func victoria1() -> Theme {
+    let theme = Theme(name: "Victoria I")
+    
+    theme.setUniqueID(3)
+    
+    theme.bgBase     = UIColor(red: 0.86, green: 0.61, blue: 0.36, alpha: 1.0) // #DB9B5D
+    theme.bgLight = theme.bgBase.getShade(0.2)
+    theme.bgColor2 = UIColor(red: 0.16, green: 0.31, blue: 0.43, alpha: 1.0)// #2A506D
+    theme.bgColor3   = UIColor(red: 0.54, green: 0.65, blue: 0.84, alpha: 1.0)
+    theme.fontColor1 = UIColor(red: 0.45, green: 0.14, blue: 0.15, alpha: 1.0)
+    theme.fontColor2 = theme.bgColor2.getShade(0.15)
+    theme.fontColor3 = theme.bgColor3.getShade(-0.6)
+
+    theme.setPattern("cb_v1")
+    
+    return theme
+  }
 }
 

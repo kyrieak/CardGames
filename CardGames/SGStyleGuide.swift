@@ -201,8 +201,9 @@ class SGStyleGuide: StyleGuide {
   
   private func cardFrontLayerStyle() -> UILayerStyle {
     return UILayerStyle(bgColor: UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0),
-                        borderWidth: CGFloat(0.5),
-                        borderColor: UIColor(white: 0.8, alpha: 1.0))
+                        borderWidth: CGFloat(1.0),
+//                        borderColor: UIColor(white: 0.8, alpha: 1.0))
+      borderColor: theme.bgBase.getShade(-0.1))
   }
   
   
@@ -215,7 +216,11 @@ class SGStyleGuide: StyleGuide {
   private func playerBtnFontStyle() -> UIFontStyle {
     var fs = statusFS
     
-    fs.color = theme.fontColor3
+    if (theme.fontColor1 != nil) {
+      fs.color = theme.fontColor1!
+    } else {
+      fs.color = theme.fontColor3
+    }
     fs.size  = 22
     
     return fs

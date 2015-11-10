@@ -264,6 +264,13 @@ class SetGameController: UIViewController, StyleGuideDelegate {
       deckButton.backgroundColor = UIColor.clearColor()
     }
     
+    headerView.gearButton.setTitleColor(styleGuide.theme.fontColor2, forState: .Normal)
+    headerView.gearButton.setTitleShadowColor(styleGuide.theme.fontColor2.getShade(-0.2), forState: .Normal)
+    
+//    let scoreIcon = sgDelegate.statusView.viewWithTag(5) as! UIButton
+    
+//    scoreIcon.setTitleColor(UIColor(red: 0.45, green: 0.14, blue: 0.15, alpha: 1.0), forState: .Normal)
+
     updateCollectionViewStyle()
     themeID = styleGuide.themeID
   }

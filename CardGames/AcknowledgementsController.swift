@@ -33,14 +33,16 @@ class AcknowledgementsController: UIViewController, UITableViewDelegate, UITextV
   
   
   func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-    let resource = tableDataSource.resources[indexPath.item]
-    
-    let imgView = cell.viewWithTag(1) as! UIImageView
-    let infoView = cell.viewWithTag(2) as! UITextView
-
-    infoView.attributedText = makeInfoTextFor(resource)
-
-    imgView.image = UIImage(named: resource.assetName!)
+    if (indexPath.section == 1) {
+      let resource = tableDataSource.resources[indexPath.item]
+      
+      let imgView = cell.viewWithTag(1) as! UIImageView
+      let infoView = cell.viewWithTag(2) as! UITextView
+      
+      infoView.attributedText = makeInfoTextFor(resource)
+      
+      imgView.image = UIImage(named: resource.assetName!)
+    }
   }
   
   func textView(textView: UITextView, shouldInteractWithURL URL: NSURL, inRange characterRange: NSRange) -> Bool {

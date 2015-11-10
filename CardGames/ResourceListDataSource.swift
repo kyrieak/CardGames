@@ -13,17 +13,27 @@ class ResourceListDataSource: NSObject, UITableViewDataSource {
   let resources: [AppResource] = AppResource.all()
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    if (section == 0) {
+      return 1
+    } else {
+      return 3
+    }
     NSLog("am here in resource list")
-    return 3
   }
   
   func numberOfSectionsInTableView(tableView: UITableView) -> Int {
     NSLog("did count sections")
-    return 1
+    return 2
   }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("imageSourceRow", forIndexPath: indexPath)
+    let cell: UITableViewCell
+    
+    if (indexPath.section == 0) {
+      cell = tableView.dequeueReusableCellWithIdentifier("disclaimerRow", forIndexPath: indexPath)
+    } else {
+      cell = tableView.dequeueReusableCellWithIdentifier("imageSourceRow", forIndexPath: indexPath)
+    }
     
     return cell
   }

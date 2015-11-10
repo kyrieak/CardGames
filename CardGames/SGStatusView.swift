@@ -80,6 +80,7 @@ class SGStatusView: UIView {
   func adjustMessageFrame() {
     messageView.frame.origin.x = cardListView.cornerRight.x
     messageView.sizeToFit()
+    messageView.frame.origin.y = (self.frame.height - messageView.frame.height) / 2
     messageView.setNeedsDisplay()
   }
   
