@@ -41,7 +41,7 @@ class SetGame {
   class func customDeck(options: GameOptions) -> Deck<SetCard> {
     let deck = Deck<SetCard>()
     
-    let shapeSet: [SGShape]     = (options.shapesOn ? SetGame.standardShapes() : [.Diamond, .Diamond, .Diamond])
+    let shapeSet: [SGShape]     = (options.shapesOn ? SetGame.standardShapes() : [.Cloud, .Cloud, .Cloud])
     let colorSet: [SGColor]     = (options.colorsOn ? SetGame.standardColors() : [.Red, .Red, .Red])
     let shadingSet: [SGShading] = (options.shadingOn ? SetGame.standardShading() : [.Solid, .Solid, .Solid])
     
@@ -95,15 +95,15 @@ class SetGame {
   }
   
   class func standardShapes() -> [SGShape] {
-    return [.Diamond, .Oval, .Squiggle]
+    return [.Cloud, .Sun, .Moon]
   }
 
   class func standardShading() -> [SGShading] {
-    return [.Solid, .Striped, .Open]
+    return [.Solid, .Spotted, .Open]
   }
   
   class func standardColors() -> [SGColor] {
-    return [.Red, .Green, .Purple]
+    return [.Red, .Yellow, .Blue]
   }
   
   
@@ -122,19 +122,7 @@ class SetGame {
       for _ in 1...numCards {
         cardsInPlay.append(deck.removeTopCard())
       }
-    }
-    
-//    if (deck.cards.count < 3) {
-//      endGame()
-//    } else if (numCards > deck.cards.count) {
-//      while (deck.cards.count > 0) {
-//        cardsInPlay.append(deck.removeTopCard())
-//      }
-//    } else {
-//      for _ in 1...numCards {
-//        cardsInPlay.append(deck.removeTopCard())
-//      }
-//    }
+    }    
   }
   
   

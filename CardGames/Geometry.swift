@@ -46,6 +46,11 @@ extension CGPoint {
   func offsetPoint(dx: CGFloat, dy: CGFloat) -> CGPoint{
     return CGPoint(x: self.x + dx, y: self.y + dy)
   }
+  
+  static func getPointFrom(center: CGPoint, r: CGFloat, angle: CGFloat) -> CGPoint {
+    return CGPoint(x: center.x + r * cos(angle),
+                   y: center.y + r * sin(angle))
+  }
 }
 
 extension CGRect {

@@ -13,6 +13,7 @@ class SetCardView: UIView {
   private var rgbColor: [CGFloat]
   private var cardAttrs: SetCardAttrs
   private var drawingBounds = CGRectZero
+  private var shapeSize = CGSizeZero
 
   // MARK: - Initializers -
   
@@ -24,20 +25,22 @@ class SetCardView: UIView {
     
     accessibilitySetup()
     backgroundColor = UIColor.whiteColor()
+    setLayoutMeasurements()
   }
   
   
   required init?(coder aDecoder: NSCoder) {
     cardAttrs = SetCardAttrs(number: 1,
-                               shape: SGShape.Diamond,
+                               shape: SGShape.Cloud,
                                  shading: SGShading.Solid,
-                                   color: SGColor.Green)
+                                   color: SGColor.Yellow)
     self.rgbColor = [0, 0, 0, 0]
     
     super.init(coder: aDecoder)
     
     accessibilitySetup()
     backgroundColor = UIColor.whiteColor()
+    setLayoutMeasurements()
   }
   
   func accessibilitySetup() {
@@ -49,72 +52,69 @@ class SetCardView: UIView {
   // - MARK: - Public -
   
   override func drawRect(rect: CGRect) {
+    NSLog("starting rectangle: \n\(rect)")
     let context = UIGraphicsGetCurrentContext()
     let colorSpace = CGColorSpaceCreateDeviceRGB()
     let number = cardAttrs.number
     let color = CGColorCreate(colorSpace, rgbColor)
 
+    CGContextSaveGState(context) // --- Context Saved ---
+
     CGContextSetLineWidth(context, 2.0)
     CGContextSetStrokeColorWithColor(context, color)
     CGContextSetFillColor(context, rgbColor)
+    
     CGContextSaveGState(context) // --- Context Saved ---
 
-//    if (rect.height > 60) {
-//      CGContextSetStrokeColor(context, [0.8, 0.8, 0.8, 1.0])
-//      let borderPath = UIBezierPath(rect: rect.insetBy(dx: 3, dy: 3))
-//      
-//      borderPath.stroke()
-//      
-//      CGContextSetStrokeColor(context, rgbColor)
-//    }
-
-    var _rect = rect
-    
     if (rect.width > rect.height) {
       CGContextTranslateCTM(context, CGFloat(0), rect.height)
       CGContextRotateCTM(context, CGFloat(M_PI_2 * 3))
-      
-      _rect.size.width = rect.height
-      _rect.size.height = rect.width
     }
-    
-    let insetX = ((cardAttrs.number < 2) ? (_rect.width * 0.2) : (_rect.width * 0.15))
-    var insetY = insetX
-    var dist: CGFloat = 0
 
-    let innerBounds = CGRectInset(_rect, insetX, insetY)
-    let shapeSize = calcShapeSize(innerBounds.size)
+    let shapeBounds = CGRect(origin: CGPointZero, size: shapeSize)
     
-    if (number == 1) {
-      insetY += ((innerBounds.height - shapeSize.height) / 2)
-    } else {
-      dist = (innerBounds.height - shapeSize.height) / CGFloat(number - 1)
-    }
-    
-    drawingBounds = CGRectInset(_rect, insetX, insetY)
+    CGContextTranslateCTM(context, drawingBounds.origin.x, drawingBounds.origin.y)
 
-    CGContextTranslateCTM(context, insetX, insetY)
-    
+    let num = CGFloat(cardAttrs.number)
     for i in 1...number {
       if (i > 1) {
-        let dx = innerBounds.width - shapeSize.width
-        
+        let dx = drawingBounds.width - shapeSize.width
+        let dy  = shapeSize.height + (drawingBounds.height - shapeSize.height * num) / (num - 1)
+
         if (i == 2) {
-          CGContextTranslateCTM(context, dx, dist)
+          CGContextTranslateCTM(context, dx, dy)
         } else {
-          CGContextTranslateCTM(context, -1 * dx, dist)
+          CGContextTranslateCTM(context, -1 * dx, dy)
         }
       }
-
-      drawShape(context!, size: shapeSize)
+      
+      drawShape(context!, bounds: shapeBounds)
     }
     
     CGContextRestoreGState(context) // --- Context Restored ---
+    CGContextRestoreGState(context) // --- Context Restored ---
   }
-  
 
   
   // - MARK: - Private -
+  
+  private func setLayoutMeasurements() {
+    let num = cardAttrs.number
+
+    var insetX, insetY: CGFloat
+    
+    if (num == 1) {
+      insetX = bounds.width * 0.2
+      shapeSize = calcShapeSize(CGRectInset(bounds, insetX, insetX).size)
+      insetY = ((bounds.height - shapeSize.height) / 2)
+      drawingBounds = CGRectInset(bounds, insetX, insetY)
+    } else {
+      insetX = bounds.width * 0.15
+      insetY = insetX
+      drawingBounds = CGRectInset(bounds, insetX, insetY)
+      shapeSize = calcShapeSize(drawingBounds.size)
+    }
+  }
   
   private func calcShapeSize(bounds: CGSize) -> CGSize {
     let dividedHeightMin = bounds.height / CGFloat(2)
@@ -122,13 +122,14 @@ class SetCardView: UIView {
     
     var w, h: CGFloat
     
-    h = dividedHeight * 0.7
-    if (cardAttrs.shape == .Diamond) {
-      if (cardAttrs.number > 1) {
-        w = bounds.width * 0.66
-      } else {
-        w = bounds.width
-      }
+    if (cardAttrs.number == 1) {
+      h = bounds.width
+    } else {
+      h = dividedHeight * 0.7
+    }
+    
+    if (cardAttrs.shape == .Cloud) {
+      w = ((cardAttrs.number > 1) ? (bounds.width * 0.66) : bounds.width)
     } else {
       w = h
     }
@@ -137,202 +138,58 @@ class SetCardView: UIView {
   }
 
   
-  private func drawShape(context: CGContextRef, size: CGSize) {
+  private func drawShape(context: CGContextRef, bounds: CGRect) {
     CGContextSaveGState(context) // --- Context Saved ---
     
     switch(cardAttrs.shape) {
-      case .Diamond:
-        drawCloud(size)
-//        drawDiamond(size)
-      case .Oval:
-//        drawOval(size)
-        let d = min(size.width, size.height)
-        drawSun(CGSize(width: d, height: d))
-      case .Squiggle:
-        let d = min(size.width, size.height)
-
-        drawMoon(CGSize(width: d, height: d))
-//        CGContextSetLineCap(context, CGLineCap.Round)
-//        drawSquiggle(size)
+      case .Cloud:
+        drawCloud(bounds)
+      case .Sun:
+        drawSun(bounds)
+      case .Moon:
+        drawMoon(bounds)
     }
     
     CGContextRestoreGState(context) // --- Context Restored ---
   }
   
   
-  private func drawDiamond(size: CGSize) {
-    let path = UIBezierPath()
-    let midX = size.width / 2
-    let midY = size.height / 2
+  private func drawSun(bounds: CGRect) {
+    let paths = Sun(bounds: bounds).makePath()
     
-    path.moveToPoint(CGPointMake(midX, 0))
-    path.addLineToPoint(CGPointMake(size.width, midY))
-    path.addLineToPoint(CGPointMake(midX, size.height))
-    path.addLineToPoint(CGPointMake(0, midY))
-    path.closePath()
+    paths.outer.stroke()
+    paths.inner.stroke()
+
+    applyShading(paths.outer, bounds: bounds)
+  }
+  
+  
+  private func drawMoon(bounds: CGRect) {
+    let path = Moon(bounds: bounds).makePath()
     
     path.stroke()
-    path.addClip()
     
+    applyShading(path, bounds: bounds)
+  }
+  
+  private func drawCloud(bounds: CGRect) {
+    let path  = Cloud(bounds: bounds).makePath()
+    
+    path.stroke()
+    
+    applyShading(path, bounds: bounds)
+  }
+  
+  
+  private func applyShading(path: UIBezierPath, bounds: CGRect) {
     let shading = cardAttrs.shading
     
     if (shading == .Solid) {
       path.fill()
-    } else if (shading == .Striped) {
-      drawStripes(size)
-    }
-  }
-
-  
-  private func drawOval(size: CGSize) {
-    let path = UIBezierPath(roundedRect: CGRect(origin: CGPointZero, size: size), cornerRadius: (size.height / 2))
-
-    path.stroke()
-    path.addClip()
-    
-    let shading = cardAttrs.shading
-    
-    if (shading == .Solid) {
-      path.fill()
-    } else if (shading == .Striped) {
-      drawStripes(size)
-    }
-  }
-  
-  private func drawRays(size: CGSize) {
-    let shading = cardAttrs.shading
-
-    let rayAnchor = CGRect(origin: CGPoint(x: size.width / 3, y: size.height / 3),
-      size: CGSize(width: size.width / 3, height: size.width / 3))
-    let rayPath = UIBezierPath()
-    let p = ((size.height / 2 - 2) * 0.113)
-    
-    rayPath.moveToPoint(CGPoint(x: rayAnchor.minX, y: rayAnchor.minY))
-    rayPath.addLineToPoint(CGPoint(x: rayAnchor.midX, y: -p))
-    rayPath.addLineToPoint(CGPoint(x: rayAnchor.maxX, y: rayAnchor.minY))
-    rayPath.addLineToPoint(CGPoint(x: size.width + p, y: rayAnchor.midY))
-    rayPath.addLineToPoint(CGPoint(x: rayAnchor.maxX, y: rayAnchor.maxY))
-    rayPath.addLineToPoint(CGPoint(x: rayAnchor.midX, y: size.height + p))
-    rayPath.addLineToPoint(CGPoint(x: rayAnchor.minX, y: rayAnchor.maxY))
-    rayPath.addLineToPoint(CGPoint(x: -p, y: rayAnchor.midY))
-    rayPath.addLineToPoint(CGPoint(x: rayAnchor.minX, y: rayAnchor.minY))
-    
-    rayPath.closePath()
-    rayPath.stroke()
-
-    if (shading == .Solid) {
-      rayPath.fill()
-    }
-  }
-  
-  private func drawMoon(size: CGSize) {
-    let circlePath = UIBezierPath()
-    let r = size.width / 2
-    var center = CGPoint(x: r, y: r)
-    
-    circlePath.addArcWithCenter(center, radius: r, startAngle: CGFloat(M_PI_4 * 6), endAngle: CGFloat(M_PI_4 * 3), clockwise: true)
-//    circlePath.stroke()
-//    center = CGPoint(x: r / 2, y: r / 2)
-//    circlePath.addArcWithCenter(center, radius: r, startAngle: CGFloat(M_PI_4 * 7), endAngle: CGFloat(M_PI_4 * 3), clockwise: true)
-    let sp = CGPoint(x: r, y: 0)
-    let ep = CGPoint(x: r - r * cos(CGFloat(M_PI_4)), y: r + r * sin(CGFloat(M_PI_4)))
-    let cp1 = CGPoint(x: sp.x + r / 1.5, y: r / 1.5)
-    let cp2 = CGPoint(x: ep.x + r / 1.5, y: ep.y)
-
-//    circlePath.moveToPoint(sp)
-    circlePath.addCurveToPoint(sp, controlPoint1: cp2, controlPoint2: cp1)
-    circlePath.closePath()
-//    circlePath.addCurveToPoint(ep, controlPoint1: cp1, controlPoint2: cp2)
-//    circlePath.closePath()
-    circlePath.stroke()
-
-    if (cardAttrs.shading == .Solid) {
-      circlePath.fill()
-    } else if (cardAttrs.shading == .Striped) {
-      circlePath.addClip()
-      drawStripes(size)
-    }
-  }
-  
-  private func drawSun(size: CGSize) {
-    let shading = cardAttrs.shading
-    
-    drawRays(size)
-    
-    let context = UIGraphicsGetCurrentContext()
-
-    CGContextSaveGState(context)
-    CGContextTranslateCTM(context, size.width / 2, -size.height / 4)
-    CGContextRotateCTM(context, CGFloat(M_PI_4))
-    drawRays(size)
-    
-    CGContextRestoreGState(context)
-    
-    let center = CGPoint(x: size.width / 2, y: size.height / 2)
-    let r = size.height / 2.5
-    let circlePath = UIBezierPath()
-    
-    circlePath.addArcWithCenter(center, radius: r, startAngle: 0, endAngle: CGFloat(M_PI * 2), clockwise: true)
-    circlePath.stroke()
-    
-    
-    if (shading != .Solid) {
-      CGContextSaveGState(context)
-      CGContextSetFillColor(context, [1.0, 1.0, 1.0, 1.0])
-      circlePath.fill()
-      CGContextRestoreGState(context)
-
-      if (shading == .Striped) {
-        circlePath.addClip()
-        drawStripes(size)
-      }
-    } else {
-      circlePath.fill()
-    }
-//
-//    if (shading == .Solid) {
-//      path.fill()
-//    } else if (shading == .Striped) {
-//      drawStripes(size)
-//    }
-  }
-  
-  private func drawCloud(size: CGSize) {
-    let r = size.width / 6
-    let rcosT = r * cos(CGFloat(M_PI_4))
-    let rsinT = r * sin(CGFloat(M_PI_4))
-    
-    var center = CGPoint(x: r, y: size.height / 2)
-
-    var sp = CGPoint(x: r + rcosT, y: center.y - rsinT)
-    var ep = CGPoint(x: size.width - r - rcosT, y: center.y - rsinT)
-    var cp1 = CGPoint(x: sp.x + r, y: center.y - 1.5 * r)
-    var cp2 = CGPoint(x: ep.x - r, y: center.y - 1.5 * r)
-
-    let path = UIBezierPath()
-
-    path.addArcWithCenter(center, radius: r, startAngle: CGFloat(M_PI_4), endAngle: CGFloat(M_PI_4 * -1), clockwise: true)
-    path.addCurveToPoint(ep, controlPoint1: cp1, controlPoint2: cp2)
-
-    center.x = size.width - r
-    path.addArcWithCenter(center, radius: r, startAngle: CGFloat(M_PI_4 * 5), endAngle: CGFloat(M_PI_4 * 3), clockwise: true)
-
-    sp.x = ep.x
-    sp.y = center.y + rsinT
-    ep.x = r + rcosT
-    ep.y = sp.y
-    
-    cp1 = CGPoint(x: cp2.x, y: center.y + 1.5 * r)
-    cp2 = CGPoint(x: r + r + rcosT, y: cp1.y)
-
-    path.addCurveToPoint(ep, controlPoint1: cp1, controlPoint2: cp2)
-    path.stroke()
-    
-    if (cardAttrs.shading == .Solid) {
-      path.fill()
-    } else if (cardAttrs.shading == .Striped) {
+    } else if (shading == .Spotted) {
       path.addClip()
-      drawSpots(size)
+      
+      drawSpots(bounds)
     }
   }
   
@@ -353,6 +210,47 @@ class SetCardView: UIView {
   }  
 
   
+  private func drawDiamond(size: CGSize) {
+    let path = UIBezierPath()
+    let midX = size.width / 2
+    let midY = size.height / 2
+    
+    path.moveToPoint(CGPointMake(midX, 0))
+    path.addLineToPoint(CGPointMake(size.width, midY))
+    path.addLineToPoint(CGPointMake(midX, size.height))
+    path.addLineToPoint(CGPointMake(0, midY))
+    path.closePath()
+    
+    path.stroke()
+    path.addClip()
+    
+    let shading = cardAttrs.shading
+    
+    if (shading == .Solid) {
+      path.fill()
+    } else if (shading == .Spotted) {
+      drawSpots(bounds)
+    }
+  }
+  
+  
+  private func drawOval(size: CGSize) {
+    let path = UIBezierPath(roundedRect: CGRect(origin: CGPointZero, size: size), cornerRadius: (size.height / 2))
+    
+    path.stroke()
+    path.addClip()
+    
+    let shading = cardAttrs.shading
+    
+    if (shading == .Solid) {
+      path.fill()
+    } else if (shading == .Spotted) {
+      drawSpots(bounds)
+    }
+  }
+  
+
+  
   private func drawSquiggle(size: CGSize) {
     let path = UIBezierPath()
     let squiggle = Squiggle(size: size)
@@ -364,7 +262,6 @@ class SetCardView: UIView {
     }
     
     path.closePath()
-    
     path.stroke()
     path.addClip()
     
@@ -372,21 +269,21 @@ class SetCardView: UIView {
     
     if (shading == .Solid) {
       path.fill()
-    } else if (shading == .Striped) {
-      drawStripes(size)
+    } else if (shading == .Spotted) {
+      drawSpots(bounds)
     }
   }
   
   
-  private func drawSpots(size: CGSize) {
-    var xi: CGFloat = -0.5
-    var yi: CGFloat = -0.5
+  private func drawSpots(bounds: CGRect) {
+    var xi: CGFloat = bounds.minX - 0.5
+    var yi: CGFloat = bounds.minY - 0.5
     
     var spot = CGRect(origin: CGPoint(x: xi, y: yi), size: CGSize(width: 1, height: 1))
     var path = UIBezierPath(roundedRect: spot, cornerRadius: 0.5)
 
-    while (xi < size.width) {
-      while(yi < size.height) {
+    while (xi < bounds.width) {
+      while(yi < bounds.height) {
         path = UIBezierPath(roundedRect: spot, cornerRadius: 0.5)
         path.fill()
         yi += 2
@@ -399,32 +296,37 @@ class SetCardView: UIView {
   }
   
   
-  private func drawStripes(size: CGSize) {
-    drawSpots(size)
-  /*
+  private func drawStripes(bounds: CGRect) {
     let path = UIBezierPath()
-    var xi: CGFloat = 1
+    var xi: CGFloat = bounds.minX + 1
     
-    while (xi < size.width) {
+    while (xi < bounds.width) {
       path.moveToPoint(CGPoint(x: xi, y: 0))
-      path.addLineToPoint(CGPoint(x: xi, y: size.height))
+      path.addLineToPoint(CGPoint(x: xi, y: bounds.height))
       xi += 3
     }
     
-    path.stroke()*/
+    path.stroke()
   }
+  
   
   class func rgbColor(color: SGColor) -> [CGFloat] {
     switch(color) {
-      case .Green:
-        return [1.0, 0.2, 0.2, 1.0]
-//        return [0.102, 0.694, 0.365, 1.0]
-      case .Purple:
-        return [0.3, 0.5, 1.0, 1.0]
-//        return [0.286, 0.2, 0.565, 1.0]
-      case .Red:
+      case .Yellow:
+        // yellow
         return [1.0, 0.7, 0.0, 1.0]
-//        return [0.875, 0.259, 0.302, 1.0]
+      case .Blue:
+        // blue
+        return [0.3, 0.5, 1.0, 1.0]
+      case .Red:
+        return [1.0, 0.2, 0.2, 1.0]
     }
   }
+  
+  /* Set Classic Colors:
+  
+     Red    = [0.875, 0.259, 0.302, 1.0]
+     Purple = [0.286, 0.2, 0.565, 1.0]
+     Green  = [0.102, 0.694, 0.365, 1.0]
+  */
 }

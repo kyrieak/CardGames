@@ -91,32 +91,32 @@ struct SetCardAttrs {
 
 enum SGColor {
   case Red
-  case Green
-  case Purple
+  case Yellow
+  case Blue
   
   var toString: String {
     switch(self) {
       case .Red:
         return "Red"
-      case .Green:
-        return "Green"
-      case .Purple:
-        return "Purple"
+      case .Yellow:
+        return "Yellow"
+      case .Blue:
+        return "Blue"
     }
   }
 }
 
 enum SGShading {
   case Open
-  case Striped
+  case Spotted
   case Solid
 
   var toString: String {
     switch(self) {
       case .Open:
         return "Open"
-      case .Striped:
-        return "Striped"
+      case .Spotted:
+        return "Spotted"
       case .Solid:
         return "Solid"
     }
@@ -124,18 +124,18 @@ enum SGShading {
 }
 
 enum SGShape {
-  case Diamond
-  case Oval
-  case Squiggle
+  case Cloud
+  case Sun
+  case Moon
 
   var toString: String {
     switch(self) {
-      case .Diamond:
-        return "Diamond"
-      case .Oval:
-        return "Oval"
-      case .Squiggle:
-        return "Squiggle"
+      case .Cloud:
+        return "Cloud"
+      case .Sun:
+        return "Sun"
+      case .Moon:
+        return "Moon"
     }
   }
 }

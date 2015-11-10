@@ -12,9 +12,9 @@ import UIKit
 class SetExampleView: UIView {
   let tags = SetExampleView.sectionTags()
 
-  let control1: SetCardAttrs = SetCardAttrs(number: 1, shape: .Diamond, shading: .Solid, color: .Red)
-  let control2: SetCardAttrs = SetCardAttrs(number: 2, shape: .Oval, shading: .Open, color: .Green)
-  let control3: SetCardAttrs = SetCardAttrs(number: 3, shape: .Squiggle, shading: .Striped, color: .Purple)
+  let control1: SetCardAttrs = SetCardAttrs(number: 1, shape: .Cloud, shading: .Solid, color: .Red)
+  let control2: SetCardAttrs = SetCardAttrs(number: 2, shape: .Sun, shading: .Open, color: .Yellow)
+  let control3: SetCardAttrs = SetCardAttrs(number: 3, shape: .Moon, shading: .Spotted, color: .Blue)
 
   let cardSize: CGSize
   
@@ -51,8 +51,8 @@ class SetExampleView: UIView {
       let listR = CardListView(frame: CGRect(origin: originR, size: CGSize(width: 0, height: cardSize.height)))
       
       listL.addCardWith(control1)
-      listL.addCardWith(SetCardAttrs(number: 1, shape: .Oval, shading: .Open, color: .Green))
-      listL.addCardWith(SetCardAttrs(number: 1, shape: .Squiggle, shading: .Striped, color: .Purple))
+      listL.addCardWith(SetCardAttrs(number: 1, shape: .Sun, shading: .Open, color: .Yellow))
+      listL.addCardWith(SetCardAttrs(number: 1, shape: .Moon, shading: .Spotted, color: .Blue))
       
       listR.addCardWith(control1)
       listR.addCardWith(control2)
@@ -81,8 +81,8 @@ class SetExampleView: UIView {
       let listR = CardListView(frame: CGRect(origin: originR, size: CGSize(width: 0, height: cardSize.height)))
       
       listL.addCardWith(control1)
-      listL.addCardWith(SetCardAttrs(number: 2, shape: .Diamond, shading: .Open, color: .Green))
-      listL.addCardWith(SetCardAttrs(number: 3, shape: .Diamond, shading: .Striped, color: .Purple))
+      listL.addCardWith(SetCardAttrs(number: 2, shape: .Cloud, shading: .Open, color: .Yellow))
+      listL.addCardWith(SetCardAttrs(number: 3, shape: .Cloud, shading: .Spotted, color: .Blue))
 
       listR.addCardWith(control1)
       listR.addCardWith(control2)
@@ -109,8 +109,8 @@ class SetExampleView: UIView {
       let listR = CardListView(frame: CGRect(origin: originR, size: CGSize(width: 0, height: cardSize.height)))
 
       listL.addCardWith(control1)
-      listL.addCardWith(SetCardAttrs(number: 2, shape: .Oval, shading: .Solid, color: .Green))
-      listL.addCardWith(SetCardAttrs(number: 3, shape: .Squiggle, shading: .Solid, color: .Purple))
+      listL.addCardWith(SetCardAttrs(number: 2, shape: .Sun, shading: .Solid, color: .Yellow))
+      listL.addCardWith(SetCardAttrs(number: 3, shape: .Moon, shading: .Solid, color: .Blue))
 
       listR.addCardWith(control1)
       listR.addCardWith(control2)
@@ -137,8 +137,8 @@ class SetExampleView: UIView {
       let listR = CardListView(frame: CGRect(origin: originR, size: CGSize(width: 0, height: cardSize.height)))
 
       listL.addCardWith(control1)
-      listL.addCardWith(SetCardAttrs(number: 2, shape: .Oval, shading: .Open, color: .Red))
-      listL.addCardWith(SetCardAttrs(number: 3, shape: .Squiggle, shading: .Striped, color: .Red))
+      listL.addCardWith(SetCardAttrs(number: 2, shape: .Sun, shading: .Open, color: .Red))
+      listL.addCardWith(SetCardAttrs(number: 3, shape: .Moon, shading: .Spotted, color: .Red))
 
       listR.addCardWith(control1)
       listR.addCardWith(control2)
