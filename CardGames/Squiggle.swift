@@ -40,6 +40,21 @@ struct Squiggle: Shape {
     curve = Squiggle.defineCurve(size)
   }
   
+  func makePath() -> UIBezierPath {
+    let path = UIBezierPath()
+    
+    path.moveToPoint(startingPoint)
+    
+    for connection in connections {
+      path.addCurveToPoint(connection.ep, controlPoint1: connection.cp1, controlPoint2: connection.cp2)
+    }
+    
+    path.closePath()
+
+    
+    return path
+  }
+  
   private static func defineCurve(size: CGSize) -> Curve {
     let xInc = size.width / 12
     let yInc = size.height / 6

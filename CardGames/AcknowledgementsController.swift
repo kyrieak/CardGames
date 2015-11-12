@@ -14,17 +14,25 @@ class AcknowledgementsController: UIViewController, UITableViewDelegate, UITextV
   @IBOutlet var tableDataSource: ResourceListDataSource!
   
   override func viewDidLoad() {
-    NSLog("view did load?")
+    view.backgroundColor = appGlobals.styleGuide.theme.bgColor2
 
     super.viewDidLoad()
   }
-  override func viewDidLayoutSubviews() {
+  
+  override func viewWillLayoutSubviews() {
     let tableView = (self.view.viewWithTag(10) as! UITableView)
-    NSLog("\(tableView.delegate) and \n\n\(tableView.dataSource)")
-    tableView.reloadData()
-    NSLog("did layout subviews")
-    super.viewDidLayoutSubviews()
+    
+    tableView.backgroundColor = appGlobals.styleGuide.theme.bgLight
+    view.addConstraint(NSLayoutConstraint(item: tableView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .Height, multiplier: 1.0, constant: tableView.rowHeight * 4.5))
   }
+  
+//  override func viewDidLayoutSubviews() {
+//    let tableView = (self.view.viewWithTag(10) as! UITableView)
+//
+//    tableView.backgroundColor = appGlobals.styleGuide.theme.bgLight
+//
+//    super.viewDidLayoutSubviews()
+//  }
   
   override func viewDidAppear(animated: Bool) {
     super.viewDidAppear(animated)
@@ -33,9 +41,13 @@ class AcknowledgementsController: UIViewController, UITableViewDelegate, UITextV
   
   
   func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    for sv in cell.subviews {
+      NSLog("\(sv.classForCoder)")
+    }
+    
     if (indexPath.section == 1) {
       let resource = tableDataSource.resources[indexPath.item]
-      
+  
       let imgView = cell.viewWithTag(1) as! UIImageView
       let infoView = cell.viewWithTag(2) as! UITextView
       
@@ -55,7 +67,13 @@ class AcknowledgementsController: UIViewController, UITableViewDelegate, UITextV
     
     let sourceLine = NSMutableAttributedString(string: resource.source.name + "\n")
     let authorLine = NSMutableAttributedString(string: "by: " + resource.author.name + "\n")
-    let viaLine = NSMutableAttributedString(string: "via: " + resource.via.name)
+    let viaLine: NSMutableAttributedString
+
+    if (resource.via.name.characters.count > 0) {
+      viaLine = NSMutableAttributedString(string: "via: " + resource.via.name)
+    } else {
+      viaLine = NSMutableAttributedString(string: "")
+    }
     
     let sourceRange = NSRange(location: 0, length: sourceLine.length)
     let authorRange = NSRange(location: 0, length: authorLine.length)
@@ -63,7 +81,11 @@ class AcknowledgementsController: UIViewController, UITableViewDelegate, UITextV
     
     sourceLine.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(18), range: sourceRange)
     sourceLine.addAttribute(NSParagraphStyleAttributeName, value: makeParagStyle(1.0), range: sourceRange)
-    sourceLine.addAttribute(NSLinkAttributeName, value: resource.source.url!, range: NSRange(location: 0, length: (sourceLine.length - 1)))
+    
+    if (resource.source.url != nil) {
+      sourceLine.addAttribute(NSLinkAttributeName, value: resource.source.url!, range: NSRange(location: 0, length: (sourceLine.length - 1)))
+    }
+    
     NSLog("\(authorLine)")
     
     authorLine.addAttribute(NSFontAttributeName, value: italicFont, range: NSRange(location: 0, length: 4))
@@ -71,10 +93,15 @@ class AcknowledgementsController: UIViewController, UITableViewDelegate, UITextV
     authorLine.addAttribute(NSLinkAttributeName, value: resource.author.url!, range: NSRange(location: 4, length: (authorLine.length - 5)))
     authorLine.addAttribute(NSParagraphStyleAttributeName, value: makeParagStyle(1.5), range: authorRange)
     
-    viaLine.addAttribute(NSFontAttributeName, value: italicFont, range: NSRange(location: 0, length: 5))
-    viaLine.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(14), range: NSRange(location: 5, length: (viaLine.length - 5)))
-    viaLine.addAttribute(NSLinkAttributeName, value: resource.via.url!, range: NSRange(location: 5, length: (viaLine.length - 5)))
-    viaLine.addAttribute(NSParagraphStyleAttributeName, value: makeParagStyle(1.5), range: viaRange)
+    if (resource.via.name.characters.count > 0) {
+      viaLine.addAttribute(NSFontAttributeName, value: italicFont, range: NSRange(location: 0, length: 5))
+      viaLine.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(14), range: NSRange(location: 5, length: (viaLine.length - 5)))
+      
+      if (resource.via.url != nil) {
+        viaLine.addAttribute(NSLinkAttributeName, value: resource.via.url!, range: NSRange(location: 5, length: (viaLine.length - 5)))
+      }
+      viaLine.addAttribute(NSParagraphStyleAttributeName, value: makeParagStyle(1.5), range: viaRange)
+    }    
 
     let infoText = sourceLine
     

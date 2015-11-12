@@ -37,6 +37,12 @@ struct UILayerStyle {
                 borderWidth: CGFloat(0),
                   borderColor: UIColor.clearColor())
   }
+  
+  func applyTo(inout view: UIView) {
+    view.backgroundColor   = bgColor
+    view.layer.borderWidth = borderWidth
+    view.layer.borderColor = borderColor.CGColor
+  }
 }
 
 // - MARK: -

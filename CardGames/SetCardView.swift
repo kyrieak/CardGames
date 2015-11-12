@@ -14,13 +14,29 @@ class SetCardView: UIView {
   private var cardAttrs: SetCardAttrs
   private var drawingBounds = CGRectZero
   private var shapeSize = CGSizeZero
+  
+  var number: Int {
+    return cardAttrs.number
+  }
+  
+  var shape: SGShape {
+    return cardAttrs.shape
+  }
 
+  var shading: SGShading {
+    return cardAttrs.shading
+  }
+  
+  var color: SGColor {
+    return cardAttrs.color
+  }
+  
   // MARK: - Initializers -
   
   init(frame: CGRect, attrs: SetCardAttrs) {
     cardAttrs = attrs    
     rgbColor = SetCardView.rgbColor(attrs.color)
-
+    
     super.init(frame: frame)
     
     accessibilitySetup()
@@ -52,18 +68,15 @@ class SetCardView: UIView {
   // - MARK: - Public -
   
   override func drawRect(rect: CGRect) {
-    NSLog("starting rectangle: \n\(rect)")
-    let context = UIGraphicsGetCurrentContext()
-    let colorSpace = CGColorSpaceCreateDeviceRGB()
-    let number = cardAttrs.number
-    let color = CGColorCreate(colorSpace, rgbColor)
+    let context    = UIGraphicsGetCurrentContext()
+    let shapeColor = SetCardView.colorToCG(color)
 
     CGContextSaveGState(context) // --- Context Saved ---
-
-    CGContextSetLineWidth(context, 2.0)
-    CGContextSetStrokeColorWithColor(context, color)
-    CGContextSetFillColor(context, rgbColor)
     
+    CGContextSetLineWidth(context, 2.0)
+    CGContextSetStrokeColorWithColor(context, shapeColor)
+    CGContextSetFillColorWithColor(context, shapeColor)
+
     CGContextSaveGState(context) // --- Context Saved ---
 
     if (rect.width > rect.height) {
@@ -74,8 +87,9 @@ class SetCardView: UIView {
     let shapeBounds = CGRect(origin: CGPointZero, size: shapeSize)
     
     CGContextTranslateCTM(context, drawingBounds.origin.x, drawingBounds.origin.y)
-
-    let num = CGFloat(cardAttrs.number)
+    
+    let num = CGFloat(number)
+  
     for i in 1...number {
       if (i > 1) {
         let dx = drawingBounds.width - shapeSize.width
@@ -92,6 +106,7 @@ class SetCardView: UIView {
     }
     
     CGContextRestoreGState(context) // --- Context Restored ---
+    
     CGContextRestoreGState(context) // --- Context Restored ---
   }
 
@@ -252,16 +267,8 @@ class SetCardView: UIView {
 
   
   private func drawSquiggle(size: CGSize) {
-    let path = UIBezierPath()
-    let squiggle = Squiggle(size: size)
-
-    path.moveToPoint(squiggle.startingPoint)
+    let path = Squiggle(size: size).makePath()
     
-    for connection in squiggle.connections {
-      path.addCurveToPoint(connection.ep, controlPoint1: connection.cp1, controlPoint2: connection.cp2)
-    }
-    
-    path.closePath()
     path.stroke()
     path.addClip()
     
@@ -320,6 +327,17 @@ class SetCardView: UIView {
         return [0.3, 0.5, 1.0, 1.0]
       case .Red:
         return [1.0, 0.2, 0.2, 1.0]
+    }
+  }
+  
+  class func colorToCG(color: SGColor) -> CGColorRef {
+    switch(color) {
+      case .Yellow:
+        return UIColor(red: 1.0, green: 0.7, blue: 0.0, alpha: 1.0).CGColor
+      case .Blue:
+        return UIColor(red: 0.3, green: 0.5, blue: 1.0, alpha: 1.0).CGColor
+      case .Red:
+        return UIColor(red: 1.0, green: 0.2, blue: 0.2, alpha: 1.0).CGColor
     }
   }
   

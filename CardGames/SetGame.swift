@@ -209,6 +209,9 @@ class SetGame {
   func endMove() {
     if (moveIsASet(currentMove)) {
       var indexes = Array(currentMove.cardPositions.keys)
+      indexes.sortInPlace({ (a: Int, b: Int) -> Bool in
+        return a > b
+      })
       
       while (indexes.count > 0) {
         let idx = indexes[0]

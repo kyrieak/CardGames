@@ -18,7 +18,7 @@ class ThemeTableDataSource: NSObject, UITableViewDataSource {
  
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 3
+    return 4
   }
   
   
@@ -48,6 +48,6 @@ class ThemeTableDataSource: NSObject, UITableViewDataSource {
   
   
   class func allThemes() -> [Theme] {
-    return [Theme.honeydew(), Theme.grayscale(), Theme.sea()]
+    return [Theme.honeydew(), Theme.grayscale(), Theme.sea(), Theme.victoria1()]
   }
 }

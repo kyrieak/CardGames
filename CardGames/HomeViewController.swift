@@ -17,6 +17,7 @@ class HomeViewController: UIViewController, StyleGuideDelegate {
   lazy var footerView: UIView = { return self.view.viewWithTag(3)! }()
   lazy var backBtn:  UIButton = { return self.view.viewWithTag(12)! as! UIButton }()
   lazy var playBtn:  UIButton = { return self.view.viewWithTag(24)! as! UIButton }()
+  lazy var ackBtn: UIButton   = { return self.footerView.viewWithTag(31)! as! UIButton }()
 
   var styleGuide: SGStyleGuide = appGlobals.styleGuide
   var themeID: Int?
@@ -39,9 +40,6 @@ class HomeViewController: UIViewController, StyleGuideDelegate {
     }
     
     if (!backBtn.hidden) {
-      backBtn.layer.cornerRadius = 16
-      backBtn.layer.borderWidth = 2
-      backBtn.layer.borderColor = styleGuide.theme.bgColor2.getShade(0.05).CGColor
       backBtn.hidden = !appGlobals.gameIsActive
     }
   }
@@ -106,6 +104,11 @@ class HomeViewController: UIViewController, StyleGuideDelegate {
     for sel in layerSelectors {
       styleGuide.applyLayerStyle(sel, views: viewsForLayerStyle(sel))
     }
+
+    styleGuide.applyBtnStyle(.NavPill, views: [backBtn])
+
+    backBtn.setTitleShadowColor(styleGuide.theme.shadeColor1, forState: .Normal)
+    ackBtn.setTitleColor(styleGuide.theme.fontColor2, forState: .Normal)
     
     menuView.backgroundColor = styleGuide.theme.bgLight
     themeID = styleGuide.themeID

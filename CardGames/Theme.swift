@@ -17,9 +17,13 @@ class Theme {
   var name: String?
   
   var bgBase, bgColor2, bgColor3: UIColor
-  var fontColor, fontColor2, fontColor3: UIColor
+  var fontColor1, fontColor2, fontColor3: UIColor
   var bgLight: UIColor = UIColor.whiteColor()
-  var fontColor1: UIColor?
+
+  var shadeAlpha = CGFloat(0.2)
+  var shadeWidth = CGFloat(0.5)
+  
+  var shadeColor1 = UIColor(white: 0.8, alpha: 1.0)
   
   private(set) var patternColor: UIColor?
 
@@ -31,9 +35,10 @@ class Theme {
     bgColor2 = bgBase
     bgColor3 = bgBase
     
-    fontColor  = UIColor.blackColor()
+    fontColor1 = UIColor.blackColor()
     fontColor2 = UIColor.blackColor()
     fontColor3 = UIColor.blackColor()
+    
   }
   
   convenience init(name: String) {
@@ -101,7 +106,7 @@ class Theme {
 
   
   class func sea() -> Theme {
-    let theme = Theme(name: "Down by the Sea")
+    let theme = Theme(name: "Cool Breeze")
     
     theme.setUniqueID(3)
     
@@ -120,7 +125,7 @@ class Theme {
   class func victoria1() -> Theme {
     let theme = Theme(name: "Victoria I")
     
-    theme.setUniqueID(3)
+    theme.setUniqueID(4)
     
     theme.bgBase     = UIColor(red: 0.86, green: 0.61, blue: 0.36, alpha: 1.0) // #DB9B5D
     theme.bgLight = theme.bgBase.getShade(0.2)
@@ -129,6 +134,9 @@ class Theme {
     theme.fontColor1 = UIColor(red: 0.45, green: 0.14, blue: 0.15, alpha: 1.0)
     theme.fontColor2 = theme.bgColor2.getShade(0.15)
     theme.fontColor3 = theme.bgColor3.getShade(-0.6)
+    theme.shadeAlpha = 0.5
+    theme.shadeWidth = 2.0
+    theme.shadeColor1 = UIColor(red: 0.76, green: 0.51, blue: 0.26, alpha: 1.0)
 
     theme.setPattern("cb_v1")
     

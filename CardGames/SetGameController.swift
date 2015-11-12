@@ -157,8 +157,6 @@ class SetGameController: UIViewController, StyleGuideDelegate {
   func prepareForThemeChange() {
     if (themeID != styleGuide.themeID) {
       applyStyleToViews()
-      
-      themeID = styleGuide.themeID
     }
   }
 
@@ -257,7 +255,7 @@ class SetGameController: UIViewController, StyleGuideDelegate {
     for sel in btnSelectors {
       styleGuide.applyBtnStyle(sel, views: viewsForBtnStyle(sel))
     }
-    
+        
     styleGuide.applyFontStyle(.Status, views: viewsForFontStyle(.Status))
     
     if (game.deck.isEmpty()) {
@@ -279,9 +277,11 @@ class SetGameController: UIViewController, StyleGuideDelegate {
     for path in collectionView!.indexPathsForVisibleItems() {
       let cell = collectionView!.cellForItemAtIndexPath(path)!
 
-      cell.backgroundColor = styleGuide.theme.patternColor
+      styleGuide.applyLayerStyle(.CardBack, view: cell)
+      styleGuide.applyLayerStyle(.CardFront, view: cell.backgroundView!)
+      
       cell.selectedBackgroundView!.layer.borderColor = styleGuide.theme.bgColor3.CGColor
-
+      
       if (cell.selected) { cell.setNeedsDisplay() }
     }
   }

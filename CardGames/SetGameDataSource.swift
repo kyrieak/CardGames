@@ -62,10 +62,8 @@ class SetGameDataSource: NSObject, UICollectionViewDataSource {
                                                               forIndexPath: indexPath)
       
       if (card != nil) {
-        cell.backgroundColor = appGlobals.styleGuide.theme.patternColor
-        
-        cell.backgroundView = cellBgView(card!, withFrame: cell.frame)
-        cell.selectedBackgroundView = cellSelectedView(card!, withFrame: cell.frame)
+        cell.backgroundView = cellBgView(card!, withFrame: cell.bounds)
+        cell.selectedBackgroundView = cellSelectedView(cell.bounds)
       }
       
       return cell
@@ -98,13 +96,11 @@ class SetGameDataSource: NSObject, UICollectionViewDataSource {
   }
   
   
-  private func cellSelectedView(card: SetCard, withFrame: CGRect) -> SetCardView {
-    let selectedView = cellBgView(card, withFrame: withFrame)
+  private func cellSelectedView(withFrame: CGRect) -> UIView {
+    let selectedView = UIView(frame: withFrame)
     
     selectedView.layer.borderWidth = 2
     selectedView.layer.borderColor = appGlobals.styleGuide.theme.bgColor3.CGColor
-//    selectedView.layer.borderColor = styleGuide.theme.bgBase.getShade(-0.15).CGColor
-//    selectedView.layer.borderColor = UIColor.blueColor().CGColor
     
     return selectedView
   }

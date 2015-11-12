@@ -83,7 +83,7 @@ class SGStyleGuide: StyleGuide {
   
   func hasFontStyle(sel: ViewSelector) -> Bool {
     switch(sel) {
-      case .HeadTitle, .Status, .FooterUIBtn, .HomeMenuItem:
+      case .HeadTitle, .Status, .FooterUIBtn, .HomeMenuItem, .NavPill:
         return true
       default:
         return false
@@ -115,6 +115,8 @@ class SGStyleGuide: StyleGuide {
     switch(sel) {
     case .HeadTitle:
       return titleFontStyle()
+    case .NavPill:
+      return UIFontStyle(fontName: menuFS.fontName, size: 20, color: theme.fontColor2)
     case .Status:
       return statusFontStyle()
     case .FooterUIBtn:
@@ -127,17 +129,20 @@ class SGStyleGuide: StyleGuide {
   }
   
   
+  func applyLayerStyle(sel: ViewSelector, var view: UIView) {
+    if (hasLayerStyle(sel)) {
+      let style = layerStyle(sel)!
+
+      style.applyTo(&view)
+    }
+  }
+  
   func applyLayerStyle(sel: ViewSelector, views: [UIView]) {
     if (hasLayerStyle(sel)) {
       let style = layerStyle(sel)!
       
-      for v in views {
-        if (v.backgroundColor != style.bgColor) {
-          v.backgroundColor = style.bgColor
-        }
-        
-        v.layer.borderColor     = style.borderColor.CGColor
-        v.layer.borderWidth     = style.borderWidth
+      for var v in views {
+        style.applyTo(&v)
       }
     }
   }
@@ -181,7 +186,7 @@ class SGStyleGuide: StyleGuide {
   private func statusLayerStyle() -> UILayerStyle {
     return UILayerStyle(bgColor: theme.bgColor3,
       borderWidth: CGFloat(1),
-      borderColor: UIColor(white: 0.4, alpha: 0.2))
+      borderColor: UIColor(white: 0.4, alpha: theme.shadeAlpha))
   }
   
   
@@ -194,16 +199,16 @@ class SGStyleGuide: StyleGuide {
     let cardBg: UIColor = ((theme.patternColor == nil) ? cardBackPattern : theme.patternColor!)
     
     return UILayerStyle(bgColor: cardBg,
-                          borderWidth: CGFloat(1),
-                            borderColor: UIColor(white: 0.4, alpha: 0.2))
+                          borderWidth: 1.0,
+                            borderColor: UIColor(white: 0.4, alpha: theme.shadeAlpha))
   }
 
   
   private func cardFrontLayerStyle() -> UILayerStyle {
-    return UILayerStyle(bgColor: UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0),
-                        borderWidth: CGFloat(1.0),
-//                        borderColor: UIColor(white: 0.8, alpha: 1.0))
-      borderColor: theme.bgBase.getShade(-0.1))
+    return UILayerStyle(bgColor: UIColor.whiteColor(),
+                        borderWidth: theme.shadeWidth,
+//                        borderColor: UIColor(white: 0.8, alpha: theme.shadeAlpha))
+      borderColor: theme.shadeColor1)
   }
   
   
@@ -216,11 +221,7 @@ class SGStyleGuide: StyleGuide {
   private func playerBtnFontStyle() -> UIFontStyle {
     var fs = statusFS
     
-    if (theme.fontColor1 != nil) {
-      fs.color = theme.fontColor1!
-    } else {
-      fs.color = theme.fontColor3
-    }
+    fs.color = theme.fontColor1
     fs.size  = 22
     
     return fs

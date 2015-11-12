@@ -22,6 +22,7 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
     forElementKind elementKind: String,
     atIndexPath indexPath: NSIndexPath) {
       if (elementKind == UICollectionElementKindSectionFooter) {
+        NSLog("here in willdisplaysupplementary")
         statusView = view.viewWithTag(statusViewTag) as! SGStatusView
         statusView.adjustHeight(view.frame.height)
         appGlobals.styleGuide.applyFontStyle(.Status, views: [statusView.messageView])
@@ -103,8 +104,9 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
   func flipFaceDown(collectionView: UICollectionView, indexPath: NSIndexPath) {
     let cell = collectionView.cellForItemAtIndexPath(indexPath)
 
-    cell?.layer.borderWidth = 1
-    cell?.layer.borderColor = UIColor(white: 0.4, alpha: 0.2).CGColor
+    if (cell != nil) {
+      appGlobals.styleGuide.applyLayerStyle(.CardBack, view: cell!)
+    }
     
     cell?.backgroundView?.hidden = true
     cell?.selectedBackgroundView?.hidden = true

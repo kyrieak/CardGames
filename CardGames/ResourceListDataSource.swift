@@ -18,8 +18,8 @@ class ResourceListDataSource: NSObject, UITableViewDataSource {
     } else {
       return 3
     }
-    NSLog("am here in resource list")
   }
+  
   
   func numberOfSectionsInTableView(tableView: UITableView) -> Int {
     NSLog("did count sections")
@@ -28,13 +28,20 @@ class ResourceListDataSource: NSObject, UITableViewDataSource {
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell: UITableViewCell
-    
+
     if (indexPath.section == 0) {
       cell = tableView.dequeueReusableCellWithIdentifier("disclaimerRow", forIndexPath: indexPath)
     } else {
       cell = tableView.dequeueReusableCellWithIdentifier("imageSourceRow", forIndexPath: indexPath)
     }
+
+    let separator = UIView(frame: CGRect(origin: CGPoint(x: 5, y: cell.contentView.frame.maxY - 1), size: CGSize(width: cell.contentView.frame.width - 10, height: 0.5)))
     
+    separator.backgroundColor = appGlobals.styleGuide.theme.shadeColor1
+
+    cell.addSubview(separator)
+    cell.backgroundColor = nil
+
     return cell
   }
   
@@ -107,11 +114,26 @@ struct AppResource {
   
   
   static func all() -> [AppResource] {
-    var first = AppResource(author: ("Anny Cecilia Walter", "http://www.publicdomainpictures.net/browse-author.php?a=53721"),
+    var first = AppResource(author: ("Victoria Wong", "https://www.linkedin.com/in/victoria-wong-42144467"),
+      source: ("Tile I", nil),
+      via: ("", nil))
+      first.assetName = "cb_v1"
+    
+    var second = AppResource(author: ("Anny Cecilia Walter", "http://www.publicdomainpictures.net/browse-author.php?a=53721"),
+                             source: ("Small Flowers Pattern", "http://www.publicdomainpictures.net/view-image.php?image=123311&picture=small-flowers-pattern"),
+                                via: ("PublicDomainPictures.net", "http://www.publicdomainpictures.net"))
+    second.assetName = "cb_1"
+    
+    var third = AppResource(author: ("Anny Cecilia Walter", "http://www.publicdomainpictures.net/browse-author.php?a=53721"),
                             source: ("Floral Seamless Pattern", "http://www.publicdomainpictures.net/view-image.php?image=129033&picture=floral-seamless-pattern"),
                                via: ("PublicDomainPictures.net", "http://www.publicdomainpictures.net"))
-    first.assetName = "cb_2"
+    third.assetName = "cb_2"
     
-    return [first, first, first]
+//    var fourth = AppResource(author: ("", ""),
+//      source: ("cardBack", ""),
+//      via: ("", ""))
+//    fourth.assetName = "cardBack"
+    
+    return [first, second, third]
   }
 }

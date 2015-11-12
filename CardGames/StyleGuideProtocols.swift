@@ -14,7 +14,8 @@ import UIKit
 enum ViewSelector {
   case MainContent,
        Header,
-       Footer
+       Footer,
+       NavPill
 
   case HomeMenu,
        HomeMenuItem
