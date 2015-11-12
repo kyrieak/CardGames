@@ -16,7 +16,7 @@ class ResourceListDataSource: NSObject, UITableViewDataSource {
     if (section == 0) {
       return 1
     } else {
-      return 3
+      return resources.count
     }
   }
   
@@ -134,6 +134,6 @@ struct AppResource {
 //      via: ("", ""))
 //    fourth.assetName = "cardBack"
     
-    return [first, second, third]
+    return [first, second, third, first]
   }
 }

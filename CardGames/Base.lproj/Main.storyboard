@@ -232,7 +232,7 @@ From there, you can customize your game by choosing which Set attributes you'd l
                                 </constraints>
                                 <color key="separatorColor" red="0.70196080207824707" green="0.70196080207824707" blue="0.70196080207824707" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="disclaimerRow" id="ZhJ-nD-hZ3">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="disclaimerRow" rowHeight="170" id="ZhJ-nD-hZ3">
                                         <rect key="frame" x="0.0" y="28" width="240" height="115.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZhJ-nD-hZ3" id="ckM-fj-KVA">
@@ -245,7 +245,11 @@ From there, you can customize your game by choosing which Set attributes you'd l
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="33" id="f97-8d-8e3"/>
                                                     </constraints>
-                                                    <string key="text">I am an independent developer and I have built the Seta3 app based on the rules of the original game called Set. I do not claim credit for the idea of the original Set game designed by Marsha Falco. I do not represent Set Enterprises, nor do I have any affiliation with Set Enterprises.</string>
+                                                    <string key="text">I am an independent developer and I have built the Seta3 app based on the rules of the original game called Set. I do not claim credit for the idea of the original Set game designed by Marsha Falco. I do not represent Set Enterprises, nor do I have any affiliation with Set Enterprises.
+
+Special Thanks To:
+Victoria Wong: Design Consultant and Theme Contributor
+Miki Bairstow: Design Consultant</string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     <dataDetectorType key="dataDetectorTypes" link="YES"/>

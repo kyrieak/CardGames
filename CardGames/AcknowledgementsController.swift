@@ -40,11 +40,15 @@ class AcknowledgementsController: UIViewController, UITableViewDelegate, UITextV
   }
   
   
-  func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-    for sv in cell.subviews {
-      NSLog("\(sv.classForCoder)")
+  func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    if (indexPath.section == 0) {
+      return 170
+    } else {
+      return tableView.rowHeight
     }
-    
+  }
+  
+  func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
     if (indexPath.section == 1) {
       let resource = tableDataSource.resources[indexPath.item]
   
