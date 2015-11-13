@@ -139,7 +139,7 @@ class PlayerSettingController: UIViewController, UITableViewDataSource, UITableV
   
   func saveSettings() {
     appGlobals.gameSettings = newGameSettings
-    
+    NSLog("\(newGameSettings.options)")
     for (idx, info) in playerInfo.enumerate() {
       let player = players[idx]
 

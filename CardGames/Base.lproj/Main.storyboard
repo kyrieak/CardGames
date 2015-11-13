@@ -233,23 +233,21 @@ From there, you can customize your game by choosing which Set attributes you'd l
                                 <color key="separatorColor" red="0.70196080207824707" green="0.70196080207824707" blue="0.70196080207824707" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="disclaimerRow" rowHeight="170" id="ZhJ-nD-hZ3">
-                                        <rect key="frame" x="0.0" y="28" width="240" height="115.5"/>
+                                        <rect key="frame" x="0.0" y="28" width="240" height="170"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZhJ-nD-hZ3" id="ckM-fj-KVA">
-                                            <rect key="frame" x="0.0" y="0.0" width="240" height="115"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="170"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="2" contentMode="scaleToFill" ambiguous="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FAS-b2-Fwj">
                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                                    <color key="tintColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="tintColor" red="0.0" green="0.50196081399917603" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="33" id="f97-8d-8e3"/>
                                                     </constraints>
                                                     <string key="text">I am an independent developer and I have built the Seta3 app based on the rules of the original game called Set. I do not claim credit for the idea of the original Set game designed by Marsha Falco. I do not represent Set Enterprises, nor do I have any affiliation with Set Enterprises.
 
-Special Thanks To:
-Victoria Wong: Design Consultant and Theme Contributor
-Miki Bairstow: Design Consultant</string>
+Special Thanks To:</string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     <dataDetectorType key="dataDetectorTypes" link="YES"/>
@@ -258,7 +256,8 @@ Miki Bairstow: Design Consultant</string>
                                                             <exclude reference="f97-8d-8e3"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="8" y="8" width="224" height="154"/>
                                                         <mask key="constraints">
                                                             <exclude reference="f97-8d-8e3"/>
                                                         </mask>
@@ -293,13 +292,13 @@ Miki Bairstow: Design Consultant</string>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="imageSourceRow" id="3tk-qN-sLf">
-                                        <rect key="frame" x="0.0" y="143.5" width="240" height="115.5"/>
+                                        <rect key="frame" x="0.0" y="198" width="240" height="115.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3tk-qN-sLf" id="KL2-5S-s3X">
-                                            <rect key="frame" x="0.0" y="0.0" width="240" height="115"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="115.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="koW-Vg-zNj">
+                                                <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="koW-Vg-zNj">
                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="koW-Vg-zNj" secondAttribute="height" multiplier="1:1" id="2XI-IL-V90"/>
@@ -318,7 +317,7 @@ Miki Bairstow: Design Consultant</string>
                                                         </mask>
                                                     </variation>
                                                 </imageView>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="2" contentMode="scaleToFill" ambiguous="YES" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="deC-Vw-Ers">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="2" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="deC-Vw-Ers">
                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                     <color key="tintColor" red="0.29803922772407532" green="0.29803922772407532" blue="0.29803922772407532" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
@@ -374,8 +373,9 @@ Cg
                                                             <exclude reference="LvL-Ab-X82"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <rect key="frame" x="115" y="8" width="117" height="99.5"/>
                                                         <mask key="constraints">
                                                             <exclude reference="LvL-Ab-X82"/>
                                                         </mask>
@@ -424,8 +424,8 @@ Cg
                                 <exclude reference="Q5p-Vm-51F"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="Lgr-dV-dIV"/>
                                 <exclude reference="ZOU-dL-aZJ"/>
+                                <exclude reference="Lgr-dV-dIV"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -434,8 +434,8 @@ Cg
                                 <include reference="Q5p-Vm-51F"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="Lgr-dV-dIV"/>
                                 <include reference="ZOU-dL-aZJ"/>
+                                <include reference="Lgr-dV-dIV"/>
                             </mask>
                         </variation>
                     </view>
@@ -583,10 +583,13 @@ Cg
                                 <subviews>
                                     <button opaque="NO" tag="31" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="As4-aK-Euc">
                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                        <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="18"/>
+                                        <fontDescription key="fontDescription" name="Palatino-Bold" family="Palatino" pointSize="18"/>
                                         <state key="normal" title="Acknowledgements">
                                             <color key="titleColor" red="0.26046317819999998" green="0.18727949260000001" blue="0.1132443026" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="120" y="8" width="160" height="32"/>
+                                        </variation>
                                         <connections>
                                             <segue destination="GJj-vz-XsU" kind="show" identifier="acknowSegue" id="MHn-B7-GMf"/>
                                         </connections>
@@ -724,7 +727,7 @@ Cg
                                     <switch opaque="NO" tag="12" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cpe-EJ-cvL" userLabel="Shape Switch">
                                         <rect key="frame" x="-25" y="-15" width="51" height="31"/>
                                         <connections>
-                                            <action selector="patternSwitchAction:" destination="mh9-fz-JHF" eventType="valueChanged" id="Ncq-4Y-Vj1"/>
+                                            <action selector="shapeSwitchAction:" destination="mh9-fz-JHF" eventType="valueChanged" id="3yJ-lK-Mlf"/>
                                         </connections>
                                     </switch>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Shading" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t31-ZG-zIP">
@@ -736,7 +739,7 @@ Cg
                                     <switch opaque="NO" tag="13" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7vS-Mi-Jmm" userLabel="Shading Switch">
                                         <rect key="frame" x="-25" y="-15" width="51" height="31"/>
                                         <connections>
-                                            <action selector="shapeSwitchAction:" destination="mh9-fz-JHF" eventType="valueChanged" id="diW-nt-Htf"/>
+                                            <action selector="shadingSwitchAction:" destination="mh9-fz-JHF" eventType="valueChanged" id="1Ri-oN-wIH"/>
                                         </connections>
                                     </switch>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Players:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bgp-p8-qC8">
@@ -1141,7 +1144,7 @@ Cg
                                                             <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="60"/>
                                                             <size key="titleShadowOffset" width="1" height="1"/>
                                                             <state key="normal" title="✍">
-                                                                <color key="titleColor" red="0.42706266529999998" green="0.32570422939999999" blue="0.2707932394" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <color key="titleColor" red="0.42745098039215684" green="0.32549019607843138" blue="0.27058823529411763" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <color key="titleShadowColor" red="0.60000002384185791" green="0.60000002384185791" blue="0.60000002384185791" alpha="1" colorSpace="calibratedRGB"/>
                                                             </state>
                                                             <connections>
@@ -1481,7 +1484,7 @@ Cg
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="67" y="8" width="60.5" height="43.5"/>
+                                                        <rect key="frame" x="67" y="8" width="60" height="43.5"/>
                                                     </variation>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bVb-A7-ok8" userLabel="Sets">
@@ -1945,7 +1948,7 @@ Cg
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="iJ9-8Q-Y9b"/>
         <segue reference="ag2-lq-9bi"/>
+        <segue reference="iJ9-8Q-Y9b"/>
     </inferredMetricsTieBreakers>
 </document>

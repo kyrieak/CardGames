@@ -78,6 +78,7 @@ class Theme {
     theme.bgColor3   = UIColor(red: 0.80, green: 0.76, blue: 0.73, alpha: 1.0)
 
 //    theme.fontColor  = UIColor(red: 0.43, green: 0.33, blue: 0.27, alpha: 1.0)
+    theme.fontColor1 = UIColor(red: 0.43, green: 0.33, blue: 0.27, alpha: 1.0)
     theme.fontColor2 = UIColor(red: 0.61, green: 0.73, blue: 0.61, alpha: 1.0)
     theme.fontColor3 = UIColor(red: 0.26, green: 0.19, blue: 0.11, alpha: 1.0)
 
@@ -99,7 +100,9 @@ class Theme {
     
     theme.fontColor2 = UIColor(white: 0.2, alpha: 1.0)
 
-    theme.setPattern("card_back")
+    theme.setPattern("cb_2")
+    theme.shadeColor1 = UIColor(white: 0.7, alpha: 1.0)
+    theme.shadeAlpha = 0.5
     
     return theme
   }
@@ -115,9 +118,11 @@ class Theme {
     theme.bgColor2   = UIColor(red: 0.68, green: 0.80, blue: 0.80, alpha: 1.0)
     theme.bgColor3   = UIColor(red: 0.98, green: 0.80, blue: 0.66, alpha: 1.0)
 
+    theme.fontColor1 = UIColor(red: 0.43, green: 0.23, blue: 0.17, alpha: 1.0)
     theme.fontColor2 = UIColor(red: 0.39, green: 0.50, blue: 0.48, alpha: 1.0)
+    theme.fontColor3 = theme.fontColor1
     
-    theme.setPattern("cb_2")
+    theme.setPattern("cb_3")
     
     return theme
   }

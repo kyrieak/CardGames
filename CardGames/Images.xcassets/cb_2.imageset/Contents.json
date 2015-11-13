@@ -6,11 +6,11 @@
     },
     {
       "idiom" : "universal",
-      "filename" : "cb_2x2.jpg",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "cb_3.png",
       "scale" : "3x"
     }
   ],

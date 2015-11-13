@@ -21,6 +21,12 @@ class HomeViewController: UIViewController, StyleGuideDelegate {
 
   var styleGuide: SGStyleGuide = appGlobals.styleGuide
   var themeID: Int?
+  
+  required init?(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+
+    self.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
+  }
 
   
   @IBAction func prepareUnwind(segue: UIStoryboardSegue) {

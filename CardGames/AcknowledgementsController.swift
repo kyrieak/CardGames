@@ -10,8 +10,15 @@ import Foundation
 import UIKit
 
 class AcknowledgementsController: UIViewController, UITableViewDelegate, UITextViewDelegate {
+  let styleGuide = appGlobals.styleGuide
   
   @IBOutlet var tableDataSource: ResourceListDataSource!
+  
+  required init?(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+
+    self.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
+  }
   
   override func viewDidLoad() {
     view.backgroundColor = appGlobals.styleGuide.theme.bgColor2
@@ -26,13 +33,6 @@ class AcknowledgementsController: UIViewController, UITableViewDelegate, UITextV
     view.addConstraint(NSLayoutConstraint(item: tableView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .Height, multiplier: 1.0, constant: tableView.rowHeight * 4.5))
   }
   
-//  override func viewDidLayoutSubviews() {
-//    let tableView = (self.view.viewWithTag(10) as! UITableView)
-//
-//    tableView.backgroundColor = appGlobals.styleGuide.theme.bgLight
-//
-//    super.viewDidLayoutSubviews()
-//  }
   
   override func viewDidAppear(animated: Bool) {
     super.viewDidAppear(animated)
@@ -54,10 +54,27 @@ class AcknowledgementsController: UIViewController, UITableViewDelegate, UITextV
   
       let imgView = cell.viewWithTag(1) as! UIImageView
       let infoView = cell.viewWithTag(2) as! UITextView
-      
+      infoView.tintColor = styleGuide.theme.fontColor1
       infoView.attributedText = makeInfoTextFor(resource)
       
       imgView.image = UIImage(named: resource.assetName!)
+    } else {
+      let textView = cell.contentView.subviews.first! as! UITextView
+      textView.tintColor = appGlobals.styleGuide.theme.fontColor2
+      
+      let text = NSMutableAttributedString(attributedString: textView.attributedText)
+      let thanksLine = NSMutableAttributedString(string: "\nVictoria Wong: Design Consultant and Theme Contributor\nMiki Bairstow: Design Consultant")
+
+      thanksLine.addAttributes(styleGuide.linkTextAttributes(NSURL(string: "http://www.linkedin.com/in/victoria-wong-42144467")!), range: NSRange(location: 1, length: 13))
+      thanksLine.addAttributes(styleGuide.linkTextAttributes(NSURL(string: "https://www.linkedin.com/in/miki-bairstow-a5959031")!), range: NSRange(location: 56, length: 13))
+
+////      thanksLine.addAttribute(NSLinkAttributeName, value: "http://www.linkedin.com/in/victoria-wong-42144467", range: NSRange(location: 1, length: 13))
+////      thanksLine.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.StyleSingle.rawValue, range: NSRange(location: 1, length: 13))
+//      thanksLine.addAttribute(NSLinkAttributeName, value: "https://www.linkedin.com/in/miki-bairstow-a5959031", range: NSRange(location: 56, length: 13))
+//      thanksLine.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.StyleSingle.rawValue, range: NSRange(location: 56, length: 13))
+      
+      text.appendAttributedString(thanksLine)
+      textView.attributedText = text
     }
   }
   
@@ -87,7 +104,11 @@ class AcknowledgementsController: UIViewController, UITableViewDelegate, UITextV
     sourceLine.addAttribute(NSParagraphStyleAttributeName, value: makeParagStyle(1.0), range: sourceRange)
     
     if (resource.source.url != nil) {
-      sourceLine.addAttribute(NSLinkAttributeName, value: resource.source.url!, range: NSRange(location: 0, length: (sourceLine.length - 1)))
+      sourceLine.addAttributes(styleGuide.linkTextAttributes(resource.source.url!), range: NSRange(location: 0, length: (sourceLine.length - 1)))
+      
+      sourceLine.addAttribute(NSUnderlineColorAttributeName, value: styleGuide.theme.shadeColor1, range: NSRange(location: 0, length: (sourceLine.length - 1)))
+//      sourceLine.addAttribute(styleGuide.linkTextAttributes(resource.source.url!, NSRange(location: 0, length: (sourceLine.length - 1))))
+//      sourceLine.addAttribute(NSLinkAttributeName, value: resource.source.url!, range: NSRange(location: 0, length: (sourceLine.length - 1)))
     }
     
     NSLog("\(authorLine)")

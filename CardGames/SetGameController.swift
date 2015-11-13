@@ -284,6 +284,11 @@ class SetGameController: UIViewController, StyleGuideDelegate {
       
       if (cell.selected) { cell.setNeedsDisplay() }
     }
+    let scoreBtn = sgDelegate.statusView.viewWithTag(5)
+    
+    if (scoreBtn != nil) {
+      (scoreBtn! as! UIButton).setTitleColor(styleGuide.theme.fontColor1, forState: .Normal)
+    }
   }
   
   func setPause() {

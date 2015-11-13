@@ -65,7 +65,7 @@ class GameSettingsController: UIViewController {
   }
   
   
-  @IBAction func patternSwitchAction(sender: UISwitch) {
+  @IBAction func shadingSwitchAction(sender: UISwitch) {
     options.shadingOn = sender.on
   }
   

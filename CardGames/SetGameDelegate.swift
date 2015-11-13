@@ -28,7 +28,7 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
         appGlobals.styleGuide.applyFontStyle(.Status, views: [statusView.messageView])
             let scoreIcon = statusView.viewWithTag(5) as! UIButton
         
-            scoreIcon.setTitleColor(UIColor(red: 0.45, green: 0.14, blue: 0.15, alpha: 1.0), forState: .Normal)
+            scoreIcon.setTitleColor(appGlobals.styleGuide.theme.fontColor1, forState: .Normal)
         
         view.frame.origin.y = collectionView.frame.height - view.frame.height
       }

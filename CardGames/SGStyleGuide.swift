@@ -13,8 +13,8 @@ class SGStyleGuide: StyleGuide {
   // - MARK: - Constants
   
   let screenDims: (min: CGFloat, max: CGFloat)
-  let cardBackImage = UIImage(named: "card_back")!
-  let cardBackPattern = UIColor(patternImage: UIImage(named: "card_back")!)
+  let cardBackImage = UIImage(named: "cb_2")!
+  let cardBackPattern = UIColor(patternImage: UIImage(named: "cb_2")!)
   
   // - MARK: - Properties
 
@@ -171,6 +171,10 @@ class SGStyleGuide: StyleGuide {
         btn.setTitleColor(style.color, forState: UIControlState.Normal)
       }
     }
+  }
+  
+  func linkTextAttributes(link: NSURL) -> [String: AnyObject] {
+    return [NSLinkAttributeName: link, NSUnderlineStyleAttributeName: NSUnderlineStyle.StyleSingle.rawValue]
   }
   
   

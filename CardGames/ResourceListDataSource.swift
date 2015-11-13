@@ -127,7 +127,7 @@ struct AppResource {
     var third = AppResource(author: ("Anny Cecilia Walter", "http://www.publicdomainpictures.net/browse-author.php?a=53721"),
                             source: ("Floral Seamless Pattern", "http://www.publicdomainpictures.net/view-image.php?image=129033&picture=floral-seamless-pattern"),
                                via: ("PublicDomainPictures.net", "http://www.publicdomainpictures.net"))
-    third.assetName = "cb_2"
+    third.assetName = "cb_3"
     
 //    var fourth = AppResource(author: ("", ""),
 //      source: ("cardBack", ""),
