@@ -137,6 +137,10 @@ class PlayerSettingController: UIViewController, UITableViewDataSource, UITableV
     return true
   }
   
+  func textFieldShouldReturn(textField: UITextField) -> Bool {
+    return textField.resignFirstResponder()
+  }
+  
   func saveSettings() {
     appGlobals.gameSettings = newGameSettings
     NSLog("\(newGameSettings.options)")
@@ -146,6 +150,10 @@ class PlayerSettingController: UIViewController, UITableViewDataSource, UITableV
       player.setLabel(info.label)
       player.setName(info.name)
     }
+  }
+  
+  @IBAction func backAction(sender: UIButton) {
+    self.dismissViewControllerAnimated(true, completion: nil)
   }
   
   @IBAction func respondToTap(sender: UITapGestureRecognizer) {

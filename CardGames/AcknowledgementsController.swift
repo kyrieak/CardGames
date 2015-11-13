@@ -11,6 +11,7 @@ import UIKit
 
 class AcknowledgementsController: UIViewController, UITableViewDelegate, UITextViewDelegate {
   let styleGuide = appGlobals.styleGuide
+  let theme = appGlobals.styleGuide.theme
   
   @IBOutlet var tableDataSource: ResourceListDataSource!
   
@@ -21,22 +22,21 @@ class AcknowledgementsController: UIViewController, UITableViewDelegate, UITextV
   }
   
   override func viewDidLoad() {
-    view.backgroundColor = appGlobals.styleGuide.theme.bgColor2
+    view.backgroundColor = theme.bgColor2
 
     super.viewDidLoad()
   }
   
   override func viewWillLayoutSubviews() {
     let tableView = (self.view.viewWithTag(10) as! UITableView)
+    let title = view.viewWithTag(1)! as! UILabel
+    let backBtn = view.viewWithTag(3)! as! UIButton
+
+    title.textColor = theme.fontColor2
+    backBtn.setTitleColor(theme.fontColor2, forState: .Normal)
     
-    tableView.backgroundColor = appGlobals.styleGuide.theme.bgLight
+    tableView.backgroundColor = theme.bgLight
     view.addConstraint(NSLayoutConstraint(item: tableView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .Height, multiplier: 1.0, constant: tableView.rowHeight * 4.5))
-  }
-  
-  
-  override func viewDidAppear(animated: Bool) {
-    super.viewDidAppear(animated)
-    NSLog("vid did appear???????????????")
   }
   
   
@@ -47,135 +47,12 @@ class AcknowledgementsController: UIViewController, UITableViewDelegate, UITextV
       return tableView.rowHeight
     }
   }
-  
-  func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-    if (indexPath.section == 1) {
-      let resource = tableDataSource.resources[indexPath.item]
-  
-      let imgView = cell.viewWithTag(1) as! UIImageView
-      let infoView = cell.viewWithTag(2) as! UITextView
-      infoView.tintColor = styleGuide.theme.fontColor1
-      infoView.attributedText = makeInfoTextFor(resource)
-      
-      imgView.image = UIImage(named: resource.assetName!)
-    } else {
-      let textView = cell.contentView.subviews.first! as! UITextView
-      textView.tintColor = appGlobals.styleGuide.theme.fontColor2
-      
-      let text = NSMutableAttributedString(attributedString: textView.attributedText)
-      let thanksLine = NSMutableAttributedString(string: "\nVictoria Wong: Design Consultant and Theme Contributor\nMiki Bairstow: Design Consultant")
-
-      thanksLine.addAttributes(styleGuide.linkTextAttributes(NSURL(string: "http://www.linkedin.com/in/victoria-wong-42144467")!), range: NSRange(location: 1, length: 13))
-      thanksLine.addAttributes(styleGuide.linkTextAttributes(NSURL(string: "https://www.linkedin.com/in/miki-bairstow-a5959031")!), range: NSRange(location: 56, length: 13))
-
-////      thanksLine.addAttribute(NSLinkAttributeName, value: "http://www.linkedin.com/in/victoria-wong-42144467", range: NSRange(location: 1, length: 13))
-////      thanksLine.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.StyleSingle.rawValue, range: NSRange(location: 1, length: 13))
-//      thanksLine.addAttribute(NSLinkAttributeName, value: "https://www.linkedin.com/in/miki-bairstow-a5959031", range: NSRange(location: 56, length: 13))
-//      thanksLine.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.StyleSingle.rawValue, range: NSRange(location: 56, length: 13))
-      
-      text.appendAttributedString(thanksLine)
-      textView.attributedText = text
-    }
-  }
-  
+    
   func textView(textView: UITextView, shouldInteractWithURL URL: NSURL, inRange characterRange: NSRange) -> Bool {
     UIApplication.sharedApplication().openURL(URL)
     return false
   }
   
-  func makeInfoTextFor(resource: AppResource) -> NSAttributedString {
-    let italicFont = UIFont(name: "Palatino-Italic", size: 14)!
-    
-    let sourceLine = NSMutableAttributedString(string: resource.source.name + "\n")
-    let authorLine = NSMutableAttributedString(string: "by: " + resource.author.name + "\n")
-    let viaLine: NSMutableAttributedString
-
-    if (resource.via.name.characters.count > 0) {
-      viaLine = NSMutableAttributedString(string: "via: " + resource.via.name)
-    } else {
-      viaLine = NSMutableAttributedString(string: "")
-    }
-    
-    let sourceRange = NSRange(location: 0, length: sourceLine.length)
-    let authorRange = NSRange(location: 0, length: authorLine.length)
-    let viaRange = NSRange(location: 0, length: viaLine.length)
-    
-    sourceLine.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(18), range: sourceRange)
-    sourceLine.addAttribute(NSParagraphStyleAttributeName, value: makeParagStyle(1.0), range: sourceRange)
-    
-    if (resource.source.url != nil) {
-      sourceLine.addAttributes(styleGuide.linkTextAttributes(resource.source.url!), range: NSRange(location: 0, length: (sourceLine.length - 1)))
-      
-      sourceLine.addAttribute(NSUnderlineColorAttributeName, value: styleGuide.theme.shadeColor1, range: NSRange(location: 0, length: (sourceLine.length - 1)))
-//      sourceLine.addAttribute(styleGuide.linkTextAttributes(resource.source.url!, NSRange(location: 0, length: (sourceLine.length - 1))))
-//      sourceLine.addAttribute(NSLinkAttributeName, value: resource.source.url!, range: NSRange(location: 0, length: (sourceLine.length - 1)))
-    }
-    
-    NSLog("\(authorLine)")
-    
-    authorLine.addAttribute(NSFontAttributeName, value: italicFont, range: NSRange(location: 0, length: 4))
-    authorLine.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(14), range: NSRange(location: 4, length: (authorLine.length - 4)))
-    authorLine.addAttribute(NSLinkAttributeName, value: resource.author.url!, range: NSRange(location: 4, length: (authorLine.length - 5)))
-    authorLine.addAttribute(NSParagraphStyleAttributeName, value: makeParagStyle(1.5), range: authorRange)
-    
-    if (resource.via.name.characters.count > 0) {
-      viaLine.addAttribute(NSFontAttributeName, value: italicFont, range: NSRange(location: 0, length: 5))
-      viaLine.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(14), range: NSRange(location: 5, length: (viaLine.length - 5)))
-      
-      if (resource.via.url != nil) {
-        viaLine.addAttribute(NSLinkAttributeName, value: resource.via.url!, range: NSRange(location: 5, length: (viaLine.length - 5)))
-      }
-      viaLine.addAttribute(NSParagraphStyleAttributeName, value: makeParagStyle(1.5), range: viaRange)
-    }    
-
-    let infoText = sourceLine
-    
-    infoText.appendAttributedString(authorLine)
-    infoText.appendAttributedString(viaLine)
-    
-    return infoText
-  }
-  
-  func makeParagStyle(lhm: CGFloat) -> NSParagraphStyle {
-    let ps = NSMutableParagraphStyle()
-
-    ps.lineHeightMultiple = lhm
-
-    return ps
-  }
-  
-  func setLineHeight(attrString: NSMutableAttributedString, lhm: CGFloat) -> NSMutableAttributedString {
-    let len = attrString.string.characters.count
-    let dps = NSMutableParagraphStyle()
-    
-    dps.lineHeightMultiple = lhm
-    attrString.addAttribute(NSParagraphStyleAttributeName, value: dps, range: NSRange(location: 0, length: len))
-
-    return attrString
-  }
-  
-  
-  func setSizeAndLayoutAttrs(attrString: NSMutableAttributedString, size: CGFloat, lhm: CGFloat) -> NSMutableAttributedString{
-    let len = attrString.string.characters.count
-    
-    let dps = NSMutableParagraphStyle()
-    dps.lineHeightMultiple = lhm
-
-    attrString.addAttribute(NSFontAttributeName,
-      value: UIFont.systemFontOfSize(size),
-      range: NSRange(location: 0, length: len))
-    attrString.addAttribute(NSParagraphStyleAttributeName, value: dps, range: NSRange(location: 0, length: len))
-    return attrString
-  }
-  
-  func setLinkAttrs(attrString: NSMutableAttributedString, size: CGFloat) -> NSMutableAttributedString {
-    let len = attrString.string.characters.count
-
-    attrString.addAttribute(NSFontAttributeName,
-                              value: UIFont.systemFontOfSize(size),
-                                range: NSRange(location: 0, length: len))
-    return attrString
-  }
   
   @IBAction func didTapLink(sender: UIButton) {
     var range: NSRange = NSMakeRange(0, 1)
