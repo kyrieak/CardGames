@@ -13,6 +13,18 @@ class ResourceListDataSource: NSObject, UITableViewDataSource {
   let resources: [AppResource] = AppResource.all()
   let styleGuide = appGlobals.styleGuide
   let theme = appGlobals.styleGuide.theme
+  var fontSize: (title: CGFloat, sub: CGFloat) = (title: 16, sub: 14)
+  var imgWidth: CGFloat = 100
+  
+  override init() {
+    super.init()
+
+    if (deviceInfo.screenDims.min < 400) {
+      fontSize.title = 14
+      fontSize.sub = 12
+      imgWidth = 70
+    }
+  }
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     if (section == 0) {
@@ -49,6 +61,15 @@ class ResourceListDataSource: NSObject, UITableViewDataSource {
       infoView.tintColor = theme.fontColor1
       infoView.attributedText = makeInfoTextFor(resource)
       
+      imgView.addConstraint(NSLayoutConstraint(item: imgView, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .Width, multiplier: 1.0, constant: imgWidth))
+//      
+//      for c in imgView.constraints {
+//        if (c.firstAttribute == .Width) {
+//          c.constant = imgWidth
+//          imgView.frame.size = CGSize(width: imgWidth, height: imgWidth)
+//        }
+//      }
+      
       imgView.image = UIImage(named: resource.assetName!)
     }
     
@@ -76,7 +97,7 @@ class ResourceListDataSource: NSObject, UITableViewDataSource {
 
   
   func makeInfoTextFor(resource: AppResource) -> NSAttributedString {
-    let italicFont = UIFont(name: "Palatino-Italic", size: 14)!
+    let italicFont = UIFont(name: "Palatino-Italic", size: fontSize.sub)!
     
     let sourceLine = NSMutableAttributedString(string: resource.source.name + "\n")
     let authorLine = NSMutableAttributedString(string: "by: " + resource.author.name + "\n")
@@ -92,7 +113,7 @@ class ResourceListDataSource: NSObject, UITableViewDataSource {
     let authorRange = NSRange(location: 0, length: authorLine.length)
     let viaRange = NSRange(location: 0, length: viaLine.length)
     
-    sourceLine.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(18), range: sourceRange)
+    sourceLine.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(fontSize.title), range: sourceRange)
     sourceLine.addAttribute(NSParagraphStyleAttributeName, value: makeParagStyle(1.0), range: sourceRange)
     
     if (resource.source.url != nil) {
@@ -101,13 +122,13 @@ class ResourceListDataSource: NSObject, UITableViewDataSource {
     }
     
     authorLine.addAttribute(NSFontAttributeName, value: italicFont, range: NSRange(location: 0, length: 4))
-    authorLine.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(14), range: NSRange(location: 4, length: (authorLine.length - 4)))
+    authorLine.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(fontSize.sub), range: NSRange(location: 4, length: (authorLine.length - 4)))
     authorLine.addAttribute(NSLinkAttributeName, value: resource.author.url!, range: NSRange(location: 4, length: (authorLine.length - 5)))
     authorLine.addAttribute(NSParagraphStyleAttributeName, value: makeParagStyle(1.5), range: authorRange)
     
     if (resource.via.name.characters.count > 0) {
       viaLine.addAttribute(NSFontAttributeName, value: italicFont, range: NSRange(location: 0, length: 5))
-      viaLine.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(14), range: NSRange(location: 5, length: (viaLine.length - 5)))
+      viaLine.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(fontSize.sub), range: NSRange(location: 5, length: (viaLine.length - 5)))
       
       if (resource.via.url != nil) {
         viaLine.addAttribute(NSLinkAttributeName, value: resource.via.url!, range: NSRange(location: 5, length: (viaLine.length - 5)))
@@ -129,28 +150,7 @@ class ResourceListDataSource: NSObject, UITableViewDataSource {
     ps.lineHeightMultiple = lhm
     
     return ps
-  }
-
-  
-//  func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-//    NSLog("\(cell) at will display)")
-//    setImgDataFor(cell, atIndexPath: indexPath)
-//  }
-//  
-//  func setImgDataFor(cell: UITableViewCell, atIndexPath: NSIndexPath) {
-//    NSLog("setting data for img resource")
-//    let resource = resources[atIndexPath.item]
-//
-//    let imgView    = cell.viewWithTag(1) as! UIImageView
-//    let authorView = cell.viewWithTag(2) as! UITextView
-//    let sourceView = cell.viewWithTag(3) as! UITextView
-//    let viaView    = cell.viewWithTag(4) as! UITextView
-//
-//    imgView.image             = UIImage(named: resource.assetName!)
-//    authorView.attributedText = resource.authorLinkText
-//    sourceView.attributedText = resource.sourceLinkText
-//    viaView.attributedText    = resource.viaLinkText
-//  }
+  }  
 }
 
 struct AppResource {

@@ -39,8 +39,6 @@ class HomeViewController: UIViewController, StyleGuideDelegate {
   
   
   override func viewDidLayoutSubviews() {
-    NSLog("did layout homeveiw")
-
     if (themeID != styleGuide.themeID) {
       applyStyleToViews()
     }
@@ -121,9 +119,7 @@ class HomeViewController: UIViewController, StyleGuideDelegate {
   }
   
   
-  @IBAction func respondToSwipe(gesture: UISwipeGestureRecognizer) {
-    NSLog("responding to swipe")
-    
+  @IBAction func respondToSwipe(gesture: UISwipeGestureRecognizer) {    
     self.returnToGame()
   }
   

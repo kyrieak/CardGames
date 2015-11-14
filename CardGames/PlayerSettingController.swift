@@ -123,13 +123,10 @@ class PlayerSettingController: UIViewController, UITableViewDataSource, UITableV
   }
   
   func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-    NSLog("chekcing should change \(textField)")
     if (textField.text != nil) {
       if (textField.tag == labelTag) {
-        NSLog("is label")
         return ((range.location + string.characters.count) < 3)
       } else if (textField.tag == nameTag) {
-        NSLog("is name")
         return ((range.location + string.characters.count) < 15)
       }
     }
@@ -143,7 +140,7 @@ class PlayerSettingController: UIViewController, UITableViewDataSource, UITableV
   
   func saveSettings() {
     appGlobals.gameSettings = newGameSettings
-    NSLog("\(newGameSettings.options)")
+
     for (idx, info) in playerInfo.enumerate() {
       let player = players[idx]
 

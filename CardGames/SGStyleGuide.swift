@@ -153,7 +153,6 @@ class SGStyleGuide: StyleGuide {
       let style = fontStyle(sel)!
       
       for v in views {
-        NSLog("here in apply font")
         v.font      = style.font
         v.textColor = style.color
       }

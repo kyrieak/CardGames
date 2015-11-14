@@ -41,7 +41,6 @@ class ScoresController: UIViewController, UITableViewDataSource, UITableViewDele
   func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
     let player = players[indexPath.item]
     let pStats = stats[player]!
-    NSLog("player \(player) \(pStats)")
     
     (cell.viewWithTag(1)! as! UILabel).text = player.label
     (cell.viewWithTag(2)! as! UILabel).text = player.name

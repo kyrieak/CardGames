@@ -22,7 +22,6 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
     forElementKind elementKind: String,
     atIndexPath indexPath: NSIndexPath) {
       if (elementKind == UICollectionElementKindSectionFooter) {
-        NSLog("here in willdisplaysupplementary")
         statusView = view.viewWithTag(statusViewTag) as! SGStatusView
         statusView.adjustHeight(view.frame.height)
         appGlobals.styleGuide.applyFontStyle(.Status, views: [statusView.messageView])

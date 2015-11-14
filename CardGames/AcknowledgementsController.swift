@@ -36,7 +36,6 @@ class AcknowledgementsController: UIViewController, UITableViewDelegate, UITextV
     backBtn.setTitleColor(theme.fontColor2, forState: .Normal)
     
     tableView.backgroundColor = theme.bgLight
-    view.addConstraint(NSLayoutConstraint(item: tableView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .Height, multiplier: 1.0, constant: tableView.rowHeight * 4.5))
   }
   
   
@@ -44,7 +43,11 @@ class AcknowledgementsController: UIViewController, UITableViewDelegate, UITextV
     if (indexPath.section == 0) {
       return 170
     } else {
-      return tableView.rowHeight
+      if (deviceInfo.screenDims.min < 400) {
+        return 90
+      } else {
+        return tableView.rowHeight
+      }
     }
   }
     

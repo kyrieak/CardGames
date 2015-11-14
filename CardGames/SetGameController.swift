@@ -340,7 +340,7 @@ class SetGameController: UIViewController, StyleGuideDelegate {
         case .Height:
           c.constant = cardSize.height
         default:
-          NSLog("attribute was \(c.firstAttribute)")
+          break
       }
     }
   }

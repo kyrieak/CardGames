@@ -81,7 +81,6 @@ class SGStatusView: UIView {
     messageView.frame.origin.x = cardListView.cornerRight.x
     messageView.sizeToFit()
     messageView.frame.origin.y = (self.frame.height - messageView.frame.height) / 2
-    NSLog("did get to adjustmessageframe")
   }
   
   
