@@ -50,18 +50,17 @@ class AcknowledgementsController: UIViewController, UITableViewDelegate, UITextV
       }
     }
   }
-    
-  func textView(textView: UITextView, shouldInteractWithURL URL: NSURL, inRange characterRange: NSRange) -> Bool {
-    UIApplication.sharedApplication().openURL(URL)
-    return false
+  
+  func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    if (indexPath.section == 0) {
+      (cell.contentView.subviews.first as! UITextView).textContainerInset = UIEdgeInsetsZero
+    }
   }
   
   
-  @IBAction func didTapLink(sender: UIButton) {
-    var range: NSRange = NSMakeRange(0, 1)
-    let title = sender.titleLabel!.attributedText!
-    let url = title.attribute(NSLinkAttributeName, atIndex: 0, effectiveRange: &range)
-
-    UIApplication.sharedApplication().openURL(url as! NSURL)
+  func textView(textView: UITextView, shouldInteractWithURL URL: NSURL, inRange characterRange: NSRange) -> Bool {
+    UIApplication.sharedApplication().openURL(URL.absoluteURL)
+    
+    return false
   }
 }

@@ -223,44 +223,32 @@ From there, you can customize your game by choosing which Set attributes you'd l
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" tag="10" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="115.5" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8ar-fD-W97">
+                            <tableView clipsSubviews="YES" tag="10" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" directionalLockEnabled="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="115.5" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8ar-fD-W97">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="480" id="F5D-k5-J6I"/>
-                                    <constraint firstAttribute="height" constant="555" placeholder="YES" id="M8N-rk-9QJ"/>
                                 </constraints>
                                 <color key="separatorColor" red="0.70196080207824707" green="0.70196080207824707" blue="0.70196080207824707" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="disclaimerRow" rowHeight="170" id="ZhJ-nD-hZ3">
                                         <rect key="frame" x="0.0" y="28" width="240" height="170"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZhJ-nD-hZ3" id="ckM-fj-KVA">
+                                        <tableViewCellContentView key="contentView" opaque="NO" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZhJ-nD-hZ3" id="ckM-fj-KVA">
                                             <rect key="frame" x="0.0" y="0.0" width="240" height="170"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="2" contentMode="scaleToFill" misplaced="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FAS-b2-Fwj">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="2" contentMode="scaleToFill" misplaced="YES" directionalLockEnabled="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FAS-b2-Fwj">
                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                     <color key="tintColor" red="0.0" green="0.50196081399917603" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="33" id="f97-8d-8e3"/>
-                                                    </constraints>
                                                     <string key="text">I am an independent developer and I have built the Seta3 app based on the rules of the original game called Set. I do not claim credit for the idea of the original Set game designed by Marsha Falco. I do not represent Set Enterprises, nor do I have any affiliation with Set Enterprises.
 
 Special Thanks To:</string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     <dataDetectorType key="dataDetectorTypes" link="YES"/>
-                                                    <variation key="default">
-                                                        <mask key="constraints">
-                                                            <exclude reference="f97-8d-8e3"/>
-                                                        </mask>
-                                                    </variation>
                                                     <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
                                                         <rect key="frame" x="8" y="8" width="224" height="154"/>
-                                                        <mask key="constraints">
-                                                            <exclude reference="f97-8d-8e3"/>
-                                                        </mask>
                                                     </variation>
                                                     <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -293,7 +281,7 @@ Special Thanks To:</string>
                                                         <constraint firstAttribute="width" constant="99" placeholder="YES" id="Tc2-t2-00O"/>
                                                     </constraints>
                                                 </imageView>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="2" contentMode="scaleToFill" misplaced="YES" directionalLockEnabled="YES" showsVerticalScrollIndicator="NO" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="deC-Vw-Ers">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="2" contentMode="scaleToFill" misplaced="YES" directionalLockEnabled="YES" showsVerticalScrollIndicator="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="deC-Vw-Ers">
                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                     <color key="tintColor" red="0.29803922772407532" green="0.29803922772407532" blue="0.29803922772407532" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
@@ -349,9 +337,8 @@ Cg
                                                             <exclude reference="LvL-Ab-X82"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                    <variation key="heightClass=regular-widthClass=compact">
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <rect key="frame" x="115" y="8" width="117" height="99.5"/>
                                                         <mask key="constraints">
                                                             <exclude reference="LvL-Ab-X82"/>
                                                         </mask>
@@ -378,7 +365,6 @@ Cg
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="F5D-k5-J6I"/>
-                                        <exclude reference="M8N-rk-9QJ"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=regular">
@@ -409,7 +395,6 @@ Cg
                             <constraint firstItem="Q5p-Vm-51F" firstAttribute="centerX" secondItem="4Mc-94-QKI" secondAttribute="centerX" id="Lgr-dV-dIV"/>
                             <constraint firstItem="8ar-fD-W97" firstAttribute="height" secondItem="4Mc-94-QKI" secondAttribute="height" multiplier="27:40" id="MN4-xz-Cca"/>
                             <constraint firstAttribute="leadingMargin" secondItem="8ar-fD-W97" secondAttribute="leading" id="U8c-jh-0cD"/>
-                            <constraint firstItem="C4Y-Cr-93z" firstAttribute="top" secondItem="Q5p-Vm-51F" secondAttribute="bottom" constant="50" id="ZOU-dL-aZJ"/>
                             <constraint firstItem="Q5p-Vm-51F" firstAttribute="top" secondItem="8ar-fD-W97" secondAttribute="bottom" constant="8" id="Zhp-e5-b3a"/>
                             <constraint firstItem="8ar-fD-W97" firstAttribute="top" secondItem="4Da-H8-Yku" secondAttribute="bottom" id="uua-xl-R2l"/>
                             <constraint firstItem="4Da-H8-Yku" firstAttribute="height" secondItem="4Mc-94-QKI" secondAttribute="height" multiplier="1:5" id="wX7-eT-hOR"/>
@@ -418,7 +403,6 @@ Cg
                             <mask key="constraints">
                                 <exclude reference="H0x-gR-06f"/>
                                 <exclude reference="U8c-jh-0cD"/>
-                                <exclude reference="ZOU-dL-aZJ"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">

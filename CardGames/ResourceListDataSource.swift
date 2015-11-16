@@ -62,13 +62,6 @@ class ResourceListDataSource: NSObject, UITableViewDataSource {
       infoView.attributedText = makeInfoTextFor(resource)
       
       imgView.addConstraint(NSLayoutConstraint(item: imgView, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .Width, multiplier: 1.0, constant: imgWidth))
-//      
-//      for c in imgView.constraints {
-//        if (c.firstAttribute == .Width) {
-//          c.constant = imgWidth
-//          imgView.frame.size = CGSize(width: imgWidth, height: imgWidth)
-//        }
-//      }
       
       imgView.image = UIImage(named: resource.assetName!)
     }
@@ -86,10 +79,10 @@ class ResourceListDataSource: NSObject, UITableViewDataSource {
   
   func introText() -> NSMutableAttributedString {
     let baseText = NSMutableAttributedString(string: "I am an independent developer and I have built the Seta3 app based on the rules of the original game called Set. I do not claim credit for the idea of the original Set game designed by Marsha Falco. I do not represent Set Enterprises, nor do I have any affiliation with Set Enterprises.\n\nSpecial Thanks To:\n\n")
-    let thanksLine = NSMutableAttributedString(string: "Victoria Wong: Design Consultant and Theme Contributor\nMiki Bairstow: Design Consultant")
+    let thanksLine = NSMutableAttributedString(string: "Victoria Wong: Design Consultant and Theme Contributor\nMiki Bairstow: Design Consultant\n")
     
-    thanksLine.addAttributes(styleGuide.linkTextAttributes(NSURL(string: "http://www.linkedin.com/in/victoria-wong-42144467")!), range: NSRange(location: 0, length: 13))
-    thanksLine.addAttributes(styleGuide.linkTextAttributes(NSURL(string: "https://www.linkedin.com/in/miki-bairstow-a5959031")!), range: NSRange(location: 55, length: 13))
+    thanksLine.addAttributes(styleGuide.linkTextAttributes(NSURL(string: "http://touch.www.linkedin.com/#profile/236978521")!), range: NSRange(location: 0, length: 13))
+    thanksLine.addAttributes(styleGuide.linkTextAttributes(NSURL(string: "https://touch.www.linkedin.com/#profile/111913701")!), range: NSRange(location: 55, length: 13))
     baseText.appendAttributedString(thanksLine)
     
     return baseText
@@ -201,7 +194,7 @@ struct AppResource {
   
   
   static func all() -> [AppResource] {
-    var first = AppResource(author: ("Victoria Wong", "https://www.linkedin.com/in/victoria-wong-42144467"),
+    var first = AppResource(author: ("Victoria Wong", "http://touch.www.linkedin.com/#profile/236978521"),
       source: ("Tile I", nil),
       via: ("", nil))
       first.assetName = "cb_v1"
