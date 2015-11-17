@@ -92,9 +92,6 @@ class SetExampleView: UIView {
       for card in listL.subviews { applyCardStyle(card) }
       for card in listR.subviews { applyCardStyle(card) }
 
-//      appGlobals.styleGuide.applyLayerStyle(.CardFront, views: listL.subviews)
-//      appGlobals.styleGuide.applyLayerStyle(.CardFront, views: listR.subviews)
-      
       addSubview(listL)
       addSubview(listR)
     }
@@ -120,9 +117,6 @@ class SetExampleView: UIView {
       for card in listL.subviews { applyCardStyle(card) }
       for card in listR.subviews { applyCardStyle(card) }
 
-//      appGlobals.styleGuide.applyLayerStyle(.CardFront, views: listL.subviews)
-//      appGlobals.styleGuide.applyLayerStyle(.CardFront, views: listR.subviews)
-      
       addSubview(listL)
       addSubview(listR)
     }
@@ -143,9 +137,6 @@ class SetExampleView: UIView {
       listR.addCardWith(control1)
       listR.addCardWith(control2)
       listR.addCardWith(control3)
-//
-//      appGlobals.styleGuide.applyLayerStyle(.CardFront, views: listL.subviews)
-//      appGlobals.styleGuide.applyLayerStyle(.CardFront, views: listR.subviews)
 
       for card in listL.subviews { applyCardStyle(card) }
       for card in listR.subviews { applyCardStyle(card) }
