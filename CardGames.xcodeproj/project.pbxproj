@@ -302,7 +302,7 @@
 				TargetAttributes = {
 					34005EC91A4FACDA00BDFD0F = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = 3RGETCSEF9;
+						DevelopmentTeam = 28NY6R2W6Z;
 					};
 					34005EDE1A4FACDB00BDFD0F = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -513,7 +513,7 @@
 		34005EEA1A4FACDB00BDFD0F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = CardGames/Info.plist;
@@ -521,14 +521,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Kyrie.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		34005EEB1A4FACDB00BDFD0F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = CardGames/Info.plist;
@@ -536,7 +536,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Kyrie.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
