@@ -51,9 +51,7 @@ class SetGameController: UIViewController, StyleGuideDelegate {
   }
   
   override func viewWillLayoutSubviews() {
-    if (deviceInfo.screenDims.min < 400) {
-      adjustConstraintsForSmallScreen()
-    }
+    adjustConstraintsForSmallScreen() // large also
   }
   
   
