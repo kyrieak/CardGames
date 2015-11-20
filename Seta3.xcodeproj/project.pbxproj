@@ -59,12 +59,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		34005ECA1A4FACDA00BDFD0F /* CardGames.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardGames.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		34005ECA1A4FACDA00BDFD0F /* Seta3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Seta3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34005ECE1A4FACDA00BDFD0F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		34005ECF1A4FACDA00BDFD0F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		34005ED41A4FACDB00BDFD0F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		34005ED91A4FACDB00BDFD0F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		34005EDF1A4FACDB00BDFD0F /* CardGamesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CardGamesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		34005EDF1A4FACDB00BDFD0F /* Seta3Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Seta3Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		34005EE41A4FACDB00BDFD0F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		34005EE51A4FACDB00BDFD0F /* CardGamesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGamesTests.swift; sourceTree = "<group>"; };
 		34005EF21A4FC8F500BDFD0F /* Deck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
@@ -134,8 +134,8 @@
 		34005ECB1A4FACDA00BDFD0F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				34005ECA1A4FACDA00BDFD0F /* CardGames.app */,
-				34005EDF1A4FACDB00BDFD0F /* CardGamesTests.xctest */,
+				34005ECA1A4FACDA00BDFD0F /* Seta3.app */,
+				34005EDF1A4FACDB00BDFD0F /* Seta3Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -254,9 +254,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		34005EC91A4FACDA00BDFD0F /* CardGames */ = {
+		34005EC91A4FACDA00BDFD0F /* Seta3 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 34005EE91A4FACDB00BDFD0F /* Build configuration list for PBXNativeTarget "CardGames" */;
+			buildConfigurationList = 34005EE91A4FACDB00BDFD0F /* Build configuration list for PBXNativeTarget "Seta3" */;
 			buildPhases = (
 				34005EC61A4FACDA00BDFD0F /* Sources */,
 				34005EC71A4FACDA00BDFD0F /* Frameworks */,
@@ -266,14 +266,14 @@
 			);
 			dependencies = (
 			);
-			name = CardGames;
+			name = Seta3;
 			productName = CardGames;
-			productReference = 34005ECA1A4FACDA00BDFD0F /* CardGames.app */;
+			productReference = 34005ECA1A4FACDA00BDFD0F /* Seta3.app */;
 			productType = "com.apple.product-type.application";
 		};
-		34005EDE1A4FACDB00BDFD0F /* CardGamesTests */ = {
+		34005EDE1A4FACDB00BDFD0F /* Seta3Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 34005EEC1A4FACDB00BDFD0F /* Build configuration list for PBXNativeTarget "CardGamesTests" */;
+			buildConfigurationList = 34005EEC1A4FACDB00BDFD0F /* Build configuration list for PBXNativeTarget "Seta3Tests" */;
 			buildPhases = (
 				34005EDB1A4FACDB00BDFD0F /* Sources */,
 				34005EDC1A4FACDB00BDFD0F /* Frameworks */,
@@ -284,9 +284,9 @@
 			dependencies = (
 				34005EE11A4FACDB00BDFD0F /* PBXTargetDependency */,
 			);
-			name = CardGamesTests;
+			name = Seta3Tests;
 			productName = CardGamesTests;
-			productReference = 34005EDF1A4FACDB00BDFD0F /* CardGamesTests.xctest */;
+			productReference = 34005EDF1A4FACDB00BDFD0F /* Seta3Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -310,7 +310,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 34005EC51A4FACDA00BDFD0F /* Build configuration list for PBXProject "CardGames" */;
+			buildConfigurationList = 34005EC51A4FACDA00BDFD0F /* Build configuration list for PBXProject "Seta3" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -323,8 +323,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				34005EC91A4FACDA00BDFD0F /* CardGames */,
-				34005EDE1A4FACDB00BDFD0F /* CardGamesTests */,
+				34005EC91A4FACDA00BDFD0F /* Seta3 */,
+				34005EDE1A4FACDB00BDFD0F /* Seta3Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -405,7 +405,7 @@
 /* Begin PBXTargetDependency section */
 		34005EE11A4FACDB00BDFD0F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 34005EC91A4FACDA00BDFD0F /* CardGames */;
+			target = 34005EC91A4FACDA00BDFD0F /* Seta3 */;
 			targetProxy = 34005EE01A4FACDB00BDFD0F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -518,7 +518,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = CardGames/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Kyrie.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kakop.ki.seta3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -533,7 +533,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = CardGames/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Kyrie.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kakop.ki.seta3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -555,8 +555,8 @@
 				INFOPLIST_FILE = CardGamesTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Kyrie.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CardGames.app/CardGames";
+				PRODUCT_NAME = Seta3Tests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Seta3.app/Seta3";
 			};
 			name = Debug;
 		};
@@ -571,15 +571,15 @@
 				INFOPLIST_FILE = CardGamesTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Kyrie.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CardGames.app/CardGames";
+				PRODUCT_NAME = Seta3Tests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Seta3.app/Seta3";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		34005EC51A4FACDA00BDFD0F /* Build configuration list for PBXProject "CardGames" */ = {
+		34005EC51A4FACDA00BDFD0F /* Build configuration list for PBXProject "Seta3" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				34005EE71A4FACDB00BDFD0F /* Debug */,
@@ -588,7 +588,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		34005EE91A4FACDB00BDFD0F /* Build configuration list for PBXNativeTarget "CardGames" */ = {
+		34005EE91A4FACDB00BDFD0F /* Build configuration list for PBXNativeTarget "Seta3" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				34005EEA1A4FACDB00BDFD0F /* Debug */,
@@ -597,7 +597,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		34005EEC1A4FACDB00BDFD0F /* Build configuration list for PBXNativeTarget "CardGamesTests" */ = {
+		34005EEC1A4FACDB00BDFD0F /* Build configuration list for PBXNativeTarget "Seta3Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				34005EED1A4FACDB00BDFD0F /* Debug */,

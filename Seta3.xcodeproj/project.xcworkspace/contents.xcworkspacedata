@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:CardGames.xcodeproj">
+      location = "self:/Users/kakopczynski/Sites/CardGames/Seta3.xcodeproj">
    </FileRef>
 </Workspace>
