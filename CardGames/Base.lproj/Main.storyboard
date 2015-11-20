@@ -11,7 +11,7 @@
         <!--Instructions Controller-->
         <scene sceneID="xW7-7S-3qO">
             <objects>
-                <viewController title="Instructions Controller" id="h2T-4y-gWw" customClass="InstructionsViewController" customModule="CardGames" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Instructions Controller" id="h2T-4y-gWw" customClass="InstructionsViewController" customModule="Seta3" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8t7-Vk-Kok"/>
                         <viewControllerLayoutGuide type="bottom" id="7yV-ab-oBc"/>
@@ -213,7 +213,7 @@
         <!--Acknowledgements Controller-->
         <scene sceneID="OSF-Dq-niZ">
             <objects>
-                <viewController storyboardIdentifier="resourceListController" title="Acknowledgements Controller" id="GJj-vz-XsU" customClass="AcknowledgementsController" customModule="CardGames" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="resourceListController" title="Acknowledgements Controller" id="GJj-vz-XsU" customClass="AcknowledgementsController" customModule="Seta3" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZVf-aw-WeM"/>
                         <viewControllerLayoutGuide type="bottom" id="C4Y-Cr-93z"/>
@@ -412,7 +412,7 @@ Cg
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f5d-9n-moG" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="Afn-Pc-TsL" customClass="ResourceListDataSource" customModule="CardGames" customModuleProvider="target"/>
+                <customObject id="Afn-Pc-TsL" customClass="ResourceListDataSource" customModule="Seta3" customModuleProvider="target"/>
                 <exit id="aq5-Ok-bVa" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-250.5" y="-830.25"/>
@@ -420,7 +420,7 @@ Cg
         <!--Home Controller-->
         <scene sceneID="5RX-5w-uKy">
             <objects>
-                <viewController storyboardIdentifier="homeViewController" title="Home Controller" id="H5D-No-5o1" customClass="HomeViewController" customModule="CardGames" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="homeViewController" title="Home Controller" id="H5D-No-5o1" customClass="HomeViewController" customModule="Seta3" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SnM-TY-aEw"/>
                         <viewControllerLayoutGuide type="bottom" id="dkr-8o-1Sl"/>
@@ -640,7 +640,7 @@ Cg
         <!--Game Settings Controller-->
         <scene sceneID="8x6-S5-PQn">
             <objects>
-                <viewController storyboardIdentifier="gameSettingController" autoresizesArchivedViewToFullSize="NO" title="Game Settings Controller" modalPresentationStyle="overCurrentContext" id="mh9-fz-JHF" customClass="GameSettingsController" customModule="CardGames" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="gameSettingController" autoresizesArchivedViewToFullSize="NO" title="Game Settings Controller" modalPresentationStyle="overCurrentContext" id="mh9-fz-JHF" customClass="GameSettingsController" customModule="Seta3" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="HEQ-BT-rSC"/>
                         <viewControllerLayoutGuide type="bottom" id="7rS-aE-jw1"/>
@@ -806,7 +806,7 @@ Cg
         <!--Player Setting Controller-->
         <scene sceneID="2bm-zD-vuk">
             <objects>
-                <viewController id="qiB-VV-Czl" customClass="PlayerSettingController" customModule="CardGames" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="qiB-VV-Czl" customClass="PlayerSettingController" customModule="Seta3" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="h6G-af-dgo"/>
                         <viewControllerLayoutGuide type="bottom" id="HdX-Ha-0xE"/>
@@ -937,7 +937,7 @@ Cg
         <!--Set Game Controller-->
         <scene sceneID="qmm-UM-vLP">
             <objects>
-                <viewController title="Set Game Controller" id="kmm-mS-WAn" customClass="SetGameController" customModule="CardGames" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Set Game Controller" id="kmm-mS-WAn" customClass="SetGameController" customModule="Seta3" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7Wn-ch-2wN"/>
                         <viewControllerLayoutGuide type="bottom" id="EcK-cy-hl4"/>
@@ -946,7 +946,7 @@ Cg
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view tag="1" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cOd-Sg-46z" customClass="SGHeaderView" customModule="CardGames" customModuleProvider="target">
+                            <view tag="1" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cOd-Sg-46z" customClass="SGHeaderView" customModule="Seta3" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="128"/>
                                 <subviews>
                                     <button opaque="NO" tag="12" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Qa-ky-QRc" userLabel="Deck">
@@ -1077,7 +1077,7 @@ Cg
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" tag="20" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" scrollEnabled="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="GBL-hM-gRm">
                                         <rect key="frame" x="0.0" y="128" width="600" height="344"/>
                                         <color key="backgroundColor" red="0.92941176469999998" green="0.96947297489999995" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="12" minimumInteritemSpacing="12" id="Lcb-s4-936" customClass="SGCollectionViewLayout" customModule="CardGames" customModuleProvider="target">
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="12" minimumInteritemSpacing="12" id="Lcb-s4-936" customClass="SGCollectionViewLayout" customModule="Seta3" customModuleProvider="target">
                                             <size key="itemSize" width="77" height="102"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="320" height="50"/>
@@ -1098,7 +1098,7 @@ Cg
                                             <rect key="frame" x="0.0" y="126" width="600" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Mj-8v-r5v" userLabel="Status View" customClass="SGStatusView" customModule="CardGames" customModuleProvider="target">
+                                                <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Mj-8v-r5v" userLabel="Status View" customClass="SGStatusView" customModule="Seta3" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
                                                     <subviews>
                                                         <button opaque="NO" tag="5" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cuS-Qz-qvU">
@@ -1152,7 +1152,7 @@ Cg
                                     <constraint firstAttribute="trailing" secondItem="GBL-hM-gRm" secondAttribute="trailing" id="wUV-8k-OIp"/>
                                 </constraints>
                             </view>
-                            <view tag="3" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Vs-ZC-WDI" customClass="SGFooterView" customModule="CardGames" customModuleProvider="target">
+                            <view tag="3" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Vs-ZC-WDI" customClass="SGFooterView" customModule="Seta3" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="472" width="600" height="128"/>
                                 <color key="backgroundColor" red="0.80392156859999997" green="0.88235294119999996" blue="0.81568627449999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -1265,15 +1265,15 @@ Cg
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aV8-xL-WPq" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="9Vo-Po-MCU" customClass="SetGameDataSource" customModule="CardGames" customModuleProvider="target"/>
-                <customObject id="ju9-Y4-cHC" customClass="SetGameDelegate" customModule="CardGames" customModuleProvider="target"/>
+                <customObject id="9Vo-Po-MCU" customClass="SetGameDataSource" customModule="Seta3" customModuleProvider="target"/>
+                <customObject id="ju9-Y4-cHC" customClass="SetGameDelegate" customModule="Seta3" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="1951.5" y="-12"/>
         </scene>
         <!--Scores Controller-->
         <scene sceneID="bmm-gN-Q2J">
             <objects>
-                <viewController id="IPj-P0-BPp" customClass="ScoresController" customModule="CardGames" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="IPj-P0-BPp" customClass="ScoresController" customModule="Seta3" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qa4-t1-YbA"/>
                         <viewControllerLayoutGuide type="bottom" id="ty2-GU-ZZg"/>
@@ -1532,7 +1532,7 @@ Cg
         <!--Theme Settings Controller-->
         <scene sceneID="m3p-j9-aGn">
             <objects>
-                <viewController title="Theme Settings Controller" id="luK-Cw-9qx" customClass="ThemeSettingsController" customModule="CardGames" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Theme Settings Controller" id="luK-Cw-9qx" customClass="ThemeSettingsController" customModule="Seta3" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cVH-Ss-12W"/>
                         <viewControllerLayoutGuide type="bottom" id="okh-BM-Hss"/>
@@ -1541,7 +1541,7 @@ Cg
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view tag="1" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kaE-OT-hLF" customClass="SGHeaderView" customModule="CardGames" customModuleProvider="target">
+                            <view tag="1" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kaE-OT-hLF" customClass="SGHeaderView" customModule="Seta3" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <subviews>
                                     <button opaque="NO" tag="11" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="right" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MrU-ch-G5N">
@@ -1725,7 +1725,7 @@ Cg
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rS2-xy-8Be" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="zkv-GB-VjX" customClass="ThemeTableDataSource" customModule="CardGames" customModuleProvider="target"/>
+                <customObject id="zkv-GB-VjX" customClass="ThemeTableDataSource" customModule="Seta3" customModuleProvider="target"/>
                 <exit id="6eC-z4-STj" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="357" y="724.5"/>
@@ -1742,7 +1742,7 @@ Cg
                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view tag="1" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CZh-U9-s8p" userLabel="Number Sets" customClass="SetExampleView" customModule="CardGames" customModuleProvider="target">
+                            <view tag="1" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CZh-U9-s8p" userLabel="Number Sets" customClass="SetExampleView" customModule="Seta3" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="• The number of shapes either all match or are all different" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gSf-zg-CwO" userLabel="Number">
@@ -1766,7 +1766,7 @@ Cg
                                     <constraint firstItem="gSf-zg-CwO" firstAttribute="width" secondItem="CZh-U9-s8p" secondAttribute="width" id="kM3-Lc-Bsr"/>
                                 </constraints>
                             </view>
-                            <view tag="2" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sXl-kO-5y7" userLabel="Shape Sets" customClass="SetExampleView" customModule="CardGames" customModuleProvider="target">
+                            <view tag="2" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sXl-kO-5y7" userLabel="Shape Sets" customClass="SetExampleView" customModule="Seta3" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="• The shapes either all match or are all different" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I6V-fc-CSC" userLabel="Shape">
@@ -1790,7 +1790,7 @@ Cg
                                     <constraint firstItem="I6V-fc-CSC" firstAttribute="centerX" secondItem="sXl-kO-5y7" secondAttribute="centerX" id="p1R-O5-yvv"/>
                                 </constraints>
                             </view>
-                            <view tag="3" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9gS-Us-05t" userLabel="Shading Sets" customClass="SetExampleView" customModule="CardGames" customModuleProvider="target">
+                            <view tag="3" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9gS-Us-05t" userLabel="Shading Sets" customClass="SetExampleView" customModule="Seta3" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="• The shadings either all match or are all different" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f5i-hA-MUa" userLabel="Shading">
@@ -1814,7 +1814,7 @@ Cg
                                     <constraint firstItem="f5i-hA-MUa" firstAttribute="centerX" secondItem="9gS-Us-05t" secondAttribute="centerX" id="y5I-fL-hs0"/>
                                 </constraints>
                             </view>
-                            <view tag="4" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hLn-P4-DRx" userLabel="Color Sets" customClass="SetExampleView" customModule="CardGames" customModuleProvider="target">
+                            <view tag="4" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hLn-P4-DRx" userLabel="Color Sets" customClass="SetExampleView" customModule="Seta3" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="• The colors either all match or are all different" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qhz-r5-lJd" userLabel="Color">
