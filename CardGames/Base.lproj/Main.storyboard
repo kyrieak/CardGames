@@ -83,7 +83,7 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ka7-iE-r2g" userLabel="Text: Game Options">
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="31" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ka7-iE-r2g" userLabel="Text: Game Options">
                                         <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="300" id="Zsl-aJ-FuV">
@@ -96,20 +96,20 @@
                                                 <string key="content">You can navigate to the Game Option settings by:
 
 • Selecting the menu item in the home screen
-• Pressing the</string>
+• Pressing the </string>
                                                 <attributes>
                                                     <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <font key="NSFont" size="18" name="Palatino-Roman"/>
                                                 </attributes>
                                             </fragment>
-                                            <fragment content=" ⚙ ">
+                                            <fragment content="⚙">
                                                 <attributes>
                                                     <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <font key="NSFont" size="11" name="Menlo-Regular"/>
+                                                    <font key="NSFont" size="18" name="Menlo-Regular"/>
                                                 </attributes>
                                             </fragment>
                                             <fragment>
-                                                <string key="content">(Gear) Icon from the in-game screen.
+                                                <string key="content"> (Gear) Icon from the in-game screen.
 
 </string>
                                                 <attributes>
@@ -127,6 +127,7 @@
                                             </fragment>
                                         </attributedString>
                                         <nil key="highlightedColor"/>
+                                        <size key="shadowOffset" width="0.0" height="0.0"/>
                                         <variation key="default">
                                             <mask key="constraints">
                                                 <exclude reference="Zsl-aJ-FuV"/>
