@@ -39,6 +39,11 @@ class ThemeSettingsController: UIViewController, UITableViewDelegate, StyleGuide
     applyStyleToViews()
   }
   
+
+  override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+    return UIInterfaceOrientationMask.Portrait
+  }
+  
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     let theme = themeDataSource.themeAt(indexPath)!

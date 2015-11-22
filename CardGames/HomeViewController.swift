@@ -48,6 +48,11 @@ class HomeViewController: UIViewController, StyleGuideDelegate {
     }
   }
   
+  
+  override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+    return UIInterfaceOrientationMask.Portrait
+  }
+  
   func setBtnBorder(sender: UIButton) {
     backBtn.layer.borderColor = styleGuide.theme.bgColor2.getShade(0.05).CGColor
   }

@@ -39,6 +39,11 @@ class AcknowledgementsController: UIViewController, UITableViewDelegate, UITextV
   }
   
   
+  override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+    return UIInterfaceOrientationMask.Portrait
+  }
+  
+  
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
     if (indexPath.section == 0) {
       return 170

@@ -91,6 +91,11 @@ class SetGameController: UIViewController, StyleGuideDelegate {
     }
   }
   
+
+  override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+    return UIInterfaceOrientationMask.Portrait
+  }
+  
   
   func themeDidChange() -> Bool {
     return (themeID != styleGuide.themeID)

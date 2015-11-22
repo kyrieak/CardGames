@@ -19,6 +19,13 @@ class InstructionsViewController: UIViewController {
   }
   
   
+  
+  override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+    return UIInterfaceOrientationMask.Portrait
+  }
+  
+  
+  
   func applyStyleToViews() {
     let scrollView = self.view.subviews.first!
     
