@@ -77,7 +77,8 @@ class ThemeSettingsController: UIViewController, UITableViewDelegate, StyleGuide
         return [self.view]
       case .Header:
         return [headerView]
-      
+      case .Status:
+        return [saveBtn]
       default:
         return []
     }
@@ -92,8 +93,6 @@ class ThemeSettingsController: UIViewController, UITableViewDelegate, StyleGuide
     switch(sel) {
     case .HeadTitle:
       return [headerView.viewWithTag(11)! as! UIButton]
-    case .Header:
-      return [saveBtn]
     default:
       return []
     }
@@ -101,18 +100,16 @@ class ThemeSettingsController: UIViewController, UITableViewDelegate, StyleGuide
   
   
   func applyStyleToViews() {
-    let selectors: [ViewSelector] = [.MainContent, .Header, .FooterUIBtn]
-    let btnSelectors: [ViewSelector] = [.HeadTitle, .Header]
+    let selectors: [ViewSelector] = [.MainContent, .Header, .FooterUIBtn, .Status]
 
     for sel in selectors {
       styleGuide.applyLayerStyle(sel, views: viewsForLayerStyle(sel))
     }
     
-    for sel in btnSelectors {
-      styleGuide.applyBtnStyle(sel, views: viewsForBtnStyle(sel))
-    }
+    styleGuide.applyBtnStyle(.HeadTitle, views: viewsForBtnStyle(.HeadTitle))
     
     backBtn.setTitleColor(styleGuide.fontStyle(.HeadTitle)!.color, forState: .Normal)
+    saveBtn.setTitleColor(styleGuide.fontStyle(.Status)!.color, forState: .Normal)
     
     themesTable.layer.borderColor = styleGuide.theme.bgBase.getShade(-0.15).CGColor
   }

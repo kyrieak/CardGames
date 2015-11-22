@@ -57,7 +57,7 @@ class SGStyleGuide: StyleGuide {
     let fontSize = {(dim: CGFloat) -> (CGFloat, CGFloat, CGFloat) in
       switch(dim) {
       case _ where (dim < 350):
-        return (35, 20, 12)
+        return (35, 20, 14)
       case _ where (dim > 700):
         return (64, 32, 24)
       default:

@@ -19,7 +19,17 @@ class SetExampleView: UIView {
   let cardSize: CGSize
   
   required init?(coder aDecoder: NSCoder) {
-    cardSize = (deviceInfo.screenDims.min < 500) ? CGSize(width: 46, height: 64) : CGSize(width: 75, height: 100)
+    let minScreenDims = deviceInfo.screenDims.min
+    
+    if (minScreenDims < 500) {
+      if (deviceInfo.screenDims.max < 500) {
+        cardSize = CGSize(width: 40, height: 55)
+      } else {
+        cardSize = CGSize(width: 46, height: 64)
+      }
+    } else {
+      cardSize = CGSize(width: 75, height: 100)
+    }
 
     super.init(coder: aDecoder)
   }
@@ -42,8 +52,6 @@ class SetExampleView: UIView {
   
   func loadNumberExample() {
     if (self.subviews.count < 2) {
-      let cardSize: CGSize = (deviceInfo.screenDims.min < 500) ? CGSize(width: 46, height: 64) : CGSize(width: 75, height: 100)
-      
       let originL = CGPoint(x: 0, y: bounds.height - cardSize.height)
       let originR = CGPoint(x: bounds.width - (cardSize.width * 3 * 1.1), y: originL.y)
 
