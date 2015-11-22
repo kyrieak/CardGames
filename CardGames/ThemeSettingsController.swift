@@ -23,22 +23,31 @@ class ThemeSettingsController: UIViewController, UITableViewDelegate, StyleGuide
   lazy var saveBtn:     UIButton    = { return self.view.viewWithTag(3)! as! UIButton }()
   lazy var backBtn:     UIButton    = { return self.view.viewWithTag(12)! as! UIButton }()
   
+  private var _computedTableHeight: CGFloat = 0
+  private var _maxTableHeight: CGFloat = 0
   
   override func viewWillLayoutSubviews() {
-    for c in themesTable.constraints {
-      if (c.firstAttribute == NSLayoutAttribute.Height) {
-        c.constant = min(computedTableHeight(), maxTableHeight())
-      }
+    if (_computedTableHeight < 1) {
+      _computedTableHeight = computedTableHeight()
     }
   }
-
   
   override func viewDidLayoutSubviews() {
+    if (_maxTableHeight < 1) {
+      _maxTableHeight = maxTableHeight()
+      
+      for c in themesTable.constraints {
+        if (c.firstAttribute == NSLayoutAttribute.Height) {
+          c.constant = min(_computedTableHeight, _maxTableHeight)
+        }
+      }
+    }
+    
     themesTable.layer.borderWidth = CGFloat(1)
-
+    
     applyStyleToViews()
   }
-  
+
 
   override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
     return UIInterfaceOrientationMask.Portrait
