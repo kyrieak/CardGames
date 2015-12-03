@@ -22,7 +22,7 @@ class SetExampleView: UIView {
     let minScreenDims = deviceInfo.screenDims.min
     
     if (minScreenDims < 500) {
-      if (deviceInfo.screenDims.max < 500) {
+      if (deviceInfo.screenDims.max < 600) {
         cardSize = CGSize(width: 40, height: 55)
       } else {
         cardSize = CGSize(width: 46, height: 64)
