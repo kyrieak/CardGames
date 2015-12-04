@@ -18,7 +18,6 @@
 		340E514F1BE32A940010FE2E /* InstructionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340E514E1BE32A940010FE2E /* InstructionsViewController.swift */; };
 		341723741AFBFAED002D8343 /* Squiggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341723731AFBFAED002D8343 /* Squiggle.swift */; };
 		341A2E431A8C92AE0091664E /* UIViewStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341A2E421A8C92AE0091664E /* UIViewStyles.swift */; };
-		343D18131BEB4BD900ECF66B /* ResouceInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343D18121BEB4BD900ECF66B /* ResouceInfoView.swift */; };
 		34527F5A1A96FC7D0039C913 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34527F591A96FC7D0039C913 /* Images.xcassets */; };
 		345433C41BF18EFB00E8F3D7 /* Moon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345433C31BF18EFB00E8F3D7 /* Moon.swift */; };
 		345695411A9FB4510076FD39 /* SetGameDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345695401A9FB4510076FD39 /* SetGameDelegate.swift */; };
@@ -74,7 +73,6 @@
 		340E514E1BE32A940010FE2E /* InstructionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionsViewController.swift; sourceTree = "<group>"; };
 		341723731AFBFAED002D8343 /* Squiggle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Squiggle.swift; sourceTree = "<group>"; };
 		341A2E421A8C92AE0091664E /* UIViewStyles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewStyles.swift; sourceTree = "<group>"; };
-		343D18121BEB4BD900ECF66B /* ResouceInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResouceInfoView.swift; sourceTree = "<group>"; };
 		34527F591A96FC7D0039C913 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		345433C31BF18EFB00E8F3D7 /* Moon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Moon.swift; sourceTree = "<group>"; };
 		345695401A9FB4510076FD39 /* SetGameDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetGameDelegate.swift; sourceTree = "<group>"; };
@@ -154,7 +152,6 @@
 				348FF6401AA1658B0041C5C6 /* SetGameDataSource.swift */,
 				3499D7F01BD4BFD5001AE54D /* ThemeTableDataSource.swift */,
 				34FB2BDA1BEAD04200DDCF63 /* ResourceListDataSource.swift */,
-				343D18121BEB4BD900ECF66B /* ResouceInfoView.swift */,
 				341723751AFBFB5A002D8343 /* Geometry */,
 				34527F591A96FC7D0039C913 /* Images.xcassets */,
 				34005ED81A4FACDB00BDFD0F /* LaunchScreen.xib */,
@@ -216,13 +213,13 @@
 			isa = PBXGroup;
 			children = (
 				345A74D61B952715003C27AE /* HomeViewController.swift */,
-				340897921BE8376300A0A038 /* ScoresController.swift */,
 				340E514E1BE32A940010FE2E /* InstructionsViewController.swift */,
-				348FF63E1AA1629C0041C5C6 /* SetGameController.swift */,
-				34BB7CCD1BC8D602000C8461 /* GameSettingsController.swift */,
-				3498E71D1BC5BE6000842F5A /* ThemeSettingsController.swift */,
-				34D908341BCE174200ABDE7E /* PlayerSettingController.swift */,
 				346796E81BEAF9DF00EA083A /* AcknowledgementsController.swift */,
+				348FF63E1AA1629C0041C5C6 /* SetGameController.swift */,
+				3498E71D1BC5BE6000842F5A /* ThemeSettingsController.swift */,
+				34BB7CCD1BC8D602000C8461 /* GameSettingsController.swift */,
+				34D908341BCE174200ABDE7E /* PlayerSettingController.swift */,
+				340897921BE8376300A0A038 /* ScoresController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -368,7 +365,6 @@
 				34D908351BCE174200ABDE7E /* PlayerSettingController.swift in Sources */,
 				34005EF51A4FC91500BDFD0F /* Card.swift in Sources */,
 				34DCC2731BCCB7B20034A274 /* Theme.swift in Sources */,
-				343D18131BEB4BD900ECF66B /* ResouceInfoView.swift in Sources */,
 				34005ED01A4FACDA00BDFD0F /* AppDelegate.swift in Sources */,
 				346796E91BEAF9DF00EA083A /* AcknowledgementsController.swift in Sources */,
 				348FF6411AA1658B0041C5C6 /* SetGameDataSource.swift in Sources */,
