@@ -60,7 +60,7 @@ class SGCollectionViewLayout: UICollectionViewFlowLayout {
         self.sectionInset = UIEdgeInsets(tb: 10, lr: 8)
       }
     } else {
-      self.sectionInset = UIEdgeInsets(tb: 15, lr: 50)
+      self.sectionInset = UIEdgeInsets(tb: 15, lr: 25)
     }
   }
   

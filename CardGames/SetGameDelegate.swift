@@ -25,9 +25,10 @@ class SetGameDelegate: NSObject, UICollectionViewDelegate {
         statusView = view.viewWithTag(statusViewTag) as! SGStatusView
         statusView.adjustHeight(view.frame.height)
         appGlobals.styleGuide.applyFontStyle(.Status, views: [statusView.messageView])
-            let scoreIcon = statusView.viewWithTag(5) as! UIButton
-        
-            scoreIcon.setTitleColor(appGlobals.styleGuide.theme.fontColor1, forState: .Normal)
+
+        let scoreIcon = statusView.viewWithTag(5) as! UIButton
+    
+        scoreIcon.setTitleColor(appGlobals.styleGuide.theme.fontColor1, forState: .Normal)
         
         view.frame.origin.y = collectionView.frame.height - view.frame.height
       }

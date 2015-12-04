@@ -25,6 +25,7 @@ class SGStyleGuide: StyleGuide {
   private var titleFS  = UIFontStyle(fontName: "Palatino-BoldItalic")
   private var menuFS   = UIFontStyle(fontName: "Palatino")
   private var statusFS = UIFontStyle(fontName: "Arial")
+  private var playerBtnFS = UIFontStyle(fontName: "Arial", size: 22)
   
   // - MARK: - Initializers
   
@@ -68,6 +69,10 @@ class SGStyleGuide: StyleGuide {
     titleFS.size  = fontSize.0
     menuFS.size   = fontSize.1
     statusFS.size = fontSize.2
+    
+    if (deviceInfo.isTablet) {
+      playerBtnFS.size = 32
+    }
   }
 
   
@@ -222,10 +227,9 @@ class SGStyleGuide: StyleGuide {
   }
 
   private func playerBtnFontStyle() -> UIFontStyle {
-    var fs = statusFS
+    var fs = playerBtnFS
     
     fs.color = theme.fontColor1
-    fs.size  = 22
     
     return fs
   }

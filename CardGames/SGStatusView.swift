@@ -25,6 +25,11 @@ class SGStatusView: UIView {
   
   func setupSubviews() {
     messageView.isAccessibilityElement = true
+    
+    if (deviceInfo.isTablet) {
+      cardListView.frame.origin.x = 8
+      messageView.frame.origin.x = 8
+    }
 
     if (screenDims.min < 400) {
       frame.size.height = 40
@@ -78,7 +83,7 @@ class SGStatusView: UIView {
   
   
   func adjustMessageFrame() {
-    messageView.frame.origin.x = cardListView.cornerRight.x
+    messageView.frame.origin.x = cardListView.frame.maxX
     messageView.sizeToFit()
     messageView.frame.origin.y = (self.frame.height - messageView.frame.height) / 2
   }

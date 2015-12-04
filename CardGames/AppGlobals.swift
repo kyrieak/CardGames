@@ -34,6 +34,10 @@ struct DeviceInfo {
   let screenDims: (min: CGFloat, max: CGFloat)
   let isMobile: Bool
 
+  var isTablet: Bool {
+    return !isMobile
+  }
+  
   init() {
     screenDims = UIScreen.mainScreen().bounds.getMinMaxDims()
     isMobile = screenDims.min < 415
