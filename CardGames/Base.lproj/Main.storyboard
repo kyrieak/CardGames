@@ -233,12 +233,15 @@
                                 <fontDescription key="fontDescription" name="Palatino-BoldItalic" family="Palatino" pointSize="28"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" name="Palatino-BoldItalic" family="Palatino" pointSize="36"/>
+                                </variation>
                             </label>
                             <tableView clipsSubviews="YES" tag="10" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" directionalLockEnabled="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="115.5" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8ar-fD-W97">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="480" id="F5D-k5-J6I"/>
+                                    <constraint firstAttribute="width" constant="520" id="F5D-k5-J6I"/>
                                 </constraints>
                                 <color key="separatorColor" red="0.70196080207824707" green="0.70196080207824707" blue="0.70196080207824707" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
@@ -343,6 +346,9 @@ Cg
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <rect key="frame" x="115" y="8" width="117" height="99.5"/>
                                                     </variation>
+                                                    <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                                        <rect key="frame" x="115" y="8" width="357" height="99.5"/>
+                                                    </variation>
                                                     <connections>
                                                         <outlet property="delegate" destination="GJj-vz-XsU" id="CFW-rS-7Mk"/>
                                                     </connections>
@@ -378,6 +384,9 @@ Cg
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <fontDescription key="fontDescription" name="Palatino-Bold" family="Palatino" pointSize="18"/>
                                 <state key="normal" title="Back"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" name="Palatino-Bold" family="Palatino" pointSize="28"/>
+                                </variation>
                                 <connections>
                                     <segue destination="aq5-Ok-bVa" kind="unwind" unwindAction="prepareUnwind:" id="rwb-4s-JJp"/>
                                 </connections>
@@ -554,6 +563,10 @@ Cg
                                         </state>
                                         <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
                                             <rect key="frame" x="120" y="8" width="160" height="32"/>
+                                        </variation>
+                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                            <fontDescription key="fontDescription" name="Palatino-Bold" family="Palatino" pointSize="22"/>
+                                            <rect key="frame" x="318" y="8" width="164" height="32"/>
                                         </variation>
                                         <connections>
                                             <segue destination="GJj-vz-XsU" kind="show" identifier="acknowSegue" id="MHn-B7-GMf"/>

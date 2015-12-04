@@ -11,7 +11,7 @@ import UIKit
 
 
 struct AppGlobals {
-  let styleGuide = SGStyleGuide(theme: Theme.honeydew())
+  let styleGuide = SGStyleGuide(theme: Theme.victoria1())
   
   var gameSettings = GameSettings(players: Player.makeNumberedPlayers(1))
   var gameIsActive = false

@@ -49,7 +49,16 @@ class ResourceListDataSource: NSObject, UITableViewDataSource {
       let textView = cell.contentView.subviews.first! as! UITextView
       
       textView.tintColor = theme.fontColor2
-      textView.attributedText = introText()
+      
+      let introFont: UIFont
+      
+      if (textView.font == nil) {
+        introFont = UIFont.systemFontOfSize(16)
+      } else {
+        introFont = textView.font!
+      }
+      
+      textView.attributedText = introText(introFont)
     } else {
       cell = tableView.dequeueReusableCellWithIdentifier("imageSourceRow", forIndexPath: indexPath)
       
@@ -77,12 +86,16 @@ class ResourceListDataSource: NSObject, UITableViewDataSource {
     return cell
   }
   
-  func introText() -> NSMutableAttributedString {
+  func introText(font: UIFont) -> NSMutableAttributedString {
     let baseText = NSMutableAttributedString(string: "I am an independent developer and I have built the Seta3 app based on the rules of the original game called Set. I do not claim credit for the idea of the original Set game designed by Marsha Falco. I do not represent Set Enterprises, nor do I have any affiliation with Set Enterprises.\n\nSpecial Thanks To:\n\n")
     let thanksLine = NSMutableAttributedString(string: "Victoria Wong: Design Consultant and Theme Contributor\nMiki Bairstow: Design Consultant\n")
     
+    baseText.addAttribute(NSFontAttributeName, value: font, range: NSRange(location: 0, length: baseText.string.characters.count))
+    thanksLine.addAttribute(NSFontAttributeName, value: font, range: NSRange(location: 0, length: thanksLine.string.characters.count))
+    
     thanksLine.addAttributes(styleGuide.linkTextAttributes(NSURL(string: "http://touch.www.linkedin.com/#profile/236978521")!), range: NSRange(location: 0, length: 13))
     thanksLine.addAttributes(styleGuide.linkTextAttributes(NSURL(string: "https://touch.www.linkedin.com/#profile/111913701")!), range: NSRange(location: 55, length: 13))
+    
     baseText.appendAttributedString(thanksLine)
     
     return baseText
