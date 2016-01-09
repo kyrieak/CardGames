@@ -133,11 +133,11 @@ class Theme {
     theme.setUniqueID(4)
     
     theme.bgBase     = UIColor(red: 0.86, green: 0.61, blue: 0.36, alpha: 1.0) // #DB9B5D
-    theme.bgLight = theme.bgBase.getShade(0.2)
-    theme.bgColor2 = UIColor(red: 0.16, green: 0.31, blue: 0.43, alpha: 1.0)// #2A506D
-    theme.bgColor3   = UIColor(red: 0.54, green: 0.65, blue: 0.84, alpha: 1.0)
-    theme.fontColor1 = UIColor(red: 0.45, green: 0.14, blue: 0.15, alpha: 1.0)
-    theme.fontColor2 = theme.bgColor2.getShade(0.15)
+    theme.bgLight    = theme.bgBase.getShade(0.2)
+    theme.bgColor2   = UIColor(red: 0.16, green: 0.31, blue: 0.43, alpha: 1.0) // #2A506D
+    theme.bgColor3   = UIColor(red: 0.54, green: 0.65, blue: 0.84, alpha: 1.0) // #8AA6D6
+    theme.fontColor1 = UIColor(red: 0.45, green: 0.14, blue: 0.15, alpha: 1.0) // #732426
+    theme.fontColor2 = theme.bgColor2.getShade(0.15) // #4f7594
     theme.fontColor3 = theme.bgColor3.getShade(-0.6)
     theme.shadeAlpha = 0.5
     theme.shadeWidth = 2.0

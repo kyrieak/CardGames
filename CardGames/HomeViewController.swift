@@ -78,9 +78,6 @@ class HomeViewController: UIViewController, StyleGuideDelegate {
     switch(sel) {
       case .HeadTitle:
         return [(headerView.viewWithTag(titleTag)! as! UILabel)]
-      case .HomeMenuItem:
-        return getMenuItems().map{(item: UIButton) -> UILabel in
-                                   return item.titleLabel! }
       default:
         return []
     }
@@ -88,33 +85,30 @@ class HomeViewController: UIViewController, StyleGuideDelegate {
   
   
   func viewsForBtnStyle(sel: ViewSelector) -> [UIButton] {
-    return []
+    switch(sel) {
+      case .HomeMenuItem:
+        return menuView.subviews as! [UIButton]
+      case .NavPill:
+        return [backBtn]
+      default:
+        return []
+    }
   }
-  
-  
-  func getMenuItems() -> [UIButton] {
-    return menuView.subviews as! [UIButton]
-  }
-  
-  
-  func adjustMenuItemSpacing() {
-  }
-  
   
   
   func applyStyleToViews() {
     let layerSelectors: [ViewSelector] = [.MainContent, .Header, .Footer, .Status]
-    let textSelectors: [ViewSelector] = [.HomeMenuItem, .HeadTitle]
+    let btnSelectors: [ViewSelector]   = [.HomeMenuItem, .NavPill]
     
-    for sel in textSelectors {
-      styleGuide.applyFontStyle(sel, views: viewsForFontStyle(sel))
-    }
+    styleGuide.applyFontStyle(.HeadTitle, views: viewsForFontStyle(.HeadTitle))
     
     for sel in layerSelectors {
       styleGuide.applyLayerStyle(sel, views: viewsForLayerStyle(sel))
     }
-
-    styleGuide.applyBtnStyle(.NavPill, views: [backBtn])
+    
+    for sel in btnSelectors {
+      styleGuide.applyBtnStyle(sel, views: viewsForBtnStyle(sel))
+    }
 
     backBtn.setTitleShadowColor(styleGuide.theme.shadeColor1, forState: .Normal)
     ackBtn.setTitleColor(styleGuide.theme.fontColor2, forState: .Normal)

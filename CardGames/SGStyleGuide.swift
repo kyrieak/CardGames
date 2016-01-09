@@ -22,10 +22,11 @@ class SGStyleGuide: StyleGuide {
   
   private(set) var theme: Theme
   
-  private var titleFS  = UIFontStyle(fontName: "Palatino-BoldItalic")
-  private var menuFS   = UIFontStyle(fontName: "Palatino")
-  private var statusFS = UIFontStyle(fontName: "Arial")
-  private var playerBtnFS = UIFontStyle(fontName: "Arial", size: 22)
+  private var titleFS     = UIFontStyle(fontName: "Palatino-BoldItalic")
+  private var menuFS      = UIFontStyle(fontName: "Palatino")
+  private var navPillFS   = UIFontStyle(fontName: "Palatino")
+  private var statusFS    = UIFontStyle(fontName: "Arial")
+  private var playerBtnFS = UIFontStyle(fontName: "Arial")
   
   // - MARK: - Initializers
   
@@ -34,15 +35,17 @@ class SGStyleGuide: StyleGuide {
     self.theme = theme
     self.screenDims = deviceInfo.screenDims
     
-    setFontSizes(screenDims.min)
+    setFontSizes()
+    setFontColors()
   }
   
   
   init(theme: Theme, screenSize: CGSize) {
     self.theme      = theme
     self.screenDims = screenSize.getMinMaxDims()
-
-    setFontSizes(screenDims.min)
+    
+    setFontSizes()
+    setFontColors()
   }
   
   
@@ -51,28 +54,54 @@ class SGStyleGuide: StyleGuide {
   
   func setTheme(theme: Theme) {
     self.theme = theme
+    
+    setFontColors()
+  }
+  
+  func setFontColors() {
+    menuFS.color      = UIColor(red: 0.26, green: 0.19, blue: 0.11, alpha: 1.0)
+    playerBtnFS.color = theme.fontColor1
+    titleFS.color     = theme.fontColor2
+    navPillFS.color   = theme.fontColor2
+    statusFS.color    = theme.fontColor3
   }
   
   
-  private func setFontSizes(minScreenDim: CGFloat) {
-    let fontSize = {(dim: CGFloat) -> (CGFloat, CGFloat, CGFloat) in
-      switch(dim) {
-      case _ where (dim < 350):
-        return (35, 20, 14)
-      case _ where (dim > 700):
-        return (64, 32, 24)
-      default:
-        return (48, 24, 18)
-      }
-      }(minScreenDim)
-    
-    titleFS.size  = fontSize.0
-    menuFS.size   = fontSize.1
-    statusFS.size = fontSize.2
-    
+  private func setFontSizes() {
     if (deviceInfo.isTablet) {
-      playerBtnFS.size = 32
+      setFontSizesForTablet()
+    } else if (screenDims.min < 350) {
+      setFontSizesForSmallMobile()
+    } else {
+      setFontSizesForMobile()
     }
+  }
+
+  
+  private func setFontSizesForSmallMobile() {
+    titleFS.size     = 35
+    menuFS.size      = 20
+    navPillFS.size   = 20
+    playerBtnFS.size = 22
+    statusFS.size    = 14
+  }
+
+  
+  private func setFontSizesForMobile() {
+    titleFS.size     = 48
+    menuFS.size      = 24
+    playerBtnFS.size = 22
+    navPillFS.size   = 20
+    statusFS.size    = 18
+  }
+
+  
+  private func setFontSizesForTablet() {
+    titleFS.size     = 64
+    menuFS.size      = 32
+    playerBtnFS.size = 32
+    statusFS.size    = 24
+    navPillFS.size   = 24
   }
 
   
@@ -119,13 +148,13 @@ class SGStyleGuide: StyleGuide {
   func fontStyle(sel: ViewSelector) -> UIFontStyle? {
     switch(sel) {
     case .HeadTitle:
-      return titleFontStyle()
+      return titleFS
     case .NavPill:
-      return UIFontStyle(fontName: menuFS.fontName, size: 20, color: theme.fontColor2)
+      return navPillFS
     case .Status:
-      return statusFontStyle()
+      return statusFS
     case .FooterUIBtn:
-      return playerBtnFontStyle()
+      return playerBtnFS
     case .HomeMenuItem:
       return menuFS
     default:

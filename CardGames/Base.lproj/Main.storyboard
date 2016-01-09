@@ -17,7 +17,7 @@
                         <viewControllerLayoutGuide type="bottom" id="7yV-ab-oBc"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="KBt-JO-SJX">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="1200"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" directionalLockEnabled="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zKc-in-B3Q">
@@ -264,8 +264,9 @@ Special Thanks To:</string>
                                                     <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
                                                         <rect key="frame" x="8" y="8" width="224" height="154"/>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=regular">
+                                                    <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <rect key="frame" x="8" y="8" width="224" height="154"/>
                                                     </variation>
                                                     <connections>
                                                         <outlet property="delegate" destination="GJj-vz-XsU" id="V1K-jd-XmP"/>
@@ -564,9 +565,8 @@ Cg
                                         <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
                                             <rect key="frame" x="120" y="8" width="160" height="32"/>
                                         </variation>
-                                        <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                            <fontDescription key="fontDescription" name="Palatino-Bold" family="Palatino" pointSize="22"/>
-                                            <rect key="frame" x="318" y="8" width="164" height="32"/>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" name="Palatino-Bold" family="Palatino" pointSize="24"/>
                                         </variation>
                                         <connections>
                                             <segue destination="GJj-vz-XsU" kind="show" identifier="acknowSegue" id="MHn-B7-GMf"/>
@@ -588,6 +588,9 @@ Cg
                                     <color key="titleColor" red="0.60784313729999995" green="0.73333333329999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" red="0.50980392156862742" green="0.63921568627450975" blue="0.49803921568627452" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" name="Palatino-BoldItalic" family="Palatino" pointSize="24"/>
+                                </variation>
                                 <connections>
                                     <segue destination="ybI-AH-8cG" kind="unwind" unwindAction="prepareUnwindToGame:" id="kQT-F3-gHK"/>
                                 </connections>
